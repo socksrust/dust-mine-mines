@@ -11,7 +11,6 @@ export const Footer = () => {
     >
       <Stack maxW="1067px" w="100%" bg="black">
         <Text textAlign="center" fontFamily="Poppins">
-          Copyright &copy; 2021. All rights reserved.
         </Text>
       </Stack>
     </Flex>

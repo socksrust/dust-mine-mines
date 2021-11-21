@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Layout } from '../components/common/layout';
 import { Input, Button, Switch, Image, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, useDisclosure, ModalFooter } from '@chakra-ui/react';
+import { motion, AnimatePresence } from "framer-motion";
 
 import * as anchor from '@project-serum/anchor';
 import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
@@ -116,10 +117,24 @@ export default function Dice() {
         <Text fontSize="24px" fontWeight="500">Hi player,</Text>
         <Text fontSize="48px" fontWeight="600">Play Dice  🎲</Text>
         <InnerWrapper>
-          <Image
-              src="/images/dice-banner.png"
-              maxW="450px"
-            />
+        <motion.div
+            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.55 }}
+          >
+            <Image
+                src="/images/dice-banner.png"
+                maxW="450px"
+              />
+          </motion.div>
+          <motion.div
+            style={{width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center'}}
+            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.55, delay: 0.35 }}
+          >
           <RowCentered>
             <Text fontSize="48px" fontWeight="bold" color={!isEven ? '#ABFC4F' : '#fff'}>Odd</Text>
             <Switch size="lg" isChecked={isEven} value={isEven ? 'isEven' : 'isOdd'} onChange={(e) => setEven(e.target.value !== 'isEven')} />
@@ -136,6 +151,8 @@ export default function Dice() {
               <Text fontSize="14px" fontWeight="bold" color="#fff">Custom $BIP Value</Text>
             </Button>
           </Row>
+          </motion.div>
+
         </InnerWrapper>
       </Wrapper>
       <Modal onClose={onClose} isOpen={isOpen} isCentered>
