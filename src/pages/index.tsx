@@ -69,6 +69,7 @@ export default function Index() {
       <Wrapper>
         <Text fontSize="24px" fontWeight="500">Hi player,</Text>
         <Text fontSize="48px" fontWeight="600">Lets play? 🃏</Text>
+        <Text fontSize="24" fontWeight="bold" cursor="pointer" color="#ABFC4F" onClick={() => window.open('https://app.thestarship.finance/', '_ blank')}>Buy $BIP</Text>
         <InnerWrapper>
           <Text fontSize="18px" fontWeight="500" paddingBottom="20px">Hottest Games 🔥</Text>
           <GameItem text="🎲" game="Dice" min={60} />

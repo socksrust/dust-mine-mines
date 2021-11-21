@@ -46,6 +46,12 @@ const MenuItem = ({text, onClick, isActive}) => (
   </MenuItemWrapper>
 )
 
+const MenuOutItem = ({text, onClick, isActive}) => (
+  <MenuItemWrapper onClick={onClick} isActive={isActive}>
+    <Text fontSize="24" fontWeight="bold" color="#ABFC4F">{text}</Text>
+  </MenuItemWrapper>
+)
+
 interface LeftMenuProps {}
 
 const LeftMenu: FC<LeftMenuProps> = () => {
@@ -55,6 +61,7 @@ const LeftMenu: FC<LeftMenuProps> = () => {
   return (
     <>
       <Wrapper>
+        {window.location.pathname !== '/' && <MenuOutItem text="Buy $BIP" onClick={() => window.open('https://app.thestarship.finance/', '_ blank')} />}
         <MenuItem text="Games" onClick={() => push('/')} isActive={window.location.pathname === '/'} />
         <MenuItem text="Dice" onClick={() => push('/dice')} isActive={window.location.pathname === '/dice'} />
         <MenuItem text="Fortune Wheel" onClick={() => push('/wheel')} isActive={window.location.pathname === '/wheel'}  />
