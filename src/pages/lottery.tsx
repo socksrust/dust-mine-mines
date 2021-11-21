@@ -74,7 +74,15 @@ export default function Lottery() {
   if (typeof window === 'undefined') return null;
 
   const bet = async (betValue: number) => {
-    
+    toast({
+      title: `Congrats!!`,
+      description: `You got ${(betValue).toFixed(2)} ticket(s)!!`,
+      status: 'info',
+      duration: 5000,
+      isClosable: true,
+      position: 'top-right',
+      variant: 'solid'
+    });
 
 
   }
