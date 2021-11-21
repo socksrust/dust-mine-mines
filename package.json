@@ -38,14 +38,15 @@
     "ethers": "^5.4.7",
     "framer-motion": "^4.0.3",
     "fs": "^0.0.1-security",
+    "netlify-plugin-pnpm-preinstaller": "^0.0.4",
     "next": "latest",
     "next-seo": "^4.28.1",
     "nextjs-cors": "^2.0.0",
     "react": "^17.0.2",
     "react-countdown": "^2.3.2",
+    "react-custom-roulette": "^1.1.8",
     "react-dom": "^17.0.2",
-    "web3modal": "^1.9.4",
-    "netlify-plugin-pnpm-preinstaller": "^0.0.4"
+    "web3modal": "^1.9.4"
   },
   "devDependencies": {
     "@types/node": "^16.10.3",
