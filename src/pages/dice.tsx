@@ -1,38 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { Layout } from '../components/common/layout';
 import { Input, Button, Switch, Image, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, useDisclosure, ModalFooter } from '@chakra-ui/react';
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
-import * as anchor from '@project-serum/anchor';
-import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
 import {
   Text,
   useToast,
 } from '@chakra-ui/react';
 import styled from '@emotion/styled'
-import { setTimeout } from 'timers/promises';
-
-const treasury = process.env.NEXT_PUBLIC_TREASURY_ADDRESS
-  ? new anchor.web3.PublicKey(process.env.NEXT_PUBLIC_TREASURY_ADDRESS!)
-  : null;
-
-const config = process.env.NEXT_PUBLIC_CANDY_MACHINE_CONFIG
-  ? new anchor.web3.PublicKey(process.env.NEXT_PUBLIC_CANDY_MACHINE_CONFIG!)
-  : null;
-
-const candyMachineId = process.env.NEXT_PUBLIC_CANDY_MACHINE_ID
-  ? new anchor.web3.PublicKey(process.env.NEXT_PUBLIC_CANDY_MACHINE_ID!)
-  : null;
-
-const network = process.env.NEXT_PUBLIC_SOLANA_NETWORK as WalletAdapterNetwork;
-
-const rpcHost = process.env.NEXT_PUBLIC_SOLANA_RPC_HOST!;
-const connection = new anchor.web3.Connection(rpcHost);
-
-const startDateSeed = parseInt(process.env.NEXT_PUBLIC_CANDY_START_DATE!, 10);
-
-const txTimeout = 30000;
-
 
 const Wrapper = styled.div`
   display: flex;
@@ -73,13 +48,13 @@ const Row = styled.div`
 export default function Dice() {
   const [isEven, setEven] = useState(false)
   const [isLoading, setLoading] = useState(false)
-  const [value, setValue] = useState('')
+  const [value, setValue] = useState(0)
   const { isOpen, onOpen, onClose } = useDisclosure()
   const toast = useToast();
 
   if (typeof window === 'undefined') return <></>;
 
-  const bet = async (betValue) => {
+  const bet = async (betValue: number) => {
     const won = true;
     setLoading(true);
 
@@ -123,7 +98,6 @@ export default function Dice() {
         <Text fontSize="24px" fontWeight="500">Hi player,</Text>
         <Text fontSize="48px" fontWeight="600">Play Dice  🎲</Text>
         </motion.div>
-
         <InnerWrapper>
         <motion.div
             animate={{ opacity: 1, y: 0 }}
@@ -168,7 +142,7 @@ export default function Dice() {
         <ModalContent>
           <ModalCloseButton color="#000" />
           <ModalBody paddingTop="60px">
-            <Input width="100%" height="56px" placeholder="value in $BIP (eg: 5000)" color="#000" type="number" value={value} onChange={(e) => setValue(e.target.value)} />
+            <Input width="100%" height="56px" placeholder="value in $BIP (eg: 5000)" color="#000" type="number" value={value} onChange={(e) => setValue(Number(e.target.value))} />
           </ModalBody>
           <ModalFooter>
             <Button isLoading={isLoading} loadingText="Loading $BIP"  borderRadius="1" width="100%" height="56px" backgroundColor="#000" onClick={() => bet(value)}>
