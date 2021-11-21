@@ -41,6 +41,9 @@ const Row = styled.div`
   justify-content: space-around;
   align-items: center;
   width: 70%;
+  @media (max-width: 1280px) {
+    width: 100% !important;
+  }
 `
 
 
