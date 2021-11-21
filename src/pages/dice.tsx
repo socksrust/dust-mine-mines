@@ -114,8 +114,16 @@ export default function Dice() {
   return (
     <Layout>
       <Wrapper>
+        <motion.div
+            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.55 }}
+          >
         <Text fontSize="24px" fontWeight="500">Hi player,</Text>
         <Text fontSize="48px" fontWeight="600">Play Dice  🎲</Text>
+        </motion.div>
+
         <InnerWrapper>
         <motion.div
             animate={{ opacity: 1, y: 0 }}
