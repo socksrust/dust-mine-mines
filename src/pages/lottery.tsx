@@ -64,55 +64,17 @@ var disctionaire = [
 0, 2, 4, 6, 8, 10
 ]
 
-export default function WheelPage() {
-  const [mustSpin, setMustSpin] = useState(false);
-  const [betValue, setBetValue] = useState(0);
+export default function Lottery() {
   const [value, setValue] = useState(0)
   const { isOpen, onOpen, onClose } = useDisclosure()
 
-  const [prizeNumber, setPrizeNumber] = useState(0);
   const [isLoading, setLoading] = useState(false)
   const toast = useToast();
 
   if (typeof window === 'undefined') return null;
 
-  const finishSpinning = () => {
-    setLoading(false);
-    const multiplier = disctionaire[prizeNumber];
-
-    if(multiplier > 0) {
-      const winValue = betValue * multiplier;
-
-      toast({
-        title: `Yayyyy!!`,
-        description: `You got ${(winValue).toFixed(2)} $BIP back! Keep going!!`,
-        status: 'info',
-        duration: 5000,
-        isClosable: true,
-        position: 'top-right',
-        variant: 'solid'
-      });
-      //onClose();
-    } else {
-      toast({
-        title: `Ops.`,
-        description: 'Not your lucky play, try again',
-        status: 'warning',
-        duration: 5000,
-        isClosable: true,
-        position: 'top-right',
-        variant: 'solid'
-      });
-      //onClose();
-    }
-  }
-
   const bet = async (betValue: number) => {
-    setBetValue(betValue);
-    const newPrizeNumber = Math.floor(Math.random() * data.length)
-    setPrizeNumber(newPrizeNumber)
-    setMustSpin(true)
-    setLoading(true);
+    
 
 
   }
