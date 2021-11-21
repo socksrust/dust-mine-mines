@@ -1,14 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Layout } from '../components/common/layout';
-import GameItem from '../components/home/game-item';
-import { Button, Switch, Image } from '@chakra-ui/react';
+import { Input, Button, Switch, Image, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, useDisclosure, ModalFooter } from '@chakra-ui/react';
 
 import * as anchor from '@project-serum/anchor';
 import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
 import {
   Text,
+  useToast,
 } from '@chakra-ui/react';
 import styled from '@emotion/styled'
+import { setTimeout } from 'timers/promises';
 
 const treasury = process.env.NEXT_PUBLIC_TREASURY_ADDRESS
   ? new anchor.web3.PublicKey(process.env.NEXT_PUBLIC_TREASURY_ADDRESS!)
@@ -70,7 +71,44 @@ const Row = styled.div`
 
 export default function Dice() {
   const [isEven, setEven] = useState(false)
+  const [isLoading, setLoading] = useState(false)
+  const [value, setValue] = useState('')
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const toast = useToast();
+
   if (typeof window === 'undefined') return <></>;
+
+  const bet = async (betValue) => {
+    const won = true;
+    setLoading(true);
+
+    if(won) {
+      const winValue = betValue * 1.96;
+
+      toast({
+        title: `Yayyyy!!`,
+        description: `You got ${(winValue).toFixed(2)} $BIP back! Keep going!!`,
+        status: 'info',
+        duration: 5000,
+        isClosable: true,
+        position: 'top-right',
+        variant: 'solid'
+      });
+      //onClose();
+    } else {
+      toast({
+        title: `Ops.`,
+        description: 'Not your lucky play, try again',
+        status: 'warning',
+        duration: 5000,
+        isClosable: true,
+        position: 'top-right',
+        variant: 'solid'
+      });
+      //onClose();
+    }
+  }
+
 
   return (
     <Layout>
@@ -88,18 +126,32 @@ export default function Dice() {
             <Text fontSize="48px" fontWeight="bold" color={isEven ? '#ABFC4F' : '#fff'}>Even</Text>
           </RowCentered>
           <Row>
-            <Button borderRadius="1" width="180px" height="56px">
+            <Button isLoading={isLoading} loadingText="Loading $BIP" borderRadius="1" width="180px" height="56px" onClick={() => bet(60)}>
               <Text fontSize="14px" fontWeight="bold" color="#000">60 $BIP</Text>
             </Button>
-            <Button borderRadius="1" width="180px" height="56px">
+            <Button isLoading={isLoading} loadingText="Loading $BIP" borderRadius="1" width="180px" height="56px" onClick={() => bet(180)}>
               <Text fontSize="14px" fontWeight="bold" color="#000">180 $BIP</Text>
             </Button>
-            <Button borderRadius="1" width="180px" height="56px" borderColor="#fff" borderWidth="1px" backgroundColor="#000">
+            <Button isLoading={isLoading} loadingText="Loading $BIP" borderRadius="1" width="180px" height="56px" borderColor="#fff" borderWidth="1px" backgroundColor="#000" onClick={onOpen}>
               <Text fontSize="14px" fontWeight="bold" color="#fff">Custom $BIP Value</Text>
             </Button>
           </Row>
         </InnerWrapper>
       </Wrapper>
+      <Modal onClose={onClose} isOpen={isOpen} isCentered>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalCloseButton color="#000" />
+          <ModalBody paddingTop="60px">
+            <Input width="100%" height="56px" placeholder="value in $BIP (eg: 5000)" color="#000" type="number" value={value} onChange={(e) => setValue(e.target.value)} />
+          </ModalBody>
+          <ModalFooter>
+            <Button isLoading={isLoading} loadingText="Loading $BIP"  borderRadius="1" width="100%" height="56px" backgroundColor="#000" onClick={() => bet(value)}>
+              <Text fontSize="14px" fontWeight="bold" color="#fff">Bet</Text>
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </Layout>
   );
 }
