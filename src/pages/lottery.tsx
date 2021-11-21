@@ -2,14 +2,10 @@ import React, { useState } from 'react';
 import { Layout } from '../components/common/layout';
 import { Input, Button, Switch, Image, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, useDisclosure, ModalFooter } from '@chakra-ui/react';
 import { motion } from "framer-motion";
-import dynamic from 'next/dynamic';
+import Lottie from 'react-lottie';
 
-const Wheel = dynamic(
-  () => import('../components/wheel/index'),
-  {
-    ssr: false,
-  }
-);
+import * as animationData from '../components/common/ticket.json';
+
 
 import {
   Text,
@@ -71,6 +67,8 @@ var disctionaire = [
 export default function WheelPage() {
   const [mustSpin, setMustSpin] = useState(false);
   const [betValue, setBetValue] = useState(0);
+  const [value, setValue] = useState(0)
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
   const [prizeNumber, setPrizeNumber] = useState(0);
   const [isLoading, setLoading] = useState(false)
@@ -129,8 +127,9 @@ export default function WheelPage() {
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.55 }}
           >
-        <Text fontSize="24px" fontWeight="500">Hi player,</Text>
-        <Text fontSize="48px" fontWeight="600">Spin Wheel  🎡</Text>
+        <Text fontSize="24px" fontWeight="500">Buy a lottery ticket per 0.05 $SOL</Text>
+        <Text fontSize="16px" fontWeight="500">ps: raffle every time we reach 105 $SOL</Text>
+        <Text fontSize="48px" fontWeight="600">Win up to 100 $SOL!! | #1</Text>
         </motion.div>
         <InnerWrapper>
           <motion.div
@@ -139,13 +138,17 @@ export default function WheelPage() {
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.55 }}
           >
-            <Wheel
-              mustSpin={mustSpin}
-              setMustSpin={setMustSpin}
-              prizeNumber={prizeNumber}
-              data={data}
-              finishSpinning={finishSpinning}
-            />
+            <Lottie options={{
+              loop: false,
+              autoplay: true,
+              animationData: animationData,
+              rendererSettings: {
+                preserveAspectRatio: 'xMidYMid slice'
+              }
+            }}
+              height={400}
+              width={800}
+              />
           </motion.div>
           <motion.div
             style={{width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', paddingTop: 30}}
@@ -155,20 +158,34 @@ export default function WheelPage() {
             transition={{ duration: 0.55, delay: 0.35 }}
           >
           <Row>
-            <Button isLoading={isLoading} loadingText="Loading $BIP" borderRadius="1" width="180px" height="56px" onClick={() => bet(100)}>
-              <Text fontSize="14px" fontWeight="bold" color="#000">100 $BIP</Text>
+            <Button isLoading={isLoading} loadingText="Loading $BIP" borderRadius="1" width="180px" height="56px" onClick={() => bet(1)}>
+              <Text fontSize="14px" fontWeight="bold" color="#000">Buy 1 Ticket</Text>
             </Button>
-            <Button isLoading={isLoading} loadingText="Loading $BIP" borderRadius="1" width="180px" height="56px" onClick={() => bet(250)}>
-              <Text fontSize="14px" fontWeight="bold" color="#000">250 $BIP</Text>
+            <Button isLoading={isLoading} loadingText="Loading $BIP" borderRadius="1" width="180px" height="56px" onClick={() => bet(5)}>
+              <Text fontSize="14px" fontWeight="bold" color="#000">Buy 5 Tickets</Text>
             </Button>
-            <Button isLoading={isLoading} loadingText="Loading $BIP" borderRadius="1" width="180px" height="56px" onClick={() => bet(1000)}>
-              <Text fontSize="14px" fontWeight="bold" color="#000">1,000 $BIP</Text>
+            <Button isLoading={isLoading} loadingText="Loading $BIP" borderRadius="1" width="180px" height="56px" borderColor="#fff" borderWidth="1px" backgroundColor="#000" onClick={onOpen}>
+              <Text fontSize="14px" fontWeight="bold" color="#fff">Custom</Text>
             </Button>
           </Row>
           </motion.div>
 
         </InnerWrapper>
       </Wrapper>
+      <Modal onClose={onClose} isOpen={isOpen} isCentered>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalCloseButton color="#000" />
+          <ModalBody paddingTop="60px">
+            <Input width="100%" height="56px" placeholder="value in $BIP (eg: 5000)" color="#000" type="number" value={value} onChange={(e) => setValue(Number(e.target.value))} />
+          </ModalBody>
+          <ModalFooter>
+            <Button isLoading={isLoading} loadingText="Loading $BIP"  borderRadius="1" width="100%" height="56px" backgroundColor="#000" onClick={() => bet(value)}>
+              <Text fontSize="14px" fontWeight="bold" color="#fff">Bet</Text>
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </Layout>
   );
 }

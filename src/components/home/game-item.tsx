@@ -88,7 +88,7 @@ const GameItem = ({text, game, onClick, isActive, min}: GameItemProps) => (
     </IconWrapper>
     <RightWrapper>
       <Text fontSize="16" fontWeight="500" color="white">{game}</Text>
-      <Text fontSize="13" fontWeight="500" color="#808191">0 plays today</Text>
+      <Text fontSize="13" fontWeight="500" color="#808191">Best of luck</Text>
       <Badge>
         <Text fontSize="13" fontWeight="600" color="#FFFFFF">min play {min} $BIP</Text>
       </Badge>

@@ -72,11 +72,11 @@ export default function Index() {
         <InnerWrapper>
           <Text fontSize="18px" fontWeight="500" paddingBottom="20px">Hottest Games 🔥</Text>
           <GameItem text="🎲" game="Dice" min={60} />
-          <GameItem text="🎡" game="Fortune Wheel" min={60} />
+          <GameItem text="🎡" game="Fortune Wheel" min={100} />
+          <GameItem text="🔮" game="Raffle" min={60} />
           <GameItem text="🃏" game="Black jack" min={60} />
           <GameItem text="🎰" game="Jackpot" min={60} />
           <GameItem text="♠️" game="Poker" min={60} />
-          <GameItem text="🔮" game="Raffle" min={60} />
         </InnerWrapper>
       </Wrapper>
     </Layout>

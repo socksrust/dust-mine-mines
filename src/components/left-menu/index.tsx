@@ -58,10 +58,10 @@ const LeftMenu: FC<LeftMenuProps> = () => {
         <MenuItem text="Games" onClick={() => push('/')} isActive={window.location.pathname === '/'} />
         <MenuItem text="Dice" onClick={() => push('/dice')} isActive={window.location.pathname === '/dice'} />
         <MenuItem text="Fortune Wheel" onClick={() => push('/wheel')} isActive={window.location.pathname === '/wheel'}  />
+        <MenuItem text="Lottery" onClick={() => push('/lottery')} isActive={window.location.pathname === '/lottery'}  />
         <MenuItem text="Black Jack" />
         <MenuItem text="JackPot" />
         <MenuItem text="Poker" />
-        <MenuItem text="Raffle" />
       </Wrapper>
     </>
   );
