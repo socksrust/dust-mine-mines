@@ -1,15 +1,15 @@
-const title = 'Octopus Art';
+const title = 'BIP Games';
 const description =
-  'Octopus Art is a Solana collection of 5.000, 3D, vibrant, colorful and uniquely Octopuses. Sharing for the first time, Modular NFTs Concept';
+  'BIP Games is a game center based on Solana and powered by OctopusArt and SolanaDBS NFT communities';
 
 const SEO = {
   title,
   description,
-  canonical: 'https://askaiajnsam.vercel.app',
+  canonical: 'https://bip-games.vercel.app/',
   openGraph: {
     type: 'website',
     locale: 'en_IE',
-    url: 'https://peach-oct.netlify.app/',
+    url: 'https://bip-games.vercel.app/',
     title,
     description,
     images: [

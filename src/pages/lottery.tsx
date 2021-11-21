@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { Layout } from '../components/common/layout';
-import { Input, Button, Switch, Image, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, useDisclosure, ModalFooter } from '@chakra-ui/react';
+import { Input, Button, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, useDisclosure, ModalFooter } from '@chakra-ui/react';
 import { motion } from "framer-motion";
 import Lottie from 'react-lottie';
-
 import * as animationData from '../components/common/ticket.json';
-
 
 import {
   Text,
@@ -31,14 +29,6 @@ const InnerWrapper = styled.div`
   position: relative;
 `
 
-const RowCentered = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  width: 346px;
-  padding: 30px 0px;
-`
 
 const Row = styled.div`
   display: flex;
@@ -50,19 +40,6 @@ const Row = styled.div`
     width: 100% !important;
   }
 `
-
-var data = [
-  { option: 'x0' },
-  { option: 'x2' },
-  { option: 'x4' },
-  { option: 'x6' },
-  { option: 'x8' },
-  { option: 'x10' },
-]
-
-var disctionaire = [
-0, 2, 4, 6, 8, 10
-]
 
 export default function Lottery() {
   const [value, setValue] = useState(0)
