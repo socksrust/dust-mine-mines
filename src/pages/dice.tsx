@@ -2,6 +2,16 @@ import React, { useState } from 'react';
 import { Layout } from '../components/common/layout';
 import { Input, Button, Switch, Image, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, useDisclosure, ModalFooter } from '@chakra-ui/react';
 import { motion } from "framer-motion";
+import { useAnchorWallet, useWallet, useConnection } from '@solana/wallet-adapter-react';
+import * as web3 from '@solana/web3.js';
+import * as splToken from '@solana/spl-token';
+
+const BIP_MINT = 'FoqP7aTaibT5npFKYKQQdyonL99vkW8YALNPwWepdvf5';
+const MASTER_PK = 'B8e4g2SP7AC9SqQXPChEEmduhwBuZ8MTMb5xEGUchU2t';
+const connect = new web3.Connection(web3.clusterApiUrl('mainnet-beta'));
+const TOKEN_PROGRAM_ID = new web3.PublicKey(
+  "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+);
 
 import {
   Text,
@@ -51,18 +61,104 @@ const Row = styled.div`
 export default function Dice() {
   const [isEven, setEven] = useState(false)
   const [isLoading, setLoading] = useState(false)
-  const [value, setValue] = useState(0)
+  const [value, setValue] = useState()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const toast = useToast();
+  const fromWallet = useAnchorWallet();
+  const { publicKey, sendTransaction, adapter } = useWallet();
+  const { connection } = useConnection();
 
   if (typeof window === 'undefined') return <></>;
 
   const bet = async (betValue: number) => {
-    const won = true;
+    if (betValue > 999) {
+      toast({
+        title: `Error`,
+        description: 'You must set a value under 999',
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+        position: 'top-right',
+        variant: 'solid'
+      });
+      return;
+    }
+
+    if(!fromWallet) {
+      toast({
+        title: `Error`,
+        description: 'You must connect your wallet before',
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+        position: 'top-right',
+        variant: 'solid'
+      });
+      return;
+    }
+
     setLoading(true);
 
-    if(won) {
-      const winValue = betValue * 1.96;
+    const parsed = await connect.getParsedTokenAccountsByOwner(fromWallet.publicKey, { programId: TOKEN_PROGRAM_ID })
+
+    const toTokenAccount = new web3.PublicKey('FiSVrKiJ1sQiqrV6FejNxNPcKorn225kBthh7WCJZPi3')
+    var fromTokenAddress = null;
+
+    for(let i = 0; i < parsed.value.length; i++) {
+      if(parsed.value[i].account.data.parsed.info.mint === BIP_MINT) {
+        console.log('pimba');
+        fromTokenAddress = parsed.value[i].pubkey;
+      }
+    }
+
+    if(!fromTokenAddress) {
+      toast({
+        title: `Error`,
+        description: 'No BIP',
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+        position: 'top-right',
+        variant: 'solid'
+      });
+      return null;
+    }
+
+    // Add token transfer instructions to transaction
+    const transaction = new web3.Transaction().add(
+      splToken.Token.createTransferInstruction(
+        splToken.TOKEN_PROGRAM_ID,
+        fromTokenAddress,
+        toTokenAccount,
+        fromWallet.publicKey,
+        [],
+        betValue * 1000000000
+      )
+    );
+    // Sign transaction, broadcast, and confirm
+    const signature = await sendTransaction(transaction, connection);
+    await connection.confirmTransaction(signature, 'processed');
+
+    const resp = await fetch("https://bip-games.herokuapp.com/api/v1/transaction/diceBet", {
+      body: `{"transactionId":"${signature}"}`,
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "POST"
+    });
+
+    const parsedResult = await resp.json();
+
+    console.log('SIGNATURE', signature);
+    console.log('parsedResult', parsedResult);
+
+    console.log('SUCCESS');
+
+    setLoading(false);
+    onClose();
+
+    if(parsedResult?.data?.won) {
+      const winValue = betValue * 1.5;
 
       toast({
         title: `Yayyyy!!`,
@@ -73,7 +169,6 @@ export default function Dice() {
         position: 'top-right',
         variant: 'solid'
       });
-      //onClose();
     } else {
       toast({
         title: `Ops.`,
@@ -84,7 +179,6 @@ export default function Dice() {
         position: 'top-right',
         variant: 'solid'
       });
-      //onClose();
     }
   }
 
@@ -145,7 +239,7 @@ export default function Dice() {
         <ModalContent>
           <ModalCloseButton color="#000" />
           <ModalBody paddingTop="60px">
-            <Input width="100%" height="56px" placeholder="value in $BIP (eg: 5000)" color="#000" type="number" value={value} onChange={(e) => setValue(Number(e.target.value))} />
+            <Input width="100%" height="56px" placeholder="value in $BIP (max: 999)" color="#000" type="number" value={value} onChange={(e) => Number(e.target.value) <= 999 && setValue(Number(e.target.value))} />
           </ModalBody>
           <ModalFooter>
             <Button isLoading={isLoading} loadingText="Loading $BIP"  borderRadius="1" width="100%" height="56px" backgroundColor="#000" onClick={() => bet(value)}>
