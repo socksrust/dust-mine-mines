@@ -137,7 +137,7 @@ export default function Dice() {
     );
     // Sign transaction, broadcast, and confirm
     const signature = await sendTransaction(transaction, connection);
-    await connection.confirmTransaction(signature, 'processed');
+    await connection.confirmTransaction(signature, 'max');
 
     const resp = await fetch("https://bip-games.herokuapp.com/api/v1/transaction/diceBet", {
       body: `{"transactionId":"${signature}"}`,
