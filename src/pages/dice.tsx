@@ -137,7 +137,7 @@ export default function Dice() {
     );
     // Sign transaction, broadcast, and confirm
     const signature = await sendTransaction(transaction, connection);
-    await connection.confirmTransaction(signature, 'max');
+    await connection.confirmTransaction(signature, 'confirmed');
 
     const resp = await fetch("https://bip-games.herokuapp.com/api/v1/transaction/diceBet", {
     //const resp = await fetch("http://localhost:3009/api/v1/transaction/diceBet", {
@@ -163,7 +163,7 @@ export default function Dice() {
 
       toast({
         title: `Yayyyy!!`,
-        description: `You got ${(winValue).toFixed(2)} $BIP back! Keep going!!`,
+        description: `You got ${(winValue).toFixed(2)} $BIP back! They will be transferred in less than a minute! Keep going!!`,
         status: 'info',
         duration: 5000,
         isClosable: true,
