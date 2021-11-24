@@ -256,14 +256,14 @@ export default function WheelPage() {
             transition={{ duration: 0.55, delay: 0.35 }}
           >
           <Row>
-            <Button isLoading={isLoading} loadingText="Loading $BIP" borderRadius="1" width="180px" height="56px" onClick={() => bet(100)}>
-              <Text fontSize="14px" fontWeight="bold" color="#000">100 $BIP</Text>
+            <Button isLoading={isLoading} loadingText="Loading $BIP" borderRadius="1" width="180px" height="56px" onClick={() => bet(2)}>
+              <Text fontSize="14px" fontWeight="bold" color="#000">2 $BIP</Text>
             </Button>
-            <Button isLoading={isLoading} loadingText="Loading $BIP" borderRadius="1" width="180px" height="56px" onClick={() => bet(250)}>
-              <Text fontSize="14px" fontWeight="bold" color="#000">250 $BIP</Text>
+            <Button isLoading={isLoading} loadingText="Loading $BIP" borderRadius="1" width="180px" height="56px" onClick={() => bet(5)}>
+              <Text fontSize="14px" fontWeight="bold" color="#000">5 $BIP</Text>
             </Button>
-            <Button isLoading={isLoading} loadingText="Loading $BIP" borderRadius="1" width="180px" height="56px" onClick={() => bet(1000)}>
-              <Text fontSize="14px" fontWeight="bold" color="#000">1,000 $BIP</Text>
+            <Button isLoading={isLoading} loadingText="Loading $BIP" borderRadius="1" width="180px" height="56px" onClick={() => bet(20)}>
+              <Text fontSize="14px" fontWeight="bold" color="#000">20 $BIP</Text>
             </Button>
           </Row>
           </motion.div>
