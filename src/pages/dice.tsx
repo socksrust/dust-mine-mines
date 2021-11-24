@@ -159,7 +159,7 @@ export default function Dice() {
     onClose();
 
     if(parsedResult?.data?.won) {
-      const winValue = betValue * 1.5;
+      const winValue = betValue * 1.9;
 
       toast({
         title: `Yayyyy!!`,
@@ -167,7 +167,7 @@ export default function Dice() {
         status: 'info',
         duration: 5000,
         isClosable: true,
-        position: 'top-right',
+        position: 'bottom-right',
         variant: 'solid'
       });
     } else {
@@ -177,7 +177,7 @@ export default function Dice() {
         status: 'warning',
         duration: 5000,
         isClosable: true,
-        position: 'top-right',
+        position: 'bottom-right',
         variant: 'solid'
       });
     }
