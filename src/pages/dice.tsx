@@ -65,7 +65,7 @@ export default function Dice() {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const toast = useToast();
   const fromWallet = useAnchorWallet();
-  const { publicKey, sendTransaction, adapter } = useWallet();
+  const { sendTransaction } = useWallet();
   const { connection } = useConnection();
 
   if (typeof window === 'undefined') return <></>;
