@@ -9,6 +9,7 @@ import SEO from '../../next-seo.config';
 import { WalletDialogProvider } from '@solana/wallet-adapter-material-ui';
 import '../styles/styles.css'
 import '../components/dice/dice.css'
+import '../components/slot/slot.css'
 const theme1 = createTheme({
   palette: {
     type: 'dark',

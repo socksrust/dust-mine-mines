@@ -63,11 +63,11 @@ const LeftMenu: FC<LeftMenuProps> = () => {
       <Wrapper>
         {window.location.pathname !== '/' && <MenuOutItem text="Buy $BIP" onClick={() => window.open('https://app.thestarship.finance/', '_ blank')} />}
         <MenuItem text="Games" onClick={() => push('/')} isActive={window.location.pathname === '/'} />
+        <MenuItem text="JackPot" onClick={() => push('/jackpot')} isActive={window.location.pathname === '/jackpot'} />
         <MenuItem text="Dice" onClick={() => push('/dice')} isActive={window.location.pathname === '/dice'} />
         <MenuItem text="Fortune Wheel" onClick={() => push('/wheel')} isActive={window.location.pathname === '/wheel'}  />
         <MenuItem text="Lottery" onClick={() => push('/lottery')} isActive={window.location.pathname === '/lottery'}  />
         <MenuItem text="Black Jack" />
-        <MenuItem text="JackPot" />
         <MenuItem text="Poker" />
       </Wrapper>
     </>

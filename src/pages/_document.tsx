@@ -8,6 +8,7 @@ export default class Document extends NextDocument {
         <Head>
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" />
+          <script crossOrigin="anonymous" src="https://polyfill.io/v3/polyfill.min.js?features=default%2CWebAnimations"></script>
           <link
             href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap"
             rel="stylesheet"
