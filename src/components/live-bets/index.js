@@ -97,7 +97,7 @@ const Wrapper = styled.div`
 
 
 export default function LiveBets() {
-  const [transactions, setTransactions] = useState([]);
+  const [transactions, setTransactions] = useState(null);
 
   useEffect(() => {
     const fetchTransactions = async () => {
@@ -107,7 +107,9 @@ export default function LiveBets() {
         },
       });
       const parsedResult = await resp.json();
-      setTransactions(parsedResult?.data)
+      if(!transactions) {
+        setTransactions(parsedResult?.data)
+      }
     }
 
     fetchTransactions()
