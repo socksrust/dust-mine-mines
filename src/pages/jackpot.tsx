@@ -151,7 +151,7 @@ export default function Jackpot() {
     const signature = await sendTransaction(transaction, connection);
     await connection.confirmTransaction(signature, 'confirmed');
 
-    const resp = await fetch("https://bip-gamex.herokuapp.com/api/v1/transaction/jackpotBet", {
+    const resp = await fetch("https://bip-gamextwo.herokuapp.com/api/v1/transaction/jackpotBet", {
     //const resp = await fetch("http://localhost:3009/api/v1/transaction/jackpotBet", {
       body: `{"transactionId":"${signature}", "betValue":"${betValue}"}`,
       headers: {
