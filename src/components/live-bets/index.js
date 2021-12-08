@@ -149,7 +149,7 @@ export default function LiveBets() {
             Time ago
           </CreatedWrappper>
         </Row>
-        {transactions.map(transaction => (
+        {transactions && transactions[0] && transactions.map(transaction => (
           <Transaction {...transaction}/>
         ))}
       </Wrapper>
