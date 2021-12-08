@@ -2,22 +2,16 @@ import React, { useState } from 'react';
 import { Layout } from '../components/common/layout';
 import { Input, Button, Switch, Image, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, useDisclosure, ModalFooter } from '@chakra-ui/react';
 import { motion } from "framer-motion";
-import dynamic from 'next/dynamic';
 import { useAnchorWallet, useWallet, useConnection } from '@solana/wallet-adapter-react';
 import * as web3 from '@solana/web3.js';
 import * as splToken from '@solana/spl-token';
+import WheelComponent from '../components/wheel/index'
 
 const BIP_MINT = 'FoqP7aTaibT5npFKYKQQdyonL99vkW8YALNPwWepdvf5';
+const MASTER_PK = 'B8e4g2SP7AC9SqQXPChEEmduhwBuZ8MTMb5xEGUchU2t';
 const connect = new web3.Connection(web3.clusterApiUrl('mainnet-beta'));
 const TOKEN_PROGRAM_ID = new web3.PublicKey(
   "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
-);
-
-const Wheel = dynamic(
-  () => import('../components/wheel/index'),
-  {
-    ssr: false,
-  }
 );
 
 import {
@@ -41,7 +35,6 @@ const InnerWrapper = styled.div`
   align-items: center;
   padding-top: 20px;
   padding-right: 90px;
-  position: relative;
 `
 
 const RowCentered = styled.div`
@@ -49,8 +42,8 @@ const RowCentered = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  width: 346px;
-  padding: 30px 0px;
+  width: 246px;
+  padding: 10px 0px;
 `
 
 const Row = styled.div`
@@ -64,47 +57,84 @@ const Row = styled.div`
   }
 `
 
-var data = [
-  { option: 'x0' },
-  { option: 'x0.1' },
-  { option: 'x0.2' },
-  { option: 'x0.8' },
-  { option: 'x2' },
-  { option: 'x4' },
-  { option: 'x6' },
-  { option: 'x8' },
-  { option: 'x10' },
-]
 
-var disctionaire = [
-0, 0.1, 0.2, 0.8, 2, 4, 6, 8, 10
-]
 
-export default function WheelPage() {
-  const [mustSpin, setMustSpin] = useState(false);
-  const [betValue, setBetValue] = useState(0);
-
-  const [prizeNumber, setPrizeNumber] = useState(0);
+export default function Wheel() {
+  const [isEven, setEven] = useState(false)
+  const [isBlack, setBlack] = useState(false)
   const [isLoading, setLoading] = useState(false)
+  const [value, setValue] = useState()
+  const [rotate, setRotate] = useState("");
+  const [diceValue, setDiceValue] = useState(0); // integer state
+
+  const { isOpen, onOpen, onClose } = useDisclosure()
   const toast = useToast();
   const fromWallet = useAnchorWallet();
   const { sendTransaction } = useWallet();
   const { connection } = useConnection();
 
-  if (typeof window === 'undefined') return null;
+  if (typeof window === 'undefined') return <></>;
 
-  const finishSpinning = () => {
-    setLoading(false);
-  }
+
+  const redOdd = [0, 4, 8, 12]
+  const blackOdd = [1, 9, 13]
+  const redEven = [2, 6, 10, 14]
+  const blackEven = [3, 5, 7, 11, 15]
+
+  const possibleResults = [
+    "rotate(3deg)", //odd, red
+    "rotate(13deg)", //odd
+    "rotate(23deg)", //even, red
+    "rotate(32deg)", //even
+    "rotate(42deg)", //odd, red
+    "rotate(52deg)", //odd
+    "rotate(61deg)", //even, red
+    "rotate(71deg)", //even
+    "rotate(81deg)", //odd, red
+    "rotate(91deg)", //odd
+    "rotate(101deg)", //even, red
+    "rotate(110deg)", //even
+    "rotate(120deg)", //odd, red
+    "rotate(130deg)", //odd
+    "rotate(140deg)", //even, red
+    "rotate(150deg)", //even 24
+
+    "rotate(159deg)", //odd, red
+    "rotate(168deg)", //even
+    "rotate(179deg)", //odd, red
+    "rotate(189deg)", //even
+    "rotate(198deg)", //even 30, red
+    "rotate(207deg)", //odd
+    "rotate(217deg)", //even, red
+    "rotate(227deg)", //odd
+    "rotate(237deg)", //odd 27, red
+    "rotate(246deg)", //even 6
+    "rotate(256deg)", //even, red
+    "rotate(266deg)", //odd 17
+    "rotate(276deg)", //odd 25, red
+    "rotate(286deg)", //even 2
+    "rotate(296deg)", //odd 21, red
+    "rotate(305deg)", //even 4
+    "rotate(315deg)", //odd, red
+    "rotate(325deg)", //odd
+    "rotate(335deg)", //even, red
+    //"rotate(345deg)",
+    "rotate(355deg)", //even
+  ]
+
+
+
+	const roll = () => {
+		const xRand = 6000000;
+		const rotate = "rotate(" + xRand + "deg)";
+		setRotate(rotate);
+	};
 
   const bet = async (betValue: number) => {
-    setBetValue(betValue);
-
-
-    if (betValue > 999) {
+    if (betValue > 10001) {
       toast({
         title: `Error`,
-        description: 'You must set a value under 999',
+        description: 'You must set a value under 10001',
         status: 'error',
         duration: 5000,
         isClosable: true,
@@ -127,8 +157,12 @@ export default function WheelPage() {
       return;
     }
 
+    //forceUpdate
+    setDiceValue(diceValue + 1)
+
+
+    roll();
     setLoading(true);
-    setMustSpin(true)
 
     const parsed = await connect.getParsedTokenAccountsByOwner(fromWallet.publicKey, { programId: TOKEN_PROGRAM_ID })
 
@@ -171,7 +205,7 @@ export default function WheelPage() {
     await connection.confirmTransaction(signature, 'confirmed');
 
     const resp = await fetch("https://bip-gamex.herokuapp.com/api/v1/transaction/wheelBet", {
-    // const resp = await fetch("http://localhost:3009/api/v1/transaction/diceBet", {
+    //const resp = await fetch("http://localhost:3009/api/v1/transaction/diceBet", {
       body: `{"transactionId":"${signature}"}`,
       headers: {
         "Content-Type": "application/json"
@@ -187,13 +221,35 @@ export default function WheelPage() {
     console.log('SUCCESS');
 
     setLoading(false);
+    onClose();
+    const dice = Math.floor(Math.random() * 3);
+    const isRedEven = !isBlack && isEven
+    const isBlackEven = isBlack && isEven
+    const isRedOdd = !isBlack && !isEven
+    const isBlackOdd = isBlack && !isEven
+    let winningArr: any = [];
+    let losingArr: any = [];
+    if(isRedEven) {
+      winningArr = [...redEven]
+      losingArr = [...blackEven]
+    }else if(isBlackEven) {
+      winningArr = [...blackEven]
+      losingArr = [...redEven]
+    }else if(isRedOdd) {
+      winningArr = [...redOdd]
+      losingArr = [...blackOdd]
+    }else if(isBlackOdd) {
+      winningArr = [...blackOdd]
+      losingArr = [...redOdd]
+    }
+
 
     if(parsedResult?.data?.won) {
-      const won = Number(parsedResult?.data?.won);
-      console.log('won ->', won);
-      const winValue = betValue * won;
-      const prizeNumber = disctionaire.findIndex((a) => a===won)
-      setPrizeNumber(prizeNumber)
+      //isEven ? 2, 4, 6 : 1, 3, 5;
+
+
+      setRotate(winningArr[dice]);
+      const winValue = betValue * 2;
 
       toast({
         title: `Yayyyy!!`,
@@ -205,6 +261,7 @@ export default function WheelPage() {
         variant: 'solid'
       });
     } else {
+      setRotate(losingArr[dice]);
       toast({
         title: `Ops.`,
         description: 'Not your lucky play, try again',
@@ -215,11 +272,7 @@ export default function WheelPage() {
         variant: 'solid'
       });
     }
-
-
-
   }
-
 
   return (
     <Layout>
@@ -234,42 +287,62 @@ export default function WheelPage() {
         <Text fontSize="48px" fontWeight="600">Spin Wheel  🎡</Text>
         </motion.div>
         <InnerWrapper>
-          <motion.div
+        <motion.div
             animate={{ opacity: 1, y: 0 }}
             initial={{ opacity: 0, y: 20 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.55 }}
           >
-            <Wheel
-              mustSpin={mustSpin}
-              setMustSpin={setMustSpin}
-              prizeNumber={prizeNumber}
-              data={data}
-              finishSpinning={finishSpinning}
-            />
+            <WheelComponent isRolling={isLoading} rotate={rotate} diceValue={diceValue} />
           </motion.div>
           <motion.div
-            style={{width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', paddingTop: 30}}
+            style={{width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center'}}
             animate={{ opacity: 1, y: 0 }}
             initial={{ opacity: 0, y: 20 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.55, delay: 0.35 }}
           >
+          <RowCentered/>
+          <RowCentered/>
+          <RowCentered>
+            <Text fontSize="36px" fontWeight="bold" color={!isEven ? '#ABFC4F' : '#fff'}>Odd</Text>
+            <Switch size="lg" isChecked={isEven} value={isEven ? 'isEven' : 'isOdd'} onChange={(e) => setEven(e.target.value !== 'isEven')} />
+            <Text fontSize="36px" fontWeight="bold" color={isEven ? '#ABFC4F' : '#fff'}>Even</Text>
+          </RowCentered>
+          <RowCentered>
+            <Text fontSize="36px" fontWeight="bold" color={!isBlack ? '#ABFC4F' : '#fff'}>Red</Text>
+            <Switch size="lg" isChecked={isBlack} value={isBlack ? 'isBlack' : 'isRed'} onChange={(e) => setBlack(e.target.value !== 'isBlack')} />
+            <Text fontSize="36px" fontWeight="bold" color={isBlack ? '#ABFC4F' : '#fff'}>Black</Text>
+          </RowCentered>
+          <RowCentered/>
           <Row>
-            <Button isLoading={isLoading} loadingText="Loading $BIP" borderRadius="1" width="180px" height="56px" onClick={() => bet(10)}>
-              <Text fontSize="14px" fontWeight="bold" color="#000">10 $BIP</Text>
+            <Button isLoading={isLoading} loadingText="Loading $BIP" borderRadius="1" width="180px" height="56px" onClick={() => bet(200)}>
+              <Text fontSize="14px" fontWeight="bold" color="#000">200 $BIP</Text>
             </Button>
-            <Button isLoading={isLoading} loadingText="Loading $BIP" borderRadius="1" width="180px" height="56px" onClick={() => bet(50)}>
-              <Text fontSize="14px" fontWeight="bold" color="#000">50 $BIP</Text>
+            <Button isLoading={isLoading} loadingText="Loading $BIP" borderRadius="1" width="180px" height="56px" onClick={() => bet(1000)}>
+              <Text fontSize="14px" fontWeight="bold" color="#000">1000 $BIP</Text>
             </Button>
-            <Button isLoading={isLoading} loadingText="Loading $BIP" borderRadius="1" width="180px" height="56px" onClick={() => bet(100)}>
-              <Text fontSize="14px" fontWeight="bold" color="#000">100 $BIP</Text>
+            <Button isLoading={isLoading} loadingText="Loading $BIP" borderRadius="1" width="180px" height="56px" borderColor="#fff" borderWidth="1px" backgroundColor="#000" onClick={onOpen}>
+              <Text fontSize="14px" fontWeight="bold" color="#fff">Custom $BIP Value</Text>
             </Button>
           </Row>
           </motion.div>
-
         </InnerWrapper>
       </Wrapper>
+      <Modal onClose={onClose} isOpen={isOpen} isCentered>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalCloseButton color="#000" />
+          <ModalBody paddingTop="60px">
+            <Input width="100%" height="56px" placeholder="value in $BIP (max: 10,000)" color="#000" type="number" value={value} onChange={(e) => Number(e.target.value) <= 10000 && setValue(Number(e.target.value))} />
+          </ModalBody>
+          <ModalFooter>
+            <Button isLoading={isLoading} loadingText="Loading $BIP"  borderRadius="1" width="100%" height="56px" backgroundColor="#000" onClick={() => bet(value)}>
+              <Text fontSize="14px" fontWeight="bold" color="#fff">Bet</Text>
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </Layout>
   );
 }

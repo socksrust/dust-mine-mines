@@ -1,28 +1,39 @@
 import React, { useState } from 'react'
 import { Wheel } from 'react-custom-roulette'
+import styled from '@emotion/styled'
 
 
+const WheelImage = styled.img`
+  z-index: 999;
+  width: 445px;
+  height: 445px;
+  transform: rotate(3deg);
+  border-radius: 50%;
+  box-shadow: 0px 0px 25px rgba(255, 255, 255, 0.3);
 
-const MyWheel = ({ mustSpin, setMustSpin, prizeNumber, data, finishSpinning }) => {
+`
+
+const Arrow = styled.div`
+  z-index: 1000;
+  width: 10px;
+  height: 40px;
+  position: absolute;
+  top: 0px;
+  left: calc(50% - 10px);
+  background: #fff;
+  border-radius: 2rem;
+  box-shadow: 0px 0px 25px rgba(255, 255, 255, 1);
+`
+
+const MyWheel = ({ isRolling, rotate, diceValue }) => {
 
   return (
-    <>
-      <Wheel
-        mustStartSpinning={mustSpin}
-        prizeNumber={prizeNumber}
-        data={data}
-        backgroundColors={['#000']}
-        textColors={['#ABFC4F']}
-        radiusLineColor="#ABFC4F"
-        outerBorderColor="#ABFC4F"
-        onStopSpinning={() => {
-          setMustSpin(false)
-          finishSpinning();
-        }}
-        innerBorderColor="#fff"
-        fontSize={40}
-      />
-    </>
+    <div style={{ position: 'relative' }}>
+              <p style={{color: 'black'}}>{diceValue}</p>
+
+      <Arrow/>
+      <WheelImage src="/images/wheel.png" style={{ transform: rotate, transition: `transform ${isRolling ? '10000s' : '0s'}` }} />
+    </div>
   )
 }
 
