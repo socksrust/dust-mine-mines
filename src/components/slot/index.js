@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 //import "./dice.css";
 import Slot from "./Slot.js";
+import styled from "@emotion/styled";
+
 
 const config = {
   inverted: false, // true: reels spin from top to bottom; false: reels spin from bottom to top

@@ -5,6 +5,9 @@
   max-height: calc(500px - 50px - 40px);
   max-width: calc((5 / 3) * (500px - 50px - 40px));
   overflow: hidden;
+  border: 5px solid white;
+  border-radius: 25px;
+  box-shadow: 0px 5px 90px 18px rgba(171,252,79,0.28);
 }
 
 .reel {

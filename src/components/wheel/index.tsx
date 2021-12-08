@@ -9,8 +9,7 @@ const WheelImage = styled.img`
   height: 445px;
   transform: rotate(3deg);
   border-radius: 50%;
-  box-shadow: 0px 0px 25px rgba(255, 255, 255, 0.3);
-
+  box-shadow: 0px 5px 90px 18px rgba(171,252,79,0.28);
 `
 
 const Arrow = styled.div`
