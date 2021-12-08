@@ -77,9 +77,9 @@ export default function Wheel() {
 
 
   const redOdd = [0, 4, 8, 12]
-  const blackOdd = [1, 9, 13]
+  const blackOdd = [1, 5, 9, 13]
   const redEven = [2, 6, 10, 14]
-  const blackEven = [3, 5, 7, 11, 15]
+  const blackEven = [3, 7, 11, 15]
 
   const possibleResults = [
     "rotate(3deg)", //odd, red
@@ -222,7 +222,7 @@ export default function Wheel() {
 
     setLoading(false);
     onClose();
-    const dice = Math.floor(Math.random() * 3);
+    const dice = Math.floor(Math.random() * 4);
     const isRedEven = !isBlack && isEven
     const isBlackEven = isBlack && isEven
     const isRedOdd = !isBlack && !isEven
@@ -247,8 +247,9 @@ export default function Wheel() {
     if(parsedResult?.data?.won) {
       //isEven ? 2, 4, 6 : 1, 3, 5;
 
+      console.log('possibleResults[winningArr[dice]]', possibleResults[winningArr[dice]])
 
-      setRotate(winningArr[dice]);
+      setRotate(possibleResults[winningArr[dice]]);
       const winValue = betValue * 4;
 
       toast({
@@ -261,7 +262,8 @@ export default function Wheel() {
         variant: 'solid'
       });
     } else {
-      setRotate(losingArr[dice]);
+      console.log('possibleResults[losingArr[dice]]', possibleResults[losingArr[dice]])
+      setRotate(possibleResults[losingArr[dice]]);
       toast({
         title: `Ops.`,
         description: 'Not your lucky play, try again',
