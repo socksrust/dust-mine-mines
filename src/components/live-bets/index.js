@@ -128,7 +128,7 @@ export default function LiveBets() {
       if(one !==  two) {
         setTransactions(parsedResult?.data)
       }
-      setTimeout(() => fetchTransactions(), 3000)
+      setTimeout(() => fetchTransactions(), 10000)
     }
 
     fetchTransactions()
