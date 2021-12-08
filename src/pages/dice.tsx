@@ -71,10 +71,10 @@ export default function Dice() {
   if (typeof window === 'undefined') return <></>;
 
   const bet = async (betValue: number) => {
-    if (betValue > 999) {
+    if (betValue > 10001) {
       toast({
         title: `Error`,
-        description: 'You must set a value under 999',
+        description: 'You must set a value under 10001',
         status: 'error',
         duration: 5000,
         isClosable: true,
