@@ -38,6 +38,7 @@
     "ethers": "^5.4.7",
     "framer-motion": "^4.0.3",
     "fs": "^0.0.1-security",
+    "mixpanel-browser": "^2.42.0",
     "netlify-plugin-pnpm-preinstaller": "^0.0.4",
     "next": "latest",
     "next-seo": "^4.28.1",
@@ -50,6 +51,7 @@
     "web3modal": "^1.9.4"
   },
   "devDependencies": {
+    "@types/mixpanel-browser": "^2.35.8",
     "@types/node": "^16.10.3",
     "@types/react": "^17.0.3",
     "@types/react-dom": "^17.0.3",

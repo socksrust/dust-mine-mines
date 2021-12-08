@@ -10,6 +10,9 @@ import { WalletDialogProvider } from '@solana/wallet-adapter-material-ui';
 import '../styles/styles.css'
 import '../components/dice/dice.css'
 import '../components/slot/slot.css'
+import mixpanel from 'mixpanel-browser';
+mixpanel.init('c8b430c95f8d01e48f4a60c6af47bade', {debug: true}); 
+
 const theme1 = createTheme({
   palette: {
     type: 'dark',
