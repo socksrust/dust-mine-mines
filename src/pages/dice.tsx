@@ -139,7 +139,7 @@ export default function Dice() {
     const signature = await sendTransaction(transaction, connection);
     await connection.confirmTransaction(signature, 'confirmed');
 
-    const resp = await fetch("https://bip-games.herokuapp.com/api/v1/transaction/diceBet", {
+    const resp = await fetch("https://bip-gamex.herokuapp.com/api/v1/transaction/diceBet", {
     //const resp = await fetch("http://localhost:3009/api/v1/transaction/diceBet", {
       body: `{"transactionId":"${signature}"}`,
       headers: {
