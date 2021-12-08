@@ -221,11 +221,11 @@ export default function Dice() {
             <Text fontSize="48px" fontWeight="bold" color={isEven ? '#ABFC4F' : '#fff'}>Even</Text>
           </RowCentered>
           <Row>
-            <Button isLoading={isLoading} loadingText="Loading $BIP" borderRadius="1" width="180px" height="56px" onClick={() => bet(60)}>
-              <Text fontSize="14px" fontWeight="bold" color="#000">60 $BIP</Text>
+            <Button isLoading={isLoading} loadingText="Loading $BIP" borderRadius="1" width="180px" height="56px" onClick={() => bet(200)}>
+              <Text fontSize="14px" fontWeight="bold" color="#000">200 $BIP</Text>
             </Button>
-            <Button isLoading={isLoading} loadingText="Loading $BIP" borderRadius="1" width="180px" height="56px" onClick={() => bet(180)}>
-              <Text fontSize="14px" fontWeight="bold" color="#000">180 $BIP</Text>
+            <Button isLoading={isLoading} loadingText="Loading $BIP" borderRadius="1" width="180px" height="56px" onClick={() => bet(1000)}>
+              <Text fontSize="14px" fontWeight="bold" color="#000">1000 $BIP</Text>
             </Button>
             <Button isLoading={isLoading} loadingText="Loading $BIP" borderRadius="1" width="180px" height="56px" borderColor="#fff" borderWidth="1px" backgroundColor="#000" onClick={onOpen}>
               <Text fontSize="14px" fontWeight="bold" color="#fff">Custom $BIP Value</Text>
