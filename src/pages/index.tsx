@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Layout } from '../components/common/layout';
-import GameItem from '../components/home/game-item';
 import { useRouter } from 'next/router';
 import LiveBets from '../components/live-bets/index'
 

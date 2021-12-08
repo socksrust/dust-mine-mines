@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 import { useAnchorWallet, useWallet, useConnection } from '@solana/wallet-adapter-react';
 import * as web3 from '@solana/web3.js';
 import * as splToken from '@solana/spl-token';
+import LiveBets from '../components/live-bets/index'
+
 //import SlotComponent from '../components/slot/index'
 const SlotComponent = dynamic(
   () => import('../components/slot/index'),
@@ -250,6 +252,9 @@ export default function Jackpot() {
           </motion.div>
 
         </InnerWrapper>
+        <RowCentered />
+        <LiveBets />
+
       </Wrapper>
     </Layout>
   );

@@ -45,8 +45,9 @@ const TransactionWrapper = styled.div`
   flex-direction: row;
   flex: 1;
   background-color: ${p => p.won ? '#2ecc71' : '#e74c3c'};
-  margin-top: 10px;
+  margin-top: 3px;
   padding: 10px 0px;
+  border-radius: 4px;
 `
 
 const GameWrappper = styled.div`
