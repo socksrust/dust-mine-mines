@@ -107,15 +107,13 @@ export default function LiveBets() {
         },
       });
       const parsedResult = await resp.json();
-      const one = transactions && transactions[0] && transactions[0].createdAt;
-      const two = parsedResult && parsedResult.data && parsedResult.data[0] && parsedResult.data[0].createdAt;
       setTransactions(parsedResult?.data)
     }
 
     fetchTransactions()
   }, [])
 
-  useEffect(() => {
+  /*useEffect(() => {
     const fetchTransactions = async () => {
       const resp = await fetch("https://bip-gamex.herokuapp.com/api/v1/transaction/transactions", {
         headers: {
@@ -132,7 +130,7 @@ export default function LiveBets() {
     }
 
     fetchTransactions()
-  }, [])
+  }, [])*/
 
 
   return (
