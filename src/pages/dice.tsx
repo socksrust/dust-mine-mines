@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { useAnchorWallet, useWallet, useConnection } from '@solana/wallet-adapter-react';
 import * as web3 from '@solana/web3.js';
 import * as splToken from '@solana/spl-token';
+import DiceComponent from '../components/dice/index'
 
 const BIP_MINT = 'FoqP7aTaibT5npFKYKQQdyonL99vkW8YALNPwWepdvf5';
 const MASTER_PK = 'B8e4g2SP7AC9SqQXPChEEmduhwBuZ8MTMb5xEGUchU2t';
@@ -62,6 +63,9 @@ export default function Dice() {
   const [isEven, setEven] = useState(false)
   const [isLoading, setLoading] = useState(false)
   const [value, setValue] = useState()
+  const [rotate, setRotate] = useState("");
+  const [diceValue, setDiceValue] = useState(0); // integer state
+
   const { isOpen, onOpen, onClose } = useDisclosure()
   const toast = useToast();
   const fromWallet = useAnchorWallet();
@@ -69,6 +73,40 @@ export default function Dice() {
   const { connection } = useConnection();
 
   if (typeof window === 'undefined') return <></>;
+
+  const possibleResult2s = {
+		6: "rotateX(" + 3690 + "deg) rotateY(" + 3690 + "deg)",
+		5: "rotateX(" + 3870 + "deg) rotateY(" + 3780 + "deg)",
+		4: "rotateX(" + 3960 + "deg) rotateY(" + 3690 + "deg)",
+		3: "rotateX(" + 3960 + "deg) rotateY(" + 3870 + "deg)",
+		2: "rotateX(" + 3780 + "deg) rotateY(" + 3960 + "deg)",
+		1: "rotateX(" + 3690 + "deg) rotateY(" + 3780 + "deg)",
+	}
+  const possibleResults = [
+    "rotateX(" + 3600 + "deg) rotateY(" + 3600 + "deg)",
+    "rotateX(" + 3780 + "deg) rotateY(" + 3960 + "deg)",
+    "rotateX(" + 3960 + "deg) rotateY(" + 3870 + "deg)",
+    "rotateX(" + 3960 + "deg) rotateY(" + 3690 + "deg)",
+    "rotateX(" + 3870 + "deg) rotateY(" + 3780 + "deg)",
+    "rotateX(" + 3690 + "deg) rotateY(" + 3690 + "deg)",
+  ]
+
+  const possibleResultsOriginal = {
+		6: [90, 90],
+		5: [270, 180],
+		4: [360, 90],
+		3: [360, 270],
+		2: [180, 360],
+		1: [90, 180],
+	}
+
+
+	const roll = () => {
+		const xRand = Math.floor(Math.random() * 800000) * 90;
+		const yRand = Math.floor(Math.random() * 800000) * 90;
+		const rotate = "rotateX(" + xRand + "deg) rotateY(" + yRand + "deg)";
+		setRotate(rotate);
+	};
 
   const bet = async (betValue: number) => {
     if (betValue > 10001) {
@@ -97,6 +135,11 @@ export default function Dice() {
       return;
     }
 
+    //forceUpdate
+    setDiceValue(diceValue + 1)
+
+
+    roll();
     setLoading(true);
 
     const parsed = await connect.getParsedTokenAccountsByOwner(fromWallet.publicKey, { programId: TOKEN_PROGRAM_ID })
@@ -157,8 +200,17 @@ export default function Dice() {
 
     setLoading(false);
     onClose();
+    const evenValues = [2,4,6]
+    const oddValues = [1,3,5]
+    const dice = Math.floor(Math.random() * 3);
 
     if(parsedResult?.data?.won) {
+
+      //isEven ? 2, 4, 6 : 1, 3, 5;
+      const realResult = isEven ? evenValues[dice] : oddValues[dice];
+
+
+      setRotate(possibleResults[realResult-1]);
       const winValue = betValue * 2;
 
       toast({
@@ -171,6 +223,10 @@ export default function Dice() {
         variant: 'solid'
       });
     } else {
+      const realResult = !isEven ? evenValues[dice] : oddValues[dice];
+
+      //isEven ? 1, 3, 5 : 2, 4, 6 ;
+      setRotate(possibleResults[realResult-1]);
       toast({
         title: `Ops.`,
         description: 'Not your lucky play, try again',
@@ -182,6 +238,8 @@ export default function Dice() {
       });
     }
   }
+
+  
 
 
   return (
@@ -203,10 +261,7 @@ export default function Dice() {
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.55 }}
           >
-            <Image
-                src="/images/dice-banner.png"
-                maxW="450px"
-              />
+            <DiceComponent isRolling={isLoading} rotate={rotate} diceValue={diceValue} />
           </motion.div>
           <motion.div
             style={{width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center'}}
