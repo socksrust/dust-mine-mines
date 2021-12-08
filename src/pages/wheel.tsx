@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Layout } from '../components/common/layout';
 import { Input, Button, Switch, Image, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, useDisclosure, ModalFooter } from '@chakra-ui/react';
 import { motion } from "framer-motion";
@@ -13,6 +13,7 @@ const connect = new web3.Connection(web3.clusterApiUrl('mainnet-beta'));
 const TOKEN_PROGRAM_ID = new web3.PublicKey(
   "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
 );
+
 
 import {
   Text,
@@ -60,6 +61,8 @@ const Row = styled.div`
 
 
 export default function Wheel() {
+  const audioRef = useRef<any>(null)
+
   const [isEven, setEven] = useState(false)
   const [isBlack, setBlack] = useState(false)
   const [isLoading, setLoading] = useState(false)
@@ -131,6 +134,7 @@ export default function Wheel() {
 	};
 
   const bet = async (betValue: number) => {
+    audioRef?.current?.play()
     if (betValue > 10001) {
       toast({
         title: `Error`,
@@ -245,6 +249,7 @@ export default function Wheel() {
 
 
     if(parsedResult?.data?.won) {
+      audioRef?.current?.load()
       //isEven ? 2, 4, 6 : 1, 3, 5;
 
       console.log('possibleResults[winningArr[dice]]', possibleResults[winningArr[dice]])
@@ -262,6 +267,8 @@ export default function Wheel() {
         variant: 'solid'
       });
     } else {
+      audioRef?.current?.load()
+
       console.log('possibleResults[losingArr[dice]]', possibleResults[losingArr[dice]])
       setRotate(possibleResults[losingArr[dice]]);
       toast({
@@ -345,6 +352,13 @@ export default function Wheel() {
           </ModalFooter>
         </ModalContent>
       </Modal>
+      <audio
+        src='/audios/wheel.mp3'
+        autoPlay={false}
+        ref={audioRef}
+        //onPlay={() => setPlayingState(true)}
+        //onPause={() => setPlayingState(false)}
+      />
     </Layout>
   );
 }
