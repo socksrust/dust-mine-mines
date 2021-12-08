@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Layout } from '../components/common/layout';
 import GameItem from '../components/home/game-item';
 import { useRouter } from 'next/router';
+import LiveBets from '../components/live-bets/index'
 
 import * as anchor from '@project-serum/anchor';
 import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
@@ -37,6 +38,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   background-color: black;
   flex: 1;
+  
 `
 
 
@@ -45,6 +47,7 @@ const InnerWrapper = styled.div`
   flex-direction: column;
   padding-left: 80px;
   padding-top: 100px;
+  width: 90%;
 `
 
 
@@ -73,13 +76,7 @@ export default function Index() {
         <Text fontSize="48px" fontWeight="600">Lets play? 🃏</Text>
         <Text fontSize="24" fontWeight="bold" cursor="pointer" color="#ABFC4F" onClick={() => window.open('https://app.thestarship.finance/', '_ blank')}>Buy $BIP</Text>
         <InnerWrapper>
-          <Text fontSize="18px" fontWeight="500" paddingBottom="20px">Hottest Games 🔥</Text>
-          <GameItem text="🎰" game="Jackpot" min={100} onClick={() => push('/jackpot')} />
-          <GameItem text="🎲" game="Dice" min={200} onClick={() => push('/dice')} />
-          <GameItem text="🎡" game="Fortune Wheel" min={200} onClick={() => push('/wheel')} />
-          {/*<GameItem text="🔮" game="Raffle" min={60} />
-          <GameItem text="🃏" game="Black jack" min={60} />
-  <GameItem text="♠️" game="Poker" min={60} />*/}
+          <LiveBets />
         </InnerWrapper>
       </Wrapper>
     </Layout>
