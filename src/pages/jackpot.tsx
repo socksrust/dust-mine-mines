@@ -42,7 +42,7 @@ const InnerWrapper = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  padding-top: 20px;
+  padding-top: 40px;
   padding-right: 90px;
 `
 
