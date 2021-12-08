@@ -210,7 +210,7 @@ export default function Wheel() {
 
     const resp = await fetch("https://bip-gamex.herokuapp.com/api/v1/transaction/wheelBet", {
     //const resp = await fetch("http://localhost:3009/api/v1/transaction/diceBet", {
-      body: `{"transactionId":"${signature}"}`,
+      body: `{"transactionId":"${signature}", "betValue":"${betValue}"}`,
       headers: {
         "Content-Type": "application/json"
       },
