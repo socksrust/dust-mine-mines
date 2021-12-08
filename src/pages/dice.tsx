@@ -159,7 +159,7 @@ export default function Dice() {
     onClose();
 
     if(parsedResult?.data?.won) {
-      const winValue = betValue * 1.9;
+      const winValue = betValue * 2;
 
       toast({
         title: `Yayyyy!!`,
