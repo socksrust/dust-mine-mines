@@ -38,7 +38,6 @@
     "ethers": "^5.4.7",
     "framer-motion": "^4.0.3",
     "fs": "^0.0.1-security",
-    "mixpanel-browser": "^2.42.0",
     "netlify-plugin-pnpm-preinstaller": "^0.0.4",
     "next": "latest",
     "next-seo": "^4.28.1",

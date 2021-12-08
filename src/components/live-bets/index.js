@@ -98,8 +98,9 @@ const Wrapper = styled.div`
 
 export default function LiveBets() {
   const [transactions, setTransactions] = useState(null);
+  return null;
 
-  useEffect(() => {
+  /*useEffect(() => {
     const fetchTransactions = async () => {
       const resp = await fetch("https://bip-gamex.herokuapp.com/api/v1/transaction/transactions", {
         headers: {
@@ -113,7 +114,7 @@ export default function LiveBets() {
     }
 
     fetchTransactions()
-  }, [])
+  }, [])*/
 
   /*useEffect(() => {
     const fetchTransactions = async () => {
