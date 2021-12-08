@@ -295,7 +295,7 @@ export default function Dice() {
         <ModalContent>
           <ModalCloseButton color="#000" />
           <ModalBody paddingTop="60px">
-            <Input width="100%" height="56px" placeholder="value in $BIP (max: 10,000)" color="#000" type="number" value={value} onChange={(e) => Number(e.target.value) <= 999 && setValue(Number(e.target.value))} />
+            <Input width="100%" height="56px" placeholder="value in $BIP (max: 10,000)" color="#000" type="number" value={value} onChange={(e) => Number(e.target.value) <= 10000 && setValue(Number(e.target.value))} />
           </ModalBody>
           <ModalFooter>
             <Button isLoading={isLoading} loadingText="Loading $BIP"  borderRadius="1" width="100%" height="56px" backgroundColor="#000" onClick={() => bet(value)}>
