@@ -249,7 +249,7 @@ export default function Wheel() {
 
 
       setRotate(winningArr[dice]);
-      const winValue = betValue * 2;
+      const winValue = betValue * 4;
 
       toast({
         title: `Yayyyy!!`,
