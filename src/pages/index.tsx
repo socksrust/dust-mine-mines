@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Layout } from '../components/common/layout';
 import GameItem from '../components/home/game-item';
+import { useRouter } from 'next/router';
 
 import * as anchor from '@project-serum/anchor';
 import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
@@ -52,6 +53,7 @@ export default function Index() {
   const [see, setSee] = useState(true);
   const [holders, setHolders] = useState('');
   const ref = useRef<HTMLDivElement>(null);
+  const { push } = useRouter();
 
   if (typeof window === 'undefined') return <></>;
   if (!see) return <></>;
@@ -72,12 +74,12 @@ export default function Index() {
         <Text fontSize="24" fontWeight="bold" cursor="pointer" color="#ABFC4F" onClick={() => window.open('https://app.thestarship.finance/', '_ blank')}>Buy $BIP</Text>
         <InnerWrapper>
           <Text fontSize="18px" fontWeight="500" paddingBottom="20px">Hottest Games 🔥</Text>
-          <GameItem text="🎲" game="Dice" min={60} />
-          <GameItem text="🎡" game="Fortune Wheel" min={100} />
-          <GameItem text="🔮" game="Raffle" min={60} />
+          <GameItem text="🎰" game="Jackpot" min={100} onClick={() => push('/jackpot')} />
+          <GameItem text="🎲" game="Dice" min={200} onClick={() => push('/dice')} />
+          <GameItem text="🎡" game="Fortune Wheel" min={200} onClick={() => push('/wheel')} />
+          {/*<GameItem text="🔮" game="Raffle" min={60} />
           <GameItem text="🃏" game="Black jack" min={60} />
-          <GameItem text="🎰" game="Jackpot" min={60} />
-          <GameItem text="♠️" game="Poker" min={60} />
+  <GameItem text="♠️" game="Poker" min={60} />*/}
         </InnerWrapper>
       </Wrapper>
     </Layout>
