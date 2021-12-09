@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Layout } from '../components/common/layout';
 import { Input, Button, Switch, Image, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, useDisclosure, ModalFooter } from '@chakra-ui/react';
 import { motion } from "framer-motion";
@@ -6,8 +6,15 @@ import { useAnchorWallet, useWallet, useConnection } from '@solana/wallet-adapte
 import * as web3 from '@solana/web3.js';
 import * as splToken from '@solana/spl-token';
 import DiceComponent from '../components/dice/index'
+import {CurrencyContext} from './_app';
 
+const BIP_TOKEN_ACCOUNT = 'FiSVrKiJ1sQiqrV6FejNxNPcKorn225kBthh7WCJZPi3';
+const USDC_TOKEN_ACCOUNT = 'DUcQr4jwUVmKLgYJnZk6sgVbnhjyiWwG71XxYX2KLvUX';
+const USDT_TOKEN_ACCOUNT = '4FLJicaijkqsrZdJMp89SBorwgaQLweLvLHaFCCzhstG';
 const BIP_MINT = 'FoqP7aTaibT5npFKYKQQdyonL99vkW8YALNPwWepdvf5';
+const USDC_MINT = 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v';
+const USDT_MINT = 'Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB';
+
 const MASTER_PK = 'B8e4g2SP7AC9SqQXPChEEmduhwBuZ8MTMb5xEGUchU2t';
 const connect = new web3.Connection(web3.clusterApiUrl('mainnet-beta'));
 const TOKEN_PROGRAM_ID = new web3.PublicKey(
@@ -65,9 +72,10 @@ const Row = styled.div`
 export default function Dice() {
   const [isEven, setEven] = useState(false)
   const [isLoading, setLoading] = useState(false)
-  const [value, setValue] = useState()
+  const [inputValue, setValue] = useState()
   const [rotate, setRotate] = useState("");
   const [diceValue, setDiceValue] = useState(0); // integer state
+  const context = useContext(CurrencyContext)
 
   const { isOpen, onOpen, onClose } = useDisclosure()
   const toast = useToast();
@@ -77,14 +85,6 @@ export default function Dice() {
 
   if (typeof window === 'undefined') return <></>;
 
-  const possibleResult2s = {
-		6: "rotateX(" + 3690 + "deg) rotateY(" + 3690 + "deg)",
-		5: "rotateX(" + 3870 + "deg) rotateY(" + 3780 + "deg)",
-		4: "rotateX(" + 3960 + "deg) rotateY(" + 3690 + "deg)",
-		3: "rotateX(" + 3960 + "deg) rotateY(" + 3870 + "deg)",
-		2: "rotateX(" + 3780 + "deg) rotateY(" + 3960 + "deg)",
-		1: "rotateX(" + 3690 + "deg) rotateY(" + 3780 + "deg)",
-	}
   const possibleResults = [
     "rotateX(" + 3600 + "deg) rotateY(" + 3600 + "deg)",
     "rotateX(" + 3780 + "deg) rotateY(" + 3960 + "deg)",
@@ -94,24 +94,17 @@ export default function Dice() {
     "rotateX(" + 3690 + "deg) rotateY(" + 3690 + "deg)",
   ]
 
-  const possibleResultsOriginal = {
-		6: [90, 90],
-		5: [270, 180],
-		4: [360, 90],
-		3: [360, 270],
-		2: [180, 360],
-		1: [90, 180],
-	}
-
-
 	const roll = () => {
-		const xRand = Math.floor(Math.random() * 800000) * 90;
-		const yRand = Math.floor(Math.random() * 800000) * 90;
+		const xRand = 100000 * 90;
+		const yRand = 100000 * 90;
 		const rotate = "rotateX(" + xRand + "deg) rotateY(" + yRand + "deg)";
 		setRotate(rotate);
 	};
 
-  const bet = async (betValue: number) => {
+  const bet = async (betValue: number, mintAddress: string, toTokenAccountAddress: string) => {
+    console.log({ betValue, mintAddress, toTokenAccountAddress})
+
+
     if (betValue > 10001) {
       toast({
         title: `Error`,
@@ -147,11 +140,11 @@ export default function Dice() {
 
     const parsed = await connect.getParsedTokenAccountsByOwner(fromWallet.publicKey, { programId: TOKEN_PROGRAM_ID })
 
-    const toTokenAccount = new web3.PublicKey('FiSVrKiJ1sQiqrV6FejNxNPcKorn225kBthh7WCJZPi3')
+    const toTokenAccount = new web3.PublicKey(toTokenAccountAddress)
     var fromTokenAddress = null;
 
     for(let i = 0; i < parsed.value.length; i++) {
-      if(parsed.value[i].account.data.parsed.info.mint === BIP_MINT) {
+      if(parsed.value[i].account.data.parsed.info.mint === mintAddress) {
         console.log('pimba');
         fromTokenAddress = parsed.value[i].pubkey;
       }
@@ -170,6 +163,25 @@ export default function Dice() {
       return null;
     }
 
+    let multiplier = 1000000;
+    let currency = 'USDC'
+    switch(mintAddress) {
+      case BIP_MINT:
+        multiplier = 1000000000;
+        currency = 'BIP'
+        break;
+      case USDC_MINT:
+        multiplier = 1000000;
+        currency = 'USDC'
+        break;
+      case USDT_MINT:
+        multiplier = 1000000;
+        currency = 'USDT'
+        break;
+      default:
+        return;
+    }
+
     // Add token transfer instructions to transaction
     const transaction = new web3.Transaction().add(
       splToken.Token.createTransferInstruction(
@@ -178,15 +190,15 @@ export default function Dice() {
         toTokenAccount,
         fromWallet.publicKey,
         [],
-        betValue * 1000000000
+        betValue * multiplier,
       )
     );
     // Sign transaction, broadcast, and confirm
     const signature = await sendTransaction(transaction, connection);
     await connection.confirmTransaction(signature, 'confirmed');
 
-    const resp = await fetch("https://bip-gamextwo.herokuapp.com/api/v1/transaction/diceBet", {
-    //const resp = await fetch("http://localhost:3009/api/v1/transaction/diceBet", {
+    //const resp = await fetch("https://bip-gamextwo.herokuapp.com/api/v1/transaction/diceBet", {
+    const resp = await fetch("http://localhost:3009/api/v1/transaction/diceBet", {
       body: `{"transactionId":"${signature}", "betValue":"${betValue}"}`,
       headers: {
         "Content-Type": "application/json"
@@ -218,7 +230,7 @@ export default function Dice() {
 
       toast({
         title: `Yayyyy!!`,
-        description: `You got ${(winValue).toFixed(2)} $BIP back! They will be transferred in less than a minute! Keep going!!`,
+        description: `You got ${(winValue).toFixed(2)} $${currency} back! They will be transferred in less than a minute! Keep going!!`,
         status: 'info',
         duration: 5000,
         isClosable: true,
@@ -242,7 +254,74 @@ export default function Dice() {
     }
   }
 
-  
+  const renderButtons = (value: any, modal) => {
+    let mintAddress: string;
+    let currency;
+    let firstBetValue: {} | null | undefined;
+    let secondBetValue: {} | null | undefined;
+    let maxBetValue: number;
+    let toTokenAccountAddress: string;
+
+    switch(value) {
+      case 'BIP':
+        mintAddress = BIP_MINT;
+        currency = 'BIP';
+        firstBetValue = 200;
+        secondBetValue = 10000;
+        maxBetValue = 1000;
+        toTokenAccountAddress = BIP_TOKEN_ACCOUNT;
+        break;
+      case 'USDC':
+        mintAddress = USDC_MINT;
+        currency = 'USDC';
+        firstBetValue = 1;
+        secondBetValue = 5;
+        maxBetValue = 10;
+        toTokenAccountAddress = USDC_TOKEN_ACCOUNT;
+        break;
+      case 'USDT':
+        mintAddress = USDT_MINT;
+        currency = 'USDT';
+        firstBetValue = 1;
+        secondBetValue = 5;
+        maxBetValue = 10;
+        toTokenAccountAddress = USDT_TOKEN_ACCOUNT;
+        break;
+      default:
+        break;
+    }
+
+
+    if(modal) {
+      return (
+        <ModalContent>
+          <ModalCloseButton color="#000" />
+          <ModalBody paddingTop="60px">
+            <Input width="100%" height="56px" placeholder={`value in $${currency} (max: ${maxBetValue})`} color="#000" type="number" value={inputValue} onChange={(e) => Number(e.target.value) <= maxBetValue && setValue(Number(e.target.value))} />
+          </ModalBody>
+          <ModalFooter>
+            <Button isLoading={isLoading} loadingText={`Loading ${currency}$`} borderRadius="2rem" width="100%" height="56px" backgroundColor="#02011F" onClick={() => bet(value, mintAddress, toTokenAccountAddress)}>
+              <Text fontSize="14px" fontWeight="bold" color="#fff">Bet</Text>
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      )
+    }
+
+
+      return (<Row>
+        <Button isLoading={isLoading} loadingText="Loading $BIP" borderRadius="2rem" width="180px" height="56px" onClick={() => bet(firstBetValue, mintAddress, toTokenAccountAddress)}>
+          <Text fontSize="14px" fontWeight="bold" color="#000">{firstBetValue} ${currency}</Text>
+        </Button>
+        <Button isLoading={isLoading} loadingText="Loading $BIP" borderRadius="2rem" width="180px" height="56px" onClick={() => bet(secondBetValue, mintAddress, toTokenAccountAddress)}>
+          <Text fontSize="14px" fontWeight="bold" color="#000">{secondBetValue} ${currency}</Text>
+        </Button>
+        <Button isLoading={isLoading} loadingText="Loading $BIP" borderRadius="2rem" width="180px" height="56px" borderColor="#fff" borderWidth="1px" backgroundColor="#02011F" onClick={onOpen}>
+          <Text fontSize="14px" fontWeight="bold" color="#fff">Custom ${currency} Value</Text>
+        </Button>
+      </Row>
+    )
+  }
 
 
   return (
@@ -276,34 +355,14 @@ export default function Dice() {
             <Switch size="lg" isChecked={isEven} value={isEven ? 'isEven' : 'isOdd'} onChange={(e) => setEven(e.target.value !== 'isEven')} />
             <Text fontSize="48px" fontWeight="bold" color={isEven ? '#fff' : 'rgba(255,255,255, 0.6)'}>Even</Text>
           </RowCentered>
-          <Row>
-            <Button isLoading={isLoading} loadingText="Loading $BIP" borderRadius="2rem" width="180px" height="56px" onClick={() => bet(200)}>
-              <Text fontSize="14px" fontWeight="bold" color="#000">200 $BIP</Text>
-            </Button>
-            <Button isLoading={isLoading} loadingText="Loading $BIP" borderRadius="2rem" width="180px" height="56px" onClick={() => bet(1000)}>
-              <Text fontSize="14px" fontWeight="bold" color="#000">1000 $BIP</Text>
-            </Button>
-            <Button isLoading={isLoading} loadingText="Loading $BIP" borderRadius="2rem" width="180px" height="56px" borderColor="#fff" borderWidth="1px" backgroundColor="#02011F" onClick={onOpen}>
-              <Text fontSize="14px" fontWeight="bold" color="#fff">Custom $BIP Value</Text>
-            </Button>
-          </Row>
+          {renderButtons(context.value, false)}
           </motion.div>
 
         </InnerWrapper>
       </Wrapper>
       <Modal onClose={onClose} isOpen={isOpen} isCentered>
         <ModalOverlay />
-        <ModalContent>
-          <ModalCloseButton color="#000" />
-          <ModalBody paddingTop="60px">
-            <Input width="100%" height="56px" placeholder="value in $BIP (max: 10,000)" color="#000" type="number" value={value} onChange={(e) => Number(e.target.value) <= 10000 && setValue(Number(e.target.value))} />
-          </ModalBody>
-          <ModalFooter>
-            <Button isLoading={isLoading} loadingText="Loading $BIP"  borderRadius="2rem" width="100%" height="56px" backgroundColor="#02011F" onClick={() => bet(value)}>
-              <Text fontSize="14px" fontWeight="bold" color="#fff">Bet</Text>
-            </Button>
-          </ModalFooter>
-        </ModalContent>
+        {renderButtons(context.value, true)}
       </Modal>
     </Layout>
   );

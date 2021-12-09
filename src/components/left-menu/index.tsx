@@ -59,7 +59,7 @@ interface LeftMenuProps {}
 const options = [
   {label: '$BIP', value: 'BIP'},
   {label: '$USDC', value: 'USDC'},
-  {label: '$SOL', value: 'SOL'},
+  {label: '$USDT', value: 'USDT'},
 ]
 
 /*
