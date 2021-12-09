@@ -60,6 +60,7 @@ const options = [
   {label: '$BIP', value: 'BIP'},
   {label: '$USDC', value: 'USDC'},
   {label: '$USDT', value: 'USDT'},
+  {label: '$DRUGS', value: 'DRUGS'},
 ]
 
 /*

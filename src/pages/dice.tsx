@@ -11,9 +11,12 @@ import {CurrencyContext} from './_app';
 const BIP_TOKEN_ACCOUNT = 'FiSVrKiJ1sQiqrV6FejNxNPcKorn225kBthh7WCJZPi3';
 const USDC_TOKEN_ACCOUNT = 'DUcQr4jwUVmKLgYJnZk6sgVbnhjyiWwG71XxYX2KLvUX';
 const USDT_TOKEN_ACCOUNT = '4FLJicaijkqsrZdJMp89SBorwgaQLweLvLHaFCCzhstG';
+const DRUGS_TOKEN_ACCOUNT = '7uW58ttmZ67Mif53XHti4sL59ZPEVSWfgabGymFvfNXy';
+
 const BIP_MINT = 'FoqP7aTaibT5npFKYKQQdyonL99vkW8YALNPwWepdvf5';
 const USDC_MINT = 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v';
 const USDT_MINT = 'Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB';
+const DRUGS_MINT = 'DcqWM1BdgfUFktSKw8XC6qLAo2Ki2dUFXc1YYe67c8kD';
 
 const MASTER_PK = 'B8e4g2SP7AC9SqQXPChEEmduhwBuZ8MTMb5xEGUchU2t';
 const connect = new web3.Connection(web3.clusterApiUrl('mainnet-beta'));
@@ -178,9 +181,16 @@ export default function Dice() {
         multiplier = 1000000;
         currency = 'USDT'
         break;
+      case DRUGS_MINT:
+        multiplier = 10000;
+        currency = 'DRUGS'
+        break;
       default:
         return;
     }
+
+    console.log('betValue', betValue)
+    console.log('betValue * multiplier', betValue * multiplier)
 
     // Add token transfer instructions to transaction
     const transaction = new web3.Transaction().add(
@@ -267,8 +277,8 @@ export default function Dice() {
         mintAddress = BIP_MINT;
         currency = 'BIP';
         firstBetValue = 200;
-        secondBetValue = 10000;
-        maxBetValue = 1000;
+        secondBetValue = 1000;
+        maxBetValue = 10000;
         toTokenAccountAddress = BIP_TOKEN_ACCOUNT;
         break;
       case 'USDC':
@@ -287,6 +297,14 @@ export default function Dice() {
         maxBetValue = 10;
         toTokenAccountAddress = USDT_TOKEN_ACCOUNT;
         break;
+      case 'DRUGS':
+        mintAddress = DRUGS_MINT;
+        currency = 'DRUGS';
+        firstBetValue = 200;
+        secondBetValue = 1000;
+        maxBetValue = 10000;
+        toTokenAccountAddress = DRUGS_TOKEN_ACCOUNT;
+        break;
       default:
         break;
     }
@@ -300,7 +318,7 @@ export default function Dice() {
             <Input width="100%" height="56px" placeholder={`value in $${currency} (max: ${maxBetValue})`} color="#000" type="number" value={inputValue} onChange={(e) => Number(e.target.value) <= maxBetValue && setValue(Number(e.target.value))} />
           </ModalBody>
           <ModalFooter>
-            <Button isLoading={isLoading} loadingText={`Loading ${currency}$`} borderRadius="2rem" width="100%" height="56px" backgroundColor="#02011F" onClick={() => bet(value, mintAddress, toTokenAccountAddress)}>
+            <Button isLoading={isLoading} loadingText={`Loading ${currency}$`} borderRadius="2rem" width="100%" height="56px" backgroundColor="#02011F" onClick={() => bet(inputValue, mintAddress, toTokenAccountAddress)}>
               <Text fontSize="14px" fontWeight="bold" color="#fff">Bet</Text>
             </Button>
           </ModalFooter>
