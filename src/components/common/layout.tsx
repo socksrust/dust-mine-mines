@@ -17,6 +17,25 @@ const Wrapper = styled.div`
 
 export const Layout = ({ children, ...props }: StackProps) => {
   const router = useRouter();
+
+
+  if(!window) {
+    return null;
+  }
+
+  if(window.innerWidth < 1100) {
+    return (
+      <div style={{height: '100vh'}} >
+        <Header />
+        <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: 50, height: '90vh'}} >
+          Does not support mobile yet
+        </div>
+        {/*<Footer />*/}
+      </div>
+    );
+  }
+
+
   return (
     <div style={{height: '100vh'}} >
       <Header />

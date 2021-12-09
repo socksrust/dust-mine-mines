@@ -6,6 +6,7 @@ import { useAnchorWallet, useWallet, useConnection } from '@solana/wallet-adapte
 import * as web3 from '@solana/web3.js';
 import * as splToken from '@solana/spl-token';
 import WheelComponent from '../components/wheel/index'
+import Space from '../components/common/space'
 
 const BIP_MINT = 'FoqP7aTaibT5npFKYKQQdyonL99vkW8YALNPwWepdvf5';
 const MASTER_PK = 'B8e4g2SP7AC9SqQXPChEEmduhwBuZ8MTMb5xEGUchU2t';
@@ -325,6 +326,7 @@ export default function Wheel() {
             <Button isLoading={isLoading} loadingText="Loading $BIP" borderRadius="2rem" width="180px" height="56px" borderColor="#fff" borderWidth="1px" backgroundColor="#02011F" onClick={onOpen}>
               <Text fontSize="14px" fontWeight="bold" color="#fff">Custom $BIP Value</Text>
             </Button>
+            <Space height={90} />
           </Row>
           </motion.div>
         </InnerWrapper>
