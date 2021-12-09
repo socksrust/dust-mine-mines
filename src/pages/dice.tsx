@@ -328,13 +328,13 @@ export default function Dice() {
 
 
       return (<Row>
-        <Button isLoading={isLoading} loadingText="Loading $BIP" borderRadius="2rem" width="180px" height="56px" onClick={() => bet(firstBetValue, mintAddress, toTokenAccountAddress)}>
+        <Button isLoading={isLoading} loadingText={`Loading ${currency}$`} borderRadius="2rem" width="180px" height="56px" onClick={() => bet(firstBetValue, mintAddress, toTokenAccountAddress)}>
           <Text fontSize="14px" fontWeight="bold" color="#000">{firstBetValue} ${currency}</Text>
         </Button>
-        <Button isLoading={isLoading} loadingText="Loading $BIP" borderRadius="2rem" width="180px" height="56px" onClick={() => bet(secondBetValue, mintAddress, toTokenAccountAddress)}>
+        <Button isLoading={isLoading} loadingText={`Loading ${currency}$`} borderRadius="2rem" width="180px" height="56px" onClick={() => bet(secondBetValue, mintAddress, toTokenAccountAddress)}>
           <Text fontSize="14px" fontWeight="bold" color="#000">{secondBetValue} ${currency}</Text>
         </Button>
-        <Button isLoading={isLoading} loadingText="Loading $BIP" borderRadius="2rem" width="180px" height="56px" borderColor="#fff" borderWidth="1px" backgroundColor="#02011F" onClick={onOpen}>
+        <Button isLoading={isLoading} loadingText={`Loading ${currency}$`} borderRadius="2rem" width="180px" height="56px" borderColor="#fff" borderWidth="1px" backgroundColor="#02011F" onClick={onOpen}>
           <Text fontSize="14px" fontWeight="bold" color="#fff">Custom ${currency} Value</Text>
         </Button>
       </Row>
