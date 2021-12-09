@@ -11,6 +11,7 @@ import '../styles/styles.css'
 import '../components/dice/dice.css'
 import '../components/slot/slot.css'
 
+export const CurrencyContext = React.createContext<any>({});
 
 const theme1 = createTheme({
   palette: {
@@ -45,17 +46,21 @@ const WalletConnectionProvider = dynamic(
 );
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const [value, setValue] = React.useState('BIP')
+
   return (
-    <ThemeProvider theme={theme1}>
-      <ChakraProvider theme={theme}>
-        <DefaultSeo {...SEO} />
-        <WalletConnectionProvider>
-          <WalletDialogProvider>
-            <Component {...pageProps} />
-          </WalletDialogProvider>
-        </WalletConnectionProvider>
-      </ChakraProvider>
-    </ThemeProvider>
+    <CurrencyContext.Provider value={{value, setValue: (v: string) => setValue(v)}}>
+      <ThemeProvider theme={theme1}>
+        <ChakraProvider theme={theme}>
+          <DefaultSeo {...SEO} />
+          <WalletConnectionProvider>
+            <WalletDialogProvider>
+              <Component {...pageProps} />
+            </WalletDialogProvider>
+          </WalletConnectionProvider>
+        </ChakraProvider>
+      </ThemeProvider>
+    </CurrencyContext.Provider>
   );
 }
 
