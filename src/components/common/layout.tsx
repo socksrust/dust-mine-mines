@@ -9,20 +9,21 @@ import styled from '@emotion/styled'
 const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
-  background-color: #000;
+  background-color: #02011F;
   flex: 1;
+  padding: 0px 100px;
+  height: calc(100% - 150px);
 `
 
 export const Layout = ({ children, ...props }: StackProps) => {
   const router = useRouter();
   return (
-    <div style={{height: '100vh'}}>
+    <div style={{height: '100vh'}} >
       <Header />
       <Wrapper>
-        <LeftMenu />
         {children}
       </Wrapper>
-      <Footer />
+      {/*<Footer />*/}
     </div>
   );
 };

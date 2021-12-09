@@ -24,7 +24,7 @@ import styled from '@emotion/styled'
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: black;
+  background-color: #02011F;
   flex: 1;
 `
 
@@ -286,15 +286,6 @@ export default function Wheel() {
   return (
     <Layout>
       <Wrapper>
-        <motion.div
-            animate={{ opacity: 1, y: 0 }}
-            initial={{ opacity: 0, y: 20 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.55 }}
-          >
-        <Text fontSize="24px" fontWeight="500">Hi player,</Text>
-        <Text fontSize="48px" fontWeight="600">Spin Wheel  🎡</Text>
-        </motion.div>
         <InnerWrapper>
         <motion.div
             animate={{ opacity: 1, y: 0 }}
@@ -314,24 +305,24 @@ export default function Wheel() {
           <RowCentered/>
           <RowCentered/>
           <RowCentered>
-            <Text fontSize="36px" fontWeight="bold" color={!isEven ? '#ABFC4F' : '#fff'}>Odd</Text>
+            <Text fontSize="36px" fontWeight="bold" color={!isEven ? '#fff' : 'rgba(255,255,255, 0.6)'}>Odd</Text>
             <Switch size="lg" isChecked={isEven} value={isEven ? 'isEven' : 'isOdd'} onChange={(e) => setEven(e.target.value !== 'isEven')} />
-            <Text fontSize="36px" fontWeight="bold" color={isEven ? '#ABFC4F' : '#fff'}>Even</Text>
+            <Text fontSize="36px" fontWeight="bold" color={isEven ? '#fff' : 'rgba(255,255,255, 0.6)'}>Even</Text>
           </RowCentered>
           <RowCentered>
-            <Text fontSize="36px" fontWeight="bold" color={!isBlack ? '#ABFC4F' : '#fff'}>Red</Text>
+            <Text fontSize="36px" fontWeight="bold" color={!isBlack ? '#fff' : 'rgba(255,255,255, 0.6)'}>Red</Text>
             <Switch size="lg" isChecked={isBlack} value={isBlack ? 'isBlack' : 'isRed'} onChange={(e) => setBlack(e.target.value !== 'isBlack')} />
-            <Text fontSize="36px" fontWeight="bold" color={isBlack ? '#ABFC4F' : '#fff'}>Black</Text>
+            <Text fontSize="36px" fontWeight="bold" color={isBlack ? '#fff' : 'rgba(255,255,255, 0.6)'}>Black</Text>
           </RowCentered>
           <RowCentered/>
           <Row>
-            <Button isLoading={isLoading} loadingText="Loading $BIP" borderRadius="1" width="180px" height="56px" onClick={() => bet(200)}>
+            <Button isLoading={isLoading} loadingText="Loading $BIP" borderRadius="2rem" width="180px" height="56px" onClick={() => bet(200)}>
               <Text fontSize="14px" fontWeight="bold" color="#000">200 $BIP</Text>
             </Button>
-            <Button isLoading={isLoading} loadingText="Loading $BIP" borderRadius="1" width="180px" height="56px" onClick={() => bet(1000)}>
+            <Button isLoading={isLoading} loadingText="Loading $BIP" borderRadius="2rem" width="180px" height="56px" onClick={() => bet(1000)}>
               <Text fontSize="14px" fontWeight="bold" color="#000">1000 $BIP</Text>
             </Button>
-            <Button isLoading={isLoading} loadingText="Loading $BIP" borderRadius="1" width="180px" height="56px" borderColor="#fff" borderWidth="1px" backgroundColor="#000" onClick={onOpen}>
+            <Button isLoading={isLoading} loadingText="Loading $BIP" borderRadius="2rem" width="180px" height="56px" borderColor="#fff" borderWidth="1px" backgroundColor="#02011F" onClick={onOpen}>
               <Text fontSize="14px" fontWeight="bold" color="#fff">Custom $BIP Value</Text>
             </Button>
           </Row>
@@ -346,7 +337,7 @@ export default function Wheel() {
             <Input width="100%" height="56px" placeholder="value in $BIP (max: 10,000)" color="#000" type="number" value={value} onChange={(e) => Number(e.target.value) <= 10000 && setValue(Number(e.target.value))} />
           </ModalBody>
           <ModalFooter>
-            <Button isLoading={isLoading} loadingText="Loading $BIP"  borderRadius="1" width="100%" height="56px" backgroundColor="#000" onClick={() => bet(value)}>
+            <Button isLoading={isLoading} loadingText="Loading $BIP"  borderRadius="2rem" width="100%" height="56px" backgroundColor="#02011F" onClick={() => bet(value)}>
               <Text fontSize="14px" fontWeight="bold" color="#fff">Bet</Text>
             </Button>
           </ModalFooter>

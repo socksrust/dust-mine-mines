@@ -1,15 +1,15 @@
-const title = 'BIP Games';
+const title = 'Solbets';
 const description =
-  'BIP Games is a game center based on Solana and powered by OctopusArt and SolanaDBS NFT communities';
+  'Solbets is a game center based on Solana and powered by OctopusArt and SolanaDBS NFT communities';
 
 const SEO = {
   title,
   description,
-  canonical: 'https://bip-games.vercel.app/',
+  canonical: 'https://solbets.io/',
   openGraph: {
     type: 'website',
     locale: 'en_IE',
-    url: 'https://bip-games.vercel.app/',
+    url: 'https://solbets.io/',
     title,
     description,
     images: [

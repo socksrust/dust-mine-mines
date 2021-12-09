@@ -6,6 +6,7 @@ import { Button } from '../button';
 import { ConnectWallet } from '../button/connectWallet';
 import { motion } from 'framer-motion';
 import { useScrollFramer } from '../../hooks/useScrollFramer';
+import LeftMenu from '../left-menu';
 
 interface HeaderProps {}
 
@@ -21,7 +22,7 @@ const Header: FC<HeaderProps> = () => {
           WebkitBackdropFilter: `blur(${!startedScrolling ? 0 : 10}px)`,
         }}
         style={{
-          zIndex: 30,
+          zIndex: 900,
           //position: 'sticky',
           top: 0,
           left: 0,
@@ -44,10 +45,17 @@ const Header: FC<HeaderProps> = () => {
             <Image
               cursor="pointer"
               onClick={() => push('/')}
-              src="/images/logo.png"
-              maxW="250px"
+              src="/images/lofos.png"
+              width="90px"
             />
+            <Flex
+              direction="row"
+              justifyContent="flex-end"
+              alignItems="center"
+            >
+            <LeftMenu />
             <ConnectWallet />
+            </Flex>
           </Flex>
         </Flex>
       </motion.div>

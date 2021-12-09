@@ -21,7 +21,7 @@ export const ConnectWallet: React.FC<IButtonProps> = ({ ...props }) => {
   }
 
   return (
-    <Button size="bigger" onClick={handleClick} {...props}>
+    <Button backgroundColor="#fff" size="bigger" onClick={handleClick} {...props}>
       Connect Wallet
     </Button>
   );

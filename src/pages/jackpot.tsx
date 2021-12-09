@@ -6,6 +6,7 @@ import { useAnchorWallet, useWallet, useConnection } from '@solana/wallet-adapte
 import * as web3 from '@solana/web3.js';
 import * as splToken from '@solana/spl-token';
 import LiveBets from '../components/live-bets/index'
+import Space from '../components/common/space'
 
 //import SlotComponent from '../components/slot/index'
 const SlotComponent = dynamic(
@@ -34,7 +35,8 @@ import { setTimeout } from 'timers';
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: black;
+  justify-content: center;
+  background-color: #02011F;
   flex: 1;
 `
 
@@ -54,7 +56,6 @@ const RowCentered = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  padding: 50px 0px;
 `
 
 const Row = styled.div`
@@ -216,17 +217,7 @@ export default function Jackpot() {
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.55 }}
           >
-        <Text fontSize="48px" fontWeight="600" color="#ABFC4F">
-          <span style={{ fontSize: '24px', color: '#fff'}}>
-          Jackpot: 
-          </span>{`   `}10,000 $BIP
-        </Text>
-        <Text fontSize="12px" fontWeight="400">
-        <span style={{ fontSize: '18px', color: '#fff', fontWeight: 600, paddingRight: 7}}>
-          1%
-          </span>{` `}
-          Chance of winning
-        </Text>
+
         </motion.div>
         <InnerWrapper>
         <motion.div
@@ -237,6 +228,7 @@ export default function Jackpot() {
           >
             <SlotComponent />
           </motion.div>
+          <Space height={50} />
           <motion.div
             style={{width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center'}}
             animate={{ opacity: 1, y: 0 }}
@@ -245,7 +237,7 @@ export default function Jackpot() {
             transition={{ duration: 0.55, delay: 0.35 }}
           >
           <RowCentered>
-            <Button isLoading={isLoading} loadingText="Loading $BIP" borderRadius="1" width="180px" height="56px" onClick={() => bet(100)}>
+            <Button isLoading={isLoading} loadingText="Loading $BIP" borderRadius="2rem" width="180px" height="56px" onClick={() => bet(100)}>
               <Text fontSize="14px" fontWeight="bold" color="#000">100 $BIP</Text>
             </Button>
           </RowCentered>

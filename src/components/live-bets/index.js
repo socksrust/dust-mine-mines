@@ -4,6 +4,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 import styled from '@emotion/styled'
+import { motion } from "framer-motion";
 
 export function timeSince(date) {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -38,16 +39,16 @@ const Row = styled.div`
   display: flex;
   flex-direction: row;
   flex: 1;
+  padding: 10px;
 `
 
 const TransactionWrapper = styled.div`
   display: flex;
   flex-direction: row;
   flex: 1;
-  background-color: ${p => p.won ? '#2ecc71' : '#e74c3c'};
+  background-color: ${p => p.isOutline ? '#0202204f' : 'transparent'};
   margin-top: 3px;
-  padding: 10px 0px;
-  border-radius: 4px;
+  padding: 14px 0px;
 `
 
 const GameWrappper = styled.div`
@@ -56,6 +57,9 @@ const GameWrappper = styled.div`
   flex: 1;
   align-items: center;
   justify-content: center;
+  color: rgba(135, 134, 171, 0.8);
+  font-weight: medium;
+  font-size: 18px;
 `
 
 const BetvaueWrappper = styled.div`
@@ -64,6 +68,9 @@ const BetvaueWrappper = styled.div`
   flex: 1;
   align-items: center;
   justify-content: center;
+  color: rgba(135, 134, 171, 0.8);
+  font-weight: medium;
+  font-size: 18px;
 `
 
 const CreatedWrappper = styled.div`
@@ -72,18 +79,21 @@ const CreatedWrappper = styled.div`
   flex: 1;
   align-items: center;
   justify-content: center;
+  color: rgba(135, 134, 171, 0.8);
+  font-weight: medium;
+  font-size: 18px;
 `
 
-const Transaction = ({betValue, createdAt, won, game}) => (
-  <TransactionWrapper won={won}>
+const Transaction = ({betValue, createdAt, won, game, isOutline, currency}) => (
+  <TransactionWrapper isOutline={isOutline}>
     <GameWrappper>
-      <Text fontSize="24px" fontWeight="500">{game}</Text>
+      <Text fontSize="16px" >{game}</Text>
     </GameWrappper>
     <BetvaueWrappper>
-      <Text fontSize="24px" fontWeight="500">{betValue}</Text>
+      <Text fontSize="16px" color="rgba(80, 227, 194, 1)">{betValue} ${currency}</Text>
     </BetvaueWrappper>
     <CreatedWrappper>
-      <Text fontSize="24px" fontWeight="500">{timeSince(createdAt)} ago</Text>
+      <Text fontSize="16px" >{timeSince(createdAt)} ago</Text>
     </CreatedWrappper>
   </TransactionWrapper>
 )
@@ -93,8 +103,15 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
+  background: linear-gradient(210.96deg, rgba(36, 33, 81, 0.74) 0.01%, rgba(38, 35, 83, 0.78) 42.05%, rgba(47, 45, 97, 0.51) 104.81%);
+  box-shadow: -23.609px 48.8461px 73.2692px rgba(23, 18, 43, 0.55);
+  backdrop-filter: blur(20px);
+  border-radius: 15px;
+  width: 450px;
+  min-height: 600px;
+  overflow: scroll;
+  z-index: 3;
 `
-
 
 export default function LiveBets() {
   const [transactions, setTransactions] = useState(null);
@@ -137,7 +154,7 @@ export default function LiveBets() {
 
   return (
       <Wrapper>
-        <Text fontSize="24px" fontWeight="500" paddingBottom="20px">Live bets 🔥</Text>
+        <Text fontSize="18px" color="rgba(177, 175, 205, 1)" fontWeight="normal" padding="20px">LIVE BETS</Text>
         <Row>
           <GameWrappper>
             Game
@@ -149,9 +166,16 @@ export default function LiveBets() {
             Time ago
           </CreatedWrappper>
         </Row>
-        {transactions && transactions[0] && transactions.map(transaction => (
-          <Transaction {...transaction}/>
+        <motion.div
+            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.55, delay: 0.35  }}
+          >
+        {transactions && transactions[0] && transactions.map((transaction, index) => (
+          <Transaction {...transaction} isOutline={index % 2 === 0} />
         ))}
+        </motion.div>
       </Wrapper>
   );
 }

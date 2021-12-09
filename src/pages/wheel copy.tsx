@@ -29,7 +29,7 @@ import styled from '@emotion/styled'
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: black;
+  background-color: #02011F;
   flex: 1;
   
 `

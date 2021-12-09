@@ -9,7 +9,7 @@
 .cube > div {
 	box-sizing: content-box;
 	border-radius: 5px;
-	border: solid rgb(171, 252, 79) 2px;
+	border: solid #fff 2px;
 }
 .cube {
 	width: 200px;
@@ -25,7 +25,7 @@
 	position: absolute;
 	width: 30px;
 	height: 30px;
-	background: rgb(171, 252, 79);
+	background: #fff;
 	border-radius: 15px;
 }
 .front .dot1 {
@@ -142,7 +142,7 @@
 	color: black;
 	text-align: center;
 	opacity: 1;
-	background: black;
+	background: #1B193F;
 }
 
 /* .cube__face--front {
