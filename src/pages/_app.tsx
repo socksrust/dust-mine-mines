@@ -46,7 +46,7 @@ const WalletConnectionProvider = dynamic(
 );
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [value, setValue] = React.useState('USDT')
+  const [value, setValue] = React.useState('BIP')
 
   return (
     <CurrencyContext.Provider value={{value, setValue: (v: string) => setValue(v)}}>
