@@ -252,9 +252,6 @@ export default function Jackpot() {
           </motion.div>
 
         </InnerWrapper>
-        <RowCentered />
-        <LiveBets />
-
       </Wrapper>
     </Layout>
   );

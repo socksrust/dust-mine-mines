@@ -6,7 +6,6 @@ import { useAnchorWallet, useWallet, useConnection } from '@solana/wallet-adapte
 import * as web3 from '@solana/web3.js';
 import * as splToken from '@solana/spl-token';
 import WheelComponent from '../components/wheel/index'
-import LiveBets from '../components/live-bets/index'
 
 const BIP_MINT = 'FoqP7aTaibT5npFKYKQQdyonL99vkW8YALNPwWepdvf5';
 const MASTER_PK = 'B8e4g2SP7AC9SqQXPChEEmduhwBuZ8MTMb5xEGUchU2t';
@@ -338,9 +337,6 @@ export default function Wheel() {
           </Row>
           </motion.div>
         </InnerWrapper>
-        <RowCentered />
-        <LiveBets />
-
       </Wrapper>
       <Modal onClose={onClose} isOpen={isOpen} isCentered>
         <ModalOverlay />
