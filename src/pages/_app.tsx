@@ -1,8 +1,10 @@
 import { ChakraProvider } from '@chakra-ui/react';
 import theme from '../theme';
 import { AppProps } from 'next/app';
-import React from 'react';
+import React, { useEffect } from 'react';
 import dynamic from 'next/dynamic';
+import { useRouter } from 'next/router';
+
 import { ThemeProvider, createTheme } from '@material-ui/core';
 import { DefaultSeo } from 'next-seo';
 import SEO from '../../next-seo.config';
@@ -47,6 +49,21 @@ const WalletConnectionProvider = dynamic(
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [value, setValue] = React.useState('USDC')
+  const router = useRouter();
+
+  const handleRouteChange = (url: string) => {
+    //@ts-ignore
+    window.gtag('config', '[Tracking ID]', {
+      page_path: url,
+    });
+  };
+
+  useEffect(() => {
+    router.events.on('routeChangeComplete', handleRouteChange);
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, [router.events]);
 
   return (
     <CurrencyContext.Provider value={{value, setValue: (v: string) => setValue(v)}}>

@@ -6,7 +6,18 @@ const Select = (props) => {
     <ReactSelect {...props} styles={{
       option: (provided, state) => ({
         ...provided,
-        color: state.isSelected ? 'white' : '#02011F',
+        color: 'white',
+        backgroundColor: '#1B193F',
+
+      }),
+      indicatorSeparator: (provided) => ({
+        ...provided,
+        backgroundColor: '#1B193F',
+      }),
+      menu: (provided) => ({
+        ...provided,
+        backgroundColor: '#1B193F',
+        color: 'white',
       }),
       control: (provided) => ({
         // none of react-select's styles are passed to <Control />
@@ -14,7 +25,7 @@ const Select = (props) => {
         background: '#1B193F',
         borderRadius: '4px',
         borderWidth: 0,
-        width: 200,
+        width: 190,
         color: 'white',
       }),
       singleValue: (provided, state) => {

@@ -23,6 +23,7 @@ const Wrapper = styled.div`
   background-color: #02011F;
   height: 100%;
   margin-right: 30px;
+  z-index: 4;
 `
 
 const MenuItemWrapper = styled.div`
@@ -32,8 +33,6 @@ const MenuItemWrapper = styled.div`
   align-items: flex-start;
   padding: 10px 20px;
   cursor: pointer;
-  margin-left: 10px;
-  width: calc(100% - 36px);
   border-radius: 2rem;
   ${p => p.isActive && `
     align-items: center;
@@ -48,28 +47,28 @@ const MenuItem = ({text, onClick, isActive}) => (
   </MenuItemWrapper>
 )
 
-const MenuOutItem = ({text, onClick, isActive}) => (
-  <MenuItemWrapper onClick={onClick} isActive={isActive}>
-    <Text fontSize="24" fontWeight="bold" color="#ABFC4F" style={{ whiteSpace: 'nowrap' }} >{text}</Text>
-  </MenuItemWrapper>
-)
-
 interface LeftMenuProps {}
 
+const LabelWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`
+
+const Label = ({ label, imgSrc }) => (
+  <LabelWrapper>
+    <img src={imgSrc} height="20px" width="20px" style={{borderRadius:"50%"}}/>
+    <Space width={8} />
+    {label}
+  </LabelWrapper>
+)
+
 const options = [
-  {label: '$BIP', value: 'BIP'},
-  {label: '$USDC', value: 'USDC'},
-  {label: '$USDT', value: 'USDT'},
-  {label: '$DRUGS', value: 'DRUGS'},
+  {label: <Label label="$BIP" imgSrc="https://github.com/solana-labs/token-list/blob/main/assets/mainnet/FoqP7aTaibT5npFKYKQQdyonL99vkW8YALNPwWepdvf5/logo.png?raw=true" />, value: 'BIP'},
+  {label: <Label label="$USDC" imgSrc="https://github.com/solana-labs/token-list/blob/main/assets/mainnet/EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v/logo.png?raw=true" />, value: 'USDC'},
+  {label: <Label label="$USDT" imgSrc="https://s2.coinmarketcap.com/static/img/coins/200x200/825.png" />, value: 'USDT'},
+  {label: <Label label="$DRUGS" imgSrc="https://github.com/solana-labs/token-list/blob/main/assets/mainnet/DcqWM1BdgfUFktSKw8XC6qLAo2Ki2dUFXc1YYe67c8kD/logo.png?raw=true" />, value: 'DRUGS'},
 ]
-
-/*
-const options = [
-  { value: 'chocolate', label: 'Chocolate' },
-  { value: 'strawberry', label: 'Strawberry' },
-  { value: 'vanilla', label: 'Vanilla' }
-]*/
-
 
 const LeftMenu: FC<LeftMenuProps> = () => {
   const { push } = useRouter();
@@ -80,8 +79,9 @@ const LeftMenu: FC<LeftMenuProps> = () => {
     <>
       <Wrapper>
         {/*<MenuOutItem text="Buy $BIP" onClick={() => window.open('https://app.thestarship.finance/', '_ blank')} />*/}
-        <Select value={{label: `$${context.value}`, value: context.value}} options={options} onChange={(option) => context.setValue(option.value)} />
-        <Space width={90} />
+        <Select value={options.find(a => a.value === context.value)} options={options} onChange={(option) => context.setValue(option.value)} />
+        <Space width={30} />
+
         <MenuItem text="Games" onClick={() => push('/')} isActive={window.location.pathname === '/'} />
         <MenuItem text="Jack pot" onClick={() => push('/jackpot')} isActive={window.location.pathname === '/jackpot'} />
         <MenuItem text="Dice" onClick={() => push('/dice')} isActive={window.location.pathname === '/dice'} />
