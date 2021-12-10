@@ -286,7 +286,7 @@ export default function Dice() {
         currency = 'USDC';
         firstBetValue = 1;
         secondBetValue = 5;
-        maxBetValue = 10;
+        maxBetValue = 100;
         toTokenAccountAddress = USDC_TOKEN_ACCOUNT;
         break;
       case 'USDT':
@@ -294,7 +294,7 @@ export default function Dice() {
         currency = 'USDT';
         firstBetValue = 1;
         secondBetValue = 5;
-        maxBetValue = 10;
+        maxBetValue = 100;
         toTokenAccountAddress = USDT_TOKEN_ACCOUNT;
         break;
       case 'DRUGS':
