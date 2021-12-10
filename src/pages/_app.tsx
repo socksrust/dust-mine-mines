@@ -50,6 +50,7 @@ const WalletConnectionProvider = dynamic(
 function MyApp({ Component, pageProps }: AppProps) {
   const [value, setValue] = React.useState('USDC')
   const router = useRouter();
+  const { currency } = router.query
 
   const handleRouteChange = (url: string) => {
     //@ts-ignore
@@ -60,10 +61,17 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
+      
+      console.log('currency', currency);
+      if(currency && typeof currency === 'string') {
+        const newValue = currency.toUpperCase();
+        localStorage.setItem('value', newValue);
+        setValue(newValue);
+      }
       const v: any = localStorage?.getItem('value');
       setValue(v);
     }
-  }, [])
+  }, [currency])
 
   const handleValue = (v: any) => {
     setValue(v)
@@ -71,6 +79,8 @@ function MyApp({ Component, pageProps }: AppProps) {
       localStorage.setItem('value', v);
     }
   }
+
+  console.log('router', router.query.currency)
 
   useEffect(() => {
     router.events.on('routeChangeComplete', handleRouteChange);
