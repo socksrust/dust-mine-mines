@@ -51,17 +51,18 @@ const LabelWrapper = styled.div`
 
 const Label = ({ label, imgSrc }) => (
   <LabelWrapper>
-    <img src={imgSrc} height="20px" width="20px" style={{borderRadius:"50%"}}/>
+    <img src={imgSrc} height="20px" width="20px" style={{borderRadius:"55%", border: '0.8px solid white'}}/>
     <Space width={8} />
     {label}
   </LabelWrapper>
 )
 
 const options = [
-  {label: <Label label="$BIP" imgSrc="https://github.com/solana-labs/token-list/blob/main/assets/mainnet/FoqP7aTaibT5npFKYKQQdyonL99vkW8YALNPwWepdvf5/logo.png?raw=true" />, value: 'BIP'},
-  {label: <Label label="$USDC" imgSrc="https://github.com/solana-labs/token-list/blob/main/assets/mainnet/EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v/logo.png?raw=true" />, value: 'USDC'},
-  {label: <Label label="$USDT" imgSrc="https://s2.coinmarketcap.com/static/img/coins/200x200/825.png" />, value: 'USDT'},
-  {label: <Label label="$DRUGS" imgSrc="https://github.com/solana-labs/token-list/blob/main/assets/mainnet/DcqWM1BdgfUFktSKw8XC6qLAo2Ki2dUFXc1YYe67c8kD/logo.png?raw=true" />, value: 'DRUGS'},
+  {label: <Label label="$SOL" imgSrc="/images/coin-logos/sol.jpg" />, value: 'SOL'},
+  {label: <Label label="$USDC" imgSrc="/images/coin-logos/usdc.jpg" />, value: 'USDC'},
+  {label: <Label label="$USDT" imgSrc="/images/coin-logos/usdt.jpg" />, value: 'USDT'},
+  {label: <Label label="$BIP" imgSrc="/images/coin-logos/bip.jpg" />, value: 'BIP'},
+  {label: <Label label="$DRUGS" imgSrc="/images/coin-logos/drugs.jpg" />, value: 'DRUGS'},
 ]
 
 const LeftMenu: FC<LeftMenuProps> = () => {
