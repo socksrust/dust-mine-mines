@@ -44,6 +44,24 @@ export default class Document extends NextDocument {
           />
 
           <link rel="shortcut icon" href="/images/logo-rounded.png" />
+          <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-8N8BL5W7ZH"
+        />
+
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-8N8BL5W7ZH', { page_path: window.location.pathname });
+            `,
+          }}
+        />
+
+
+
         </Head>
         <body>
           {/* Make Color mode to persists when you refresh the page. */}
