@@ -44,6 +44,12 @@ const Wrapper = styled.div`
   padding: 20px 10px;
   overflow: hidden;
   padding-top: 50px;
+  @media only screen and (max-width: 800px) {
+    height: calc(100%);
+    flex-direction: column;
+    padding: 0px;
+    width: 100vw;
+  }
 `
 
 
@@ -53,6 +59,9 @@ const LeftWrapper = styled.div`
   flex-direction: column;
   padding-top: 20px;
   padding-right: 20px;
+  @media only screen and (max-width: 800px) {
+    padding: 0px !important;
+  }
 `
 
 const RightWrapper = styled.div`
@@ -61,6 +70,10 @@ const RightWrapper = styled.div`
   flex-direction: column;
   padding-left: 20px;
   align-items: center;
+  @media only screen and (max-width: 800px) {
+    padding: 0px;
+    display: none;
+  }
 `
 
 
@@ -71,6 +84,9 @@ const Image = styled.img`
   bottom: 0px;
   right: 0px;
   z-index: 2;
+  @media only screen and (max-width: 800px) {
+    z-index: 0;
+  }
 `
 
 

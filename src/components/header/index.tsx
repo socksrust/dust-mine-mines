@@ -7,6 +7,7 @@ import { ConnectWallet } from '../button/connectWallet';
 import { motion } from 'framer-motion';
 import { useScrollFramer } from '../../hooks/useScrollFramer';
 import LeftMenu from '../left-menu';
+import Space from '../common/space';
 
 interface HeaderProps {}
 
@@ -41,6 +42,7 @@ const Header: FC<HeaderProps> = () => {
             justifyContent="space-between"
             w="100%"
             alignItems="center"
+            style={{ overflow: 'scroll'}}
           >
             <Image
               cursor="pointer"
@@ -48,13 +50,14 @@ const Header: FC<HeaderProps> = () => {
               src="/images/lofos.png"
               width="90px"
             />
+            <Space width={30} height={20}/>
             <Flex
               direction="row"
               justifyContent="flex-end"
               alignItems="center"
             >
-            <LeftMenu />
-            <ConnectWallet />
+              <LeftMenu />
+              <ConnectWallet />
             </Flex>
           </Flex>
         </Flex>

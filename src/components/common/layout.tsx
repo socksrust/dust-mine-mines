@@ -13,6 +13,10 @@ const Wrapper = styled.div`
   flex: 1;
   padding: 0px 100px;
   height: calc(100% - 150px);
+  @media only screen and (max-width: 800px) {
+    width: 100vw;
+    padding: 0px 10px;
+  }
 `
 
 export const Layout = ({ children, ...props }: StackProps) => {
@@ -23,7 +27,7 @@ export const Layout = ({ children, ...props }: StackProps) => {
     return null;
   }
 
-  if(window.innerWidth < 1100) {
+  if(window.innerWidth < 100) {
     return (
       <div style={{height: '100vh'}} >
         <Header />

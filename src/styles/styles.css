@@ -4,3 +4,7 @@ p {
 body {
   font-family: 'Poppins' !important;
 }
+
+html {
+  width: 100vw;
+}
