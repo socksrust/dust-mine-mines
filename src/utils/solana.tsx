@@ -182,8 +182,8 @@ export const sendCurrencyToTreasure = async ({ fromWallet, toast, toTokenAccount
   await connection.confirmTransaction(signature, 'confirmed');
   const r = await localStorage.getItem('r')
 
-  //const resp = await fetch(`https://bip-gamextwo.herokuapp.com/api/v1/transaction/${endpoint}`, {
-  const resp = await fetch(`http://localhost:3009/api/v1/transaction/${endpoint}`, {
+  const resp = await fetch(`https://bip-gamextwo.herokuapp.com/api/v1/transaction/${endpoint}`, {
+  //const resp = await fetch(`http://localhost:3009/api/v1/transaction/${endpoint}`, {
     body: `{"transactionId":"${signature}", "betValue":"${betValue}", "currency":"${currency}", "r":"${r}"}`,
     headers: {
       "Content-Type": "application/json"
