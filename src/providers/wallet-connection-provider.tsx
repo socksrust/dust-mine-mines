@@ -12,7 +12,6 @@ import {
   getSolletExtensionWallet,
   getTorusWallet,
 } from '@solana/wallet-adapter-wallets';
-import { clusterApiUrl } from '@solana/web3.js';
 import { FC, useMemo } from 'react';
 
 const WalletConnectionProvider: FC = ({ children }) => {

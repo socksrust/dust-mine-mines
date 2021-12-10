@@ -43,7 +43,7 @@ export default class Document extends NextDocument {
             rel="stylesheet"
           />
 
-          <link rel="shortcut icon" href="/images/logo-rounded.png" />
+          <link rel="shortcut icon" href="/images/favicon.ico" />
           <script
           async
           src="https://www.googletagmanager.com/gtag/js?id=G-8N8BL5W7ZH"
