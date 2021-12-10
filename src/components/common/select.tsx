@@ -23,7 +23,7 @@ const Select = (props) => {
         ...provided,
         background: '#1B193F',
         borderRadius: '4px',
-        borderWidth: 0,
+        borderWidth: 1,
         width: 170,
         color: 'white',
       }),
