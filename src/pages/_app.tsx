@@ -59,6 +59,21 @@ function MyApp({ Component, pageProps }: AppProps) {
   };
 
   useEffect(() => {
+    if (typeof window !== "undefined") {
+      const v: any = localStorage?.getItem('value');
+      setValue(v);
+    }
+  }, [])
+
+  const handleValue = (v: any) => {
+    setValue(v)
+    if (typeof window !== "undefined") {
+      localStorage.setItem('value', v);
+    }
+    
+  }
+
+  useEffect(() => {
     router.events.on('routeChangeComplete', handleRouteChange);
     return () => {
       router.events.off('routeChangeComplete', handleRouteChange);
@@ -66,7 +81,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, [router.events]);
 
   return (
-    <CurrencyContext.Provider value={{value, setValue: (v: string) => setValue(v)}}>
+    <CurrencyContext.Provider value={{value, setValue: (v: string) => handleValue(v)}}>
       <ThemeProvider theme={theme1}>
         <ChakraProvider theme={theme}>
           <DefaultSeo {...SEO} />
