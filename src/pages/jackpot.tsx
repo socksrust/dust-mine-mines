@@ -1,10 +1,8 @@
 import React, { useState, useContext } from 'react';
 import { Layout } from '../components/common/layout';
-import { Input, Button, Switch, Image, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, useDisclosure, ModalFooter } from '@chakra-ui/react';
 import { motion } from "framer-motion";
 import { useAnchorWallet, useWallet, useConnection } from '@solana/wallet-adapter-react';
-import * as web3 from '@solana/web3.js';
-import * as splToken from '@solana/spl-token';
+
 import Space from '../components/common/space'
 import {CurrencyContext} from './_app';
 import { sendCurrencyToTreasure, renderButtons } from '../utils/solana'
@@ -18,13 +16,6 @@ const SlotComponent = dynamic(
 );
 
 import dynamic from 'next/dynamic';
-
-const BIP_MINT = 'FoqP7aTaibT5npFKYKQQdyonL99vkW8YALNPwWepdvf5';
-const MASTER_PK = 'B8e4g2SP7AC9SqQXPChEEmduhwBuZ8MTMb5xEGUchU2t';
-const connect = new web3.Connection(web3.clusterApiUrl('mainnet-beta'));
-const TOKEN_PROGRAM_ID = new web3.PublicKey(
-  "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
-);
 
 import {
   Text,
