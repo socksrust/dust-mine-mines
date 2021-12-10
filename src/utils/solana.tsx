@@ -13,12 +13,14 @@ const TOKEN_PROGRAM_ID = new web3.PublicKey(
   "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
 );
 
+export const SPKL_TOKEN_ACCOUNT = '4GU42hV6Utgu2LmgYxdMP4bMALrcvZwfXSt9QgbmeXjo';
 export const BIP_TOKEN_ACCOUNT = 'FiSVrKiJ1sQiqrV6FejNxNPcKorn225kBthh7WCJZPi3';
 export const USDC_TOKEN_ACCOUNT = 'DUcQr4jwUVmKLgYJnZk6sgVbnhjyiWwG71XxYX2KLvUX';
 export const USDT_TOKEN_ACCOUNT = '4FLJicaijkqsrZdJMp89SBorwgaQLweLvLHaFCCzhstG';
 export const NRA_TOKEN_ACCOUNT = 'DY41jLmfuwKgSBhJiCxrP7Yp8DPii6r2H8FcLcJ8mXaV';
 export const DRUGS_TOKEN_ACCOUNT = '7uW58ttmZ67Mif53XHti4sL59ZPEVSWfgabGymFvfNXy';
 
+export const SPKL_MINT = '31tCNEE6LiL9yW4Bu153Dq4vi2GuorXxCA9pW9aA6ecU';
 export const BIP_MINT = 'FoqP7aTaibT5npFKYKQQdyonL99vkW8YALNPwWepdvf5';
 export const USDC_MINT = 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v';
 export const USDT_MINT = 'Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB';
@@ -63,6 +65,14 @@ export const renderButtons = (value: any, modal: any, bet, inputValue, setValue,
       secondBetValue = 10;
       maxBetValue = 100;
       toTokenAccountAddress = USDC_TOKEN_ACCOUNT;
+      break;
+    case 'SPKL':
+      mintAddress = SPKL_MINT;
+      currency = 'SPKL';
+      firstBetValue = 10;
+      secondBetValue = 500;
+      maxBetValue = 1001;
+      toTokenAccountAddress = SPKL_TOKEN_ACCOUNT;
       break;
     case 'USDT':
       mintAddress = USDT_MINT;
@@ -138,6 +148,10 @@ export const sendCurrencyToTreasure = async ({ fromWallet, toast, toTokenAccount
     case USDC_MINT:
       multiplier = 1000000;
       currency = 'USDC'
+      break;
+    case SPKL_MINT:
+      multiplier = 1000000000;
+      currency = 'SPKL'
       break;
     case USDT_MINT:
       multiplier = 1000000;
