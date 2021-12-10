@@ -1,14 +1,13 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useContext } from 'react';
 import { Layout } from '../components/common/layout';
 import { Input, Button, Switch, Image, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, useDisclosure, ModalFooter } from '@chakra-ui/react';
 import { motion } from "framer-motion";
 import { useAnchorWallet, useWallet, useConnection } from '@solana/wallet-adapter-react';
 import * as web3 from '@solana/web3.js';
-import * as splToken from '@solana/spl-token';
 import WheelComponent from '../components/wheel/index'
-import Space from '../components/common/space'
+import { sendCurrencyToTreasure, renderButtons } from '../utils/solana'
+import {CurrencyContext} from './_app';
 
-const BIP_MINT = 'FoqP7aTaibT5npFKYKQQdyonL99vkW8YALNPwWepdvf5';
 const MASTER_PK = 'B8e4g2SP7AC9SqQXPChEEmduhwBuZ8MTMb5xEGUchU2t';
 const connect = new web3.Connection(web3.clusterApiUrl('mainnet-beta'));
 const TOKEN_PROGRAM_ID = new web3.PublicKey(
@@ -63,11 +62,12 @@ const Row = styled.div`
 
 export default function Wheel() {
   const audioRef = useRef<any>(null)
+  const context = useContext(CurrencyContext)
 
   const [isEven, setEven] = useState(false)
   const [isBlack, setBlack] = useState(false)
   const [isLoading, setLoading] = useState(false)
-  const [value, setValue] = useState()
+  const [inputValue, setValue] = useState()
   const [rotate, setRotate] = useState("");
   const [diceValue, setDiceValue] = useState(0); // integer state
 
@@ -134,20 +134,8 @@ export default function Wheel() {
 		setRotate(rotate);
 	};
 
-  const bet = async (betValue: number) => {
+  const bet = async (betValue: number, mintAddress: string, toTokenAccountAddress: string) => {
     audioRef?.current?.play()
-    if (betValue > 10001) {
-      toast({
-        title: `Error`,
-        description: 'You must set a value under 10001',
-        status: 'error',
-        duration: 5000,
-        isClosable: true,
-        position: 'top-right',
-        variant: 'solid'
-      });
-      return;
-    }
 
     if(!fromWallet) {
       toast({
@@ -169,61 +157,7 @@ export default function Wheel() {
     roll();
     setLoading(true);
 
-    const parsed = await connect.getParsedTokenAccountsByOwner(fromWallet.publicKey, { programId: TOKEN_PROGRAM_ID })
-
-    const toTokenAccount = new web3.PublicKey('FiSVrKiJ1sQiqrV6FejNxNPcKorn225kBthh7WCJZPi3')
-    var fromTokenAddress = null;
-
-    for(let i = 0; i < parsed.value.length; i++) {
-      if(parsed.value[i].account.data.parsed.info.mint === BIP_MINT) {
-        console.log('pimba');
-        fromTokenAddress = parsed.value[i].pubkey;
-      }
-    }
-
-    if(!fromTokenAddress) {
-      toast({
-        title: `Error`,
-        description: 'No BIP',
-        status: 'error',
-        duration: 5000,
-        isClosable: true,
-        position: 'top-right',
-        variant: 'solid'
-      });
-      return null;
-    }
-
-    // Add token transfer instructions to transaction
-    const transaction = new web3.Transaction().add(
-      splToken.Token.createTransferInstruction(
-        splToken.TOKEN_PROGRAM_ID,
-        fromTokenAddress,
-        toTokenAccount,
-        fromWallet.publicKey,
-        [],
-        betValue * 1000000000
-      )
-    );
-    // Sign transaction, broadcast, and confirm
-    const signature = await sendTransaction(transaction, connection);
-    await connection.confirmTransaction(signature, 'confirmed');
-
-    const resp = await fetch("https://bip-gamextwo.herokuapp.com/api/v1/transaction/wheelBet", {
-    //const resp = await fetch("http://localhost:3009/api/v1/transaction/diceBet", {
-      body: `{"transactionId":"${signature}", "betValue":"${betValue}"}`,
-      headers: {
-        "Content-Type": "application/json"
-      },
-      method: "POST"
-    });
-
-    const parsedResult = await resp.json();
-
-    console.log('SIGNATURE', signature);
-    console.log('parsedResult', parsedResult);
-
-    console.log('SUCCESS');
+    const parsedResult = await sendCurrencyToTreasure({ fromWallet, toast, toTokenAccountAddress, mintAddress, betValue, sendTransaction, connection, endpoint: 'wheelBet' })
 
     setLoading(false);
     onClose();
@@ -260,7 +194,7 @@ export default function Wheel() {
 
       toast({
         title: `Yayyyy!!`,
-        description: `You got ${(winValue).toFixed(2)} $BIP back! They will be transferred in less than a minute! Keep going!!`,
+        description: `You got $${(winValue).toFixed(2)} back! They will be transferred in less than a minute! Keep going!!`,
         status: 'info',
         duration: 5000,
         isClosable: true,
@@ -316,34 +250,13 @@ export default function Wheel() {
             <Text fontSize="36px" fontWeight="bold" color={isBlack ? '#fff' : 'rgba(255,255,255, 0.6)'}>Black</Text>
           </RowCentered>
           <RowCentered/>
-          <Row>
-            <Button isLoading={isLoading} loadingText="Loading $BIP" borderRadius="2rem" width="180px" height="56px" onClick={() => bet(200)}>
-              <Text fontSize="14px" fontWeight="bold" color="#000">200 $BIP</Text>
-            </Button>
-            <Button isLoading={isLoading} loadingText="Loading $BIP" borderRadius="2rem" width="180px" height="56px" onClick={() => bet(1000)}>
-              <Text fontSize="14px" fontWeight="bold" color="#000">1000 $BIP</Text>
-            </Button>
-            <Button isLoading={isLoading} loadingText="Loading $BIP" borderRadius="2rem" width="180px" height="56px" borderColor="#fff" borderWidth="1px" backgroundColor="#02011F" onClick={onOpen}>
-              <Text fontSize="14px" fontWeight="bold" color="#fff">Custom $BIP Value</Text>
-            </Button>
-            <Space height={90} />
-          </Row>
+          {renderButtons(context.value, false, bet, inputValue, setValue, isLoading, onOpen)}
           </motion.div>
         </InnerWrapper>
       </Wrapper>
       <Modal onClose={onClose} isOpen={isOpen} isCentered>
         <ModalOverlay />
-        <ModalContent>
-          <ModalCloseButton color="#000" />
-          <ModalBody paddingTop="60px">
-            <Input width="100%" height="56px" placeholder="value in $BIP (max: 10,000)" color="#000" type="number" value={value} onChange={(e) => Number(e.target.value) <= 10000 && setValue(Number(e.target.value))} />
-          </ModalBody>
-          <ModalFooter>
-            <Button isLoading={isLoading} loadingText="Loading $BIP"  borderRadius="2rem" width="100%" height="56px" backgroundColor="#02011F" onClick={() => bet(value)}>
-              <Text fontSize="14px" fontWeight="bold" color="#fff">Bet</Text>
-            </Button>
-          </ModalFooter>
-        </ModalContent>
+        {renderButtons(context.value, true, bet, inputValue, setValue, isLoading, onOpen)}
       </Modal>
       <audio
         src='/audios/wheel.mp3'

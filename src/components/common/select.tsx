@@ -8,7 +8,6 @@ const Select = (props) => {
         ...provided,
         color: 'white',
         backgroundColor: '#1B193F',
-
       }),
       indicatorSeparator: (provided) => ({
         ...provided,
@@ -25,7 +24,7 @@ const Select = (props) => {
         background: '#1B193F',
         borderRadius: '4px',
         borderWidth: 0,
-        width: 190,
+        width: 170,
         color: 'white',
       }),
       singleValue: (provided, state) => {
