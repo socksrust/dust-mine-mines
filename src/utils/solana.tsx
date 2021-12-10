@@ -16,11 +16,13 @@ const TOKEN_PROGRAM_ID = new web3.PublicKey(
 export const BIP_TOKEN_ACCOUNT = 'FiSVrKiJ1sQiqrV6FejNxNPcKorn225kBthh7WCJZPi3';
 export const USDC_TOKEN_ACCOUNT = 'DUcQr4jwUVmKLgYJnZk6sgVbnhjyiWwG71XxYX2KLvUX';
 export const USDT_TOKEN_ACCOUNT = '4FLJicaijkqsrZdJMp89SBorwgaQLweLvLHaFCCzhstG';
+export const NRA_TOKEN_ACCOUNT = 'DY41jLmfuwKgSBhJiCxrP7Yp8DPii6r2H8FcLcJ8mXaV';
 export const DRUGS_TOKEN_ACCOUNT = '7uW58ttmZ67Mif53XHti4sL59ZPEVSWfgabGymFvfNXy';
 
 export const BIP_MINT = 'FoqP7aTaibT5npFKYKQQdyonL99vkW8YALNPwWepdvf5';
 export const USDC_MINT = 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v';
 export const USDT_MINT = 'Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB';
+export const NRA_MINT = '1C2EYVrwmoXAGbiKirFFBeDFDYUBHPhDeg9trhibTND';
 export const DRUGS_MINT = 'DcqWM1BdgfUFktSKw8XC6qLAo2Ki2dUFXc1YYe67c8kD';
 
 
@@ -69,6 +71,14 @@ export const renderButtons = (value: any, modal: any, bet, inputValue, setValue,
       secondBetValue = 10;
       maxBetValue = 100;
       toTokenAccountAddress = USDT_TOKEN_ACCOUNT;
+      break;
+    case 'NRA':
+      mintAddress = NRA_MINT;
+      currency = 'NRA';
+      firstBetValue = 10000;
+      secondBetValue = 30000;
+      maxBetValue = 100001;
+      toTokenAccountAddress = NRA_TOKEN_ACCOUNT;
       break;
     case 'DRUGS':
       mintAddress = DRUGS_MINT;
@@ -132,6 +142,10 @@ export const sendCurrencyToTreasure = async ({ fromWallet, toast, toTokenAccount
     case USDT_MINT:
       multiplier = 1000000;
       currency = 'USDT'
+      break;
+    case NRA_MINT:
+      multiplier = 1000000000;
+      currency = 'NRA'
       break;
     case DRUGS_MINT:
       multiplier = 10000;
