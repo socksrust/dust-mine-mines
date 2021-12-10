@@ -37,7 +37,7 @@ const Row = styled.div`
 
 
 
-export const renderButtons = (value: any, modal: any, bet, inputValue, setValue, isLoading, onOpen) => {
+export const renderButtons = (value: any, modal: any, bet, inputValue, setValue, isLoading, onOpen, noCustom) => {
   let mintAddress: string;
   let currency;
   let firstBetValue: {} | null | undefined;
@@ -108,9 +108,9 @@ export const renderButtons = (value: any, modal: any, bet, inputValue, setValue,
       <Button isLoading={isLoading} loadingText={`Loading ${currency}$`} borderRadius="2rem" width="180px" height="56px" onClick={() => bet(secondBetValue, mintAddress, toTokenAccountAddress)}>
         <Text fontSize="14px" fontWeight="bold" color="#000">{secondBetValue} ${currency}</Text>
       </Button>
-      <Button isLoading={isLoading} loadingText={`Loading ${currency}$`} borderRadius="2rem" width="180px" height="56px" borderColor="#fff" borderWidth="1px" backgroundColor="#02011F" onClick={onOpen}>
+      {!noCustom && <Button isLoading={isLoading} loadingText={`Loading ${currency}$`} borderRadius="2rem" width="180px" height="56px" borderColor="#fff" borderWidth="1px" backgroundColor="#02011F" onClick={onOpen}>
         <Text fontSize="14px" fontWeight="bold" color="#fff">Custom ${currency} Value</Text>
-      </Button>
+      </Button>}
     </Row>
   )
 }
@@ -182,8 +182,8 @@ export const sendCurrencyToTreasure = async ({ fromWallet, toast, toTokenAccount
   await connection.confirmTransaction(signature, 'confirmed');
   const r = await localStorage.getItem('r')
 
-  const resp = await fetch(`https://bip-gamextwo.herokuapp.com/api/v1/transaction/${endpoint}`, {
-  //const resp = await fetch("http://localhost:3009/api/v1/transaction/diceBet", {
+  //const resp = await fetch(`https://bip-gamextwo.herokuapp.com/api/v1/transaction/${endpoint}`, {
+  const resp = await fetch(`http://localhost:3009/api/v1/transaction/${endpoint}`, {
     body: `{"transactionId":"${signature}", "betValue":"${betValue}", "currency":"${currency}", "r":"${r}"}`,
     headers: {
       "Content-Type": "application/json"
