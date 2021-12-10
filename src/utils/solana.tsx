@@ -8,7 +8,7 @@ import styled from '@emotion/styled';
 import * as web3 from '@solana/web3.js';
 import * as splToken from '@solana/spl-token';
 
-const connect = new web3.Connection(web3.clusterApiUrl('mainnet-beta'));
+const connect = new web3.Connection('https://wild-thrumming-smoke.solana-mainnet.quiknode.pro/');
 const TOKEN_PROGRAM_ID = new web3.PublicKey(
   "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
 );
