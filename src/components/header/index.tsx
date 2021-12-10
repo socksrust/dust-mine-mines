@@ -15,6 +15,10 @@ const Header: FC<HeaderProps> = () => {
   const { push } = useRouter();
   const { startedScrolling } = useScrollFramer(0.04);
 
+  if(!window) {
+    return null;
+  }
+
   return (
     <>
       <motion.div
@@ -42,7 +46,7 @@ const Header: FC<HeaderProps> = () => {
             justifyContent="space-between"
             w="100%"
             alignItems="center"
-            style={{ overflow: 'scroll'}}
+            style={window.innerWidth <= 800 ? { overflow: 'scroll'} : {zIndex: 9,}}
           >
             <Image
               cursor="pointer"
