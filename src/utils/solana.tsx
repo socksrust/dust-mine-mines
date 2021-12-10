@@ -73,8 +73,8 @@ export const renderButtons = (value: any, modal: any, bet, inputValue, setValue,
     case 'DRUGS':
       mintAddress = DRUGS_MINT;
       currency = 'DRUGS';
-      firstBetValue = 200;
-      secondBetValue = 1000;
+      firstBetValue = 2000;
+      secondBetValue = 10000;
       maxBetValue = 100000;
       toTokenAccountAddress = DRUGS_TOKEN_ACCOUNT;
       break;
