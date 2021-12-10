@@ -70,7 +70,6 @@ function MyApp({ Component, pageProps }: AppProps) {
     if (typeof window !== "undefined") {
       localStorage.setItem('value', v);
     }
-    
   }
 
   useEffect(() => {
