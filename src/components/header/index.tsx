@@ -52,7 +52,7 @@ const Header: FC<HeaderProps> = () => {
               cursor="pointer"
               onClick={() => push('/')}
               src="/images/lofos.png"
-              width="90px"
+              width="120px"
             />
             <Space width={30} height={20}/>
             <Flex
