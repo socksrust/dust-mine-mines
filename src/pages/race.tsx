@@ -148,7 +148,7 @@ export default function Dice() {
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.55, delay: 1.2 }}
           >
-            <CountDown countDownDate={new Date("Dec 13, 2021 16:00:00")} />
+            <CountDown countDownDate={new Date("Dec 13, 2021 16:00:00 GMT-3:00")} />
           </motion.div>
           <Space height={25} />
           <motion.div
