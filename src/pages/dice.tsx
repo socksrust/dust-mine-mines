@@ -54,7 +54,7 @@ export default function Dice() {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const toast = useToast();
   const fromWallet = useAnchorWallet();
-  const { sendTransaction } = useWallet();
+  const { sendTransaction, publicKey } = useWallet();
   const { connection } = useConnection();
 
   if (typeof window === 'undefined') return <></>;
@@ -96,7 +96,7 @@ export default function Dice() {
 
 
     //START
-    const parsedResult = await sendCurrencyToTreasure({ fromWallet, toast, toTokenAccountAddress, mintAddress, betValue, sendTransaction, connection, endpoint: 'diceBet' })
+    const parsedResult = await sendCurrencyToTreasure({ fromWallet, toast, toTokenAccountAddress, mintAddress, betValue, sendTransaction, connection, endpoint: 'diceBet', publicKey })
     //END
 
     console.log({parsedResult})

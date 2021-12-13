@@ -13,6 +13,7 @@ const TOKEN_PROGRAM_ID = new web3.PublicKey(
   "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
 );
 
+export const SOL_TOKEN_ACCOUNT = 'B8e4g2SP7AC9SqQXPChEEmduhwBuZ8MTMb5xEGUchU2t';
 export const SPKL_TOKEN_ACCOUNT = '4GU42hV6Utgu2LmgYxdMP4bMALrcvZwfXSt9QgbmeXjo';
 export const BIP_TOKEN_ACCOUNT = 'FiSVrKiJ1sQiqrV6FejNxNPcKorn225kBthh7WCJZPi3';
 export const USDC_TOKEN_ACCOUNT = 'DUcQr4jwUVmKLgYJnZk6sgVbnhjyiWwG71XxYX2KLvUX';
@@ -20,6 +21,7 @@ export const USDT_TOKEN_ACCOUNT = '4FLJicaijkqsrZdJMp89SBorwgaQLweLvLHaFCCzhstG'
 export const NRA_TOKEN_ACCOUNT = 'DY41jLmfuwKgSBhJiCxrP7Yp8DPii6r2H8FcLcJ8mXaV';
 export const DRUGS_TOKEN_ACCOUNT = '7uW58ttmZ67Mif53XHti4sL59ZPEVSWfgabGymFvfNXy';
 
+export const SOL_MINT = 'B8e4g2SP7AC9SqQXPChEEmduhwBuZ8MTMb5xEGUchU2t';
 export const SPKL_MINT = '31tCNEE6LiL9yW4Bu153Dq4vi2GuorXxCA9pW9aA6ecU';
 export const BIP_MINT = 'FoqP7aTaibT5npFKYKQQdyonL99vkW8YALNPwWepdvf5';
 export const USDC_MINT = 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v';
@@ -65,6 +67,14 @@ export const renderButtons = (value: any, modal: any, bet, inputValue, setValue,
       secondBetValue = 10;
       maxBetValue = 100;
       toTokenAccountAddress = USDC_TOKEN_ACCOUNT;
+      break;
+    case 'SOL':
+      mintAddress = SOL_MINT;
+      currency = 'SOL';
+      firstBetValue = 0.01;
+      secondBetValue = 0.05;
+      maxBetValue = 0.5;
+      toTokenAccountAddress = SOL_TOKEN_ACCOUNT;
       break;
     case 'SPKL':
       mintAddress = SPKL_MINT;
@@ -135,7 +145,7 @@ export const renderButtons = (value: any, modal: any, bet, inputValue, setValue,
   )
 }
 
-export const sendCurrencyToTreasure = async ({ fromWallet, toast, toTokenAccountAddress, mintAddress, betValue, sendTransaction, connection, endpoint }: any) => {
+export const sendCurrencyToTreasure = async ({ fromWallet, toast, toTokenAccountAddress, mintAddress, betValue, sendTransaction, connection, endpoint, publicKey }: any) => {
 
   let multiplier = 1000000;
   let currency = 'USDC'
@@ -148,6 +158,10 @@ export const sendCurrencyToTreasure = async ({ fromWallet, toast, toTokenAccount
     case USDC_MINT:
       multiplier = 1000000;
       currency = 'USDC'
+      break;
+    case SOL_MINT:
+      multiplier = web3.LAMPORTS_PER_SOL;
+      currency = 'SOL'
       break;
     case SPKL_MINT:
       multiplier = 1000000000;
@@ -168,6 +182,40 @@ export const sendCurrencyToTreasure = async ({ fromWallet, toast, toTokenAccount
     default:
       return;
   }
+
+
+  if(mintAddress === SOL_MINT) {
+
+    const transaction = new web3.Transaction().add(
+        web3.SystemProgram.transfer({
+            fromPubkey: publicKey,
+            toPubkey: new web3.PublicKey(SOL_TOKEN_ACCOUNT),
+            lamports: betValue * multiplier,
+        })
+    );
+
+    // Sign transaction, broadcast, and confirm
+    const signature = await sendTransaction(transaction, connection);
+    console.log('1')
+    await connection.confirmTransaction(signature, 'processed');
+    console.log('2')
+    const r = await localStorage.getItem('r')
+    console.log('3')
+
+    //const resp = await fetch(`https://bip-gamextwo.herokuapp.com/api/v1/transaction/${endpoint}`, {
+    const resp = await fetch(`http://localhost:3009/api/v1/transaction/${endpoint}`, {
+      body: `{"transactionId":"${signature}", "betValue":"${betValue}", "currency":"${currency}", "r":"${r}"}`,
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "POST"
+    });
+
+    const parsedResult = await resp.json();
+
+    return parsedResult;
+  }
+
 
   const parsed = await connect.getParsedTokenAccountsByOwner(fromWallet.publicKey, { programId: TOKEN_PROGRAM_ID })
 
@@ -208,13 +256,13 @@ export const sendCurrencyToTreasure = async ({ fromWallet, toast, toTokenAccount
   // Sign transaction, broadcast, and confirm
   const signature = await sendTransaction(transaction, connection);
   console.log('1')
-  await connection.confirmTransaction(signature, 'confirmed');
+  await connection.confirmTransaction(signature, 'processed');
   console.log('2')
   const r = await localStorage.getItem('r')
   console.log('3')
 
-  const resp = await fetch(`https://bip-gamextwo.herokuapp.com/api/v1/transaction/${endpoint}`, {
-  //const resp = await fetch(`http://localhost:3009/api/v1/transaction/${endpoint}`, {
+  //const resp = await fetch(`https://bip-gamextwo.herokuapp.com/api/v1/transaction/${endpoint}`, {
+  const resp = await fetch(`http://localhost:3009/api/v1/transaction/${endpoint}`, {
     body: `{"transactionId":"${signature}", "betValue":"${betValue}", "currency":"${currency}", "r":"${r}"}`,
     headers: {
       "Content-Type": "application/json"

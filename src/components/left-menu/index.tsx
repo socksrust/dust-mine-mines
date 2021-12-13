@@ -58,7 +58,7 @@ const Label = ({ label, imgSrc }) => (
 )
 
 const options = [
-//  {label: <Label label="$SOL" imgSrc="/images/coin-logos/sol.jpg" />, value: 'SOL'},
+  {label: <Label label="$SOL" imgSrc="/images/coin-logos/sol.jpg" />, value: 'SOL'},
   {label: <Label label="$USDC" imgSrc="/images/coin-logos/usdc.jpg" />, value: 'USDC'},
   {label: <Label label="$USDT" imgSrc="/images/coin-logos/usdt.jpg" />, value: 'USDT'},
   {label: <Label label="$SPKL" imgSrc="/images/coin-logos/spkl.jpg" />, value: 'SPKL'},
