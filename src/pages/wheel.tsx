@@ -74,7 +74,7 @@ export default function Wheel() {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const toast = useToast();
   const fromWallet = useAnchorWallet();
-  const { sendTransaction } = useWallet();
+  const { sendTransaction, publicKey } = useWallet();
   const { connection } = useConnection();
 
   if (typeof window === 'undefined') return <></>;
@@ -157,7 +157,7 @@ export default function Wheel() {
     roll();
     setLoading(true);
 
-    const parsedResult = await sendCurrencyToTreasure({ fromWallet, toast, toTokenAccountAddress, mintAddress, betValue, sendTransaction, connection, endpoint: 'wheelBet' })
+    const parsedResult = await sendCurrencyToTreasure({ fromWallet, toast, toTokenAccountAddress, mintAddress, betValue, sendTransaction, connection, endpoint: 'wheelBet', publicKey })
 
     setLoading(false);
     onClose();

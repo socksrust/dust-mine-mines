@@ -79,7 +79,7 @@ export default function Jackpot() {
 
   const toast = useToast();
   const fromWallet = useAnchorWallet();
-  const { sendTransaction } = useWallet();
+  const { sendTransaction, publicKey } = useWallet();
   const { connection } = useConnection();
 
   if (typeof window === 'undefined') return <></>;
@@ -101,7 +101,7 @@ export default function Jackpot() {
     //roll();
     setLoading(true);
 
-    const parsedResult = await sendCurrencyToTreasure({ fromWallet, toast, toTokenAccountAddress, mintAddress, betValue, sendTransaction, connection, endpoint: 'jackpotBet' })
+    const parsedResult = await sendCurrencyToTreasure({ fromWallet, toast, toTokenAccountAddress, mintAddress, betValue, sendTransaction, connection, endpoint: 'jackpotBet', publicKey })
 
     setLoading(false);
 
