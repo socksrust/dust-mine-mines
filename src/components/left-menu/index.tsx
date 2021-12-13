@@ -61,6 +61,7 @@ const options = [
   {label: <Label label="$SOL" imgSrc="/images/coin-logos/sol.jpg" />, value: 'SOL'},
   {label: <Label label="$USDC" imgSrc="/images/coin-logos/usdc.jpg" />, value: 'USDC'},
   {label: <Label label="$USDT" imgSrc="/images/coin-logos/usdt.jpg" />, value: 'USDT'},
+  {label: <Label label="$OOGI" imgSrc="/images/coin-logos/oogi.jpg" />, value: 'OOGI'},
   {label: <Label label="$DEGN" imgSrc="/images/coin-logos/degen.jpg" />, value: 'DEGN'},
   {label: <Label label="$SHROOMZ" imgSrc="/images/coin-logos/SHROOMZ.jpg" />, value: 'SHROOMZ'},
   {label: <Label label="$SPKL" imgSrc="/images/coin-logos/spkl.jpg" />, value: 'SPKL'},
