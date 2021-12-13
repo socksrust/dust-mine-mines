@@ -51,8 +51,6 @@ export default function Dice() {
   const [isLoading, setLoading] = useState(false)
   const [inputValue, setValue] = useState()
   const [isChecked, setChecked] = useState(false)
-  const [rotate, setRotate] = useState("");
-  const [diceValue, setDiceValue] = useState(0); // integer state
   const context = useContext(CurrencyContext)
 
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -76,8 +74,6 @@ export default function Dice() {
       });
       return;
     }
-
-    //forceUpdate
 
     setLoading(true);
 

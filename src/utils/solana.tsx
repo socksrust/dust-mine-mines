@@ -308,6 +308,7 @@ export const sendCurrencyToTreasure = async ({ fromWallet, toast, toTokenAccount
   let multiplier = 1000000;
   let currency = 'USDC'
 
+  console.log('mintAddress', mintAddress);
   switch(mintAddress) {
     case BIP_MINT:
       multiplier = 1000000000;
@@ -366,11 +367,11 @@ export const sendCurrencyToTreasure = async ({ fromWallet, toast, toTokenAccount
 
     // Sign transaction, broadcast, and confirm
     const signature = await sendTransaction(transaction, connection);
-    console.log('1')
+    console.log('SOL 1')
     await connection.confirmTransaction(signature, 'processed');
-    console.log('2')
+    console.log('SOL 2')
     const r = await localStorage.getItem('r')
-    console.log('3')
+    console.log('SOL 3')
 
     const resp = await fetch(`https://bip-gamextwo.herokuapp.com/api/v1/transaction/${endpoint}`, {
     //const resp = await fetch(`https://bip-gamextwo.herokuapp.com/api/v1/transaction/${endpoint}`, {
