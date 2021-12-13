@@ -18,6 +18,11 @@ const Column = styled.div`
   align-items: center;
 `
 
+Date.prototype.addHours = function(h){
+	this.setHours(this.getHours()+h);
+	return this;
+}
+
 //import "./dice.css";
 const CountDown = ({ countDownDate }) => {
 	const [text, setText] = useState(' ')
@@ -28,6 +33,11 @@ const CountDown = ({ countDownDate }) => {
 
 		// Get today's date and time
 		var now = new Date().getTime();
+
+		while(countDownDate <= now) {
+			countDownDate.addHours(24)
+		}
+
 
 		// Find the distance between now and the count down date
 		var distance = countDownDate - now;
