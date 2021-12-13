@@ -151,7 +151,7 @@ export default function Dice() {
           >
             <CountDown countDownDate={new Date("Dec 13, 2021 16:00:00")} />
           </motion.div>
-          <Space height={50} />
+          <Space height={25} />
           <motion.div
             style={{width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center'}}
             animate={{ opacity: 1, y: 0 }}
@@ -161,7 +161,7 @@ export default function Dice() {
           >
             {renderRaceButtons(context.value, false, bet, inputValue, setValue, isLoading, onOpen)}
           </motion.div>
-          <Space height={50} />
+          <Space height={25} />
           <motion.div
             style={{width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center'}}
             animate={{ opacity: 1, y: 0 }}
