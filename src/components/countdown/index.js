@@ -42,7 +42,16 @@ const CountDown = ({ countDownDate }) => {
 		const newText = days + "d " + hours + "h "
 		+ minutes + "m " + seconds + "s ";
 		setText(newText)
-		const multi = (Number(`${hours}${minutes}0`))
+
+		console.log(typeof minutes)
+
+
+		let multi = 0;
+		if(minutes <= 9) {
+			multi = (Number(`${hours}0${minutes}0`))
+		} else {
+			multi = (Number(`${hours}${minutes}0`))
+		}
 
 		const final = multi**2
 
