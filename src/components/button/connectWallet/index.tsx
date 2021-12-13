@@ -8,7 +8,6 @@ export const ConnectWallet: React.FC<IButtonProps> = ({ ...props }) => {
   const { connected, disconnect } = useWallet();
   const { setOpen } = useWalletDialog();
 
-  useEffect(() => console.log(wallet), []);
 
   const handleClick = () => setOpen(true);
 

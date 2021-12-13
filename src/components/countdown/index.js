@@ -43,7 +43,6 @@ const CountDown = ({ countDownDate }) => {
 		+ minutes + "m " + seconds + "s ";
 		setText(newText)
 
-		console.log(typeof minutes)
 
 
 		let multi = 0;

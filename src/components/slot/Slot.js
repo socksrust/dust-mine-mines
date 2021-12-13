@@ -86,13 +86,11 @@ export default class Slot {
     this.wonButton.disabled = true;
     this.lostButton.disabled = true;
 
-    console.log("SPIN START");
   }
 
   onSpinEnd() {
     this.wonButton.disabled = false;
     this.lostButton.disabled = false;
 
-    console.log("SPIN END");
   }
 }

@@ -14,10 +14,8 @@ const Connect = () => {
   const loginRef: any = useRef(null);
   const wallet = useAnchorWallet();
 
-  useEffect(() => console.log(wallet), []);
 
   const handleClick = () => {
-    console.log('aaa');
     loginRef?.current?.click();
   };
 

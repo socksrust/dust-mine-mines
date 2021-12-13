@@ -138,7 +138,6 @@ export default function WheelPage() {
 
     for(let i = 0; i < parsed.value.length; i++) {
       if(parsed.value[i].account.data.parsed.info.mint === BIP_MINT) {
-        console.log('pimba');
         fromTokenAddress = parsed.value[i].pubkey;
       }
     }
@@ -182,16 +181,10 @@ export default function WheelPage() {
 
     const parsedResult = await resp.json();
 
-    console.log('SIGNATURE', signature);
-    console.log('parsedResult', parsedResult);
-
-    console.log('SUCCESS');
-
     setLoading(false);
 
     if(parsedResult?.data?.won) {
       const won = Number(parsedResult?.data?.won);
-      console.log('won ->', won);
       const winValue = betValue * won;
       const prizeNumber = disctionaire.findIndex((a) => a===won)
       setPrizeNumber(prizeNumber)

@@ -86,7 +86,6 @@ export default function Dice() {
     const parsedResult = await sendCurrencyToTreasure({ fromWallet, toast, toTokenAccountAddress, mintAddress, betValue, sendTransaction, connection, endpoint: 'raceBet', publicKey })
     //END
 
-    console.log({parsedResult})
 
     setLoading(false);
     onClose();

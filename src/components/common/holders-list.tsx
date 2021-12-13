@@ -19,7 +19,6 @@ export const HoldersList = () => {
   const [loading, setLoading] = useState(false);
 
   const getHolderList = async (hash: string, setProgress: any) => {
-    console.log('loading holders');
     setLoading(true);
 
     const metadataAccounts = await MetadataProgram.getProgramAccounts(

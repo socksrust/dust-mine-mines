@@ -51,7 +51,6 @@ function MyApp({ Component, pageProps }: AppProps) {
   const [value, setValue] = React.useState('USDC')
   const router = useRouter();
   const { currency, r } = router.query
-  console.log('router.query', router.query);
 
   const handleRouteChange = (url: string) => {
     //@ts-ignore
@@ -82,7 +81,6 @@ function MyApp({ Component, pageProps }: AppProps) {
     }
   }
 
-  console.log('router', router.query.currency)
 
   useEffect(() => {
     router.events.on('routeChangeComplete', handleRouteChange);

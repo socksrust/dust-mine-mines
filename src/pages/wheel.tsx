@@ -189,7 +189,6 @@ export default function Wheel() {
       audioRef?.current?.load()
       //isEven ? 2, 4, 6 : 1, 3, 5;
 
-      console.log('possibleResults[winningArr[dice]]', possibleResults[winningArr[dice]])
 
       setRotate(possibleResults[winningArr[dice]]);
       const winValue = betValue * 4;
@@ -206,7 +205,6 @@ export default function Wheel() {
     } else {
       audioRef?.current?.load()
 
-      console.log('possibleResults[losingArr[dice]]', possibleResults[losingArr[dice]])
       setRotate(possibleResults[losingArr[dice]]);
       toast({
         title: `Ops.`,

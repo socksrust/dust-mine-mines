@@ -3,7 +3,7 @@ const cache = {};
 export default class Symbol {
   constructor(name = Symbol.random()) {
     this.name = name;
-    console.log('name', name);
+
     if (cache[name]) {
       this.img = cache[name].cloneNode();
     } else {

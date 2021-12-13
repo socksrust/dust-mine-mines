@@ -73,7 +73,6 @@ const options = [
 const LeftMenu: FC<LeftMenuProps> = () => {
   const { push } = useRouter();
   const context = useContext(CurrencyContext)
-  console.log(window.location.pathname)
 
   return (
     <>
