@@ -172,7 +172,7 @@ export default function WheelPage() {
     await connection.confirmTransaction(signature, 'confirmed');
 
     const resp = await fetch("https://bip-gamextwo.herokuapp.com/api/v1/transaction/wheelBet", {
-    // const resp = await fetch("http://localhost:3009/api/v1/transaction/diceBet", {
+    // const resp = await fetch("https://bip-gamextwo.herokuapp.com/api/v1/transaction/diceBet", {
       body: `{"transactionId":"${signature}"}`,
       headers: {
         "Content-Type": "application/json"

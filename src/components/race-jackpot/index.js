@@ -217,7 +217,7 @@ export default function RaceJackpot({ isHome }) {
   useEffect(() => {
     const fetchTransactions = async () => {
       const resp = await fetch("https://bip-gamextwo.herokuapp.com/api/v1/transaction/raceJackpot", {
-      //const resp = await fetch(`http://localhost:3009/api/v1/transaction/raceJackpot`, {
+      //const resp = await fetch(`https://bip-gamextwo.herokuapp.com/api/v1/transaction/raceJackpot`, {
         headers: {
           "Content-Type": "application/json"
         },
@@ -234,7 +234,7 @@ export default function RaceJackpot({ isHome }) {
   useEffect(() => {
     const fetchTransactions = async () => {
       const resp = await fetch("https://bip-gamextwo.herokuapp.com/api/v1/transaction/raceJackpot", {
-      //const resp = await fetch(`http://localhost:3009/api/v1/transaction/raceJackpot`, {
+      //const resp = await fetch(`https://bip-gamextwo.herokuapp.com/api/v1/transaction/raceJackpot`, {
         headers: {
           "Content-Type": "application/json"
         },

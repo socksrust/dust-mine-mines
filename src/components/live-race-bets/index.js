@@ -49,7 +49,7 @@ const TransactionWrapper = styled.div`
   background-color: ${p => p.isOutline ? '#0202204f' : 'transparent'};
   margin-top: 3px;
   padding: 14px 0px;
-  width: 900px;
+  width: 1000px;
 `
 
 const GameWrappper = styled.div`
@@ -74,6 +74,17 @@ const BetvaueWrappper = styled.div`
   font-size: 18px;
 `
 
+const MultiplierWrappper = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex: 0.5;
+  align-items: center;
+  justify-content: center;
+  color: rgba(135, 134, 171, 0.8);
+  font-weight: medium;
+  font-size: 18px;
+`
+
 const CreatedWrappper = styled.div`
   display: flex;
   flex-direction: row;
@@ -83,7 +94,6 @@ const CreatedWrappper = styled.div`
   color: rgba(135, 134, 171, 0.8);
   font-weight: medium;
   font-size: 18px;
-  
 `
 
 function start_and_end(str) {
@@ -163,12 +173,18 @@ const getPositionColor = (position) => {
   }
 }
 
-const Transaction = ({betValue, createdAt, won, game, fromWallet, isOutline, currency, position}) => (
+const Transaction = ({betValue, createdAt, won, game, fromWallet, isOutline, currency, position, racePoints, multiplier}) => (
   <TransactionWrapper isOutline={isOutline}>
     <GameWrappper>
       <Text color={getPositionColor(position)} fontSize={getPositionFontSize(position)} fontWeight={getPositionFontWeight(position)}>{getPositionText(position)}</Text>
       <Text fontSize="16px" >{getPositionInfo(position)}</Text>
     </GameWrappper>
+    <BetvaueWrappper>
+      <Text fontSize="16px" color={getPositionColor(position)}>{racePoints || 0} POINTS</Text>
+    </BetvaueWrappper>
+    <MultiplierWrappper>
+      <Text fontSize="16px" color={getPositionColor(position)}>{multiplier}</Text>
+    </MultiplierWrappper>
     <BetvaueWrappper>
       <Text fontSize="16px" color={getPositionColor(position)}>{betValue} ${currency}</Text>
     </BetvaueWrappper>
@@ -202,7 +218,7 @@ export default function LiveBets() {
   useEffect(() => {
     const fetchTransactions = async () => {
       const resp = await fetch("https://bip-gamextwo.herokuapp.com/api/v1/transaction/raceTransactions", {
-      //const resp = await fetch(`http://localhost:3009/api/v1/transaction/raceTransactions`, {
+      //const resp = await fetch(`https://bip-gamextwo.herokuapp.com/api/v1/transaction/raceTransactions`, {
         headers: {
           "Content-Type": "application/json"
         },
@@ -219,7 +235,7 @@ export default function LiveBets() {
   useEffect(() => {
     const fetchTransactions = async () => {
       const resp = await fetch("https://bip-gamextwo.herokuapp.com/api/v1/transaction/raceTransactions", {
-      //const resp = await fetch(`http://localhost:3009/api/v1/transaction/raceTransactions`, {
+      //const resp = await fetch(`https://bip-gamextwo.herokuapp.com/api/v1/transaction/raceTransactions`, {
         headers: {
           "Content-Type": "application/json"
         },
@@ -243,6 +259,12 @@ export default function LiveBets() {
           <GameWrappper>
             Position
           </GameWrappper>
+          <BetvaueWrappper>
+            Points
+          </BetvaueWrappper>
+          <MultiplierWrappper>
+            Multiplier
+          </MultiplierWrappper>
           <BetvaueWrappper>
             Bet value
           </BetvaueWrappper>

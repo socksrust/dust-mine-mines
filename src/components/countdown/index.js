@@ -11,9 +11,17 @@ const Row = styled.div`
   align-items: center;
 `
 
+const Column = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`
+
 //import "./dice.css";
 const CountDown = ({ countDownDate }) => {
 	const [text, setText] = useState(' ')
+	const [multiplier, setMultiplier] = useState(' ')
   const { isOpen, onOpen, onClose } = useDisclosure()
 
 	var x = setInterval(function() {
@@ -34,6 +42,11 @@ const CountDown = ({ countDownDate }) => {
 		const newText = days + "d " + hours + "h "
 		+ minutes + "m " + seconds + "s ";
 		setText(newText)
+		const multi = (Number(`${hours}${minutes}0`))
+
+		const final = multi**2
+
+		setMultiplier(final.toFixed(0))
 
 		// If the count down is finished, write some text
 		if (distance < 0) {
@@ -44,9 +57,14 @@ const CountDown = ({ countDownDate }) => {
 
 	return (
 		<Row>
-			<Text fontSize="48px" fontWeight="bold">
-				{text}
-			</Text>
+			<Column>
+				<Text fontSize="48px" fontWeight="bold">
+					{text}
+				</Text>
+				<Text fontSize="26px" fontWeight="bold" marginTop={0} color="rgba(80, 227, 194, 1)">
+					Multiplier: {multiplier}x
+				</Text>
+			</Column>
 			<Space width={20} />
 			<Button borderRadius="2rem" width="120px" height="36px" borderColor="#fff" onClick={onOpen}>
 				<Text fontSize="14px" fontWeight="bold" color="#000">Read rules</Text>
@@ -56,7 +74,7 @@ const CountDown = ({ countDownDate }) => {
 				<ModalContent>
 					<ModalCloseButton color="#000" />
 					<ModalHeader>
-					<Text fontSize="24px" fontWeight="bold" color="#02011F">
+						<Text fontSize="24px" fontWeight="bold" color="#02011F">
 							Race rules:
 						</Text>
 					</ModalHeader>
