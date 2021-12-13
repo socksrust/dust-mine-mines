@@ -355,8 +355,11 @@ export const sendCurrencyToTreasure = async ({ fromWallet, toast, toTokenAccount
   }
 
 
+
+
   if(mintAddress === SOL_MINT) {
 
+    console.log('lamports betValue * multiplier', betValue * multiplier);
     const transaction = new web3.Transaction().add(
         web3.SystemProgram.transfer({
             fromPubkey: publicKey,
