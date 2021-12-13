@@ -124,11 +124,11 @@ const getPositionText = (position) => {
 const getPositionInfo = (position) => {
   switch(position) {
     case 1:
-      return `(60% of JackPot)`
+      return `(80% of JackPot)`
     case 2:
-      return '(5% of JackPot)'
+      return '(4% of JackPot)'
     case 3:
-      return '(3% of JackPot)'
+      return '(1% of JackPot)'
     default:
       return null
   }
