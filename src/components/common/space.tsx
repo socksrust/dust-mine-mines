@@ -7,7 +7,9 @@ const Component = styled.div`
 
 const Space = ({ height = 0, width = 0 }) => {
   return (
-    <Component height={height} width={width}/>
+    <Component height={height} width={width}>
+      <p style={{color: 'transparent', margin: 0}}>aaaa</p>
+      </Component>
   );
 };
 

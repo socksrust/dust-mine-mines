@@ -55,7 +55,7 @@ const CountDown = ({ countDownDate }) => {
 
 		const final = multi**2
 
-		setMultiplier(final.toFixed(0))
+		setMultiplier(final.toLocaleString(undefined))
 
 		// If the count down is finished, write some text
 		if (distance < 0) {
@@ -71,7 +71,7 @@ const CountDown = ({ countDownDate }) => {
 					{text}
 				</Text>
 				<Text fontSize="26px" fontWeight="bold" marginTop={0} color="rgba(80, 227, 194, 1)">
-					Multiplier: {multiplier}x
+					Multiplier: {multiplier && multiplier}x
 				</Text>
 			</Column>
 			<Space width={20} />

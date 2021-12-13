@@ -180,10 +180,10 @@ const Transaction = ({betValue, createdAt, won, game, fromWallet, isOutline, cur
       <Text fontSize="16px" >{getPositionInfo(position)}</Text>
     </GameWrappper>
     <BetvaueWrappper>
-      <Text fontSize="16px" color={getPositionColor(position)}>{racePoints || 0} POINTS</Text>
+      <Text fontSize="16px" color={getPositionColor(position)}>{racePoints && racePoints.toLocaleString(undefined)} POINTS</Text>
     </BetvaueWrappper>
     <MultiplierWrappper>
-      <Text fontSize="16px" color={getPositionColor(position)}>{multiplier}</Text>
+      <Text fontSize="16px" color={getPositionColor(position)}>{multiplier && multiplier.toLocaleString(undefined)}</Text>
     </MultiplierWrappper>
     <BetvaueWrappper>
       <Text fontSize="16px" color={getPositionColor(position)}>{betValue} ${currency}</Text>
