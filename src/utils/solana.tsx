@@ -20,6 +20,7 @@ export const USDC_TOKEN_ACCOUNT = 'DUcQr4jwUVmKLgYJnZk6sgVbnhjyiWwG71XxYX2KLvUX'
 export const USDT_TOKEN_ACCOUNT = '4FLJicaijkqsrZdJMp89SBorwgaQLweLvLHaFCCzhstG';
 export const NRA_TOKEN_ACCOUNT = 'DY41jLmfuwKgSBhJiCxrP7Yp8DPii6r2H8FcLcJ8mXaV';
 export const DRUGS_TOKEN_ACCOUNT = '7uW58ttmZ67Mif53XHti4sL59ZPEVSWfgabGymFvfNXy';
+export const DEGN_TOKEN_ACCOUNT = '7FVdu1vxfLPm23hdCghWeCnrtVtr3d8gCZQVbaNnEcaW';
 
 export const SOL_MINT = 'B8e4g2SP7AC9SqQXPChEEmduhwBuZ8MTMb5xEGUchU2t';
 export const SPKL_MINT = '31tCNEE6LiL9yW4Bu153Dq4vi2GuorXxCA9pW9aA6ecU';
@@ -28,6 +29,7 @@ export const USDC_MINT = 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v';
 export const USDT_MINT = 'Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB';
 export const NRA_MINT = '1C2EYVrwmoXAGbiKirFFBeDFDYUBHPhDeg9trhibTND';
 export const DRUGS_MINT = 'DcqWM1BdgfUFktSKw8XC6qLAo2Ki2dUFXc1YYe67c8kD';
+export const DEGN_MINT = 'A9UhP1xfQHWUhSd54NgKPub2XB3ZuQMdPEvf9aMTHxGT';
 
 
 const Row = styled.div`
@@ -67,6 +69,14 @@ export const renderButtons = (value: any, modal: any, bet, inputValue, setValue,
       secondBetValue = 10;
       maxBetValue = 100;
       toTokenAccountAddress = USDC_TOKEN_ACCOUNT;
+      break;
+    case 'DEGN':
+      mintAddress = DEGN_MINT;
+      currency = 'DEGN';
+      firstBetValue = 5000;
+      secondBetValue = 20000;
+      maxBetValue = 50000;
+      toTokenAccountAddress = DEGN_TOKEN_ACCOUNT;
       break;
     case 'SOL':
       mintAddress = SOL_MINT;
@@ -158,6 +168,10 @@ export const sendCurrencyToTreasure = async ({ fromWallet, toast, toTokenAccount
     case USDC_MINT:
       multiplier = 1000000;
       currency = 'USDC'
+      break;
+    case DEGN_MINT:
+      multiplier = 1000000000;
+      currency = 'DEGN'
       break;
     case SOL_MINT:
       multiplier = web3.LAMPORTS_PER_SOL;
