@@ -5,6 +5,7 @@ import LiveBets from '../components/live-bets/index'
 import { Button } from '../components/button';
 import Space from '../components/common/space';
 import { motion } from "framer-motion";
+import RaceJackpot from '../components/race-jackpot'
 
 import * as anchor from '@project-serum/anchor';
 import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
@@ -131,6 +132,8 @@ export default function Index() {
 
         </LeftWrapper>
         <RightWrapper>
+          <RaceJackpot isHome />
+          <Space height={40} />
           <LiveBets />
           <Image src="/images/waves.png" />
         </RightWrapper>

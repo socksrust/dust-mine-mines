@@ -175,6 +175,134 @@ export const renderButtons = (value: any, modal: any, bet, inputValue, setValue,
   )
 }
 
+
+export const renderRaceButtons = (value: any, modal: any, bet, inputValue, setValue, isLoading, onOpen) => {
+  let mintAddress: string;
+  let currency;
+  let firstBetValue: {} | null | undefined;
+  let secondBetValue: {} | null | undefined;
+  let maxBetValue: number;
+  let toTokenAccountAddress: string;
+
+  switch(value) {
+    /*case 'BIP':
+      mintAddress = BIP_MINT;
+      currency = 'BIP';
+      firstBetValue = 200;
+      secondBetValue = 1000;
+      maxBetValue = 10000;
+      toTokenAccountAddress = BIP_TOKEN_ACCOUNT;
+      break;
+    case 'USDC':
+      mintAddress = USDC_MINT;
+      currency = 'USDC';
+      firstBetValue = 3;
+      secondBetValue = 10;
+      maxBetValue = 100;
+      toTokenAccountAddress = USDC_TOKEN_ACCOUNT;
+      break;
+    case 'DEGN':
+      mintAddress = DEGN_MINT;
+      currency = 'DEGN';
+      firstBetValue = 5000;
+      secondBetValue = 20000;
+      maxBetValue = 50000;
+      toTokenAccountAddress = DEGN_TOKEN_ACCOUNT;
+      break;
+    case 'OOGI':
+      mintAddress = OOGI_MINT;
+      currency = 'OOGI';
+      firstBetValue = 100;
+      secondBetValue = 500;
+      maxBetValue = 1000;
+      toTokenAccountAddress = OOGI_TOKEN_ACCOUNT;
+      break;
+    case 'SHROOMZ':
+      mintAddress = SHROOMZ_MINT;
+      currency = 'SHROOMZ';
+      firstBetValue = 5000;
+      secondBetValue = 20000;
+      maxBetValue = 100000;
+      toTokenAccountAddress = SHROOMZ_TOKEN_ACCOUNT;
+      break;*/
+    case 'SOL':
+      mintAddress = SOL_MINT;
+      currency = 'SOL';
+      firstBetValue = 0.1;
+      secondBetValue = 0.3;
+      maxBetValue = 0.5;
+      toTokenAccountAddress = SOL_TOKEN_ACCOUNT;
+      break;
+    /*case 'SPKL':
+      mintAddress = SPKL_MINT;
+      currency = 'SPKL';
+      firstBetValue = 10;
+      secondBetValue = 500;
+      maxBetValue = 1001;
+      toTokenAccountAddress = SPKL_TOKEN_ACCOUNT;
+      break;
+    case 'USDT':
+      mintAddress = USDT_MINT;
+      currency = 'USDT';
+      firstBetValue = 3;
+      secondBetValue = 10;
+      maxBetValue = 100;
+      toTokenAccountAddress = USDT_TOKEN_ACCOUNT;
+      break;
+    case 'NRA':
+      mintAddress = NRA_MINT;
+      currency = 'NRA';
+      firstBetValue = 10000;
+      secondBetValue = 30000;
+      maxBetValue = 100001;
+      toTokenAccountAddress = NRA_TOKEN_ACCOUNT;
+      break;
+    case 'DRUGS':
+      mintAddress = DRUGS_MINT;
+      currency = 'DRUGS';
+      firstBetValue = 2000;
+      secondBetValue = 10000;
+      maxBetValue = 100000;
+      toTokenAccountAddress = DRUGS_TOKEN_ACCOUNT;
+      break;*/
+    default:
+      mintAddress = SOL_MINT;
+      currency = 'SOL';
+      firstBetValue = 0.1;
+      secondBetValue = 0.3;
+      maxBetValue = 0.5;
+      toTokenAccountAddress = SOL_TOKEN_ACCOUNT;
+      break;
+  }
+
+
+  if(modal) {
+    return (
+      <ModalContent>
+        <ModalCloseButton color="#000" />
+        <ModalBody paddingTop="60px">
+          <Input width="100%" height="56px" placeholder={`value in $${currency}`} color="#000" type="number" value={inputValue} onChange={(e) => setValue(Number(e.target.value))} />
+        </ModalBody>
+        <ModalFooter>
+          <Button isLoading={isLoading} loadingText={`Loading $${currency}`} borderRadius="2rem" width="100%" height="56px" backgroundColor="#02011F" onClick={() => bet(inputValue, mintAddress, toTokenAccountAddress)}>
+            <Text fontSize="14px" fontWeight="bold" color="#fff">Place RACE value</Text>
+          </Button>
+        </ModalFooter>
+      </ModalContent>
+    )
+  }
+
+
+  return (
+    <Row>
+      <Button isLoading={isLoading} loadingText={`Loading $${currency}`} borderRadius="2rem" width="260px" height="56px" borderColor="#fff" borderWidth="1px" backgroundColor="#02011F" onClick={onOpen}>
+        <Text fontSize="14px" fontWeight="bold" color="#fff">Place your ${currency} RACE position</Text>
+      </Button>
+    </Row>
+  )
+}
+
+
 export const sendCurrencyToTreasure = async ({ fromWallet, toast, toTokenAccountAddress, mintAddress, betValue, sendTransaction, connection, endpoint, publicKey }: any) => {
 
   let multiplier = 1000000;

@@ -49,11 +49,12 @@ const TransactionWrapper = styled.div`
   background-color: ${p => p.isOutline ? '#0202204f' : 'transparent'};
   margin-top: 3px;
   padding: 14px 0px;
+  width: 900px;
 `
 
 const GameWrappper = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex: 1;
   align-items: center;
   justify-content: center;
@@ -82,18 +83,100 @@ const CreatedWrappper = styled.div`
   color: rgba(135, 134, 171, 0.8);
   font-weight: medium;
   font-size: 18px;
+  
 `
 
-const Transaction = ({betValue, createdAt, won, game, isOutline, currency}) => (
+function start_and_end(str) {
+  if(!str) {
+    return null;
+  }
+
+  if (str.length > 10) {
+    return str.substr(0, 4) + '...' + str.substr(str.length-4, str.length);
+  }
+  return str;
+}
+
+
+const getPositionText = (position) => {
+  switch(position) {
+    case 1:
+      return `1st place 👑 `
+    case 2:
+      return '2nd place 🥈'
+    case 3:
+      return '3rd place 🥉'
+    default:
+      return 'Losing...'
+  }
+}
+
+const getPositionInfo = (position) => {
+  switch(position) {
+    case 1:
+      return `(60% of JackPot)`
+    case 2:
+      return '(5% of JackPot)'
+    case 3:
+      return '(3% of JackPot)'
+    default:
+      return null
+  }
+}
+
+const getPositionFontWeight = (position) => {
+  switch(position) {
+    case 1:
+      return `bold`
+    case 2:
+      return 'medium'
+    case 3:
+      return 'normal'
+    default:
+      return 'normal'
+  }
+}
+
+const getPositionFontSize = (position) => {
+  switch(position) {
+    case 1:
+      return `24px`
+    case 2:
+      return '18px'
+    case 3:
+      return '16px'
+    default:
+      return '16px'
+  }
+}
+
+const getPositionColor = (position) => {
+  switch(position) {
+    case 1:
+      return `rgba(80, 227, 194, 1)`
+    case 2:
+      return 'rgba(80, 227, 194, 0.8)'
+    case 3:
+      return 'rgba(80, 227, 194, 0.4)'
+    default:
+      return '#ff0000'
+  }
+}
+
+const Transaction = ({betValue, createdAt, won, game, fromWallet, isOutline, currency, position}) => (
   <TransactionWrapper isOutline={isOutline}>
     <GameWrappper>
-      <Text fontSize="16px" >{game}</Text>
+      <Text color={getPositionColor(position)} fontSize={getPositionFontSize(position)} fontWeight={getPositionFontWeight(position)}>{getPositionText(position)}</Text>
+      <Text fontSize="16px" >{getPositionInfo(position)}</Text>
     </GameWrappper>
     <BetvaueWrappper>
-      <Text fontSize="16px" color="rgba(80, 227, 194, 1)">{betValue} ${currency}</Text>
+      <Text fontSize="16px" color={getPositionColor(position)}>{betValue} ${currency}</Text>
     </BetvaueWrappper>
     <CreatedWrappper>
       <Text fontSize="16px" >{timeSince(createdAt)} ago</Text>
+    </CreatedWrappper>
+    <CreatedWrappper>
+      <Text fontSize="16px" >{fromWallet ? start_and_end(fromWallet) : 'Loading...'}</Text>
     </CreatedWrappper>
   </TransactionWrapper>
 )
@@ -102,12 +185,13 @@ const Transaction = ({betValue, createdAt, won, game, isOutline, currency}) => (
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  flex: 1;
   background: linear-gradient(210.96deg, rgba(36, 33, 81, 0.74) 0.01%, rgba(38, 35, 83, 0.78) 42.05%, rgba(47, 45, 97, 0.51) 104.81%);
   box-shadow: -23.609px 48.8461px 73.2692px rgba(23, 18, 43, 0.55);
   backdrop-filter: blur(20px);
   border-radius: 15px;
-  width: 450px;
-  height: 450px;
+  width: 900px
+  min-height: 600px;
   overflow: scroll;
   z-index: 3;
 `
@@ -117,7 +201,8 @@ export default function LiveBets() {
 
   useEffect(() => {
     const fetchTransactions = async () => {
-      const resp = await fetch("https://bip-gamextwo.herokuapp.com/api/v1/transaction/transactions", {
+      const resp = await fetch("https://bip-gamextwo.herokuapp.com/api/v1/transaction/raceTransactions", {
+      //const resp = await fetch(`http://localhost:3009/api/v1/transaction/raceTransactions`, {
         headers: {
           "Content-Type": "application/json"
         },
@@ -131,9 +216,10 @@ export default function LiveBets() {
     fetchTransactions()
   }, [])
 
-  /*useEffect(() => {
+  useEffect(() => {
     const fetchTransactions = async () => {
-      const resp = await fetch("https://bip-gamex.herokuapp.com/api/v1/transaction/transactions", {
+      const resp = await fetch("https://bip-gamextwo.herokuapp.com/api/v1/transaction/raceTransactions", {
+      //const resp = await fetch(`http://localhost:3009/api/v1/transaction/raceTransactions`, {
         headers: {
           "Content-Type": "application/json"
         },
@@ -144,25 +230,27 @@ export default function LiveBets() {
       if(one !==  two) {
         setTransactions(parsedResult?.data)
       }
-      setTimeout(() => fetchTransactions(), 10000)
+      setTimeout(() => fetchTransactions(), 1000)
     }
 
     fetchTransactions()
-  }, [])*/
+  }, [])
 
 
   return (
       <Wrapper>
-        <Text fontSize="18px" color="rgba(177, 175, 205, 1)" fontWeight="normal" padding="20px">LIVE BETS</Text>
         <Row>
           <GameWrappper>
-            Game
+            Position
           </GameWrappper>
           <BetvaueWrappper>
             Bet value
           </BetvaueWrappper>
           <CreatedWrappper>
             Time ago
+          </CreatedWrappper>
+          <CreatedWrappper>
+            Wallet
           </CreatedWrappper>
         </Row>
         <motion.div
@@ -172,7 +260,7 @@ export default function LiveBets() {
             transition={{ duration: 0.55, delay: 0.35  }}
           >
         {transactions && transactions[0] && transactions.map((transaction, index) => (
-          <Transaction {...transaction} isOutline={index % 2 === 0} />
+          <Transaction {...transaction} isOutline={index % 2 === 0} position={index+1} />
         ))}
         </motion.div>
       </Wrapper>
