@@ -22,6 +22,7 @@ export const NRA_TOKEN_ACCOUNT = 'DY41jLmfuwKgSBhJiCxrP7Yp8DPii6r2H8FcLcJ8mXaV';
 export const DRUGS_TOKEN_ACCOUNT = '7uW58ttmZ67Mif53XHti4sL59ZPEVSWfgabGymFvfNXy';
 export const DEGN_TOKEN_ACCOUNT = '7FVdu1vxfLPm23hdCghWeCnrtVtr3d8gCZQVbaNnEcaW';
 export const SHROOMZ_TOKEN_ACCOUNT = 'Gkvh5iK5d5xuSVTTb9LXtizz3pmhJPWHYW5pidBztqTB';
+export const OOGI_TOKEN_ACCOUNT = 'FZJih1FAMK6pH6737M19KCymNfyfisWXppVTTwx77pGA';
 
 export const SOL_MINT = 'B8e4g2SP7AC9SqQXPChEEmduhwBuZ8MTMb5xEGUchU2t';
 export const SPKL_MINT = '31tCNEE6LiL9yW4Bu153Dq4vi2GuorXxCA9pW9aA6ecU';
@@ -32,6 +33,7 @@ export const NRA_MINT = '1C2EYVrwmoXAGbiKirFFBeDFDYUBHPhDeg9trhibTND';
 export const DRUGS_MINT = 'DcqWM1BdgfUFktSKw8XC6qLAo2Ki2dUFXc1YYe67c8kD';
 export const DEGN_MINT = 'A9UhP1xfQHWUhSd54NgKPub2XB3ZuQMdPEvf9aMTHxGT';
 export const SHROOMZ_MINT = '2vRgBSJEVPXxayrhXoazQyCKSGFYQG3ZdfT2Gv5gZykL';
+export const OOGI_MINT = 'H7Qc9APCWWGDVxGD5fJHmLTmdEgT9GFatAKFNg6sHh8A';
 
 
 const Row = styled.div`
@@ -79,6 +81,14 @@ export const renderButtons = (value: any, modal: any, bet, inputValue, setValue,
       secondBetValue = 20000;
       maxBetValue = 50000;
       toTokenAccountAddress = DEGN_TOKEN_ACCOUNT;
+      break;
+    case 'OOGI':
+      mintAddress = OOGI_MINT;
+      currency = 'OOGI';
+      firstBetValue = 100;
+      secondBetValue = 500;
+      maxBetValue = 1000;
+      toTokenAccountAddress = OOGI_TOKEN_ACCOUNT;
       break;
     case 'SHROOMZ':
       mintAddress = SHROOMZ_MINT;
@@ -186,6 +196,10 @@ export const sendCurrencyToTreasure = async ({ fromWallet, toast, toTokenAccount
     case SHROOMZ_MINT:
       multiplier = 1000000;
       currency = 'SHROOMZ'
+      break;
+    case OOGI_MINT:
+      multiplier = 1000000000;
+      currency = 'OOGI'
       break;
     case SOL_MINT:
       multiplier = web3.LAMPORTS_PER_SOL;
