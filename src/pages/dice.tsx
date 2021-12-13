@@ -1,11 +1,12 @@
 import React, { useState, useContext } from 'react';
 import { Layout } from '../components/common/layout';
-import { Input, Button, Switch, Image, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, useDisclosure, ModalFooter } from '@chakra-ui/react';
+import { Switch, Modal, ModalOverlay, useDisclosure, Checkbox } from '@chakra-ui/react';
 import { motion } from "framer-motion";
 import { useAnchorWallet, useWallet, useConnection } from '@solana/wallet-adapter-react';
 import DiceComponent from '../components/dice/index'
 import {CurrencyContext} from './_app';
 import { sendCurrencyToTreasure, renderButtons } from '../utils/solana'
+import Space from '../components/common/space'
 
 import {
   Text,
@@ -38,7 +39,7 @@ const RowCentered = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  width: 346px;
+  width: 400px;
   padding: 30px 0px;
 `
 
@@ -47,6 +48,7 @@ export default function Dice() {
   const [isEven, setEven] = useState(false)
   const [isLoading, setLoading] = useState(false)
   const [inputValue, setValue] = useState()
+  const [isChecked, setChecked] = useState(false)
   const [rotate, setRotate] = useState("");
   const [diceValue, setDiceValue] = useState(0); // integer state
   const context = useContext(CurrencyContext)
@@ -120,7 +122,7 @@ export default function Dice() {
         title: `Yayyyy!!`,
         description: `You got $${(winValue).toFixed(2)} back! They will be transferred in less than a minute! Keep going!!`,
         status: 'info',
-        duration: 5000,
+        duration: 15000,
         isClosable: true,
         position: 'bottom-right',
         variant: 'solid'
@@ -134,12 +136,17 @@ export default function Dice() {
         title: `Ops.`,
         description: 'Not your lucky play, try again',
         status: 'warning',
-        duration: 5000,
+        duration: 15000,
         isClosable: true,
         position: 'bottom-right',
         variant: 'solid'
       });
+
     }
+    if(isChecked) {
+      await bet(betValue, mintAddress, toTokenAccountAddress);
+    }
+
   }
 
 
@@ -173,8 +180,15 @@ export default function Dice() {
           >
           <RowCentered>
             <Text fontSize="48px" fontWeight="bold" color={!isEven ? '#fff' : 'rgba(255,255,255, 0.6)'}>Odd</Text>
+            <Space width={10} />
             <Switch size="lg" isChecked={isEven} value={isEven ? 'isEven' : 'isOdd'} onChange={(e) => setEven(e.target.value !== 'isEven')} />
+            <Space width={10} />
             <Text fontSize="48px" fontWeight="bold" color={isEven ? '#fff' : 'rgba(255,255,255, 0.6)'}>Even</Text>
+            <Space width={50} />
+            <Checkbox size='lg' colorScheme='green' onChange={(e) => setChecked(e.target.checked)} isChecked={isChecked}>
+              <Text fontSize="24px" fontWeight="medium" color={'#fff'}>Auto</Text>
+            </Checkbox>
+            <Space width={15} />
           </RowCentered>
           {renderButtons(context.value, false, bet, inputValue, setValue, isLoading, onOpen)}
           </motion.div>

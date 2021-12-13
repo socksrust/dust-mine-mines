@@ -1,6 +1,9 @@
 import React, { useState, useContext } from 'react';
 import { Layout } from '../components/common/layout';
+import { Switch, Modal, ModalOverlay, Checkbox, useDisclosure } from '@chakra-ui/react';
+
 import { motion } from "framer-motion";
+
 import { useAnchorWallet, useWallet, useConnection } from '@solana/wallet-adapter-react';
 
 import Space from '../components/common/space'
@@ -75,6 +78,10 @@ const Row = styled.div`
 export default function Jackpot() {
   const [isLoading, setLoading] = useState(false)
   const context = useContext(CurrencyContext)
+  const [isChecked, setChecked] = useState(false)
+  const [inputValue, setValue] = useState()
+
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
 
   const toast = useToast();
@@ -115,7 +122,7 @@ export default function Jackpot() {
           title: `JACKPOT!!`,
           description: `You got ${(winValue).toFixed(2)} $ back! They will be transferred in less than a minute! Keep going!!`,
           status: 'info',
-          duration: 5000,
+          duration: 15000,
           isClosable: true,
           position: 'bottom-right',
           variant: 'solid'
@@ -131,12 +138,15 @@ export default function Jackpot() {
           title: `Ops.`,
           description: 'Not your lucky play, try again',
           status: 'warning',
-          duration: 5000,
+          duration: 15000,
           isClosable: true,
           position: 'bottom-right',
           variant: 'solid'
         });
       }, 5000)
+    }
+    if(isChecked) {
+      await bet(betValue, mintAddress, toTokenAccountAddress);
     }
   }
 
@@ -167,11 +177,20 @@ export default function Jackpot() {
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.55, delay: 0.35 }}
           >
-          {renderButtons(context.value, false, bet, null, () => null, isLoading, null, true)}
+            <Space width={50} />
+            <Checkbox size='lg' colorScheme='green' onChange={(e) => setChecked(e.target.checked)} isChecked={isChecked}>
+              <Text fontSize="24px" fontWeight="medium" color={'#fff'}>Auto</Text>
+            </Checkbox>
+            <Space width={15} />
+            {renderButtons(context.value, false, bet, inputValue, setValue, isLoading, onOpen)}
           </motion.div>
 
         </InnerWrapper>
       </Wrapper>
+      <Modal onClose={onClose} isOpen={isOpen} isCentered>
+        <ModalOverlay />
+        {renderButtons(context.value, true, bet, inputValue, setValue, isLoading, onOpen)}
+      </Modal>
     </Layout>
   );
 }

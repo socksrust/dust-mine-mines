@@ -1,12 +1,13 @@
 import React, { useState, useRef, useContext } from 'react';
 import { Layout } from '../components/common/layout';
-import { Input, Button, Switch, Image, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, useDisclosure, ModalFooter } from '@chakra-ui/react';
+import { Switch, Modal, ModalOverlay, Checkbox, useDisclosure } from '@chakra-ui/react';
 import { motion } from "framer-motion";
 import { useAnchorWallet, useWallet, useConnection } from '@solana/wallet-adapter-react';
 import * as web3 from '@solana/web3.js';
 import WheelComponent from '../components/wheel/index'
 import { sendCurrencyToTreasure, renderButtons } from '../utils/solana'
 import {CurrencyContext} from './_app';
+import Space from '../components/common/space'
 
 const MASTER_PK = 'B8e4g2SP7AC9SqQXPChEEmduhwBuZ8MTMb5xEGUchU2t';
 const connect = new web3.Connection('https://wild-thrumming-smoke.solana-mainnet.quiknode.pro/');
@@ -70,6 +71,7 @@ export default function Wheel() {
   const [inputValue, setValue] = useState()
   const [rotate, setRotate] = useState("");
   const [diceValue, setDiceValue] = useState(0); // integer state
+  const [isChecked, setChecked] = useState(false)
 
   const { isOpen, onOpen, onClose } = useDisclosure()
   const toast = useToast();
@@ -196,7 +198,7 @@ export default function Wheel() {
         title: `Yayyyy!!`,
         description: `You got $${(winValue).toFixed(2)} back! They will be transferred in less than a minute! Keep going!!`,
         status: 'info',
-        duration: 5000,
+        duration: 15000,
         isClosable: true,
         position: 'bottom-right',
         variant: 'solid'
@@ -210,11 +212,14 @@ export default function Wheel() {
         title: `Ops.`,
         description: 'Not your lucky play, try again',
         status: 'warning',
-        duration: 5000,
+        duration: 15000,
         isClosable: true,
         position: 'bottom-right',
         variant: 'solid'
       });
+    }
+    if(isChecked) {
+      await bet(betValue, mintAddress, toTokenAccountAddress);
     }
   }
 
@@ -244,10 +249,15 @@ export default function Wheel() {
             <Switch size="lg" isChecked={isEven} value={isEven ? 'isEven' : 'isOdd'} onChange={(e) => setEven(e.target.value !== 'isEven')} />
             <Text fontSize="36px" fontWeight="bold" color={isEven ? '#fff' : 'rgba(255,255,255, 0.6)'}>Even</Text>
           </RowCentered>
-          <RowCentered>
+          <RowCentered style={{ width: 350 }}>
             <Text fontSize="36px" fontWeight="bold" color={!isBlack ? '#fff' : 'rgba(255,255,255, 0.6)'}>Red</Text>
             <Switch size="lg" isChecked={isBlack} value={isBlack ? 'isBlack' : 'isRed'} onChange={(e) => setBlack(e.target.value !== 'isBlack')} />
             <Text fontSize="36px" fontWeight="bold" color={isBlack ? '#fff' : 'rgba(255,255,255, 0.6)'}>Black</Text>
+            <Space width={50} />
+            <Checkbox size='lg' colorScheme='green' onChange={(e) => setChecked(e.target.checked)} isChecked={isChecked}>
+              <Text fontSize="24px" fontWeight="medium" color={'#fff'}>Auto</Text>
+            </Checkbox>
+            <Space width={15} />
           </RowCentered>
           <RowCentered/>
           {renderButtons(context.value, false, bet, inputValue, setValue, isLoading, onOpen)}

@@ -121,7 +121,7 @@ export const renderButtons = (value: any, modal: any, bet, inputValue, setValue,
           <Input width="100%" height="56px" placeholder={`value in $${currency} (max: ${maxBetValue})`} color="#000" type="number" value={inputValue} onChange={(e) => Number(e.target.value) <= maxBetValue && setValue(Number(e.target.value))} />
         </ModalBody>
         <ModalFooter>
-          <Button isLoading={isLoading} loadingText={`Loading ${currency}$`} borderRadius="2rem" width="100%" height="56px" backgroundColor="#02011F" onClick={() => bet(inputValue, mintAddress, toTokenAccountAddress)}>
+          <Button isLoading={isLoading} loadingText={`Loading $${currency}`} borderRadius="2rem" width="100%" height="56px" backgroundColor="#02011F" onClick={() => bet(inputValue, mintAddress, toTokenAccountAddress)}>
             <Text fontSize="14px" fontWeight="bold" color="#fff">Bet</Text>
           </Button>
         </ModalFooter>
@@ -132,13 +132,13 @@ export const renderButtons = (value: any, modal: any, bet, inputValue, setValue,
 
     return (
     <Row>
-      <Button isLoading={isLoading} loadingText={`Loading ${currency}$`} borderRadius="2rem" width="180px" height="56px" onClick={() => bet(firstBetValue, mintAddress, toTokenAccountAddress)}>
+      <Button isLoading={isLoading} loadingText={`Loading $${currency}`} borderRadius="2rem" width="180px" height="56px" onClick={() => bet(firstBetValue, mintAddress, toTokenAccountAddress)}>
         <Text fontSize="14px" fontWeight="bold" color="#000">{firstBetValue} ${currency}</Text>
       </Button>
-      <Button isLoading={isLoading} loadingText={`Loading ${currency}$`} borderRadius="2rem" width="180px" height="56px" onClick={() => bet(secondBetValue, mintAddress, toTokenAccountAddress)}>
+      <Button isLoading={isLoading} loadingText={`Loading $${currency}`} borderRadius="2rem" width="180px" height="56px" onClick={() => bet(secondBetValue, mintAddress, toTokenAccountAddress)}>
         <Text fontSize="14px" fontWeight="bold" color="#000">{secondBetValue} ${currency}</Text>
       </Button>
-      {!noCustom && <Button isLoading={isLoading} loadingText={`Loading ${currency}$`} borderRadius="2rem" width="180px" height="56px" borderColor="#fff" borderWidth="1px" backgroundColor="#02011F" onClick={onOpen}>
+      {!noCustom && <Button isLoading={isLoading} loadingText={`Loading $${currency}`} borderRadius="2rem" width="180px" height="56px" borderColor="#fff" borderWidth="1px" backgroundColor="#02011F" onClick={onOpen}>
         <Text fontSize="14px" fontWeight="bold" color="#fff">Custom ${currency} Value</Text>
       </Button>}
     </Row>
