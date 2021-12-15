@@ -94,7 +94,7 @@ export default function Dice() {
       if(one !==  two) {
         setTransactions(parsedResult?.data)
       }
-      setTimeout(() => fetchTransactions(), 1000)
+      setTimeout(() => fetchTransactions(), 5000)
     }
 
     fetchTransactions()

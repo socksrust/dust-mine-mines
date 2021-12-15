@@ -257,7 +257,7 @@ export default function RaceJackpot({ isHome, potNumber }) {
       });
       const parsedResult = await resp.json();
       setJackpot(parsedResult?.data)
-      setTimeout(() => fetchTransactions(), 1000)
+      setTimeout(() => fetchTransactions(), 5000)
     }
 
     fetchTransactions()
