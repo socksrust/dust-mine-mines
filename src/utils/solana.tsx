@@ -123,8 +123,8 @@ export const renderButtons = (value: any, modal: any, bet, inputValue, setValue,
       mintAddress = SOL_MINT;
       currency = 'SOL';
       firstBetValue = 0.1;
-      secondBetValue = 0.5;
-      thirdBetValue = 1;
+      secondBetValue = 0.25;
+      thirdBetValue = 0.5;
       maxBetValue = 1;
       toTokenAccountAddress = SOL_TOKEN_ACCOUNT;
       break;
