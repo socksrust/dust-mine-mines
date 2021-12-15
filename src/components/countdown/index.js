@@ -24,7 +24,7 @@ Date.prototype.addHours = function(h){
 }
 
 //import "./dice.css";
-const CountDown = ({ countDownDate, firstPlacePoints }) => {
+const CountDown = ({ countDownDate, firstPlacePoints, setPotNumber, potNumber }) => {
 	const [text, setText] = useState(' ')
 	const [multiplier, setMultiplier] = useState(' ')
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -33,9 +33,15 @@ const CountDown = ({ countDownDate, firstPlacePoints }) => {
 
 		// Get today's date and time
 		var now = new Date().getTime();
-
+		let n = 1;
 		while(countDownDate <= now) {
+			n+=1;
 			countDownDate.addHours(24)
+		}
+		console.log({ potNumber, n, is: Number(potNumber) < Number(n)})
+
+		if(Number(potNumber) !== 0 && Number(potNumber) < Number(n)) {
+			setPotNumber(n)
 		}
 
 
@@ -52,7 +58,7 @@ const CountDown = ({ countDownDate, firstPlacePoints }) => {
 		const newText = days + "d " + hours + "h "
 		+ minutes + "m " + seconds + "s ";
 		setText(newText)
-
+		
 
 
 		let multi = 0;
@@ -64,6 +70,7 @@ const CountDown = ({ countDownDate, firstPlacePoints }) => {
 
 		const final = multi**2
 
+		setMultiplier(final)
 		setMultiplier(final)
 
 		// If the count down is finished, write some text

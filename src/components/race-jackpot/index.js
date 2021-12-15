@@ -46,12 +46,28 @@ const Row = styled.div`
   padding: 10px;
 `
 
+const NftImage = styled.img`
+  width: 150px;
+  height: 150px;
+  border: 2px solid white;
+  border-radius: 5px;
+  margin: 8px;
+`
+
+const HomeNftImage = styled.img`
+  width:50px;
+  height: 50px;
+  border: 2px solid white;
+  border-radius: 5px;
+  margin: 2px;
+`
+
 const Column = styled.div`
   display: flex;
   flex: 1;
   padding: 10px;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   width: 100%;
   padding-left: 80px;
 `
@@ -209,7 +225,7 @@ const Wrapper = styled.div`
   z-index: 3;
 `
 
-export default function RaceJackpot({ isHome }) {
+export default function RaceJackpot({ isHome, potNumber }) {
   const [jackpot, setJackpot] = useState(null);
   const { push } = useRouter();
 
@@ -261,14 +277,43 @@ export default function RaceJackpot({ isHome }) {
           </Button>
         </Row>
         <Space width={10}/>
-        <Text fontSize="56px" fontWeight="bold" color={`rgba(80, 227, 194, 1)`}>
+        <Text fontSize="36px" fontWeight="bold" color={`rgba(80, 227, 194, 1)`}>
           {jackpot && jackpot.toFixed(4)} $SOL
         </Text>
+        <Row>
+        <Text fontSize="24px" fontWeight="bold" color={`rgba(80, 227, 194, 1)`}>
+          +
+        </Text>
+        <Row>
+        <HomeNftImage src="https://www.arweave.net/I7XNk-SLMc7YLcQXeelIB5zyi2WyD6SJuimv8Rh6Lv0?ext=png" />
+        <HomeNftImage src="https://www.arweave.net/Ss2_twru6J9K3n--8H3SzIdyMDnOWXpnPhg1gAqrQqM?ext=png" />
+        <HomeNftImage src="https://www.arweave.net/3rB1JeNwu4zkh3id6x5VOC4l-UmSaIgoi9yb5hZI9LM?ext=png" />
+        </Row>
+        <Row>
+        <HomeNftImage src="https://www.arweave.net/RyBqBJCDo3CrK4seWnJxl9HGseg2InMHGk8g7WnuASE?ext=png" />
+        <HomeNftImage src="https://www.arweave.net/zxkVX9gPPtpZYKg8O-sgde74G1eyXdOv42GZWG0IUNU?ext=png" />
+        </Row>
+        </Row>
       </Column>
     );
   }
 
   return (
+    <Column>
+        <Text fontSize="56px" fontWeight="bold" color={'#fff'}>
+          Next pot Prize:
+        </Text>
+        <Space width={20} />
+        <Row>
+          <NftImage src="https://www.arweave.net/I7XNk-SLMc7YLcQXeelIB5zyi2WyD6SJuimv8Rh6Lv0?ext=png" />
+          <NftImage src="https://www.arweave.net/Ss2_twru6J9K3n--8H3SzIdyMDnOWXpnPhg1gAqrQqM?ext=png" />
+          <NftImage src="https://www.arweave.net/3rB1JeNwu4zkh3id6x5VOC4l-UmSaIgoi9yb5hZI9LM?ext=png" />
+          <NftImage src="https://www.arweave.net/RyBqBJCDo3CrK4seWnJxl9HGseg2InMHGk8g7WnuASE?ext=png" />
+          <NftImage src="https://www.arweave.net/zxkVX9gPPtpZYKg8O-sgde74G1eyXdOv42GZWG0IUNU?ext=png" />
+        </Row>
+        <Text fontSize="56px" fontWeight="bold" color={`rgba(80, 227, 194, 1)`}>
+          +
+        </Text>
         <Row>
           <Text fontSize="24px" fontWeight="normal" color={`#fff`} paddingTop="15px">
             Race Jackpot:
@@ -278,5 +323,6 @@ export default function RaceJackpot({ isHome }) {
             {jackpot && jackpot.toFixed(4)} $SOL
           </Text>
         </Row>
+        </Column>
   );
 }

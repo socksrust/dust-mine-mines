@@ -52,6 +52,7 @@ export default function Dice() {
   const [isLoading, setLoading] = useState(false)
   const [inputValue, setValue] = useState()
   const [isChecked, setChecked] = useState(false)
+  const [potNumber, setPotNumber] = useState(1)
   const context = useContext(CurrencyContext)
   const [transactions, setTransactions] = useState(null);
 
@@ -176,7 +177,7 @@ export default function Dice() {
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.55, delay: 1.2 }}
           >
-            <RaceJackpot />
+            <RaceJackpot potNumber={potNumber} />
           </motion.div>
           <motion.div
             animate={{ opacity: 1, y: 0 }}
@@ -184,7 +185,7 @@ export default function Dice() {
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.55, delay: 1.2 }}
           >
-            <CountDown countDownDate={new Date("Dec 13, 2021 16:00:00 GMT-3:00")} firstPlacePoints={firstPlacePoints} />
+            <CountDown countDownDate={new Date("Dec 13, 2021 16:00:00 GMT-3:00")} firstPlacePoints={firstPlacePoints} setPotNumber={setPotNumber} potNumber={potNumber} />
           </motion.div>
           <Space height={25} />
           <motion.div

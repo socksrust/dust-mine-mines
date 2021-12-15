@@ -23,6 +23,8 @@ export const DRUGS_TOKEN_ACCOUNT = '7uW58ttmZ67Mif53XHti4sL59ZPEVSWfgabGymFvfNXy
 export const DEGN_TOKEN_ACCOUNT = '7FVdu1vxfLPm23hdCghWeCnrtVtr3d8gCZQVbaNnEcaW';
 export const SHROOMZ_TOKEN_ACCOUNT = 'Gkvh5iK5d5xuSVTTb9LXtizz3pmhJPWHYW5pidBztqTB';
 export const OOGI_TOKEN_ACCOUNT = 'FZJih1FAMK6pH6737M19KCymNfyfisWXppVTTwx77pGA';
+export const YODA_TOKEN_ACCOUNT = '3FmzyNgosNkZuRmEAuSYLmweJdPjjsbPJzHfVPEDTWoR';
+export const HIPPO_TOKEN_ACCOUNT = 'CnyybntW1GREv45yRKRFmUEYimKwruBg4NnJ1uYAwrCr';
 
 export const SOL_MINT = 'B8e4g2SP7AC9SqQXPChEEmduhwBuZ8MTMb5xEGUchU2t';
 export const SPKL_MINT = '31tCNEE6LiL9yW4Bu153Dq4vi2GuorXxCA9pW9aA6ecU';
@@ -34,6 +36,8 @@ export const DRUGS_MINT = 'DcqWM1BdgfUFktSKw8XC6qLAo2Ki2dUFXc1YYe67c8kD';
 export const DEGN_MINT = 'A9UhP1xfQHWUhSd54NgKPub2XB3ZuQMdPEvf9aMTHxGT';
 export const SHROOMZ_MINT = '2vRgBSJEVPXxayrhXoazQyCKSGFYQG3ZdfT2Gv5gZykL';
 export const OOGI_MINT = 'H7Qc9APCWWGDVxGD5fJHmLTmdEgT9GFatAKFNg6sHh8A';
+export const YODA_MINT = 'YodaXmvJfRMEecpYacvcvDEM3TCom6dVdFik4x8HyFe';
+export const HIPPO_MINT = '3EkHyexJLGCvSxzn5umbtd9N69GoT4p5pfdLTFqCNP9Y';
 
 
 const Row = styled.div`
@@ -74,12 +78,28 @@ export const renderButtons = (value: any, modal: any, bet, inputValue, setValue,
       maxBetValue = 100;
       toTokenAccountAddress = USDC_TOKEN_ACCOUNT;
       break;
+    case 'YODA':
+      mintAddress = YODA_MINT;
+      currency = 'YODA';
+      firstBetValue = 50000;
+      secondBetValue = 10000;
+      maxBetValue = 1000000;
+      toTokenAccountAddress = YODA_TOKEN_ACCOUNT;
+      break;
+    case 'HIPPO':
+      mintAddress = HIPPO_MINT;
+      currency = 'HIPPO';
+      firstBetValue = 50000;
+      secondBetValue = 10000;
+      maxBetValue = 1000000;
+      toTokenAccountAddress = HIPPO_TOKEN_ACCOUNT;
+      break;
     case 'DEGN':
       mintAddress = DEGN_MINT;
       currency = 'DEGN';
-      firstBetValue = 5000;
-      secondBetValue = 20000;
-      maxBetValue = 50000;
+      firstBetValue = 50000;
+      secondBetValue = 10000;
+      maxBetValue = 1000000;
       toTokenAccountAddress = DEGN_TOKEN_ACCOUNT;
       break;
     case 'OOGI':
@@ -102,8 +122,8 @@ export const renderButtons = (value: any, modal: any, bet, inputValue, setValue,
       mintAddress = SOL_MINT;
       currency = 'SOL';
       firstBetValue = 0.1;
-      secondBetValue = 0.3;
-      maxBetValue = 0.5;
+      secondBetValue = 0.5;
+      maxBetValue = 1;
       toTokenAccountAddress = SOL_TOKEN_ACCOUNT;
       break;
     case 'SPKL':
@@ -229,8 +249,8 @@ export const renderRaceButtons = (value: any, modal: any, bet, inputValue, setVa
       mintAddress = SOL_MINT;
       currency = 'SOL';
       firstBetValue = 0.1;
-      secondBetValue = 0.3;
-      maxBetValue = 0.5;
+      secondBetValue = 0.5;
+      maxBetValue = 1;
       toTokenAccountAddress = SOL_TOKEN_ACCOUNT;
       break;
     /*case 'SPKL':
@@ -317,6 +337,14 @@ export const sendCurrencyToTreasure = async ({ fromWallet, toast, toTokenAccount
     case USDC_MINT:
       multiplier = 1000000;
       currency = 'USDC'
+      break;
+    case YODA_MINT:
+      multiplier = 1000000;
+      currency = 'YODA'
+      break;
+    case HIPPO_MINT:
+      multiplier = 1000000000;
+      currency = 'HIPPO'
       break;
     case DEGN_MINT:
       multiplier = 1000000000;
