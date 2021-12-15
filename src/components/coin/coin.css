@@ -1,0 +1,69 @@
+
+
+
+.outcome {
+  height: 200px;
+  width: 200px;
+  background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
+  margin-bottom: 50px;
+  border-radius: 50%;
+  border-style: dotted;
+  border-color: #02011F;
+  border-width: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  transform: rotateY(0deg) rotateX(0deg);
+  transition: 1s;
+  font-size: 32px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-weight: bold;
+  line-height: .8;
+  color: #fff;
+  box-shadow: 0 0 30px rgba(#fff, 1);
+}
+
+.outcome::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  height: 185px;
+  width: 185px;
+  display: block;
+  background: none;
+  border: 1px solid rgba(#fff, .25);
+  border-radius: 50%;
+}
+.outcome::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  height: 190px;
+  width: 190px;
+  display: block;
+  background: none;
+  border: 1px solid rgba(white, .15);
+  border-radius: 50%;
+}
+
+.flip {
+  transition: 1s;
+  transform: rotateY(720deg) rotateX(720deg);
+}
+
+.toss {
+  animation: toss .7s forwards ease-in-out;
+}
+
+@keyframes toss {
+  0% { top: 0px;}
+  50% { top: -150px;}
+  100% { top: 0px;}
+}
+

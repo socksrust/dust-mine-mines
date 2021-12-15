@@ -58,6 +58,7 @@ export const renderButtons = (value: any, modal: any, bet, inputValue, setValue,
   let currency;
   let firstBetValue: {} | null | undefined;
   let secondBetValue: {} | null | undefined;
+  let thirdBetValue: {} | null | undefined;
   let maxBetValue: number;
   let toTokenAccountAddress: string;
 
@@ -123,6 +124,7 @@ export const renderButtons = (value: any, modal: any, bet, inputValue, setValue,
       currency = 'SOL';
       firstBetValue = 0.1;
       secondBetValue = 0.5;
+      thirdBetValue = 1;
       maxBetValue = 1;
       toTokenAccountAddress = SOL_TOKEN_ACCOUNT;
       break;
@@ -188,7 +190,10 @@ export const renderButtons = (value: any, modal: any, bet, inputValue, setValue,
       <Button isLoading={isLoading} loadingText={`Loading $${currency}`} borderRadius="2rem" width="180px" height="56px" onClick={() => bet(secondBetValue, mintAddress, toTokenAccountAddress)}>
         <Text fontSize="14px" fontWeight="bold" color="#000">{secondBetValue} ${currency}</Text>
       </Button>
-      {!noCustom && <Button isLoading={isLoading} loadingText={`Loading $${currency}`} borderRadius="2rem" width="180px" height="56px" borderColor="#fff" borderWidth="1px" backgroundColor="#02011F" onClick={onOpen}>
+      {thirdBetValue && <Button isLoading={isLoading} loadingText={`Loading $${currency}`} borderRadius="2rem" width="180px" height="56px" onClick={() => bet(thirdBetValue, mintAddress, toTokenAccountAddress)}>
+        <Text fontSize="14px" fontWeight="bold" color="#000">{thirdBetValue} ${currency}</Text>
+      </Button>}
+      {!noCustom && !thirdBetValue && <Button isLoading={isLoading} loadingText={`Loading $${currency}`} borderRadius="2rem" width="180px" height="56px" borderColor="#fff" borderWidth="1px" backgroundColor="#02011F" onClick={onOpen}>
         <Text fontSize="14px" fontWeight="bold" color="#fff">Custom ${currency} Value</Text>
       </Button>}
     </Row>

@@ -12,6 +12,7 @@ import { WalletDialogProvider } from '@solana/wallet-adapter-material-ui';
 import '../styles/styles.css'
 import '../components/dice/dice.css'
 import '../components/slot/slot.css'
+import '../components/coin/coin.css'
 
 export const CurrencyContext = React.createContext<any>({});
 
