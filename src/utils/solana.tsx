@@ -82,7 +82,7 @@ export const renderButtons = (value: any, modal: any, bet, inputValue, setValue,
       mintAddress = YODA_MINT;
       currency = 'YODA';
       firstBetValue = 50000;
-      secondBetValue = 10000;
+      secondBetValue = 100000;
       maxBetValue = 1000000;
       toTokenAccountAddress = YODA_TOKEN_ACCOUNT;
       break;
@@ -90,7 +90,7 @@ export const renderButtons = (value: any, modal: any, bet, inputValue, setValue,
       mintAddress = HIPPO_MINT;
       currency = 'HIPPO';
       firstBetValue = 50000;
-      secondBetValue = 10000;
+      secondBetValue = 100000;
       maxBetValue = 1000000;
       toTokenAccountAddress = HIPPO_TOKEN_ACCOUNT;
       break;
