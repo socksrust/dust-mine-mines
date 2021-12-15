@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect, useMemo } from 'react';
 import { Layout } from '../components/common/layout';
 import { Switch, Modal, ModalOverlay, useDisclosure, Checkbox } from '@chakra-ui/react';
 import { motion } from "framer-motion";
@@ -23,6 +23,7 @@ const Wrapper = styled.div`
   background-color: #02011F;
   flex: 1;
   height: 100%;
+  padding-top: 35px;
 `
 
 
@@ -52,12 +53,51 @@ export default function Dice() {
   const [inputValue, setValue] = useState()
   const [isChecked, setChecked] = useState(false)
   const context = useContext(CurrencyContext)
+  const [transactions, setTransactions] = useState(null);
 
   const { isOpen, onOpen, onClose } = useDisclosure()
   const toast = useToast();
   const fromWallet = useAnchorWallet();
   const { sendTransaction, publicKey } = useWallet();
   const { connection } = useConnection();
+
+
+  useEffect(() => {
+    const fetchTransactions = async () => {
+      const resp = await fetch("https://bip-gamextwo.herokuapp.com/api/v1/transaction/raceTransactions", {
+      //const resp = await fetch(`https://bip-gamextwo.herokuapp.com/api/v1/transaction/raceTransactions`, {
+        headers: {
+          "Content-Type": "application/json"
+        },
+      });
+      const parsedResult = await resp.json();
+      if(!transactions) {
+        setTransactions(parsedResult?.data)
+      }
+    }
+
+    fetchTransactions()
+  }, [])
+
+  useEffect(() => {
+    const fetchTransactions = async () => {
+      const resp = await fetch("https://bip-gamextwo.herokuapp.com/api/v1/transaction/raceTransactions", {
+      //const resp = await fetch(`https://bip-gamextwo.herokuapp.com/api/v1/transaction/raceTransactions`, {
+        headers: {
+          "Content-Type": "application/json"
+        },
+      });
+      const parsedResult = await resp.json();
+      const one = transactions && transactions[0] && transactions[0].createdAt;
+      const two = parsedResult && parsedResult.data && parsedResult.data[0] && parsedResult.data[0].createdAt;
+      if(one !==  two) {
+        setTransactions(parsedResult?.data)
+      }
+      setTimeout(() => fetchTransactions(), 1000)
+    }
+
+    fetchTransactions()
+  }, [])
 
   if (typeof window === 'undefined') return <></>;
 
@@ -117,7 +157,7 @@ export default function Dice() {
   }
 
 
-
+  const firstPlacePoints = useMemo(() => transactions && transactions[0] && transactions[0].racePoints, [transactions])
 
   return (
     <Layout>
@@ -144,7 +184,7 @@ export default function Dice() {
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.55, delay: 1.2 }}
           >
-            <CountDown countDownDate={new Date("Dec 13, 2021 16:00:00 GMT-3:00")} />
+            <CountDown countDownDate={new Date("Dec 13, 2021 16:00:00 GMT-3:00")} firstPlacePoints={firstPlacePoints} />
           </motion.div>
           <Space height={25} />
           <motion.div
@@ -156,7 +196,7 @@ export default function Dice() {
           >
             {renderRaceButtons(context.value, false, bet, inputValue, setValue, isLoading, onOpen)}
           </motion.div>
-          <Space height={25} />
+          <Space height={55} />
           <motion.div
             style={{width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center'}}
             animate={{ opacity: 1, y: 0 }}
@@ -164,7 +204,7 @@ export default function Dice() {
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.55, delay: 0.35 }}
           >
-            <LiveRaceBets />
+            <LiveRaceBets transactions={transactions} />
           </motion.div>
         </InnerWrapper>
       </Wrapper>

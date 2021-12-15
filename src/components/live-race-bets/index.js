@@ -212,45 +212,10 @@ const Wrapper = styled.div`
   z-index: 3;
 `
 
-export default function LiveBets() {
-  const [transactions, setTransactions] = useState(null);
+export default function LiveBets({ transactions }) {
 
-  useEffect(() => {
-    const fetchTransactions = async () => {
-      const resp = await fetch("https://bip-gamextwo.herokuapp.com/api/v1/transaction/raceTransactions", {
-      //const resp = await fetch(`https://bip-gamextwo.herokuapp.com/api/v1/transaction/raceTransactions`, {
-        headers: {
-          "Content-Type": "application/json"
-        },
-      });
-      const parsedResult = await resp.json();
-      if(!transactions) {
-        setTransactions(parsedResult?.data)
-      }
-    }
 
-    fetchTransactions()
-  }, [])
-
-  useEffect(() => {
-    const fetchTransactions = async () => {
-      const resp = await fetch("https://bip-gamextwo.herokuapp.com/api/v1/transaction/raceTransactions", {
-      //const resp = await fetch(`https://bip-gamextwo.herokuapp.com/api/v1/transaction/raceTransactions`, {
-        headers: {
-          "Content-Type": "application/json"
-        },
-      });
-      const parsedResult = await resp.json();
-      const one = transactions && transactions[0] && transactions[0].createdAt;
-      const two = parsedResult && parsedResult.data && parsedResult.data[0] && parsedResult.data[0].createdAt;
-      if(one !==  two) {
-        setTransactions(parsedResult?.data)
-      }
-      setTimeout(() => fetchTransactions(), 1000)
-    }
-
-    fetchTransactions()
-  }, [])
+  
 
 
   return (

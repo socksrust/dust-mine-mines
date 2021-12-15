@@ -41,7 +41,7 @@ export const Layout = ({ children, ...props }: StackProps) => {
 
 
   return (
-    <div style={{height: '100vh'}} >
+    <div style={window.location.pathname === '/race' ? {} : {height: '100vh'}} >
       <Header />
       <Wrapper>
         {children}

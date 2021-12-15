@@ -24,7 +24,7 @@ Date.prototype.addHours = function(h){
 }
 
 //import "./dice.css";
-const CountDown = ({ countDownDate }) => {
+const CountDown = ({ countDownDate, firstPlacePoints }) => {
 	const [text, setText] = useState(' ')
 	const [multiplier, setMultiplier] = useState(' ')
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -64,7 +64,7 @@ const CountDown = ({ countDownDate }) => {
 
 		const final = multi**2
 
-		setMultiplier(final.toLocaleString(undefined))
+		setMultiplier(final)
 
 		// If the count down is finished, write some text
 		if (distance < 0) {
@@ -73,17 +73,28 @@ const CountDown = ({ countDownDate }) => {
 		}
 	}, 1000);
 
+	const minBet = Number(firstPlacePoints*1.01/Number(multiplier));
+
 	return (
-		<Row>
+		<Column>
 			<Column>
 				<Text fontSize="48px" fontWeight="bold">
 					{text}
 				</Text>
 				<Text fontSize="26px" fontWeight="bold" marginTop={0} color="rgba(80, 227, 194, 1)">
-					Multiplier: {multiplier && multiplier}x
+					Multiplier: {multiplier && multiplier.toLocaleString(undefined)}x
 				</Text>
+				<Row>
+					<Text fontSize="18px" fontWeight="bold" marginTop={0} color="rgba(80, 227, 194, 1)">
+						Current minimum bet to win: {minBet.toLocaleString(undefined)} $SOL
+					</Text>
+					<Space width={20} />
+					<Button borderRadius="2rem" width="130px" height="25px" borderColor="#fff" onClick={() => navigator.clipboard.writeText(minBet.toLocaleString(undefined))}>
+						<Text fontSize="12px" fontWeight="bold" color="#000">Copy min Value</Text>
+					</Button>
+				</Row>
 			</Column>
-			<Space width={20} />
+			<Space height={20} />
 			<Button borderRadius="2rem" width="120px" height="36px" borderColor="#fff" onClick={onOpen}>
 				<Text fontSize="14px" fontWeight="bold" color="#000">Read rules</Text>
 			</Button>
@@ -98,24 +109,18 @@ const CountDown = ({ countDownDate }) => {
 					</ModalHeader>
 					<ModalBody paddingTop="0px">
 						<Text fontSize="16px" fontWeight="normal" color="#02011F">
-							- Only $SOL bets are allowed
+						The bet you place is multiplied by the multiplier. With each passing minute the multiplier decreases. So you need to place a higher bet to get more points. Every 24 hours the multiplier is reset and goes back to maximum. 
+
 						</Text>
+						<Space height={20} />
+
 						<Text fontSize="16px" fontWeight="normal" color="#02011F">
-							- Every race bet goes to the Jackpot
-						</Text>
-						<Text fontSize="16px" fontWeight="normal" color="#02011F">
-							- Only 1, 2 and 3rd position receive a prize
-						</Text>
-						<Text fontSize="16px" fontWeight="normal" color="#02011F">
-							- 10% of current jackpot accumulates to next day
-						</Text>
-						<Text fontSize="16px" fontWeight="normal" color="#02011F">
-							- Every race takes 24h
+							That is, the higher the multiplier the more points you can score. And the top 3 places receive the jackpot value. So it's just a matter of math and tracking. The more points you have, the greater chance of winning.
 						</Text>
 					</ModalBody>
 				</ModalContent>
 			</Modal>
-		</Row>
+		</Column>
 	);
 };
 export default CountDown;
