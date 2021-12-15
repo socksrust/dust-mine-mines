@@ -301,7 +301,7 @@ export default function RaceJackpot({ isHome, potNumber }) {
   return (
     <Column>
         <Text fontSize="56px" fontWeight="bold" color={'#fff'}>
-          Next pot Prize:
+          Current pot Prize:
         </Text>
         <Space width={20} />
         <Row>
