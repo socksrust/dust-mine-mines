@@ -106,9 +106,9 @@ export const renderButtons = (value: any, modal: any, bet, inputValue, setValue,
     case 'OOGI':
       mintAddress = OOGI_MINT;
       currency = 'OOGI';
-      firstBetValue = 100;
-      secondBetValue = 500;
-      maxBetValue = 1000;
+      firstBetValue = 10000;
+      secondBetValue = 50000;
+      maxBetValue = 100000;
       toTokenAccountAddress = OOGI_TOKEN_ACCOUNT;
       break;
     case 'SHROOMZ':
