@@ -6,11 +6,11 @@ p {
 .outcome {
   height: 200px;
   width: 200px;
-  background: #151990;
+  background: #070B17;
   margin-bottom: 50px;
   border-radius: 50%;
   border-style: dotted;
-  border-color: #fff;
+  border-color: #FFCB14;
   border-width: 3px;
   display: flex;
   justify-content: center;

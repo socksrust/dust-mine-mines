@@ -14,7 +14,7 @@ const Wrapper = styled.div`
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
-  background-color: #151990;
+  background-color: #070B17;
   height: 100%;
   margin-right: 30px;
   z-index: 4;
@@ -52,7 +52,7 @@ const LabelWrapper = styled.div`
 
 const Label = ({ label, imgSrc }) => (
   <LabelWrapper>
-    <img src={imgSrc} height="20px" width="20px" style={{borderRadius:"55%", border: '0.8px solid #151990'}}/>
+    <img src={imgSrc} height="20px" width="20px" style={{borderRadius:"55%", border: '0.8px solid #070B17'}}/>
     <Space width={8} />
     {label}
   </LabelWrapper>

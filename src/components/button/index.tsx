@@ -56,12 +56,12 @@ export const Button: React.FC<IButtonProps> = ({
       fontWeight="600"
       _hover={{
         transform: 'scale(1.1)',
-        background: '#151990',
+        background: '#070B17',
         color: 'white',
       }}
       _active={{
         transform: 'scale(1)',
-        background: '#151990',
+        background: '#070B17',
         color: 'black',
       }}
     />

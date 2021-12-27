@@ -39,7 +39,7 @@ const txTimeout = 30000;
 const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
-  background-color:#151990;
+  background-color:#070B17;
   flex: 1;
   justify-content: space-around;
   padding: 20px 10px;

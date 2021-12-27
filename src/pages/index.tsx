@@ -157,7 +157,7 @@ export default function Coin() {
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.55, delay: 0.35 }}
             >
-            <Text fontSize="48px" lineHeight={1} fontWeight="bold" color={'#fff'}>Need $SOL for next mint?</Text>
+            <Text fontSize="48px" lineHeight={1} fontWeight="bold" color={'#fff'}>Need <span style={{ color: '#FFCB14' }}>$SOL</span> for next mint?</Text>
             <Text fontSize="48px" fontWeight="normal" color={'#fff'}>- Flip it</Text>
             <Space height={30}/>
             <Text fontSize="24px" fontWeight="normal" color={'#fff'}>With 50/50 chances of winning and a 2% fee!! All fees are shared between Octopus Holders</Text>
@@ -172,15 +172,15 @@ export default function Coin() {
             initial={{ opacity: 0, y: 20 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.55 }}
-            style={{flex: 2, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff', padding: 40, borderRadius: 4}}
+            style={{flex: 2, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: '#FFCB14', padding: 40, borderRadius: 4}}
           >
               <CoinComponent isFlipped={isFlipped} isFlipping={isFlipping} textContent={textContent} diceValue={diceValue} />
               <RowCentered>
-                <Text fontSize="48px" fontWeight="bold" color={!isEven ? '#22247C' : '#D5D4E7'}>Tails</Text>
+                <Text fontSize="48px" fontWeight="bold" color={!isEven ? '#070B17' : '#465170'}>Tails</Text>
                 <Space width={10} />
                 <Switch size="lg" isChecked={isEven} value={isEven ? 'isEven' : 'isOdd'} onChange={(e) => setEven(e.target.value !== 'isEven')} />
                 <Space width={10} />
-                <Text fontSize="48px" fontWeight="bold" color={isEven ? '#22247C' : '#D5D4E7'}>Head</Text>
+                <Text fontSize="48px" fontWeight="bold" color={isEven ? '#070B17' : '#465170'}>Head</Text>
                 <Space width={50} />
                 <Checkbox size='lg' colorScheme='green' onChange={(e) => setChecked(e.target.checked)} isChecked={isChecked}>
                   <Text fontSize="24px" fontWeight="medium" color={'#000'}>Auto</Text>

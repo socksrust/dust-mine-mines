@@ -8,7 +8,7 @@ const colors = {
   linearGradient:
     'linear-gradient(180deg, rgba(136, 255, 0, 0.5) 0%, rgba(149, 242, 43, 0) 100%);',
   white: '#FFFFFF',
-  black: '#151990',
+  black: '#070B17',
   grey: '#8A898B',
   textGradient: 'linear-gradient(95.34deg, #ABFC4F 2.47%, #FFFFFF 82.15%)',
 };

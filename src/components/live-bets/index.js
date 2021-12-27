@@ -46,11 +46,10 @@ const TransactionWrapper = styled.div`
   display: flex;
   flex-direction: row;
   flex: 1;
-  background-color: ${p => p.isOutline ? '#fff' : '#ffffff'};
   margin-top: 3px;
   padding: 14px 0px;
   border-bottom-width: 0.4px;
-  border-bottom-color: rgba(0,0,0,0.1);
+  border-bottom-color: rgba(255,255,255,0.1);
 `
 
 const GameWrappper = styled.div`
@@ -59,7 +58,7 @@ const GameWrappper = styled.div`
   flex: 1;
   align-items: center;
   justify-content: center;
-  color: #151990;
+  color: #fff;
   font-weight: medium;
   font-size: 24px;
   
@@ -71,10 +70,9 @@ const BetvaueWrappper = styled.div`
   flex: 1;
   align-items: center;
   justify-content: center;
-  color: #151990;
+  color: #fff;
   font-weight: medium;
   font-size: 24px;
-  
 
 `
 
@@ -84,7 +82,7 @@ const CreatedWrappper = styled.div`
   flex: 1;
   align-items: center;
   justify-content: center;
-  color: #151990;
+  color: #fff;
   font-weight: medium;
   font-size: 24px;
   
@@ -108,11 +106,11 @@ const Transaction = ({betValue, createdAt, won, game, isOutline, currency}) => (
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  background: #fff;
   border-radius: 4px;
   width: 100%;
   overflow: scroll;
   z-index: 3;
+  border: 1px solid #20252F;
 `
 
 export default function LiveBets() {
