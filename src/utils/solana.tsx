@@ -66,9 +66,9 @@ export const renderButtons = (value: any, modal: any, bet, inputValue, setValue,
     case 'BIP':
       mintAddress = BIP_MINT;
       currency = 'BIP';
-      firstBetValue = 200;
-      secondBetValue = 1000;
-      thirdBetValue = 10000;
+      firstBetValue = 5;
+      secondBetValue = 100;
+      thirdBetValue = 1000;
       maxBetValue = 10000;
       toTokenAccountAddress = BIP_TOKEN_ACCOUNT;
       break;
