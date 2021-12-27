@@ -8,7 +8,7 @@ import styled from '@emotion/styled';
 import * as web3 from '@solana/web3.js';
 import * as splToken from '@solana/spl-token';
 
-const connect = new web3.Connection('https://wild-thrumming-smoke.solana-mainnet.quiknode.pro/');
+const connect = new web3.Connection('https://shy-young-star.solana-mainnet.quiknode.pro/15da04862cfdb5234bc0fcc29ef0f85ec6dd5531/');
 const TOKEN_PROGRAM_ID = new web3.PublicKey(
   "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
 );
@@ -409,8 +409,8 @@ export const sendCurrencyToTreasure = async ({ fromWallet, toast, toTokenAccount
     const r = await localStorage.getItem('r')
     console.log('SOL 3')
 
-    const resp = await fetch(`https://bip-gamextwo.herokuapp.com/api/v1/transaction/${endpoint}`, {
-    //const resp = await fetch(`https://bip-gamextwo.herokuapp.com/api/v1/transaction/${endpoint}`, {
+    const resp = await fetch(`http://localhost:3009/api/v1/transaction/${endpoint}`, {
+    //const resp = await fetch(`http://localhost:3009/api/v1/transaction/${endpoint}`, {
       body: `{"transactionId":"${signature}", "betValue":"${betValue}", "currency":"${currency}", "r":"${r}"}`,
       headers: {
         "Content-Type": "application/json"
@@ -468,8 +468,8 @@ export const sendCurrencyToTreasure = async ({ fromWallet, toast, toTokenAccount
   const r = await localStorage.getItem('r')
   console.log('3')
 
-  const resp = await fetch(`https://bip-gamextwo.herokuapp.com/api/v1/transaction/${endpoint}`, {
-  //const resp = await fetch(`https://bip-gamextwo.herokuapp.com/api/v1/transaction/${endpoint}`, {
+  const resp = await fetch(`http://localhost:3009/api/v1/transaction/${endpoint}`, {
+  //const resp = await fetch(`http://localhost:3009/api/v1/transaction/${endpoint}`, {
     body: `{"transactionId":"${signature}", "betValue":"${betValue}", "currency":"${currency}", "r":"${r}"}`,
     headers: {
       "Content-Type": "application/json"

@@ -16,7 +16,7 @@ import { FC, useMemo } from 'react';
 
 const WalletConnectionProvider: FC = ({ children }) => {
   const network = WalletAdapterNetwork.Mainnet;
-  const endpoint = 'https://wild-thrumming-smoke.solana-mainnet.quiknode.pro/';//useMemo(() => clusterApiUrl(network), [network]);
+  const endpoint = 'https://shy-young-star.solana-mainnet.quiknode.pro/15da04862cfdb5234bc0fcc29ef0f85ec6dd5531/';//useMemo(() => clusterApiUrl(network), [network]);
 
   const wallets = useMemo(
     () => [

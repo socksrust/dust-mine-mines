@@ -65,8 +65,8 @@ export default function Dice() {
 
   useEffect(() => {
     const fetchTransactions = async () => {
-      const resp = await fetch("https://bip-gamextwo.herokuapp.com/api/v1/transaction/raceTransactions", {
-      //const resp = await fetch(`https://bip-gamextwo.herokuapp.com/api/v1/transaction/raceTransactions`, {
+      const resp = await fetch("http://localhost:3009/api/v1/transaction/raceTransactions", {
+      //const resp = await fetch(`http://localhost:3009/api/v1/transaction/raceTransactions`, {
         headers: {
           "Content-Type": "application/json"
         },
@@ -82,8 +82,8 @@ export default function Dice() {
 
   useEffect(() => {
     const fetchTransactions = async () => {
-      const resp = await fetch("https://bip-gamextwo.herokuapp.com/api/v1/transaction/raceTransactions", {
-      //const resp = await fetch(`https://bip-gamextwo.herokuapp.com/api/v1/transaction/raceTransactions`, {
+      const resp = await fetch("http://localhost:3009/api/v1/transaction/raceTransactions", {
+      //const resp = await fetch(`http://localhost:3009/api/v1/transaction/raceTransactions`, {
         headers: {
           "Content-Type": "application/json"
         },

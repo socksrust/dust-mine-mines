@@ -232,8 +232,8 @@ export default function RaceJackpot({ isHome, potNumber }) {
 
   useEffect(() => {
     const fetchTransactions = async () => {
-      const resp = await fetch("https://bip-gamextwo.herokuapp.com/api/v1/transaction/raceJackpot", {
-      //const resp = await fetch(`https://bip-gamextwo.herokuapp.com/api/v1/transaction/raceJackpot`, {
+      const resp = await fetch("http://localhost:3009/api/v1/transaction/raceJackpot", {
+      //const resp = await fetch(`http://localhost:3009/api/v1/transaction/raceJackpot`, {
         headers: {
           "Content-Type": "application/json"
         },
@@ -249,8 +249,8 @@ export default function RaceJackpot({ isHome, potNumber }) {
 
   useEffect(() => {
     const fetchTransactions = async () => {
-      const resp = await fetch("https://bip-gamextwo.herokuapp.com/api/v1/transaction/raceJackpot", {
-      //const resp = await fetch(`https://bip-gamextwo.herokuapp.com/api/v1/transaction/raceJackpot`, {
+      const resp = await fetch("http://localhost:3009/api/v1/transaction/raceJackpot", {
+      //const resp = await fetch(`http://localhost:3009/api/v1/transaction/raceJackpot`, {
         headers: {
           "Content-Type": "application/json"
         },
@@ -281,39 +281,13 @@ export default function RaceJackpot({ isHome, potNumber }) {
           {jackpot && jackpot.toFixed(4)} $SOL
         </Text>
         <Row>
-        <Text fontSize="24px" fontWeight="bold" color={`rgba(80, 227, 194, 1)`}>
-          +
-        </Text>
-        <Row>
-        <HomeNftImage src="https://www.arweave.net/I7XNk-SLMc7YLcQXeelIB5zyi2WyD6SJuimv8Rh6Lv0?ext=png" />
-        <HomeNftImage src="https://www.arweave.net/Ss2_twru6J9K3n--8H3SzIdyMDnOWXpnPhg1gAqrQqM?ext=png" />
-        <HomeNftImage src="https://www.arweave.net/3rB1JeNwu4zkh3id6x5VOC4l-UmSaIgoi9yb5hZI9LM?ext=png" />
-        </Row>
-        <Row>
-        <HomeNftImage src="https://www.arweave.net/RyBqBJCDo3CrK4seWnJxl9HGseg2InMHGk8g7WnuASE?ext=png" />
-        <HomeNftImage src="https://www.arweave.net/zxkVX9gPPtpZYKg8O-sgde74G1eyXdOv42GZWG0IUNU?ext=png" />
-        </Row>
-        </Row>
+                </Row>
       </Column>
     );
   }
 
   return (
     <Column>
-        <Text fontSize="56px" fontWeight="bold" color={'#fff'}>
-          Current pot Prize:
-        </Text>
-        <Space width={20} />
-        <Row>
-          <NftImage src="https://www.arweave.net/I7XNk-SLMc7YLcQXeelIB5zyi2WyD6SJuimv8Rh6Lv0?ext=png" />
-          <NftImage src="https://www.arweave.net/Ss2_twru6J9K3n--8H3SzIdyMDnOWXpnPhg1gAqrQqM?ext=png" />
-          <NftImage src="https://www.arweave.net/3rB1JeNwu4zkh3id6x5VOC4l-UmSaIgoi9yb5hZI9LM?ext=png" />
-          <NftImage src="https://www.arweave.net/RyBqBJCDo3CrK4seWnJxl9HGseg2InMHGk8g7WnuASE?ext=png" />
-          <NftImage src="https://www.arweave.net/zxkVX9gPPtpZYKg8O-sgde74G1eyXdOv42GZWG0IUNU?ext=png" />
-        </Row>
-        <Text fontSize="56px" fontWeight="bold" color={`rgba(80, 227, 194, 1)`}>
-          +
-        </Text>
         <Row>
           <Text fontSize="24px" fontWeight="normal" color={`#fff`} paddingTop="15px">
             Race Jackpot:

@@ -117,7 +117,7 @@ export default function LiveBets() {
 
   useEffect(() => {
     const fetchTransactions = async () => {
-      const resp = await fetch("https://bip-gamextwo.herokuapp.com/api/v1/transaction/transactions", {
+      const resp = await fetch("http://localhost:3009/api/v1/transaction/transactions", {
         headers: {
           "Content-Type": "application/json"
         },
