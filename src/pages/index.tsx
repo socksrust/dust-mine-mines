@@ -160,7 +160,7 @@ export default function Coin() {
               animate={{ opacity: 1, y: 0 }}
               initial={{ opacity: 0, y: 20 }}
               exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.55, delay: 0.35 }}
+              transition={{ duration: 0.55 }}
             >
             <Text fontSize="48px" lineHeight={1} fontWeight="bold" color={'#fff'}>Need <span style={{ color: '#FFCB14' }}>$SOL</span> for next mint?</Text>
             <Text fontSize="48px" fontWeight="normal" color={'#fff'}>- Flip it</Text>
