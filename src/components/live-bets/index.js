@@ -132,9 +132,9 @@ export default function LiveBets() {
     fetchTransactions()
   }, [])
 
-  /*useEffect(() => {
+  useEffect(() => {
     const fetchTransactions = async () => {
-      const resp = await fetch("https://bip-gamex.herokuapp.com/api/v1/transaction/transactions", {
+      const resp = await fetch("https://coinflip-octo.herokuapp.com/api/v1/transaction/coinTransactions", {
         headers: {
           "Content-Type": "application/json"
         },
@@ -149,7 +149,7 @@ export default function LiveBets() {
     }
 
     fetchTransactions()
-  }, [])*/
+  }, [])
 
 
   return (
