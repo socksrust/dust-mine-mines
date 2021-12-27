@@ -1,15 +1,15 @@
-const title = 'Solbets';
+const title = 'CoinFlip';
 const description =
-  'Solbets is a game center based on Solana and powered by OctopusArt and SolanaDBS NFT communities';
+  'CoinFlip is a CoinFlip game based on Solana and powered by OctopusArt and SolanaDBS NFT communities';
 
 const SEO = {
   title,
   description,
-  canonical: 'https://solbets.io/',
+  canonical: 'https://coin.solbets.io/',
   openGraph: {
     type: 'website',
     locale: 'en_IE',
-    url: 'https://solbets.io/',
+    url: 'https://coin.solbets.io/',
     title,
     description,
     images: [
