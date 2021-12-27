@@ -3,6 +3,17 @@ p {
   font-family: 'Barlow' !important;
 }
 
+button:disabled {
+  opacity: 0.5 !important;
+  color: black !important;
+  font-weight: normal;
+}
+
+
+button:disabled > .chakra-button__spinner {
+  color: black !important;
+}
+
 .outcome {
   height: 200px;
   width: 200px;
