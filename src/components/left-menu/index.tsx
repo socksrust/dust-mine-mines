@@ -75,7 +75,7 @@ const options = [
 
 const LeftMenu: FC<LeftMenuProps> = () => {
   const { push } = useRouter();
-  const context = useContext(CurrencyContext)
+  const context = useContext(CurrencyContext) || 'SOL'
 
   return (
     <>
