@@ -33,6 +33,11 @@ const InnerWrapper = styled.div`
   height: 75vh;
   width: 100%;
   padding-top: 70px;
+  @media (max-width: 1250px) {
+    height: 100%;
+    flex-direction: column;
+    padding-bottom: 40px;
+  }
 `
 
 const RowCentered = styled.div`
@@ -166,7 +171,8 @@ export default function Coin() {
             <Text fontSize="14" fontWeight="bold" color={'#000'} style={{ whiteSpace: 'nowrap' }} >Buy an Octo</Text>
             </Button>
 
-             </motion.div>
+          </motion.div>
+          <Space height={20} />
           <motion.div
             animate={{ opacity: 1, y: 0 }}
             initial={{ opacity: 0, y: 20 }}
