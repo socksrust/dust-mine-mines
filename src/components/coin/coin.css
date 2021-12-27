@@ -24,7 +24,7 @@ p {
   font-weight: bold;
   line-height: .8;
   color: #fff;
-  box-shadow: 0 0 30px rgba(#fff, 1);
+  box-shadow: 0 14px 28px rgba(255,255,255,0.25), 0 10px 10px rgba(255,255,255,0.22);
 }
 
 .outcome::before {
