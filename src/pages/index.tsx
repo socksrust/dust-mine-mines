@@ -167,7 +167,7 @@ export default function Coin() {
             <Space height={30}/>
             <Text fontSize="24px" fontWeight="normal" color={'#fff'}>With 50/50 chances of winning and a 2% fee!! All fees are shared between Octopus Holders</Text>
             <Space height={30} />
-            <Button Button backgroundColor="#fff" borderRadius="2px" width="180px" height="56px" onClick={() => window.open('https://https://market.octopus.art/', '_ blank')}>
+            <Button Button backgroundColor="#fff" borderRadius="2px" width="180px" height="56px" onClick={() => window.open('https://market.octopus.art/', '_ blank')}>
             <Text fontSize="14" fontWeight="bold" color={'#000'} style={{ whiteSpace: 'nowrap' }} >Buy an Octo</Text>
             </Button>
 
