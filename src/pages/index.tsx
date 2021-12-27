@@ -178,18 +178,18 @@ export default function Coin() {
             initial={{ opacity: 0, y: 20 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.55 }}
-            style={{flex: 2, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: '#FFCB14', padding: 40, borderRadius: 4}}
+            style={{flex: 2, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(255, 255, 255, 0.03)', padding: 40, borderRadius: 4}}
           >
               <CoinComponent isFlipped={isFlipped} isFlipping={isFlipping} textContent={textContent} diceValue={diceValue} />
               <RowCentered>
-                <Text fontSize="36px" fontWeight="bold" color={!isEven ? '#070B17' : 'rgba(255, 255, 255, 0.5)'}>TAILS</Text>
+                <Text fontSize="36px" fontWeight="bold" color={!isEven ? '#fff' : 'rgba(255, 255, 255, 0.5)'}>TAILS</Text>
                 <Space width={10} />
                 <Switch size="lg" isChecked={isEven} value={isEven ? 'isEven' : 'isOdd'} onChange={(e) => setEven(e.target.value !== 'isEven')} />
                 <Space width={10} />
-                <Text fontSize="36px" fontWeight="bold" color={isEven ? '#070B17' : 'rgba(255, 255, 255, 0.5)'}>HEADS</Text>
+                <Text fontSize="36px" fontWeight="bold" color={isEven ? '#fff' : 'rgba(255, 255, 255, 0.5)'}>HEADS</Text>
                 <Space width={50} />
                 <Checkbox size='lg' colorScheme='green' onChange={(e) => setChecked(e.target.checked)} isChecked={isChecked}>
-                  <Text fontSize="24px" fontWeight="medium" color={'#000'}>Auto</Text>
+                  <Text fontSize="24px" fontWeight="medium" color={'#fff'}>Auto</Text>
                 </Checkbox>
                 <Space width={15} />
               </RowCentered>
