@@ -46,7 +46,7 @@ export const Button: React.FC<IButtonProps> = ({
     <Base
       {...props}
       bg={background}
-      borderRadius="2rem"
+      borderRadius="4px"
       padding={sizes.padding}
       color={isOutline || isGhost ? 'white' : 'black'}
       fontFamily="Inter"
@@ -56,12 +56,12 @@ export const Button: React.FC<IButtonProps> = ({
       fontWeight="600"
       _hover={{
         transform: 'scale(1.1)',
-        background: '#1B193F',
+        background: '#151990',
         color: 'white',
       }}
       _active={{
         transform: 'scale(1)',
-        background: '#1B193F',
+        background: '#151990',
         color: 'black',
       }}
     />

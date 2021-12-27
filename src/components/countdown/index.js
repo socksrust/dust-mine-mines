@@ -110,18 +110,18 @@ const CountDown = ({ countDownDate, firstPlacePoints, setPotNumber, potNumber })
 				<ModalContent>
 					<ModalCloseButton color="#000" />
 					<ModalHeader>
-						<Text fontSize="24px" fontWeight="bold" color="#02011F">
+						<Text fontSize="24px" fontWeight="bold" color="#151990">
 							Race rules:
 						</Text>
 					</ModalHeader>
 					<ModalBody paddingTop="0px">
-						<Text fontSize="16px" fontWeight="normal" color="#02011F">
+						<Text fontSize="16px" fontWeight="normal" color="#151990">
 						The bet you place is multiplied by the multiplier. With each passing minute the multiplier decreases. So you need to place a higher bet to get more points. Every 24 hours the multiplier is reset and goes back to maximum. 
 
 						</Text>
 						<Space height={20} />
 
-						<Text fontSize="16px" fontWeight="normal" color="#02011F">
+						<Text fontSize="16px" fontWeight="normal" color="#151990">
 							That is, the higher the multiplier the more points you can score. And the top 3 places receive the jackpot value. So it's just a matter of math and tracking. The more points you have, the greater chance of winning.
 						</Text>
 					</ModalBody>

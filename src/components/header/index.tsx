@@ -1,8 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { Image } from '@chakra-ui/react';
+import { Text } from '@chakra-ui/react';
 import { Flex } from '@chakra-ui/layout';
-import { Button } from '../button';
 import { ConnectWallet } from '../button/connectWallet';
 import { motion } from 'framer-motion';
 import { useScrollFramer } from '../../hooks/useScrollFramer';
@@ -48,12 +47,13 @@ const Header: FC<HeaderProps> = () => {
             alignItems="center"
             style={window.innerWidth <= 800 ? { overflow: 'scroll'} : {zIndex: 9,}}
           >
-            <Image
+            <div
               cursor="pointer"
               onClick={() => push('/')}
-              src="/images/lofos.png"
               width="120px"
-            />
+            >
+              <Text color="#ffff" fontSize="24px" fontWeight="bold">Octo Flip</Text>
+              </div>
             <Space width={30} height={20}/>
             <Flex
               direction="row"

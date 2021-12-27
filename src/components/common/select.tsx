@@ -9,18 +9,18 @@ const Select = (props) => {
     styles={{
       option: (provided, state) => ({
         ...provided,
-        color: 'white',
-        backgroundColor: '#1B193F',
+        color: '#151990',
+        backgroundColor: '#fff',
         zIndex: 9999,
       }),
       indicatorSeparator: (provided) => ({
         ...provided,
-        backgroundColor: '#1B193F',
+        backgroundColor: '#fff',
       }),
       menu: (provided) => ({
         ...provided,
-        backgroundColor: '#1B193F',
-        color: 'white',
+        backgroundColor: '#fff',
+        color: '#151990',
         zIndex: 9999,
       }),
       menuPortal: (provided) => ({
@@ -30,11 +30,11 @@ const Select = (props) => {
       control: (provided) => ({
         // none of react-select's styles are passed to <Control />
         ...provided,
-        background: '#1B193F',
+        background: '#fff',
         borderRadius: '4px',
         borderWidth: 1,
         width: 170,
-        color: 'white',
+        color: '#151990',
       }),
       listBox: (provided) => ({
         // none of react-select's styles are passed to <Control />
@@ -44,7 +44,7 @@ const Select = (props) => {
       singleValue: (provided, state) => {
         const opacity = state.isDisabled ? 0.5 : 1;
         const transition = 'opacity 300ms';
-        return { ...provided, color: 'white', opacity, transition };
+        return { ...provided, color: '#151990', opacity, transition };
       },
     }} />
   );

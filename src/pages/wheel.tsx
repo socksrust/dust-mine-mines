@@ -25,7 +25,7 @@ import styled from '@emotion/styled'
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: #02011F;
+  background-color: #151990;
   flex: 1;
 `
 

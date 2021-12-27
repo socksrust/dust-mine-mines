@@ -18,6 +18,10 @@ export default class Document extends NextDocument {
             rel="stylesheet"
           />
           <link
+            href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;700&display=swap"
+            rel="stylesheet"
+          />
+          <link
             href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap"
             rel="stylesheet"
           />

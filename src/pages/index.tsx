@@ -1,142 +1,200 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Layout } from '../components/common/layout';
-import { useRouter } from 'next/router';
-import LiveBets from '../components/live-bets/index'
-import { Button } from '../components/button';
-import Space from '../components/common/space';
+import { Switch, Modal, ModalOverlay, useDisclosure, Checkbox, Button } from '@chakra-ui/react';
 import { motion } from "framer-motion";
-import RaceJackpot from '../components/race-jackpot'
+import { useAnchorWallet, useWallet, useConnection } from '@solana/wallet-adapter-react';
+import CoinComponent from '../components/coin/index'
+import {CurrencyContext} from './_app';
+import { sendCurrencyToTreasure, renderButtons } from '../utils/solana'
+import Space from '../components/common/space'
+import LiveBets from '../components/live-bets/index'
 
-import * as anchor from '@project-serum/anchor';
-import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
 import {
   Text,
+  useToast,
 } from '@chakra-ui/react';
 import styled from '@emotion/styled'
 
-const treasury = process.env.NEXT_PUBLIC_TREASURY_ADDRESS
-  ? new anchor.web3.PublicKey(process.env.NEXT_PUBLIC_TREASURY_ADDRESS!)
-  : null;
-
-const config = process.env.NEXT_PUBLIC_CANDY_MACHINE_CONFIG
-  ? new anchor.web3.PublicKey(process.env.NEXT_PUBLIC_CANDY_MACHINE_CONFIG!)
-  : null;
-
-const candyMachineId = process.env.NEXT_PUBLIC_CANDY_MACHINE_ID
-  ? new anchor.web3.PublicKey(process.env.NEXT_PUBLIC_CANDY_MACHINE_ID!)
-  : null;
-
-const network = process.env.NEXT_PUBLIC_SOLANA_NETWORK as WalletAdapterNetwork;
-
-const rpcHost = process.env.NEXT_PUBLIC_SOLANA_RPC_HOST!;
-const connection = new anchor.web3.Connection(rpcHost);
-
-const startDateSeed = parseInt(process.env.NEXT_PUBLIC_CANDY_START_DATE!, 10);
-
-const txTimeout = 30000;
-
-
 const Wrapper = styled.div`
   display: flex;
-  flex-direction: row;
-  background-color:#02011F;
-  flex: 1;
-  justify-content: space-around;
-  padding: 20px 10px;
-  overflow: hidden;
-  padding-top: 50px;
-  @media only screen and (max-width: 800px) {
-    height: calc(100%);
-    flex-direction: column;
-    padding: 0px;
-    width: 100vw;
-  }
-`
-
-
-const LeftWrapper = styled.div`
-  display: flex;
-  flex: 1;
   flex-direction: column;
-  padding-top: 20px;
-  padding-right: 20px;
-  @media only screen and (max-width: 800px) {
-    padding: 0px !important;
-  }
-`
-
-const RightWrapper = styled.div`
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  padding-left: 20px;
   align-items: center;
-  @media only screen and (max-width: 800px) {
-    padding: 0px;
-    display: none;
-  }
+  flex: 1;
+  height: 100%;
+  padding-right: 90px;
 `
 
 
-const Image = styled.img`
-  width: 600px;
-  height: 400px;
-  position: absolute;
-  bottom: 0px;
-  right: 0px;
-  z-index: 2;
-  @media only screen and (max-width: 800px) {
-    z-index: 0;
-  }
+const InnerWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  height: 75vh;
+  width: 100%;
+  padding-top: 70px;
+`
+
+const RowCentered = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 400px;
+  padding: 30px 0px;
 `
 
 
-export default function Index() {
-  const [see, setSee] = useState(true);
-  const [holders, setHolders] = useState('');
-  const ref = useRef<HTMLDivElement>(null);
-  const { push } = useRouter();
+export default function Coin() {
+  const [isEven, setEven] = useState(false)
+  const [isLoading, setLoading] = useState(false)
+  const [isFlipping, setFlipping] = useState(false)
+  const [isFlipped, setFlipped] = useState(false)
+  const [inputValue, setValue] = useState()
+  const [isChecked, setChecked] = useState(false)
+  const [textContent, setTextContent] = useState("Head");
+  const [diceValue, setDiceValue] = useState(0); // integer state
+  const context = useContext(CurrencyContext)
+
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const toast = useToast();
+  const fromWallet = useAnchorWallet();
+  const { sendTransaction, publicKey } = useWallet();
+  const { connection } = useConnection();
+
+  const flip = ({ parsedResult, betValue }: any) => {
+    setTextContent('')
+    setFlipping(true);
+    setFlipped(!isFlipped);
+    setTimeout(() => {
+      setFlipping(false)
+      if(parsedResult?.data?.won) {
+
+        //isEven ? 2, 4, 6 : 1, 3, 5;
+        const realResult = isEven ? 'Head' : 'Tails';
+
+
+        setTextContent(realResult);
+        const winValue = betValue * 2;
+
+        toast({
+          title: `Yayyyy!!`,
+          description: `You got $${(winValue).toFixed(2)} back! They will be transferred in less than a minute! Keep going!!`,
+          status: 'info',
+          duration: 15000,
+          isClosable: true,
+          position: 'bottom-right',
+          variant: 'solid'
+        });
+      } else {
+        const realResult = !isEven ? 'Head' : 'Tails';
+
+        //isEven ? 1, 3, 5 : 2, 4, 6 ;
+        setTextContent(realResult);
+        toast({
+          title: `Ops.`,
+          description: 'Not your lucky play, try again',
+          status: 'warning',
+          duration: 15000,
+          isClosable: true,
+          position: 'bottom-right',
+          variant: 'solid'
+        });
+
+      }
+    }, 1000);
+  }
 
   if (typeof window === 'undefined') return <></>;
-  if (!see) return <></>;
 
-  const scrollToSection = () => {
-    window.scrollTo({
-      top: (ref.current?.getBoundingClientRect().top || 0) - 200,
-      behavior: 'smooth',
-    });
-  };
+
+  const bet = async (betValue: number, mintAddress: string, toTokenAccountAddress: string) => {
+    if(!fromWallet) {
+      toast({
+        title: `Error`,
+        description: 'You must connect your wallet before',
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+        position: 'top-right',
+        variant: 'solid'
+      });
+      return;
+    }
+
+    //forceUpdate
+    setDiceValue(diceValue + 1)
+    setLoading(true);
+
+
+    //START
+    const parsedResult = await sendCurrencyToTreasure({ fromWallet, toast, toTokenAccountAddress, mintAddress, betValue, sendTransaction, connection, endpoint: 'coinBet', publicKey })
+    //END
+
+
+    setLoading(false);
+    onClose();
+    flip({ parsedResult, betValue })
+
+    if(isChecked) {
+      await bet(betValue, mintAddress, toTokenAccountAddress);
+    }
+
+  }
+
+
 
 
   return (
     <Layout>
       <Wrapper>
-        <LeftWrapper>
-        <motion.div
+        <InnerWrapper>
+
+          <motion.div
+              style={{display: 'flex', flex: 3, flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', paddingRight: 20}}
+              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.55, delay: 0.35 }}
+            >
+            <Text fontSize="48px" lineHeight={1} fontWeight="bold" color={'#fff'}>Need $SOL for next mint?</Text>
+            <Text fontSize="48px" fontWeight="normal" color={'#fff'}>- Flip it</Text>
+            <Space height={30}/>
+            <Text fontSize="24px" fontWeight="normal" color={'#fff'}>With 50/50 chances of winning and a 2% fee!! All fees are shared between Octopus Holders</Text>
+            <Space height={30} />
+            <Button Button backgroundColor="#fff" borderRadius="2px" width="180px" height="56px" onClick={() => window.open('https://https://market.octopus.art/', '_ blank')}>
+            <Text fontSize="14" fontWeight="bold" color={'#000'} style={{ whiteSpace: 'nowrap' }} >Buy an Octo</Text>
+            </Button>
+
+             </motion.div>
+          <motion.div
             animate={{ opacity: 1, y: 0 }}
             initial={{ opacity: 0, y: 20 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.55 }}
+            style={{flex: 2, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff', padding: 40, borderRadius: 4}}
           >
-        <Text fontSize="55px" lineHeight="70px" fontWeight="medium">Solbets is the future of Solana gaming</Text>
-        <Space height={30}/>
-        <Text fontSize="16px" cursor="pointer" color="rgba(255, 255, 255, 0.6)">Solbets allow you to play a huge variety of games with $SOL, $USDC, $BIP and other Solana ecosystem coins</Text>
-        <Space height={15}/>
-        <Text fontSize="16px" cursor="pointer" color="rgba(255, 255, 255, 0.6)">We're 100% transparent and fair, click below to access our public data dashboard!</Text>
-        <Space height={30}/>
+              <CoinComponent isFlipped={isFlipped} isFlipping={isFlipping} textContent={textContent} diceValue={diceValue} />
+              <RowCentered>
+                <Text fontSize="48px" fontWeight="bold" color={!isEven ? '#22247C' : '#D5D4E7'}>Tails</Text>
+                <Space width={10} />
+                <Switch size="lg" isChecked={isEven} value={isEven ? 'isEven' : 'isOdd'} onChange={(e) => setEven(e.target.value !== 'isEven')} />
+                <Space width={10} />
+                <Text fontSize="48px" fontWeight="bold" color={isEven ? '#22247C' : '#D5D4E7'}>Head</Text>
+                <Space width={50} />
+                <Checkbox size='lg' colorScheme='green' onChange={(e) => setChecked(e.target.checked)} isChecked={isChecked}>
+                  <Text fontSize="24px" fontWeight="medium" color={'#000'}>Auto</Text>
+                </Checkbox>
+                <Space width={15} />
+              </RowCentered>
+              {renderButtons(context.value, false, bet, inputValue, setValue, isLoading, onOpen)}
 
-        <Button width="180px" backgroundColor="#fff"  onClick={() => window.open('https://charts.mongodb.com/charts-casi-mhqkh/public/dashboards/61b0ccb6-87e0-45a6-85f5-7b6cd1945cf6', '_ blank')}>
-          Visit data Dashboard
-        </Button>
-        </motion.div>
-
-        </LeftWrapper>
-        <RightWrapper>
-          <RaceJackpot isHome />
-          <Space height={40} />
+            </motion.div>
+          </InnerWrapper>
+          <Space height={20} />
           <LiveBets />
-          <Image src="/images/waves.png" />
-        </RightWrapper>
+          <Space height={10} />
+
       </Wrapper>
     </Layout>
   );

@@ -1,14 +1,14 @@
 import { extendTheme } from '@chakra-ui/react';
 import { createBreakpoints } from '@chakra-ui/theme-tools';
 
-const fonts = { mono: `'Menlo', monospace` };
+const fonts = { mono: `'Barlow', Barlow` };
 
 const colors = {
   green: '#ABFC4F',
   linearGradient:
     'linear-gradient(180deg, rgba(136, 255, 0, 0.5) 0%, rgba(149, 242, 43, 0) 100%);',
   white: '#FFFFFF',
-  black: '#02011F',
+  black: '#151990',
   grey: '#8A898B',
   textGradient: 'linear-gradient(95.34deg, #ABFC4F 2.47%, #FFFFFF 82.15%)',
 };

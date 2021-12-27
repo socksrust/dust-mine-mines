@@ -46,9 +46,11 @@ const TransactionWrapper = styled.div`
   display: flex;
   flex-direction: row;
   flex: 1;
-  background-color: ${p => p.isOutline ? '#0202204f' : 'transparent'};
+  background-color: ${p => p.isOutline ? '#fff' : '#ffffff'};
   margin-top: 3px;
   padding: 14px 0px;
+  border-bottom-width: 0.4px;
+  border-bottom-color: rgba(0,0,0,0.1);
 `
 
 const GameWrappper = styled.div`
@@ -57,9 +59,10 @@ const GameWrappper = styled.div`
   flex: 1;
   align-items: center;
   justify-content: center;
-  color: rgba(135, 134, 171, 0.8);
+  color: #151990;
   font-weight: medium;
-  font-size: 18px;
+  font-size: 24px;
+  
 `
 
 const BetvaueWrappper = styled.div`
@@ -68,9 +71,11 @@ const BetvaueWrappper = styled.div`
   flex: 1;
   align-items: center;
   justify-content: center;
-  color: rgba(135, 134, 171, 0.8);
+  color: #151990;
   font-weight: medium;
-  font-size: 18px;
+  font-size: 24px;
+  
+
 `
 
 const CreatedWrappper = styled.div`
@@ -79,21 +84,22 @@ const CreatedWrappper = styled.div`
   flex: 1;
   align-items: center;
   justify-content: center;
-  color: rgba(135, 134, 171, 0.8);
+  color: #151990;
   font-weight: medium;
-  font-size: 18px;
+  font-size: 24px;
+  
 `
 
 const Transaction = ({betValue, createdAt, won, game, isOutline, currency}) => (
   <TransactionWrapper isOutline={isOutline}>
     <GameWrappper>
-      <Text fontSize="16px" >{game}</Text>
+      <Text fontWeight="normal" fontSize="20px" >{game}</Text>
     </GameWrappper>
     <BetvaueWrappper>
-      <Text fontSize="16px" color="rgba(80, 227, 194, 1)">{betValue} ${currency}</Text>
+      <Text fontWeight="normal" fontSize="20px" color={won ? '#00E676' : '#F44336'}>{betValue} ${currency}</Text>
     </BetvaueWrappper>
     <CreatedWrappper>
-      <Text fontSize="16px" >{timeSince(createdAt)} ago</Text>
+      <Text fontWeight="normal" fontSize="20px" >{timeSince(createdAt)} ago</Text>
     </CreatedWrappper>
   </TransactionWrapper>
 )
@@ -102,12 +108,9 @@ const Transaction = ({betValue, createdAt, won, game, isOutline, currency}) => (
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  background: linear-gradient(210.96deg, rgba(36, 33, 81, 0.74) 0.01%, rgba(38, 35, 83, 0.78) 42.05%, rgba(47, 45, 97, 0.51) 104.81%);
-  box-shadow: -23.609px 48.8461px 73.2692px rgba(23, 18, 43, 0.55);
-  backdrop-filter: blur(20px);
-  border-radius: 15px;
-  width: 450px;
-  height: 450px;
+  background: #fff;
+  border-radius: 4px;
+  width: 100%;
   overflow: scroll;
   z-index: 3;
 `
@@ -117,7 +120,7 @@ export default function LiveBets() {
 
   useEffect(() => {
     const fetchTransactions = async () => {
-      const resp = await fetch("http://localhost:3009/api/v1/transaction/transactions", {
+      const resp = await fetch("http://localhost:3009/api/v1/transaction/coinTransactions", {
         headers: {
           "Content-Type": "application/json"
         },
@@ -153,8 +156,7 @@ export default function LiveBets() {
 
   return (
       <Wrapper>
-        <Text fontSize="18px" color="rgba(177, 175, 205, 1)" fontWeight="normal" padding="20px">LIVE BETS</Text>
-        <Row>
+        <Row style={{ paddingTop: 20 } }>
           <GameWrappper>
             Game
           </GameWrappper>

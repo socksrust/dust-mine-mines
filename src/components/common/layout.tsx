@@ -9,10 +9,9 @@ import styled from '@emotion/styled'
 const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
-  background-color: #02011F;
+  background-color: #151990;
   flex: 1;
   padding: 0px 100px;
-  height: calc(100% - 150px);
   @media only screen and (max-width: 800px) {
     width: 100vw;
     padding: 0px 10px;
