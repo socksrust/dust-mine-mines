@@ -52,7 +52,7 @@ const Header: FC<HeaderProps> = () => {
               onClick={() => push('/')}
               width="120px"
             >
-              <Text color="#ffff" fontSize="24px" fontWeight="bold">Octo Flip</Text>
+              <Text color="#ffff" fontSize="36px" fontWeight="bold">SOL Flip</Text>
               </div>
             <Space width={30} height={20}/>
             <Flex

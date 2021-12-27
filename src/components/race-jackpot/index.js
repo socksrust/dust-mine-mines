@@ -232,8 +232,8 @@ export default function RaceJackpot({ isHome, potNumber }) {
 
   useEffect(() => {
     const fetchTransactions = async () => {
-      const resp = await fetch("https://coinflip-octo.herokuapp.com//api/v1/transaction/raceJackpot", {
-      //const resp = await fetch(`https://coinflip-octo.herokuapp.com//api/v1/transaction/raceJackpot`, {
+      const resp = await fetch("https://coinflip-octo.herokuapp.com/api/v1/transaction/raceJackpot", {
+      //const resp = await fetch(`https://coinflip-octo.herokuapp.com/api/v1/transaction/raceJackpot`, {
         headers: {
           "Content-Type": "application/json"
         },
@@ -249,8 +249,8 @@ export default function RaceJackpot({ isHome, potNumber }) {
 
   useEffect(() => {
     const fetchTransactions = async () => {
-      const resp = await fetch("https://coinflip-octo.herokuapp.com//api/v1/transaction/raceJackpot", {
-      //const resp = await fetch(`https://coinflip-octo.herokuapp.com//api/v1/transaction/raceJackpot`, {
+      const resp = await fetch("https://coinflip-octo.herokuapp.com/api/v1/transaction/raceJackpot", {
+      //const resp = await fetch(`https://coinflip-octo.herokuapp.com/api/v1/transaction/raceJackpot`, {
         headers: {
           "Content-Type": "application/json"
         },

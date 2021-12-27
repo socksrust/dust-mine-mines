@@ -118,7 +118,7 @@ export default function LiveBets() {
 
   useEffect(() => {
     const fetchTransactions = async () => {
-      const resp = await fetch("https://coinflip-octo.herokuapp.com//api/v1/transaction/coinTransactions", {
+      const resp = await fetch("https://coinflip-octo.herokuapp.com/api/v1/transaction/coinTransactions", {
         headers: {
           "Content-Type": "application/json"
         },
