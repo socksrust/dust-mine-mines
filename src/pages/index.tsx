@@ -57,7 +57,7 @@ export default function Coin() {
   const [isFlipped, setFlipped] = useState(false)
   const [inputValue, setValue] = useState()
   const [isChecked, setChecked] = useState(false)
-  const [textContent, setTextContent] = useState("Head");
+  const [textContent, setTextContent] = useState("HEADS");
   const [diceValue, setDiceValue] = useState(0); // integer state
   const context = useContext(CurrencyContext)
 
@@ -76,7 +76,7 @@ export default function Coin() {
       if(parsedResult?.data?.won) {
 
         //isEven ? 2, 4, 6 : 1, 3, 5;
-        const realResult = isEven ? 'Head' : 'Tails';
+        const realResult = isEven ? 'HEADS' : 'TAILS';
 
 
         setTextContent(realResult);
@@ -92,7 +92,7 @@ export default function Coin() {
           variant: 'solid'
         });
       } else {
-        const realResult = !isEven ? 'Head' : 'Tails';
+        const realResult = !isEven ? 'HEADS' : 'TAILS';
 
         //isEven ? 1, 3, 5 : 2, 4, 6 ;
         setTextContent(realResult);
@@ -182,11 +182,11 @@ export default function Coin() {
           >
               <CoinComponent isFlipped={isFlipped} isFlipping={isFlipping} textContent={textContent} diceValue={diceValue} />
               <RowCentered>
-                <Text fontSize="48px" fontWeight="bold" color={!isEven ? '#070B17' : 'rgba(255, 255, 255, 0.5)'}>Tails</Text>
+                <Text fontSize="36px" fontWeight="bold" color={!isEven ? '#070B17' : 'rgba(255, 255, 255, 0.5)'}>TAILS</Text>
                 <Space width={10} />
                 <Switch size="lg" isChecked={isEven} value={isEven ? 'isEven' : 'isOdd'} onChange={(e) => setEven(e.target.value !== 'isEven')} />
                 <Space width={10} />
-                <Text fontSize="48px" fontWeight="bold" color={isEven ? '#070B17' : 'rgba(255, 255, 255, 0.5)'}>Head</Text>
+                <Text fontSize="36px" fontWeight="bold" color={isEven ? '#070B17' : 'rgba(255, 255, 255, 0.5)'}>HEADS</Text>
                 <Space width={50} />
                 <Checkbox size='lg' colorScheme='green' onChange={(e) => setChecked(e.target.checked)} isChecked={isChecked}>
                   <Text fontSize="24px" fontWeight="medium" color={'#000'}>Auto</Text>
