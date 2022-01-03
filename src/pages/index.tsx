@@ -226,7 +226,7 @@ export default function Coin() {
             <Space height={30} />
             <Text fontSize="24px" fontWeight="normal" color={'#fff'}>If you hold more than 100 $BETS you get a 100% fee discount</Text>
             <Space height={10} />
-            <Button Button backgroundColor="#fff" borderRadius="2rem" width="120px" height="36px" onClick={() => window.open('https://market.octopus.art/', '_ blank')}>
+            <Button Button backgroundColor="#fff" borderRadius="2rem" width="120px" height="36px" onClick={() => window.open('https://trade.dexlab.space/#/market/CqXVEdWpRMR4fM13nSMo3g3nYUv512cZLYZqb77XQZJe', '_ blank')}>
               <Text fontSize="14" fontWeight="bold" color={'#000'} style={{ whiteSpace: 'nowrap' }} >Buy $BETS</Text>
             </Button>
             <Space height={30} />
