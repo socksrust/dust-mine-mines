@@ -145,7 +145,7 @@ export const renderButtons = (value: any, modal: any, bet, inputValue, setValue,
       currency = 'BETS';
       firstBetValue = 1;
       secondBetValue = 3;
-      secondBetValue = 50;
+      thirdBetValue = 50;
       maxBetValue = 1001;
       toTokenAccountAddress = BETS_TOKEN_ACCOUNT;
       break;
