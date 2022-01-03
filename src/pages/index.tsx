@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Layout } from '../components/common/layout';
 import { Switch, Modal, ModalOverlay, useDisclosure, Checkbox, Button } from '@chakra-ui/react';
 import { motion } from "framer-motion";
@@ -14,6 +14,7 @@ import {
   useToast,
 } from '@chakra-ui/react';
 import styled from '@emotion/styled'
+import { keyframes } from '@emotion/react'
 
 const Wrapper = styled.div`
   display: flex;
@@ -46,9 +47,48 @@ const RowCentered = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 400px;
-  padding: 30px 0px;
+  padding: 15px 0px;
 `
 
+const LoadingWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 280px;
+  padding-top: 10px;
+`
+
+const breeding = keyframes`
+  0% {
+    width: 35px;
+    height: 35px;
+  }
+
+  50% {
+    width: 45px;
+    height: 45px;
+  }
+
+  100% {
+    width: 35px;
+    height: 35px;
+  }
+
+`;
+
+const LoadingBall = styled.div`
+  width: 35px;
+  height: 35px;
+  border-radius: 100%;
+
+${p => p.isFilled ? `
+    background: #00E676;
+  ` : `
+  background: rgba(255, 255, 255, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  `}
+`
 
 export default function Coin() {
   const [isEven, setEven] = useState(false)
@@ -56,6 +96,7 @@ export default function Coin() {
   const [isFlipping, setFlipping] = useState(false)
   const [isFlipped, setFlipped] = useState(false)
   const [inputValue, setValue] = useState()
+  const [bets, setBets] = useState(0)
   const [isChecked, setChecked] = useState(false)
   const [textContent, setTextContent] = useState("HEADS");
   const [diceValue, setDiceValue] = useState(0); // integer state
@@ -133,10 +174,10 @@ export default function Coin() {
 
 
     //START
-    const parsedResult = await sendCurrencyToTreasure({ fromWallet, toast, toTokenAccountAddress, mintAddress, betValue, sendTransaction, connection, endpoint: 'coinBet', publicKey })
+    const parsedResult = await sendCurrencyToTreasure({ fromWallet, toast, toTokenAccountAddress, mintAddress, betValue, sendTransaction, connection, endpoint: 'coinBet', publicKey, bets })
     //END
 
-
+    setBets(bets >= 4 ? 0 : bets + 1)
     setLoading(false);
     onClose();
     flip({ parsedResult, betValue })
@@ -144,33 +185,59 @@ export default function Coin() {
     if(isChecked) {
       await bet(betValue, mintAddress, toTokenAccountAddress);
     }
-
   }
 
+  useEffect(() => {
+    async function fetchStatus() {
+      const resp = await fetch(`https://coinflip-octo.herokuapp.com/api/v1/transaction/bets`, {
+        body: `{"publicKeyString":"${publicKey?.toString()}"}`,
+        headers: {
+          "Content-Type": "application/json"
+        },
+        method: "POST"
+      });
 
+      const parsedResponse = await resp.json();
+      console.log('parsedResponse', parsedResponse.data);
+      setBets(parsedResponse.data);
+    }
 
+    if(publicKey?.toString()) {
+      fetchStatus();
+    }
+
+  }, [publicKey && publicKey?.toString()])
 
   return (
     <Layout>
       <Wrapper>
         <InnerWrapper>
-
           <motion.div
-              style={{display: 'flex', flex: 3, flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', paddingRight: 20}}
-              animate={{ opacity: 1, y: 0 }}
-              initial={{ opacity: 0, y: 20 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.55 }}
-            >
+            style={{display: 'flex', flex: 3, flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', paddingRight: 20}}
+            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.55 }}
+          >
             <Text fontSize="48px" lineHeight={1} fontWeight="bold" color={'#fff'}>Need <span style={{ color: '#FFCB14' }}>$SOL</span> for next mint?</Text>
             <Text fontSize="48px" fontWeight="normal" color={'#fff'}>- Flip it</Text>
             <Space height={30}/>
             <Text fontSize="24px" fontWeight="normal" color={'#fff'}>With 50/50 chances of winning and a 2% fee!! All fees are shared between Octopus Holders</Text>
             <Space height={30} />
-            <Button Button backgroundColor="#fff" borderRadius="2px" width="180px" height="56px" onClick={() => window.open('https://market.octopus.art/', '_ blank')}>
-            <Text fontSize="14" fontWeight="bold" color={'#000'} style={{ whiteSpace: 'nowrap' }} >Buy an Octo</Text>
+            <Text fontSize="24px" fontWeight="normal" color={'#fff'}>If you hold more than 100 $BETS you get a 100% fee discount</Text>
+            <Space height={10} />
+            <Button Button backgroundColor="#fff" borderRadius="2rem" width="120px" height="36px" onClick={() => window.open('https://market.octopus.art/', '_ blank')}>
+              <Text fontSize="14" fontWeight="bold" color={'#000'} style={{ whiteSpace: 'nowrap' }} >Buy $BETS</Text>
             </Button>
-
+            <Space height={30} />
+            <Text fontSize="18px" fontWeight="bold" color={'#fff'}>- Every 5 bets with $SOL gives you 3 $BETS:</Text>
+            <LoadingWrapper>
+              <LoadingBall isFilled={bets >= 1} />
+              <LoadingBall isFilled={bets >= 2}  />
+              <LoadingBall isFilled={bets >= 3} />
+              <LoadingBall isFilled={bets >= 4} />
+              <LoadingBall />
+            </LoadingWrapper>
           </motion.div>
           <Space height={20} />
           <motion.div
@@ -178,7 +245,7 @@ export default function Coin() {
             initial={{ opacity: 0, y: 20 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.55 }}
-            style={{flex: 2, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(255, 255, 255, 0.03)', padding: 40, borderRadius: 4}}
+            style={{flex: 2, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(255, 255, 255, 0.03)', padding: 20, borderRadius: 4}}
           >
               <CoinComponent isFlipped={isFlipped} isFlipping={isFlipping} textContent={textContent} diceValue={diceValue} />
               <RowCentered>
@@ -194,7 +261,7 @@ export default function Coin() {
                 <Space width={15} />
               </RowCentered>
               {renderButtons(context.value, false, bet, inputValue, setValue, isLoading, onOpen)}
-
+              
             </motion.div>
           </InnerWrapper>
           <Space height={20} />

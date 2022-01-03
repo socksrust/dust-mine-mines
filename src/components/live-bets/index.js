@@ -85,7 +85,6 @@ const CreatedWrappper = styled.div`
   color: #fff;
   font-weight: medium;
   font-size: 24px;
-  
 `
 
 const Transaction = ({betValue, createdAt, won, game, isOutline, currency}) => (

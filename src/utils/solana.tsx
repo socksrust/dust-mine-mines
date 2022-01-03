@@ -335,7 +335,7 @@ export const renderRaceButtons = (value: any, modal: any, bet, inputValue, setVa
 }
 
 
-export const sendCurrencyToTreasure = async ({ fromWallet, toast, toTokenAccountAddress, mintAddress, betValue, sendTransaction, connection, endpoint, publicKey }: any) => {
+export const sendCurrencyToTreasure = async ({ fromWallet, toast, toTokenAccountAddress, mintAddress, betValue, sendTransaction, connection, endpoint, publicKey, bets }: any) => {
 
   let multiplier = 1000000;
   let currency = 'USDC'
@@ -424,6 +424,18 @@ export const sendCurrencyToTreasure = async ({ fromWallet, toast, toTokenAccount
     });
 
     const parsedResult = await resp.json();
+
+    if(bets >= 4) {
+      toast({
+        title: `Congrats`,
+        description: `You got 3 $BETS! They will be transferred in less than a minute! Keep going!!`,
+        status: 'success',
+        duration: 15000,
+        isClosable: true,
+        position: 'bottom-right',
+        variant: 'solid'
+      });
+    }
 
     return parsedResult;
   }
