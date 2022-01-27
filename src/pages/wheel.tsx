@@ -10,7 +10,7 @@ import {CurrencyContext} from './_app';
 import Space from '../components/common/space'
 
 const MASTER_PK = 'B8e4g2SP7AC9SqQXPChEEmduhwBuZ8MTMb5xEGUchU2t';
-const connect = new web3.Connection('https://shy-young-star.solana-mainnet.quiknode.pro/15da04862cfdb5234bc0fcc29ef0f85ec6dd5531/');
+const connect = new web3.Connection('https://api.mainnet-beta.solana.com');
 const TOKEN_PROGRAM_ID = new web3.PublicKey(
   "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
 );
