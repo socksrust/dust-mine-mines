@@ -1,6 +1,9 @@
 import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Button as Base, ButtonProps } from '@chakra-ui/react';
+import constants from '../../utils/constants';
+const { colors } = constants;
+const { primaryBackground, secondaryBackground, objectBackground, objectText } = colors;
 
 export interface IButtonProps extends ButtonProps {
   isSmaller?: boolean;
@@ -48,20 +51,20 @@ export const Button: React.FC<IButtonProps> = ({
       bg={background}
       borderRadius="4px"
       padding={sizes.padding}
-      color={isOutline || isGhost ? 'white' : 'black'}
+      color={isOutline || isGhost ? objectText : 'black'}
       fontFamily="Inter"
       border={isOutline ? '1px' : undefined}
-      borderColor="white"
+      borderColor={objectText}
       fontSize={sizes.fontSize}
       fontWeight="600"
       _hover={{
         transform: 'scale(1.1)',
-        background: '#070B17',
-        color: 'white',
+        background: primaryBackground,
+        color: objectText,
       }}
       _active={{
         transform: 'scale(1)',
-        background: '#070B17',
+        background: primaryBackground,
         color: 'black',
       }}
     />

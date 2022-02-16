@@ -8,13 +8,17 @@ import {CurrencyContext} from './_app';
 import { sendCurrencyToTreasure, renderButtons } from '../utils/solana'
 import Space from '../components/common/space'
 import LiveBets from '../components/live-bets/index'
-
 import {
   Text,
   useToast,
 } from '@chakra-ui/react';
 import styled from '@emotion/styled'
 import { keyframes } from '@emotion/react'
+import constants from '../utils/constants';
+
+const { colors } = constants;
+const { objectBackground, secondaryBackground, accentColor } = colors;
+
 
 const Wrapper = styled.div`
   display: flex;
@@ -219,25 +223,25 @@ export default function Coin() {
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.55 }}
           >
-            <Text fontSize="48px" lineHeight={1} fontWeight="bold" color={'#fff'}>Need <span style={{ color: '#FFCB14' }}>$SOL</span> for next mint?</Text>
-            <Text fontSize="48px" fontWeight="normal" color={'#fff'}>- Flip it</Text>
+            <Text fontSize="48px" lineHeight={1} fontWeight="bold" color={objectBackground}>Need <span style={{ color: accentColor }}>$SOL</span> for next mint?</Text>
+            <Text fontSize="48px" fontWeight="normal" color={objectBackground}>- Flip it</Text>
             <Space height={30}/>
-            <Text fontSize="24px" fontWeight="normal" color={'#fff'}>With 50/50 chances of winning and a 2% fee!! All fees are shared between Octopus Holders</Text>
-            <Space height={30} />
-            <Text fontSize="24px" fontWeight="normal" color={'#fff'}>If you hold more than 100 $BETS you get a 100% fee discount</Text>
+            <Text fontSize="24px" fontWeight="normal" color={objectBackground}>With 50/50 chances of winning and a 2% fee!! All fees are shared between Octopus Holders</Text>
+            {/*<Space height={30} />
+            <Text fontSize="24px" fontWeight="normal" color={objectBackground}>If you hold more than 100 $BETS you get a 100% fee discount</Text>
             <Space height={10} />
             <Button Button backgroundColor="#fff" borderRadius="2rem" width="120px" height="36px" onClick={() => window.open('https://trade.dexlab.space/#/market/CqXVEdWpRMR4fM13nSMo3g3nYUv512cZLYZqb77XQZJe', '_ blank')}>
               <Text fontSize="14" fontWeight="bold" color={'#000'} style={{ whiteSpace: 'nowrap' }} >Buy $BETS</Text>
             </Button>
-            <Space height={30} />
-            <Text fontSize="18px" fontWeight="bold" color={'#fff'}>- Every 5 bets with $SOL gives you 3 $BETS:</Text>
+            <Space height={30} />*/}
+            {/*<Text fontSize="18px" fontWeight="bold" color={objectBackground}>- Every 5 bets with $SOL gives you 3 $BETS:</Text>
             <LoadingWrapper>
               <LoadingBall isFilled={bets >= 1} />
               <LoadingBall isFilled={bets >= 2}  />
               <LoadingBall isFilled={bets >= 3} />
               <LoadingBall isFilled={bets >= 4} />
               <LoadingBall />
-            </LoadingWrapper>
+            </LoadingWrapper>*/}
           </motion.div>
           <Space height={20} />
           <motion.div
@@ -245,23 +249,22 @@ export default function Coin() {
             initial={{ opacity: 0, y: 20 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.55 }}
-            style={{flex: 2, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(255, 255, 255, 0.03)', padding: 20, borderRadius: 4}}
+            style={{flex: 2, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: secondaryBackground, padding: 20, borderRadius: 4}}
           >
               <CoinComponent isFlipped={isFlipped} isFlipping={isFlipping} textContent={textContent} diceValue={diceValue} />
               <RowCentered>
-                <Text fontSize="36px" fontWeight="bold" color={!isEven ? '#fff' : 'rgba(255, 255, 255, 0.5)'}>TAILS</Text>
+                <Text fontSize="36px" fontWeight="bold" color={!isEven ? objectBackground : 'rgba(255, 255, 255, 0.5)'}>TAILS</Text>
                 <Space width={10} />
                 <Switch size="lg" isChecked={isEven} value={isEven ? 'isEven' : 'isOdd'} onChange={(e) => setEven(e.target.value !== 'isEven')} />
                 <Space width={10} />
-                <Text fontSize="36px" fontWeight="bold" color={isEven ? '#fff' : 'rgba(255, 255, 255, 0.5)'}>HEADS</Text>
+                <Text fontSize="36px" fontWeight="bold" color={isEven ? objectBackground : 'rgba(255, 255, 255, 0.5)'}>HEADS</Text>
                 <Space width={50} />
                 <Checkbox size='lg' colorScheme='green' onChange={(e) => setChecked(e.target.checked)} isChecked={isChecked}>
-                  <Text fontSize="24px" fontWeight="medium" color={'#fff'}>Auto</Text>
+                  <Text fontSize="24px" fontWeight="medium" color={objectBackground}>Auto</Text>
                 </Checkbox>
                 <Space width={15} />
               </RowCentered>
               {renderButtons(context.value, false, bet, inputValue, setValue, isLoading, onOpen)}
-              
             </motion.div>
           </InnerWrapper>
           <Space height={20} />

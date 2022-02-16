@@ -1,4 +1,7 @@
 import ReactSelect from 'react-select'
+import constants from '../../utils/constants';
+const { colors } = constants;
+const { primaryBackground, secondaryBackground, objectBackground } = colors;
 
 //@ts-ignore
 const Select = (props) => {
@@ -9,18 +12,18 @@ const Select = (props) => {
     styles={{
       option: (provided, state) => ({
         ...provided,
-        color: '#070B17',
-        backgroundColor: '#fff',
+        color: primaryBackground,
+        backgroundColor: objectBackground,
         zIndex: 9999,
       }),
       indicatorSeparator: (provided) => ({
         ...provided,
-        backgroundColor: '#fff',
+        backgroundColor: objectBackground,
       }),
       menu: (provided) => ({
         ...provided,
-        backgroundColor: '#fff',
-        color: '#070B17',
+        backgroundColor: objectBackground,
+        color: primaryBackground,
         zIndex: 9999,
       }),
       menuPortal: (provided) => ({
@@ -30,11 +33,11 @@ const Select = (props) => {
       control: (provided) => ({
         // none of react-select's styles are passed to <Control />
         ...provided,
-        background: '#fff',
+        background: objectBackground,
         borderRadius: '4px',
         borderWidth: 1,
         width: 170,
-        color: '#070B17',
+        color: primaryBackground,
       }),
       listBox: (provided) => ({
         // none of react-select's styles are passed to <Control />
@@ -44,7 +47,7 @@ const Select = (props) => {
       singleValue: (provided, state) => {
         const opacity = state.isDisabled ? 0.5 : 1;
         const transition = 'opacity 300ms';
-        return { ...provided, color: '#070B17', opacity, transition };
+        return { ...provided, color: primaryBackground, opacity, transition };
       },
     }} />
   );

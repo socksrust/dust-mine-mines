@@ -5,11 +5,14 @@ import LeftMenu from '../left-menu';
 import { SubFooterLanding } from '../landing/subfooter-landing';
 import { useRouter } from 'next/router';
 import styled from '@emotion/styled'
+import constants from '../../utils/constants';
+const { colors } = constants;
+const { primaryBackground, secondaryBackground, objectBackground, objectText } = colors;
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
-  background-color: #070B17;
+  background-color: ${primaryBackground};
   flex: 1;
   padding: 0px 100px;
   @media only screen and (max-width: 800px) {

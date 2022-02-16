@@ -7,6 +7,10 @@ import {
 import styled from '@emotion/styled';
 import * as web3 from '@solana/web3.js';
 import * as splToken from '@solana/spl-token';
+import constants from './../utils/constants';
+
+const { colors } = constants;
+const { primaryBackground, secondaryBackground, objectBackground } = colors;
 
 const connect = new web3.Connection('https://api.mainnet-beta.solana.com');
 const TOKEN_PROGRAM_ID = new web3.PublicKey(
@@ -186,7 +190,7 @@ export const renderButtons = (value: any, modal: any, bet, inputValue, setValue,
           <Input width="100%" height="56px" placeholder={`value in $${currency} (max: ${maxBetValue})`} color="#000" type="number" value={inputValue} onChange={(e) => Number(e.target.value) <= maxBetValue && setValue(Number(e.target.value))} />
         </ModalBody>
         <ModalFooter>
-          <Button isLoading={isLoading} loadingText={`Loading $${currency}`} borderRadius="2rem" width="100%" height="56px" backgroundColor="#070B17" onClick={() => bet(inputValue, mintAddress, toTokenAccountAddress)}>
+          <Button isLoading={isLoading} loadingText={`Loading $${currency}`} borderRadius="2rem" width="100%" height="56px" backgroundColor={primaryBackground} onClick={() => bet(inputValue, mintAddress, toTokenAccountAddress)}>
             <Text fontSize="14px" fontWeight="bold" color="#fff">Bet</Text>
           </Button>
         </ModalFooter>
@@ -198,21 +202,21 @@ export const renderButtons = (value: any, modal: any, bet, inputValue, setValue,
     return (
     <Row>
       <Button backgroundColor="#fff" isLoading={isLoading} loadingText={`Loading $${currency}`} borderRadius="2px" width="180px" height="56px" onClick={() => bet(firstBetValue, mintAddress, toTokenAccountAddress)}>
-        <Text fontSize="14px" fontWeight="bold" color="#070B17">{firstBetValue} ${currency}</Text>
+        <Text fontSize="14px" fontWeight="bold" color={primaryBackground}>{firstBetValue} ${currency}</Text>
       </Button>
       <Space width={10} />
       <Button backgroundColor="#fff" isLoading={isLoading} loadingText={`Loading $${currency}`} borderRadius="2px" width="180px" height="56px" onClick={() => bet(secondBetValue, mintAddress, toTokenAccountAddress)}>
-        <Text fontSize="14px" fontWeight="bold" color="#070B17">{secondBetValue} ${currency}</Text>
+        <Text fontSize="14px" fontWeight="bold" color={primaryBackground}>{secondBetValue} ${currency}</Text>
       </Button>
       <Space width={10} />
 
       {thirdBetValue && <Button backgroundColor="#fff" isLoading={isLoading} loadingText={`Loading $${currency}`} borderRadius="2px" width="180px" height="56px" onClick={() => bet(thirdBetValue, mintAddress, toTokenAccountAddress)}>
-        <Text fontSize="14px" fontWeight="bold" color="#070B17">{thirdBetValue} ${currency}</Text>
+        <Text fontSize="14px" fontWeight="bold" color={primaryBackground}>{thirdBetValue} ${currency}</Text>
       </Button>}
       <Space width={10} />
 
-      {!noCustom && !thirdBetValue && <Button backgroundColor="#fff" isLoading={isLoading} loadingText={`Loading $${currency}`} borderRadius="2rem" width="180px" height="56px" borderColor="#fff" borderWidth="1px" backgroundColor="#070B17" onClick={onOpen}>
-        <Text fontSize="14px" fontWeight="bold" color="#070B17">Custom ${currency} Value</Text>
+      {!noCustom && !thirdBetValue && <Button backgroundColor="#fff" isLoading={isLoading} loadingText={`Loading $${currency}`} borderRadius="2rem" width="180px" height="56px" borderColor="#fff" borderWidth="1px" backgroundColor={primaryBackground} onClick={onOpen}>
+        <Text fontSize="14px" fontWeight="bold" color={primaryBackground}>Custom ${currency} Value</Text>
       </Button>}
     </Row>
   )
@@ -327,7 +331,7 @@ export const renderRaceButtons = (value: any, modal: any, bet, inputValue, setVa
           <Input width="100%" height="56px" placeholder={`value in $${currency}`} color="#000" type="number" value={inputValue} onChange={(e) => setValue(Number(e.target.value))} />
         </ModalBody>
         <ModalFooter>
-          <Button isLoading={isLoading} loadingText={`Loading $${currency}`} borderRadius="2rem" width="100%" height="56px" backgroundColor="#070B17" onClick={() => bet(inputValue, mintAddress, toTokenAccountAddress)}>
+          <Button isLoading={isLoading} loadingText={`Loading $${currency}`} borderRadius="2rem" width="100%" height="56px" backgroundColor={primaryBackground} onClick={() => bet(inputValue, mintAddress, toTokenAccountAddress)}>
             <Text fontSize="14px" fontWeight="bold" color="#fff">Place RACE value</Text>
           </Button>
         </ModalFooter>
@@ -338,7 +342,7 @@ export const renderRaceButtons = (value: any, modal: any, bet, inputValue, setVa
 
   return (
     <Row>
-      <Button isLoading={isLoading} loadingText={`Loading $${currency}`} borderRadius="2rem" width="260px" height="56px" borderColor="#fff" borderWidth="1px" backgroundColor="#070B17" onClick={onOpen}>
+      <Button isLoading={isLoading} loadingText={`Loading $${currency}`} borderRadius="2rem" width="260px" height="56px" borderColor="#fff" borderWidth="1px" backgroundColor={primaryBackground} onClick={onOpen}>
         <Text fontSize="14px" fontWeight="bold" color="#fff">Place your ${currency} RACE position</Text>
       </Button>
     </Row>

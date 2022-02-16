@@ -7,6 +7,10 @@ import { motion } from 'framer-motion';
 import { useScrollFramer } from '../../hooks/useScrollFramer';
 import LeftMenu from '../left-menu';
 import Space from '../common/space';
+import constants from '../../utils/constants';
+
+const { objects } = constants;
+const { logo } = objects;
 
 interface HeaderProps {}
 
@@ -52,7 +56,7 @@ const Header: FC<HeaderProps> = () => {
               onClick={() => push('/')}
               width="120px"
             >
-              <Text color="#ffff" fontSize="36px" fontWeight="bold">SOL Flip</Text>
+              <Text color="#ffff" fontSize="36px" fontWeight="bold">{logo}</Text>
               </div>
             <Space width={30} height={20}/>
             <Flex
