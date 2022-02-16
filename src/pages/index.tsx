@@ -17,7 +17,7 @@ import { keyframes } from '@emotion/react'
 import constants from '../utils/constants';
 
 const { colors } = constants;
-const { objectBackground, secondaryBackground, accentColor } = colors;
+const { objectBackground, secondaryBackground, accentColor, objectText } = colors;
 
 
 const Wrapper = styled.div`
@@ -223,18 +223,18 @@ export default function Coin() {
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.55 }}
           >
-            <Text fontSize="48px" lineHeight={1} fontWeight="bold" color={objectBackground}>Need <span style={{ color: accentColor }}>$SOL</span> for next mint?</Text>
-            <Text fontSize="48px" fontWeight="normal" color={objectBackground}>- Flip it</Text>
+            <Text fontSize="48px" lineHeight={1} fontWeight="bold" color={objectText}>Need <span style={{ color: accentColor }}>$SOL</span> for next mint?</Text>
+            <Text fontSize="48px" fontWeight="normal" color={objectText}>- Flip it</Text>
             <Space height={30}/>
-            <Text fontSize="24px" fontWeight="normal" color={objectBackground}>With 50/50 chances of winning and a 2% fee!! All fees are shared between Octopus Holders</Text>
+            <Text fontSize="24px" fontWeight="normal" color={objectText}>With 50/50 chances of winning and a 2% fee!!</Text>
             {/*<Space height={30} />
-            <Text fontSize="24px" fontWeight="normal" color={objectBackground}>If you hold more than 100 $BETS you get a 100% fee discount</Text>
+            <Text fontSize="24px" fontWeight="normal" color={objectText}>If you hold more than 100 $BETS you get a 100% fee discount</Text>
             <Space height={10} />
             <Button Button backgroundColor="#fff" borderRadius="2rem" width="120px" height="36px" onClick={() => window.open('https://trade.dexlab.space/#/market/CqXVEdWpRMR4fM13nSMo3g3nYUv512cZLYZqb77XQZJe', '_ blank')}>
               <Text fontSize="14" fontWeight="bold" color={'#000'} style={{ whiteSpace: 'nowrap' }} >Buy $BETS</Text>
             </Button>
             <Space height={30} />*/}
-            {/*<Text fontSize="18px" fontWeight="bold" color={objectBackground}>- Every 5 bets with $SOL gives you 3 $BETS:</Text>
+            {/*<Text fontSize="18px" fontWeight="bold" color={objectText}>- Every 5 bets with $SOL gives you 3 $BETS:</Text>
             <LoadingWrapper>
               <LoadingBall isFilled={bets >= 1} />
               <LoadingBall isFilled={bets >= 2}  />

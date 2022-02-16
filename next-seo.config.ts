@@ -1,20 +1,24 @@
-const title = 'CoinFlip';
-const description =
-  'CoinFlip is a CoinFlip game based on Solana and powered by OctopusArt and SolanaDBS NFT communities';
+import constants from "./src/utils/constants";
+const { infos } = constants;
+const { name, website, image } = infos;
+
+
+const title = name;
+const description = `CoinFlip game based on Solana`;
 
 const SEO = {
   title,
   description,
-  canonical: 'https://coin.solbets.io/',
+  canonical: website,
   openGraph: {
     type: 'website',
     locale: 'en_IE',
-    url: 'https://coin.solbets.io/',
+    url: website,
     title,
     description,
     images: [
       {
-        url: 'https://peach-oct.netlify.app/images/bg.png',
+        url: image,
         alt: title,
         width: 1440,
         height: 926,

@@ -8,13 +8,15 @@ import styled from '@emotion/styled'
 import {
   Text,
 } from '@chakra-ui/react';
+import constants from '../../utils/constants';
+const { colors } = constants
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
-  background-color: #070B17;
+  background-color: transparent;
   height: 100%;
   margin-right: 30px;
   z-index: 4;

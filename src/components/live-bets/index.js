@@ -5,6 +5,10 @@ import {
 } from '@chakra-ui/react';
 import styled from '@emotion/styled'
 import { motion } from "framer-motion";
+import constants from '../../utils/constants';
+
+const { colors } = constants;
+const { primaryBackground, secondaryBackground, objectBackground, objectText } = colors;
 
 export function timeSince(date) {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -58,7 +62,7 @@ const GameWrappper = styled.div`
   flex: 1;
   align-items: center;
   justify-content: center;
-  color: #fff;
+  color: ${objectText};
   font-weight: medium;
   font-size: 24px;
   
@@ -70,7 +74,7 @@ const BetvaueWrappper = styled.div`
   flex: 1;
   align-items: center;
   justify-content: center;
-  color: #fff;
+  color: ${objectText};
   font-weight: medium;
   font-size: 24px;
 
@@ -82,7 +86,7 @@ const CreatedWrappper = styled.div`
   flex: 1;
   align-items: center;
   justify-content: center;
-  color: #fff;
+  color: ${objectText};
   font-weight: medium;
   font-size: 24px;
 `

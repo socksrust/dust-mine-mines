@@ -1,7 +1,7 @@
 import ReactSelect from 'react-select'
 import constants from '../../utils/constants';
 const { colors } = constants;
-const { primaryBackground, secondaryBackground, objectBackground } = colors;
+const { primaryBackground, secondaryBackground, objectBackground, buttonText } = colors;
 
 //@ts-ignore
 const Select = (props) => {
@@ -12,7 +12,7 @@ const Select = (props) => {
     styles={{
       option: (provided, state) => ({
         ...provided,
-        color: primaryBackground,
+        color: buttonText,
         backgroundColor: objectBackground,
         zIndex: 9999,
       }),
@@ -23,7 +23,7 @@ const Select = (props) => {
       menu: (provided) => ({
         ...provided,
         backgroundColor: objectBackground,
-        color: primaryBackground,
+        color: buttonText,
         zIndex: 9999,
       }),
       menuPortal: (provided) => ({
@@ -37,7 +37,7 @@ const Select = (props) => {
         borderRadius: '4px',
         borderWidth: 1,
         width: 170,
-        color: primaryBackground,
+        color: buttonText,
       }),
       listBox: (provided) => ({
         // none of react-select's styles are passed to <Control />
@@ -47,7 +47,7 @@ const Select = (props) => {
       singleValue: (provided, state) => {
         const opacity = state.isDisabled ? 0.5 : 1;
         const transition = 'opacity 300ms';
-        return { ...provided, color: primaryBackground, opacity, transition };
+        return { ...provided, color: buttonText, opacity, transition };
       },
     }} />
   );

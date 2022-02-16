@@ -9,7 +9,7 @@ import LeftMenu from '../left-menu';
 import Space from '../common/space';
 import constants from '../../utils/constants';
 
-const { objects } = constants;
+const { objects, colors } = constants;
 const { logo } = objects;
 
 interface HeaderProps {}
@@ -56,7 +56,7 @@ const Header: FC<HeaderProps> = () => {
               onClick={() => push('/')}
               width="120px"
             >
-              <Text color="#ffff" fontSize="36px" fontWeight="bold">{logo}</Text>
+              <Text color={colors.objectText} fontSize="36px" fontWeight="bold">{logo}</Text>
               </div>
             <Space width={30} height={20}/>
             <Flex

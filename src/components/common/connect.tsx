@@ -5,6 +5,10 @@ import {
 import { useRef, forwardRef, useEffect } from 'react';
 import { Button as NoiaButton } from '../button';
 import { useAnchorWallet } from '@solana/wallet-adapter-react';
+import constants from '../../utils/constants';
+
+const { colors } = constants;
+const { primaryBackground, secondaryBackground, objectBackground, accentColor } = colors;
 
 const LoginButton = forwardRef((props: any, ref) => (
   <WalletMultiButton innerRef={ref} {...props} />
@@ -23,8 +27,8 @@ const Connect = () => {
     <WalletDialogProvider>
       <WalletMultiButton
         style={{
-          background: '#ABFC4F',
-          color: '#1C0C23',
+          background: accentColor,
+          color: primaryBackground,
           fontWeight: 'bold',
           borderRadius: '2px',
           paddingLeft: '2rem',

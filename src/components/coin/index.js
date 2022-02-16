@@ -3,14 +3,14 @@ import React, { useState } from "react";
 import constants from '../../utils/constants';
 
 const { colors } = constants;
-const { primaryBackground, secondaryBackground, accentColor } = colors;
+const { primaryBackground, secondaryBackground, accentColor, objectText } = colors;
 
 
 const Coin = ({ isFlipping, isFlipped, rotate, diceValue, textContent}) => {
 
 	return (
     <>
-			<div className={`outcome ${isFlipping && 'toss'} ${isFlipped && 'flip'}`} style={{ backgroundColor: accentColor, borderColor: accentColor, color: primaryBackground }}>
+			<div className={`outcome ${isFlipping && 'toss'} ${isFlipped && 'flip'}`} style={{ backgroundColor: accentColor, borderColor: accentColor, color: objectText }}>
 				{textContent}
 			</div>
 		</>
