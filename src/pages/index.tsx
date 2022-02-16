@@ -16,7 +16,7 @@ import styled from '@emotion/styled'
 import { keyframes } from '@emotion/react'
 import constants from '../utils/constants';
 
-const { colors } = constants;
+const { colors, infos } = constants;
 const { objectBackground, secondaryBackground, accentColor, objectText } = colors;
 
 
@@ -193,7 +193,7 @@ export default function Coin() {
 
   useEffect(() => {
     async function fetchStatus() {
-      const resp = await fetch(`https://coinflip-octo.herokuapp.com/api/v1/transaction/bets`, {
+      const resp = await fetch(`${infos.serverUrl}/api/v1/transaction/bets`, {
         body: `{"publicKeyString":"${publicKey?.toString()}"}`,
         headers: {
           "Content-Type": "application/json"
