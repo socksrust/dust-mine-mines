@@ -7,8 +7,9 @@ import styled from '@emotion/styled'
 import { motion } from "framer-motion";
 import constants from '../../utils/constants';
 
-const { colors } = constants;
+const { colors, infos } = constants;
 const { primaryBackground, secondaryBackground, objectBackground, objectText } = colors;
+const { serverUrl } = infos;
 
 export function timeSince(date) {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -121,7 +122,7 @@ export default function LiveBets() {
 
   useEffect(() => {
     const fetchTransactions = async () => {
-      const resp = await fetch("https://coinflip-octo.herokuapp.com/api/v1/transaction/coinTransactions", {
+      const resp = await fetch(`${serverUrl}/api/v1/transaction/coinTransactions`, {
         headers: {
           "Content-Type": "application/json"
         },
@@ -137,7 +138,7 @@ export default function LiveBets() {
 
   useEffect(() => {
     const fetchTransactions = async () => {
-      const resp = await fetch("https://coinflip-octo.herokuapp.com/api/v1/transaction/coinTransactions", {
+      const resp = await fetch(`${serverUrl}/api/v1/transaction/coinTransactions`, {
         headers: {
           "Content-Type": "application/json"
         },

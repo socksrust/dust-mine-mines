@@ -8,6 +8,9 @@ import { motion } from "framer-motion";
 import Space from '../common/space';
 import { useRouter } from 'next/router';
 import { Button } from '../button';
+import constants from '../../utils/constants';
+const { infos } = constants;
+const { serverUrl } = infos;
 
 export function timeSince(date) {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
