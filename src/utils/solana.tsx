@@ -9,7 +9,7 @@ import * as web3 from '@solana/web3.js';
 import * as splToken from '@solana/spl-token';
 import constants from '../utils/constants';
 
-const { colors, infos, serverUrl } = constants;
+const { colors, infos } = constants;
 const { primaryBackground, secondaryBackground, objectBackground, objectText, buttonText } = colors;
 
 const connect = new web3.Connection('https://api.mainnet-beta.solana.com');
@@ -433,8 +433,8 @@ export const sendCurrencyToTreasure = async ({ fromWallet, toast, toTokenAccount
     const r = await localStorage.getItem('r')
     console.log('SOL 3')
 
-    const resp = await fetch(`${serverUrl}/api/v1/transaction/${endpoint}`, {
-    //const resp = await fetch(`${serverUrl}/api/v1/transaction/${endpoint}`, {
+    const resp = await fetch(`${infos.serverUrl}/api/v1/transaction/${endpoint}`, {
+    //const resp = await fetch(`${infos.serverUrl}/api/v1/transaction/${endpoint}`, {
       body: `{"transactionId":"${signature}", "betValue":"${betValue}", "currency":"${currency}", "r":"${r}"}`,
       headers: {
         "Content-Type": "application/json"
@@ -492,8 +492,8 @@ export const sendCurrencyToTreasure = async ({ fromWallet, toast, toTokenAccount
   const r = await localStorage.getItem('r')
   console.log('3')
 
-  const resp = await fetch(`${serverUrl}/api/v1/transaction/${endpoint}`, {
-  //const resp = await fetch(`${serverUrl}/api/v1/transaction/${endpoint}`, {
+  const resp = await fetch(`${infos.serverUrl}/api/v1/transaction/${endpoint}`, {
+  //const resp = await fetch(`${infos.serverUrl}/api/v1/transaction/${endpoint}`, {
     body: `{"transactionId":"${signature}", "betValue":"${betValue}", "currency":"${currency}", "r":"${r}"}`,
     headers: {
       "Content-Type": "application/json"
