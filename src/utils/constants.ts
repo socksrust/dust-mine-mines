@@ -1,11 +1,11 @@
 
 const constants = {
   infos: {
-    name: 'Nifty Nanas',
-    website: 'https://google.com',
-    image: 'https://media.discordapp.net/attachments/902748981216567347/938970319102828544/niftnanas.png',
-    publicKey: 'EE8QTQt7VEUuMEWf4dkTscifNzrueSyG57CHT9amR1r2',
-    serverUrl: 'https://nifty-nanas.herokuapp.com', //'https://coinflip-octo.herokuapp.com'
+    name: 'Ninjas Pocket',
+    website: 'https://twitter.com/NinjasPocket',
+    image: 'https://media.discordapp.net/attachments/945125926818156605/946221722980479006/81d26d7a315a0ec4fed167c9a0ac6bf1.png',
+    publicKey: 'AHyCPGYwyM9XF1vdEzfZZoW3Uj8N3BZJRnA6SharAAGd',
+    serverUrl: 'https://ninjas-pocket.herokuapp.com',
   },
   colors: {
     primaryBackground: '#070b17',
@@ -13,10 +13,10 @@ const constants = {
     objectBackground: '#fff',
     objectText: '#fff',
     buttonText: '#070b17',
-    accentColor: '#ff69ad',
+    accentColor: 'rgb(80 101 255)',
   },
   objects: {
-    logo: 'Nifty Nanas'
+    logo: 'Ninjas pocket'
   }
 }
 
