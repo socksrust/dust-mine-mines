@@ -1,22 +1,22 @@
 
 const constants = {
   infos: {
-    name: 'Ninjas Pocket',
-    website: 'https://twitter.com/NinjasPocket',
-    image: 'https://media.discordapp.net/attachments/945125926818156605/946221722980479006/81d26d7a315a0ec4fed167c9a0ac6bf1.png',
-    publicKey: 'AHyCPGYwyM9XF1vdEzfZZoW3Uj8N3BZJRnA6SharAAGd',
-    serverUrl: 'https://ninjas-pocket.herokuapp.com',
+    name: 'Solape',
+    website: 'https://twitter.com/SolapeFinance',
+    image: 'https://media.discordapp.net/attachments/939283456502947930/944823873789104159/logo512.png?width=1112&height=1112',
+    publicKey: 'BaCcQgpbb9qq3eJL284EMosm7yJP9gQqM6NCQ2awXaHQ',
+    serverUrl: 'https://solape-flip.herokuapp.com',
   },
   colors: {
-    primaryBackground: '#070b17',
-    secondaryBackground: 'rgba(255, 255, 255, 0.03)',
+    primaryBackground: '#090B0B',
+    secondaryBackground: '#141717',
     objectBackground: '#fff',
     objectText: '#fff',
     buttonText: '#070b17',
-    accentColor: 'rgb(80 101 255)',
+    accentColor: '#E88334',
   },
   objects: {
-    logo: 'Ninjas pocket'
+    logo: 'Solape'
   }
 }
 
