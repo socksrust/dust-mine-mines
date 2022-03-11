@@ -1,11 +1,11 @@
 
 const constants = {
   infos: {
-    name: 'Solape',
-    website: 'https://twitter.com/SolapeFinance',
-    image: 'https://media.discordapp.net/attachments/939283456502947930/944823873789104159/logo512.png?width=1112&height=1112',
-    publicKey: 'BaCcQgpbb9qq3eJL284EMosm7yJP9gQqM6NCQ2awXaHQ',
-    serverUrl: 'https://solape-flip.herokuapp.com',
+    name: 'SAINTxDAO',
+    website: 'https://twitter.com/SAINTxDAO',
+    image: 'https://media.discordapp.net/attachments/950052662597021696/951555806615203890/Logo.png?width=1038&height=1038',
+    publicKey: 'HR4E7PZATrihJ48ExoMQsFuDrXdNvKTBt1JAy4ZgddQu',
+    serverUrl: 'https://saintxdao-flip.herokuapp.com',
   },
   colors: {
     primaryBackground: '#090B0B',
@@ -13,10 +13,11 @@ const constants = {
     objectBackground: '#fff',
     objectText: '#fff',
     buttonText: '#070b17',
-    accentColor: '#E88334',
+    accentColor: '#FF0000',
   },
   objects: {
-    logo: 'Solape'
+    logo: 'SAINTxDAO',
+    logoUrl: 'https://media.discordapp.net/attachments/950052662597021696/951555806615203890/Logo.png?width=1038&height=1038',
   }
 }
 

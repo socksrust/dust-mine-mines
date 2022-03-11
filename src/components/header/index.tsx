@@ -1,4 +1,5 @@
 import React, { FC, useEffect, useState } from 'react';
+import styled from '@emotion/styled'
 import { useRouter } from 'next/router';
 import { Text } from '@chakra-ui/react';
 import { Flex } from '@chakra-ui/layout';
@@ -10,7 +11,14 @@ import Space from '../common/space';
 import constants from '../../utils/constants';
 
 const { objects, colors } = constants;
-const { logo } = objects;
+const { logo, logoUrl } = objects;
+
+const Image = styled.img`
+  width: 60px;
+  border-radius: 50%;
+  margin-left: 20px;
+  border: 3px solid white;
+`
 
 interface HeaderProps {}
 
@@ -55,8 +63,10 @@ const Header: FC<HeaderProps> = () => {
               cursor="pointer"
               onClick={() => push('/')}
               width="120px"
+              style={{ display: 'flex', alignItems: 'center' }}
             >
-              <Text color={colors.objectText} fontSize="36px" fontWeight="bold">{logo}</Text>
+              <Image src={logoUrl}/>
+              <Text color={colors.objectText} ml={5} fontSize="24px" fontWeight="bold">{logo}</Text>
               </div>
             <Space width={30} height={20}/>
             <Flex
