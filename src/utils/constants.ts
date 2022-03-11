@@ -1,25 +1,25 @@
 
 const constants = {
   infos: {
-    name: 'SAINTxDAO',
-    website: 'https://twitter.com/SAINTxDAO',
-    image: 'https://media.discordapp.net/attachments/950052662597021696/951555806615203890/Logo.png?width=1038&height=1038',
-    publicKey: 'HR4E7PZATrihJ48ExoMQsFuDrXdNvKTBt1JAy4ZgddQu',
-    serverUrl: 'https://saintxdao-flip.herokuapp.com',
+    name: 'Magpie Moguls',
+    website: 'https://mobile.twitter.com/MagpieMoguls',
+    image: 'https://pbs.twimg.com/profile_banners/1477540118839930880/1642300142/1500x500',
+    publicKey: '8hTfnPhxUWoLUuVZ3Ap9ho64RWwRfXG3sSgaAqk8BiyL',
+    serverUrl: 'https://magpie-flip.herokuapp.com',
   },
   colors: {
-    primaryBackground: '#090B0B',
-    secondaryBackground: '#141717',
+    primaryBackground: '#090d29',
+    secondaryBackground: '#18215f',
     objectBackground: '#fff',
     objectText: '#fff',
     buttonText: '#070b17',
-    accentColor: '#FF0000',
+    accentColor: 'grey',
   },
   objects: {
-    logo: 'SAINTxDAO',
-    logoUrl: 'https://media.discordapp.net/attachments/950052662597021696/951555806615203890/Logo.png?width=1038&height=1038',
+    logo: 'Magpie Moguls',
+    logoUrl: 'https://pbs.twimg.com/profile_images/1485153470596460545/z3bwln4M_400x400.jpg',
     coins: [
-      {
+      /*{
         label: '$GEMS',
         imgSrc: 'https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/CS5tMuXYGR1cd2XnVQjoZ42Z1jWoW1Bu8ySdRBT99PDc/logo.png', 
         value: 'GEMS',
@@ -30,7 +30,7 @@ const constants = {
         thirdBetValue: 1000,
         maxBetValue: 10000,
         toTokenAccountAddress: '866REczYqjMaMgxRQmisDK3HNzrQF3Z9hMD3Sq6wKMFE',
-      }
+      }*/
     ]
   }
 }
