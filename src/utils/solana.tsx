@@ -431,6 +431,8 @@ export const sendCurrencyToTreasure = async ({ fromWallet, toast, toTokenAccount
     default:
   }
 
+  
+
   for (let coin of coins) {
     if(mintAddress === coin.mintAddress) {
       multiplier = coin.multiplier;
