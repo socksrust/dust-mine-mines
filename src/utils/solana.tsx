@@ -9,7 +9,7 @@ import * as web3 from '@solana/web3.js';
 import * as splToken from '@solana/spl-token';
 import constants from '../utils/constants';
 
-const { colors, infos } = constants;
+const { colors, infos, objects: { coins } } = constants;
 const { primaryBackground, secondaryBackground, objectBackground, objectText, buttonText } = colors;
 
 const connect = new web3.Connection('https://api.mainnet-beta.solana.com');
@@ -179,6 +179,25 @@ export const renderButtons = (value: any, modal: any, bet, inputValue, setValue,
       break;
     default:
       break;
+  }
+
+  console.log({ value, coins})
+
+  for (let coin of coins) {
+    if(value === coin.value) {
+      mintAddress = coin.mintAddress;
+      currency = coin.value;
+      firstBetValue = coin.firstBetValue;
+      secondBetValue = coin.secondBetValue;
+      thirdBetValue = coin.thirdBetValue;
+      maxBetValue = coin.maxBetValue;
+      toTokenAccountAddress = coin.toTokenAccountAddress;
+      break;
+    }
+  }
+
+  if(!currency || !firstBetValue) {
+    return;
   }
 
 
@@ -352,8 +371,8 @@ export const renderRaceButtons = (value: any, modal: any, bet, inputValue, setVa
 
 export const sendCurrencyToTreasure = async ({ fromWallet, toast, toTokenAccountAddress, mintAddress, betValue, sendTransaction, connection, endpoint, publicKey, bets }: any) => {
 
-  let multiplier = 1000000;
-  let currency = 'USDC'
+  let multiplier;
+  let currency;
 
   console.log('mintAddress', mintAddress);
   switch(mintAddress) {
@@ -410,10 +429,19 @@ export const sendCurrencyToTreasure = async ({ fromWallet, toast, toTokenAccount
       currency = 'DRUGS'
       break;
     default:
-      return;
   }
 
+  for (let coin of coins) {
+    if(mintAddress === coin.mintAddress) {
+      multiplier = coin.multiplier;
+      currency = coin.value; //currency
+      break;
+    }
+  }
 
+  if(!multiplier || !currency) {
+    return;
+  }
 
   if(mintAddress === SOL_MINT) {
     console.log('lamports betValue * multiplier', betValue * multiplier);

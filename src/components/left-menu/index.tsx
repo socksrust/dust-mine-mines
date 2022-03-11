@@ -9,7 +9,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 import constants from '../../utils/constants';
-const { colors } = constants
+const { objects: { coins } } = constants
 
 const Wrapper = styled.div`
   display: flex;
@@ -60,8 +60,13 @@ const Label = ({ label, imgSrc }) => (
   </LabelWrapper>
 )
 
+const additionalOptions = coins && coins[0] ? coins.map(coin => ({
+  label: <Label label={coin.label} imgSrc={coin.imgSrc} />, value: coin.value
+})) : []
+
 const options = [
   {label: <Label label="$SOL" imgSrc="/images/coin-logos/sol.jpg" />, value: 'SOL'},
+  ...additionalOptions,
   /*{label: <Label label="$BETS" imgSrc="/images/coin-logos/bets.jpg" />, value: 'BETS'},
   {label: <Label label="$USDC" imgSrc="/images/coin-logos/usdc.jpg" />, value: 'USDC'},
   {label: <Label label="$USDT" imgSrc="/images/coin-logos/usdt.jpg" />, value: 'USDT'},
