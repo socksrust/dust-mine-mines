@@ -1,12 +1,16 @@
 import React, { useState } from 'react'
 import { Wheel } from 'react-custom-roulette'
 import styled from '@emotion/styled'
+import constants from '../../utils/constants';
+
+const { colors, infos } = constants;
+const { objectBackground, secondaryBackground, accentColor, objectText } = colors;
 
 
 const WheelImage = styled.img`
   z-index: 999;
-  width: 445px;
-  height: 445px;
+  width: 345px;
+  height: 345px;
   transform: rotate(3deg);
   border-radius: 50%;
 `
@@ -27,7 +31,7 @@ const MyWheel = ({ isRolling, rotate, diceValue }) => {
 
   return (
     <div style={{ position: 'relative' }}>
-      <p style={{color: 'black'}}>{diceValue}</p>
+      <p style={{color: secondaryBackground}}>{diceValue}</p>
 
       <Arrow/>
       <WheelImage src="/images/wheel.png" diceValue={diceValue} style={{ transform: rotate, transition: `transform ${isRolling ? '10000s' : '0s'}` }} />

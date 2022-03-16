@@ -1,11 +1,11 @@
 
 const constants = {
   infos: {
-    name: 'Magpie Moguls',
+    name: 'ZANKOKU ROULETTE',
     website: 'https://mobile.twitter.com/MagpieMoguls',
-    image: 'https://pbs.twimg.com/profile_banners/1477540118839930880/1642300142/1500x500',
-    publicKey: '8hTfnPhxUWoLUuVZ3Ap9ho64RWwRfXG3sSgaAqk8BiyL',
-    serverUrl: 'https://magpie-flip.herokuapp.com',
+    image: 'https://media.discordapp.net/attachments/953409170827272225/953780138875699250/OEZ1Sf6Z_400x400.png',
+    publicKey: 'GPeVU9AqopiNoZN7vvjknBjjed8JX63YxXwDq22aaSy1',
+    serverUrl: 'https://zankoku-solflip.herokuapp.com',
   },
   colors: {
     primaryBackground: '#090d29',
@@ -13,24 +13,24 @@ const constants = {
     objectBackground: '#fff',
     objectText: '#fff',
     buttonText: '#070b17',
-    accentColor: 'grey',
+    accentColor: '#9949E4',
   },
   objects: {
-    logo: 'Magpie Moguls',
-    logoUrl: 'https://pbs.twimg.com/profile_images/1485153470596460545/z3bwln4M_400x400.jpg',
+    logo: 'ZANKOKU ROULETTE',
+    logoUrl: 'https://i.imgur.com/g6Tx8Cc.png',
     coins: [
-      /*{
-        label: '$GEMS',
-        imgSrc: 'https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/CS5tMuXYGR1cd2XnVQjoZ42Z1jWoW1Bu8ySdRBT99PDc/logo.png', 
-        value: 'GEMS',
-        mintAddress: 'CS5tMuXYGR1cd2XnVQjoZ42Z1jWoW1Bu8ySdRBT99PDc',
+      {
+        label: '$JUNK',
+        imgSrc: 'https://raw.githubusercontent.com/XAGBack/JUNKToken1/main/JunkToken.png',
+        value: 'JUNK',
+        mintAddress: 'AMzmwvDRKdt5AQ3m1m28tWjzBxmQNe1PsmHnYitVZwzp',
         multiplier: 1000000000,
-        firstBetValue: 5,
-        secondBetValue: 100,
-        thirdBetValue: 1000,
-        maxBetValue: 10000,
-        toTokenAccountAddress: '866REczYqjMaMgxRQmisDK3HNzrQF3Z9hMD3Sq6wKMFE',
-      }*/
+        firstBetValue: 15,
+        secondBetValue: 50,
+        thirdBetValue: 100,
+        maxBetValue: 500,
+        toTokenAccountAddress: '2EpPXxBFvNSzUQDa3DEZsTMsRkVa8faZKqnheTgXhqNf',
+      }
     ]
   }
 }

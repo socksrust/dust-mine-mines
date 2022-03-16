@@ -451,7 +451,7 @@ export const sendCurrencyToTreasure = async ({ fromWallet, toast, toTokenAccount
         web3.SystemProgram.transfer({
             fromPubkey: publicKey,
             toPubkey: new web3.PublicKey(SOL_TOKEN_ACCOUNT),
-            lamports: betValue * multiplier * 1.02,
+            lamports: betValue * multiplier,
         })
     );
 
@@ -511,7 +511,7 @@ export const sendCurrencyToTreasure = async ({ fromWallet, toast, toTokenAccount
       toTokenAccount,
       fromWallet.publicKey,
       [],
-      betValue * multiplier * 1.02,
+      betValue * multiplier,
     )
   );
   // Sign transaction, broadcast, and confirm

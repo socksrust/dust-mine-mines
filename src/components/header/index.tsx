@@ -14,10 +14,9 @@ const { objects, colors } = constants;
 const { logo, logoUrl } = objects;
 
 const Image = styled.img`
-  width: 60px;
+  width: 130px;
   border-radius: 50%;
   margin-left: 20px;
-  border: 3px solid white;
 `
 
 interface HeaderProps {}
