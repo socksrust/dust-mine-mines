@@ -14,8 +14,7 @@ const { objects, colors } = constants;
 const { logo, logoUrl } = objects;
 
 const Image = styled.img`
-  width: 130px;
-  border-radius: 50%;
+  width: 110px;
   margin-left: 20px;
   @media (max-width: 750px) {
     display: none;
@@ -68,10 +67,9 @@ const Header: FC<HeaderProps> = () => {
             style={window.innerWidth <= 800 ? { overflow: 'scroll'} : {zIndex: 9,}}
           >
             <div
-              cursor="pointer"
               onClick={() => push('/')}
               width="120px"
-              style={{ display: 'flex', alignItems: 'center' }}
+              style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}
             >
               <Image src={logoUrl}/>
               <MyText color={colors.objectText} ml={5} fontSize="24px" fontWeight="bold">{logo}</MyText>

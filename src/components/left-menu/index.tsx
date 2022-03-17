@@ -65,7 +65,7 @@ const additionalOptions = coins && coins[0] ? coins.map(coin => ({
 })) : []
 
 const options = [
-  {label: <Label label="$SOL" imgSrc="/images/coin-logos/sol.jpg" />, value: 'SOL'},
+  //{label: <Label label="$SOL" imgSrc="/images/coin-logos/sol.jpg" />, value: 'SOL'},
   ...additionalOptions,
   /*{label: <Label label="$BETS" imgSrc="/images/coin-logos/bets.jpg" />, value: 'BETS'},
   {label: <Label label="$USDC" imgSrc="/images/coin-logos/usdc.jpg" />, value: 'USDC'},
@@ -83,7 +83,7 @@ const options = [
 
 const LeftMenu: FC<LeftMenuProps> = () => {
   const { push } = useRouter();
-  const context = useContext(CurrencyContext) || 'SOL'
+  const context = useContext(CurrencyContext) || 'TREATS'
 
   return (
     <>
@@ -91,14 +91,9 @@ const LeftMenu: FC<LeftMenuProps> = () => {
         {/*<MenuOutItem text="Buy $BIP" onClick={() => window.open('https://app.thestarship.finance/', '_ blank')} />*/}
         <Select value={options.find(a => a.value === context.value)} options={options} onChange={(option) => context.setValue(option.value)} />
         <Space width={30} />
-        {/*<MenuItem text="CoinFlip" onClick={() => push('/coin')} isActive={window.location.pathname === '/coin'} />
-        <MenuItem text="Race" onClick={() => push('/race')} isActive={window.location.pathname === '/race'} />
+        <MenuItem text="Coin" onClick={() => push('/')} isActive={window.location.pathname === '/'} />
         <MenuItem text="Dice" onClick={() => push('/dice')} isActive={window.location.pathname === '/dice'} />
-        <MenuItem text="Fortune wheel" onClick={() => push('/wheel')} isActive={window.location.pathname === '/wheel'}  />
-  <MenuItem text="Jack pot" onClick={() => push('/jackpot')} isActive={window.location.pathname === '/jackpot'} />*/}
-        {/*<MenuItem text="Lottery" onClick={() => push('/lottery')} isActive={window.location.pathname === '/lottery'}  />
-        <MenuItem text="Black Jack" />
-  <MenuItem text="Poker" />*/}
+        <MenuItem text="Wheel" onClick={() => push('/wheel')} isActive={window.location.pathname === '/wheel'}  />
       </Wrapper>
     </>
   );

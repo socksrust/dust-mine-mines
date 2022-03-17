@@ -3,8 +3,8 @@ import { Wheel } from 'react-custom-roulette'
 import styled from '@emotion/styled'
 import constants from '../../utils/constants';
 
-const { colors, infos } = constants;
-const { objectBackground, secondaryBackground, accentColor, objectText } = colors;
+const { colors } = constants;
+const { secondaryBackground } = colors;
 
 
 const WheelImage = styled.img`

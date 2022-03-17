@@ -7,6 +7,10 @@ import DiceComponent from '../components/dice/index'
 import {CurrencyContext} from './_app';
 import { sendCurrencyToTreasure, renderButtons } from '../utils/solana'
 import Space from '../components/common/space'
+import constants from '../utils/constants';
+
+const { colors } = constants;
+const { secondaryBackground, accentColor, objectText } = colors;
 
 import {
   Text,
@@ -14,24 +18,27 @@ import {
 } from '@chakra-ui/react';
 import styled from '@emotion/styled'
 
+
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: #070B17;
   flex: 1;
-  height: 100%;
 `
 
 
 const InnerWrapper = styled.div`
   display: flex;
-  flex: 1;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  height: 75vh;
+  width: 100%;
   padding-top: 20px;
-  padding-right: 90px;
-  height: 100%;
+  @media (max-width: 1250px) {
+    height: 100%;
+    flex-direction: column;
+    padding-bottom: 40px;
+  }
 `
 
 const RowCentered = styled.div`
@@ -39,8 +46,8 @@ const RowCentered = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  width: 400px;
-  padding: 30px 0px;
+  width: 246px;
+  padding-top: 10px;
 `
 
 
@@ -149,7 +156,45 @@ export default function Dice() {
   }
 
 
-
+  return (
+    <Layout>
+      <Wrapper>
+        <InnerWrapper>
+          <motion.div
+            style={{display: 'flex', flex: 3, flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', paddingRight: 20}}
+            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.55 }}
+          >
+            <Text fontSize="48px" lineHeight={1} fontWeight="bold" color={objectText}>Need <span style={{ color: accentColor }}>$SOL</span> for next mint?</Text>
+            <Text fontSize="48px" fontWeight="normal" color={objectText}>- Dice it</Text>
+            <Space height={30}/>
+          </motion.div>
+        <motion.div
+            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.55 }}
+            style={{flex: 2, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: secondaryBackground, padding: 20, borderRadius: 4}}
+          >
+            <DiceComponent isRolling={isLoading} rotate={rotate} diceValue={diceValue} />
+          <RowCentered/>
+          <RowCentered/>
+          <RowCentered>
+            <Text fontSize="48px" fontWeight="bold" color={!isEven ? '#fff' : 'rgba(255,255,255, 0.6)'}>Odd</Text>
+            <Space width={10} />
+            <Switch size="lg" isChecked={isEven} value={isEven ? 'isEven' : 'isOdd'} onChange={(e) => setEven(e.target.value !== 'isEven')} />
+            <Space width={10} />
+            <Text fontSize="48px" fontWeight="bold" color={isEven ? '#fff' : 'rgba(255,255,255, 0.6)'}>Even</Text>
+          </RowCentered>
+          <RowCentered/>
+          {renderButtons(context.value, false, bet, inputValue, setValue, isLoading, onOpen)}
+          </motion.div>
+        </InnerWrapper>
+      </Wrapper>
+    </Layout>
+  );
 
   return (
     <Layout>
