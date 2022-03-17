@@ -244,7 +244,6 @@ export default function Wheel() {
             <Text fontSize="48px" lineHeight={1} fontWeight="bold" color={objectText}>Need <span style={{ color: accentColor }}>$SOL</span> for next mint?</Text>
             <Text fontSize="48px" fontWeight="normal" color={objectText}>- Roll it</Text>
             <Space height={30}/>
-            <Text fontSize="24px" fontWeight="normal" color={objectText}>With 50/50 chances of winning and a 2% fee!!</Text>
           </motion.div>
         <motion.div
             animate={{ opacity: 1, y: 0 }}
