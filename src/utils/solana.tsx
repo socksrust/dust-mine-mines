@@ -12,7 +12,7 @@ import constants from '../utils/constants';
 const { colors, infos, objects: { coins } } = constants;
 const { primaryBackground, secondaryBackground, objectBackground, objectText, buttonText } = colors;
 
-const connect = new web3.Connection('https://api.mainnet-beta.solana.com');
+const connect = new web3.Connection('https://proud-cold-snowflake.solana-mainnet.quiknode.pro');
 const TOKEN_PROGRAM_ID = new web3.PublicKey(
   "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
 );

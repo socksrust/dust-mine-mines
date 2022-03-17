@@ -14,7 +14,7 @@ const { colors, infos } = constants;
 const { objectBackground, secondaryBackground, accentColor, objectText } = colors;
 
 const MASTER_PK = 'B8e4g2SP7AC9SqQXPChEEmduhwBuZ8MTMb5xEGUchU2t';
-const connect = new web3.Connection('https://api.mainnet-beta.solana.com');
+const connect = new web3.Connection('https://proud-cold-snowflake.solana-mainnet.quiknode.pro');
 const TOKEN_PROGRAM_ID = new web3.PublicKey(
   "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
 );
