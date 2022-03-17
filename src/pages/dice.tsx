@@ -157,7 +157,7 @@ export default function Dice() {
 
 
   return (
-    <Layout>
+    <Layout style={{ backgroundImage: "url('/images/bg-2.png')" }}>
       <Wrapper>
         <InnerWrapper>
           <motion.div
@@ -182,11 +182,11 @@ export default function Dice() {
           <RowCentered/>
           <RowCentered/>
           <RowCentered>
-            <Text fontSize="48px" fontWeight="bold" color={!isEven ? '#fff' : 'rgba(255,255,255, 0.6)'}>Odd</Text>
+            <Text fontSize="48px" fontWeight="bold" color={!isEven ? '#fff' : 'rgba(255,255,255, 0.6)'}>Husky</Text>
             <Space width={10} />
             <Switch size="lg" isChecked={isEven} value={isEven ? 'isEven' : 'isOdd'} onChange={(e) => setEven(e.target.value !== 'isEven')} />
             <Space width={10} />
-            <Text fontSize="48px" fontWeight="bold" color={isEven ? '#fff' : 'rgba(255,255,255, 0.6)'}>Even</Text>
+            <Text fontSize="48px" fontWeight="bold" color={isEven ? '#fff' : 'rgba(255,255,255, 0.6)'}>Frenchie</Text>
           </RowCentered>
           <RowCentered/>
           {renderButtons(context.value, false, bet, inputValue, setValue, isLoading, onOpen)}

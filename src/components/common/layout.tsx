@@ -12,7 +12,6 @@ const { primaryBackground, secondaryBackground, objectBackground, objectText } =
 const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
-  background-color: ${primaryBackground};
   flex: 1;
   padding: 0px 100px;
   @media only screen and (max-width: 800px) {
@@ -21,7 +20,7 @@ const Wrapper = styled.div`
   }
 `
 
-export const Layout = ({ children, ...props }: StackProps) => {
+export const Layout = ({ children, style, ...props }: StackProps) => {
   const router = useRouter();
 
 
@@ -31,7 +30,7 @@ export const Layout = ({ children, ...props }: StackProps) => {
 
   if(window.innerWidth < 100) {
     return (
-      <div style={{height: '100vh'}} >
+      <div style={{height: '100vh', ...style}} >
         <Header />
         <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: 50, height: '90vh'}} >
           Does not support mobile yet
@@ -43,7 +42,7 @@ export const Layout = ({ children, ...props }: StackProps) => {
 
 
   return (
-    <div style={window.location.pathname === '/race' ? {} : {height: '100vh'}} >
+    <div style={window.location.pathname === '/race' ? {...style} : {height: '100vh', ...style}} >
       <Header />
       <Wrapper>
         {children}

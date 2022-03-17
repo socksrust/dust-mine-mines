@@ -15,6 +15,7 @@ import {
 import styled from '@emotion/styled'
 import { keyframes } from '@emotion/react'
 import constants from '../utils/constants';
+import { url } from 'inspector';
 
 const { colors, infos } = constants;
 const { objectBackground, secondaryBackground, accentColor, objectText } = colors;
@@ -213,7 +214,7 @@ export default function Coin() {
   }, [publicKey && publicKey?.toString()])
 
   return (
-    <Layout>
+    <Layout style={{ backgroundImage: "url('/images/bg-1.png')" }}>
       <Wrapper>
         <InnerWrapper>
           <motion.div
@@ -252,10 +253,7 @@ export default function Coin() {
               {renderButtons(context.value, false, bet, inputValue, setValue, isLoading, onOpen)}
             </motion.div>
           </InnerWrapper>
-          <Space height={20} />
-          <LiveBets />
-          <Space height={10} />
-
+          {/*<LiveBets />*/}
       </Wrapper>
     </Layout>
   );
