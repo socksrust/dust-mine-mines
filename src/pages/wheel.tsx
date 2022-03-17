@@ -231,7 +231,7 @@ export default function Wheel() {
   }
 
   return (
-    <Layout style={{ backgroundImage: "url('/images/bg-3.png')" }}>
+    <Layout style={{ backgroundImage: "url('/images/bg-3.jpg')" }}>
       <Wrapper>
         <InnerWrapper>
           <motion.div

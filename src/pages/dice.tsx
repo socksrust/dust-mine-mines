@@ -157,7 +157,7 @@ export default function Dice() {
 
 
   return (
-    <Layout style={{ backgroundImage: "url('/images/bg-2.png')" }}>
+    <Layout style={{ backgroundImage: "url('/images/bg-2.jpg')" }}>
       <Wrapper>
         <InnerWrapper>
           <motion.div
