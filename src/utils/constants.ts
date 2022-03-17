@@ -3,7 +3,7 @@ const constants = {
   infos: {
     name: 'Solana Puppy Pound',
     website: 'https://twitter.com/solpuppypound',
-    image: 'https://media.discordapp.net/attachments/953409170827272225/953780138875699250/OEZ1Sf6Z_400x400.png',
+    image: 'https://media.discordapp.net/attachments/953774408470761544/953787077651234906/SOLANA-PUPPY-POUND.png?width=1504&height=1112',
     publicKey: 'GneuCzhfTiDCVEAwLAcFGEkWhyfjM6QKEFhhVo7DBLkU',
     serverUrl: 'https://spp-casino.herokuapp.com',
   },
