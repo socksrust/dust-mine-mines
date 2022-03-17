@@ -204,7 +204,7 @@ export default function Wheel() {
 
       toast({
         title: `Yayyyy!!`,
-        description: `You got $${(winValue).toFixed(2)} back! They will be transferred in less than a minute! Keep going!!`,
+        description: `You got $${(winValue).toFixed(2)} $TREATS back! They will be transferred in less than a minute! Keep going!!`,
         status: 'info',
         duration: 15000,
         isClosable: true,
@@ -261,7 +261,7 @@ export default function Wheel() {
             <Text fontSize="36px" fontWeight="bold" color={isEven ? '#fff' : 'rgba(255,255,255, 0.6)'}>Even</Text>
           </RowCentered>
           <RowCentered>
-            <Text fontSize="36px" fontWeight="bold" color={!isBlack ? '#fff' : 'rgba(255,255,255, 0.6)'}>Red</Text>
+            <Text fontSize="36px" fontWeight="bold" color={!isBlack ? '#fff' : 'rgba(255,255,255, 0.6)'}>Orange</Text>
             <Switch size="lg" isChecked={isBlack} value={isBlack ? 'isBlack' : 'isRed'} onChange={(e) => setBlack(e.target.value !== 'isBlack')} />
             <Text fontSize="36px" fontWeight="bold" color={isBlack ? '#fff' : 'rgba(255,255,255, 0.6)'}>Black</Text>
           </RowCentered>

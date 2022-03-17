@@ -126,7 +126,7 @@ export default function Dice() {
 
       toast({
         title: `Yayyyy!!`,
-        description: `You got $${(winValue).toFixed(2)} back! They will be transferred in less than a minute! Keep going!!`,
+        description: `You got $${(winValue).toFixed(2)} $TREATS back! They will be transferred in less than a minute! Keep going!!`,
         status: 'info',
         duration: 15000,
         isClosable: true,

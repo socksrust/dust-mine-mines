@@ -130,7 +130,7 @@ export default function Coin() {
 
         toast({
           title: `Yayyyy!!`,
-          description: `You got $${(winValue).toFixed(2)} back! They will be transferred in less than a minute! Keep going!!`,
+          description: `You got $${(winValue).toFixed(2)} $TREATS back! They will be transferred in less than a minute! Keep going!!`,
           status: 'info',
           duration: 15000,
           isClosable: true,
@@ -227,7 +227,7 @@ export default function Coin() {
             <Text fontSize="48px" lineHeight={1} fontWeight="bold" color={objectText}>Need <span style={{ color: accentColor }}>$SOL</span> for next mint?</Text>
             <Text fontSize="48px" fontWeight="normal" color={objectText}>- Flip it</Text>
             <Space height={20} />
-            <Text fontSize="20px" fontWeight="normal" color={objectText}>Sometimes to acheive $TREATS dominance, you gotta risk it all. Play Responsibl</Text>
+            <Text fontSize="20px" fontWeight="normal" color={objectText}>Sometimes to acheive $TREATS dominance, you gotta risk it all. Play Responsibly</Text>
           </motion.div>
           <Space height={20} />
           <motion.div
