@@ -5,6 +5,11 @@ const { primaryBackground, secondaryBackground, objectBackground, buttonText } =
 
 //@ts-ignore
 const Select = (props) => {
+
+  if(!window) {
+    return null;
+  }
+
   return (
     <ReactSelect {...props} 
     menuPortalTarget={document.body}
@@ -36,7 +41,7 @@ const Select = (props) => {
         background: objectBackground,
         borderRadius: '4px',
         borderWidth: 1,
-        width: 170,
+        width: window.innerWidth <= 750 ? 100 : 170,
         color: buttonText,
       }),
       listBox: (provided) => ({

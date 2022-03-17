@@ -17,6 +17,15 @@ const Image = styled.img`
   width: 130px;
   border-radius: 50%;
   margin-left: 20px;
+  @media (max-width: 750px) {
+    display: none;
+  }
+`
+
+const MyText = styled(Text)`
+  @media (max-width: 750px) {
+    display: none;
+  }
 `
 
 interface HeaderProps {}
@@ -65,7 +74,7 @@ const Header: FC<HeaderProps> = () => {
               style={{ display: 'flex', alignItems: 'center' }}
             >
               <Image src={logoUrl}/>
-              <Text color={colors.objectText} ml={5} fontSize="24px" fontWeight="bold">{logo}</Text>
+              <MyText color={colors.objectText} ml={5} fontSize="24px" fontWeight="bold">{logo}</MyText>
               </div>
             <Space width={30} height={20}/>
             <Flex
