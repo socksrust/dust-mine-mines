@@ -33,10 +33,9 @@ const Wrapper = styled.div`
 
 const InnerWrapper = styled.div`
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-start;
-  height: 75vh;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
   width: 100%;
   padding-top: 70px;
   @media (max-width: 1250px) {
@@ -218,24 +217,11 @@ export default function Coin() {
       <Wrapper>
         <InnerWrapper>
           <motion.div
-            style={{display: 'flex', flex: 3, flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', paddingRight: 20}}
             animate={{ opacity: 1, y: 0 }}
             initial={{ opacity: 0, y: 20 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.55 }}
-          >
-            <Text fontSize="48px" lineHeight={1} fontWeight="bold" color={objectText}>Need <span style={{ color: accentColor }}>$SOL</span> for next mint?</Text>
-            <Text fontSize="48px" fontWeight="normal" color={objectText}>- Flip it</Text>
-            <Space height={20} />
-            <Text fontSize="20px" fontWeight="normal" color={objectText}>Sometimes to acheive $TREATS dominance, you gotta risk it all. Play Responsibly</Text>
-          </motion.div>
-          <Space height={20} />
-          <motion.div
-            animate={{ opacity: 1, y: 0 }}
-            initial={{ opacity: 0, y: 20 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.55 }}
-            style={{flex: 2, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: secondaryBackground, padding: 20, borderRadius: 4}}
+            style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: secondaryBackground, padding: 20, borderRadius: 4}}
           >
               <CoinComponent isFlipped={isFlipped} isFlipping={isFlipping} textContent={textContent} diceValue={diceValue} />
               <RowCentered>
@@ -252,9 +238,11 @@ export default function Coin() {
               </RowCentered>
               {renderButtons(context.value, false, bet, inputValue, setValue, isLoading, onOpen)}
             </motion.div>
+            <Space height={70} />
+            <LiveBets />
           </InnerWrapper>
-          {/*<LiveBets />*/}
       </Wrapper>
+
     </Layout>
   );
 }

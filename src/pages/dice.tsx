@@ -29,7 +29,7 @@ const Wrapper = styled.div`
 const InnerWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-items: flex-start;
   height: 75vh;
   width: 100%;
@@ -160,23 +160,12 @@ export default function Dice() {
     <Layout style={{ backgroundImage: "url('/images/bg-2.jpg')" }}>
       <Wrapper>
         <InnerWrapper>
-          <motion.div
-            style={{display: 'flex', flex: 3, flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', paddingRight: 20}}
-            animate={{ opacity: 1, y: 0 }}
-            initial={{ opacity: 0, y: 20 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.55 }}
-          >
-            <Text fontSize="48px" lineHeight={1} fontWeight="bold" color={objectText}>Need <span style={{ color: accentColor }}>$SOL</span> for next mint?</Text>
-            <Text fontSize="48px" fontWeight="normal" color={objectText}>- Dice it</Text>
-            <Space height={30}/>
-          </motion.div>
         <motion.div
             animate={{ opacity: 1, y: 0 }}
             initial={{ opacity: 0, y: 20 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.55 }}
-            style={{flex: 2, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: secondaryBackground, padding: 20, borderRadius: 4}}
+            style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: secondaryBackground, padding: 20, borderRadius: 4}}
           >
             <DiceComponent isRolling={isLoading} rotate={rotate} diceValue={diceValue} />
           <RowCentered/>

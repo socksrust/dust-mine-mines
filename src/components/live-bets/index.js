@@ -115,6 +115,7 @@ const Wrapper = styled.div`
   overflow: scroll;
   z-index: 3;
   border: 1px solid #20252F;
+  background-color: ${secondaryBackground};
 `
 
 export default function LiveBets() {

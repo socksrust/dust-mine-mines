@@ -82,7 +82,7 @@ const options = [
 ]
 
 const LeftMenu: FC<LeftMenuProps> = () => {
-  const { push } = useRouter();
+  const { push, replace } = useRouter();
   const context = useContext(CurrencyContext) || 'TREATS'
 
   return (
@@ -94,6 +94,7 @@ const LeftMenu: FC<LeftMenuProps> = () => {
         <MenuItem text="Coin Flip" onClick={() => push('/')} isActive={window.location.pathname === '/'} />
         <MenuItem text="Dice Roll" onClick={() => push('/dice')} isActive={window.location.pathname === '/dice'} />
         <MenuItem text="Roulette Wheel" onClick={() => push('/wheel')} isActive={window.location.pathname === '/wheel'}  />
+        <MenuItem text="Buy $TREATS" onClick={() => replace('https://raydium.io/swap/?inputCurrency=sol&outputCurrency=14r8dWfzmUUBpw59w5swNRb5F1YWqmUnSPgD6djUs1Jj&inputAmount=1&outputAmount=3014.368777&fixed=in')} isActive={false}  />
         {/*<MenuItem text="Rock paper scissors" onClick={() => push('/rps')} isActive={window.location.pathname === '/rps'}  />*/}
       </Wrapper>
     </>

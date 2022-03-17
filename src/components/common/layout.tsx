@@ -30,7 +30,7 @@ export const Layout = ({ children, style, ...props }: StackProps) => {
 
   if(window.innerWidth < 100) {
     return (
-      <div style={{height: '100vh', ...style}} >
+      <div style={{minHeight: '100vh', ...style}} >
         <Header />
         <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: 50, height: '90vh'}} >
           Does not support mobile yet
@@ -42,7 +42,7 @@ export const Layout = ({ children, style, ...props }: StackProps) => {
 
 
   return (
-    <div style={window.location.pathname === '/race' ? {...style} : {height: '100vh', ...style}} >
+    <div style={window.location.pathname === '/race' ? {...style} : {minHeight: '100vh', ...style}} >
       <Header />
       <Wrapper>
         {children}
