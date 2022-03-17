@@ -1,13 +1,12 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Layout } from '../components/common/layout';
-import { Switch, Modal, ModalOverlay, useDisclosure, Checkbox, Button } from '@chakra-ui/react';
+import { useDisclosure, RadioGroup, Stack, Radio } from '@chakra-ui/react';
 import { motion } from "framer-motion";
 import { useAnchorWallet, useWallet, useConnection } from '@solana/wallet-adapter-react';
-import CoinComponent from '../components/coin/index'
+import RPSComponent from '../components/rps/index'
 import {CurrencyContext} from './_app';
 import { sendCurrencyToTreasure, renderButtons } from '../utils/solana'
 import Space from '../components/common/space'
-import LiveBets from '../components/live-bets/index'
 import {
   Text,
   useToast,
@@ -17,7 +16,7 @@ import { keyframes } from '@emotion/react'
 import constants from '../utils/constants';
 
 const { colors, infos } = constants;
-const { objectBackground, secondaryBackground, accentColor, objectText } = colors;
+const { secondaryBackground, accentColor, objectText } = colors;
 
 
 const Wrapper = styled.div`
@@ -35,7 +34,7 @@ const InnerWrapper = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
-  height: 75vh;
+  height: 100vh;
   width: 100%;
   padding-top: 70px;
   @media (max-width: 1250px) {
@@ -45,56 +44,19 @@ const InnerWrapper = styled.div`
   }
 `
 
-const RowCentered = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  width: 400px;
-  padding: 15px 0px;
-`
+const userWon = {
+		Rock: 'Scissors',
+		Paper: 'Rock',
+		Scissors: 'Paper'
+}
 
-const LoadingWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  width: 280px;
-  padding-top: 10px;
-`
+const userLost = {
+		Rock: 'Paper',
+		Paper: 'Scissors',
+		Scissors: 'Rock'
+}
 
-const breeding = keyframes`
-  0% {
-    width: 35px;
-    height: 35px;
-  }
-
-  50% {
-    width: 45px;
-    height: 45px;
-  }
-
-  100% {
-    width: 35px;
-    height: 35px;
-  }
-
-`;
-
-const LoadingBall = styled.div`
-  width: 35px;
-  height: 35px;
-  border-radius: 100%;
-
-${p => p.isFilled ? `
-    background: #00E676;
-  ` : `
-  background: rgba(255, 255, 255, 0.3);
-  border: 2px solid rgba(255, 255, 255, 0.7);
-  `}
-`
-
-export default function Coin() {
+export default function RPS() {
   const [isEven, setEven] = useState(false)
   const [isLoading, setLoading] = useState(false)
   const [isFlipping, setFlipping] = useState(false)
@@ -105,6 +67,8 @@ export default function Coin() {
   const [textContent, setTextContent] = useState("HEADS");
   const [diceValue, setDiceValue] = useState(0); // integer state
   const context = useContext(CurrencyContext)
+  const [option, setOption] = useState('Rock')
+  const [pcOption, setPcOption] = useState('Rock')
 
   const { isOpen, onOpen, onClose } = useDisclosure()
   const toast = useToast();
@@ -120,6 +84,8 @@ export default function Coin() {
       setFlipping(false)
       if(parsedResult?.data?.won) {
 
+        //@ts-ignore
+        setPcOption(userWon[option])
         //isEven ? 2, 4, 6 : 1, 3, 5;
         const realResult = isEven ? 'HEADS' : 'TAILS';
 
@@ -138,7 +104,8 @@ export default function Coin() {
         });
       } else {
         const realResult = !isEven ? 'HEADS' : 'TAILS';
-
+        //@ts-ignore
+        setPcOption(userLost[option])
         //isEven ? 1, 3, 5 : 2, 4, 6 ;
         setTextContent(realResult);
         toast({
@@ -181,14 +148,10 @@ export default function Coin() {
     const parsedResult = await sendCurrencyToTreasure({ fromWallet, toast, toTokenAccountAddress, mintAddress, betValue, sendTransaction, connection, endpoint: 'coinBet', publicKey, bets })
     //END
 
-    setBets(bets >= 4 ? 0 : bets + 1)
     setLoading(false);
     onClose();
     flip({ parsedResult, betValue })
 
-    if(isChecked) {
-      await bet(betValue, mintAddress, toTokenAccountAddress);
-    }
   }
 
   useEffect(() => {
@@ -236,26 +199,19 @@ export default function Coin() {
             transition={{ duration: 0.55 }}
             style={{flex: 2, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: secondaryBackground, padding: 20, borderRadius: 4}}
           >
-              <CoinComponent isFlipped={isFlipped} isFlipping={isFlipping} textContent={textContent} diceValue={diceValue} />
-              <RowCentered>
-                <Text fontSize="36px" fontWeight="bold" color={!isEven ? objectBackground : 'rgba(255, 255, 255, 0.5)'}>TAILS</Text>
-                <Space width={10} />
-                <Switch size="lg" isChecked={isEven} value={isEven ? 'isEven' : 'isOdd'} onChange={(e) => setEven(e.target.value !== 'isEven')} />
-                <Space width={10} />
-                <Text fontSize="36px" fontWeight="bold" color={isEven ? objectBackground : 'rgba(255, 255, 255, 0.5)'}>HEADS</Text>
-                <Space width={50} />
-                <Checkbox size='lg' colorScheme='green' onChange={(e) => setChecked(e.target.checked)} isChecked={isChecked}>
-                  <Text fontSize="24px" fontWeight="medium" color={objectBackground}>Auto</Text>
-                </Checkbox>
-                <Space width={15} />
-              </RowCentered>
+              <RPSComponent option={option} pcOption={pcOption} isLoading={isLoading} textContent={textContent} diceValue={diceValue} />
+              <Space height={50} />
+              <RadioGroup onChange={setOption} value={option}>
+                <Stack direction='row'>
+                  <Radio value='Rock'>🪨 Rock</Radio>
+                  <Radio value='Paper'>📝 Paper</Radio>
+                  <Radio value='Scissors'>✂️ Scissors</Radio>
+                </Stack>
+              </RadioGroup>
+              <Space height={20} />
               {renderButtons(context.value, false, bet, inputValue, setValue, isLoading, onOpen)}
             </motion.div>
           </InnerWrapper>
-          <Space height={20} />
-          <LiveBets />
-          <Space height={10} />
-
       </Wrapper>
     </Layout>
   );
