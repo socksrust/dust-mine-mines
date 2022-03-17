@@ -10,8 +10,8 @@ const Coin = ({ isFlipping, isFlipped, rotate, diceValue, textContent}) => {
 
 	return (
     <>
-			<div className={`outcome ${isFlipping && 'toss'} ${isFlipped && 'flip'}`} style={{ backgroundColor: accentColor, borderColor: accentColor, color: objectText }}>
-				{textContent}
+			<span style={{ color: objectText, fontSize: 24, marginBottom: 5 }}>{textContent}</span>
+			<div className={`outcome ${isFlipping && 'toss'} ${isFlipped && 'flip'}`} style={{ background: "url('/images/front-coin.png')", backgroundSize: 'contain', borderColor: accentColor, color: objectText }}>
 			</div>
 		</>
 	);
