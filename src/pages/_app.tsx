@@ -49,7 +49,7 @@ const WalletConnectionProvider = dynamic(
 );
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [value, setValue] = React.useState('SOL')
+  const [value, setValue] = React.useState('TREATS')
   const router = useRouter();
   const { currency, r } = router.query
 
@@ -66,11 +66,11 @@ function MyApp({ Component, pageProps }: AppProps) {
         localStorage.setItem('r', r);
       }
       if(currency && typeof currency === 'string') {
-        const newValue = currency.toUpperCase() || 'SOL';
+        const newValue = currency.toUpperCase() || 'TREATS';
         localStorage.setItem('value', newValue);
         setValue(newValue);
       }
-      const v: any = localStorage?.getItem('value') || 'SOL';
+      const v: any = localStorage?.getItem('value') || 'TREATS';
       setValue(v);
     }
   }, [currency, r])

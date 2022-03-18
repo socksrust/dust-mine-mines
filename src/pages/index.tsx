@@ -212,6 +212,8 @@ export default function Coin() {
 
   }, [publicKey && publicKey?.toString()])
 
+  console.log('context', context);
+
   return (
     <Layout style={{ backgroundImage: "url('/images/bg-1.jpg')" }}>
       <Wrapper>
