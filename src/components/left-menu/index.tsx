@@ -89,7 +89,7 @@ const LeftMenu: FC<LeftMenuProps> = () => {
     <>
       <Wrapper>
         {/*<MenuOutItem text="Buy $BIP" onClick={() => window.open('https://app.thestarship.finance/', '_ blank')} />*/}
-        <Select value={options.find(a => a.value === context.value)} options={options} onChange={(option) => context.setValue(option.value)} />
+        <Select value={options.find(a => a.value === 'TREATS')} options={options} onChange={(option) => context.setValue(option.value)} />
         <Space width={30} />
         <MenuItem text="Coin Flip" onClick={() => push('/')} isActive={window.location.pathname === '/'} />
         <MenuItem text="Dice Roll" onClick={() => push('/dice')} isActive={window.location.pathname === '/dice'} />

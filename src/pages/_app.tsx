@@ -14,7 +14,7 @@ import '../components/dice/dice.css'
 import '../components/slot/slot.css'
 import '../components/coin/coin.css'
 
-export const CurrencyContext = React.createContext<any>({value: 'SOL'});
+export const CurrencyContext = React.createContext<any>({value: 'TREATS'});
 
 const theme1 = createTheme({
   palette: {
