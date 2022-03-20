@@ -40,9 +40,11 @@ const Square = ({count, setCount, ...props}) => {
   const [squareCount, setSquareCount] = useState(-20)
 
   const handleSquareClick = async () => {
+    console.log('====1====')
     if(exploded === true || count === 80) {
       return;
     }
+    console.log('====2====')
 
     const resp = await fetch(`${infos.serverUrl}/api/v1/transaction/mineBet`, {
       //const resp = await fetch(`${infos.serverUrl}/api/v1/transaction/${endpoint}`, {
@@ -52,18 +54,20 @@ const Square = ({count, setCount, ...props}) => {
         },
         method: "POST"
     });
+    console.log('====3====')
   
     const parsedResult = await resp.json();
+    console.log('====4====')
 
     setExploded(true)
     setSquareCount(count + 20)
     setCount(count + 20)
-
+    console.log('====5====')
 
   }
 
   return (
-    <SquareComponent {...props} won={count === 80} onClick={handleSquareClick} isExploded={exploded} squareCount={squareCount}>
+    <SquareComponent {...props} won={count === 80} onClick={async () => handleSquareClick()} isExploded={exploded} squareCount={squareCount}>
       {20 + squareCount}%
     </SquareComponent>
   )

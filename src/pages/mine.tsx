@@ -131,13 +131,18 @@ export default function Min() {
     setLoading(true);
 
 
+    console.log('a')
     //START
     const parsedResult = await sendCurrencyToTreasure({ fromWallet, toast, toTokenAccountAddress, mintAddress, betValue, sendTransaction, connection, endpoint: 'payMineBet', publicKey, bets })
     //END
+    console.log('b')
 
     setLoading(false);
+    console.log('c')
     onClose();
+    console.log('d')
     flip({ parsedResult, betValue })
+    console.log('e')
 
   }
 
