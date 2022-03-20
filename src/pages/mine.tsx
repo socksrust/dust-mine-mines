@@ -67,7 +67,7 @@ export default function Min() {
   const [diceValue, setDiceValue] = useState(0); // integer state
   const context = useContext(CurrencyContext)
   const [option, setOption] = useState('Rock')
-  const [pcOption, setPcOption] = useState('Rock')
+  const [mySignature, setSignature] = useState('Rock')
   const [isPaymentVerified, setVerified] = useState(false)
 
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -133,8 +133,9 @@ export default function Min() {
 
     console.log('a')
     //START
-    const parsedResult = await sendCurrencyToTreasure({ fromWallet, toast, toTokenAccountAddress, mintAddress, betValue, sendTransaction, connection, endpoint: 'payMineBet', publicKey, bets })
+    const { parsedResult, signature} = await sendCurrencyToTreasure({ fromWallet, toast, toTokenAccountAddress, mintAddress, betValue, sendTransaction, connection, endpoint: 'payMineBet', publicKey, bets })
     //END
+    setSignature(signature);
     console.log('b')
 
     setLoading(false);
@@ -178,7 +179,7 @@ export default function Min() {
             transition={{ duration: 0.55 }}
             style={{flex: 2, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: secondaryBackground, padding: 20, borderRadius: 4}}
           >
-              <Mine isPaymentVerified={isPaymentVerified} />
+              <Mine isPaymentVerified={true} mySignature={mySignature} />
               <Space height={50} />
               <Space height={20} />
               {renderButtons(context.value, false, bet, inputValue, setValue, isLoading, onOpen)}
