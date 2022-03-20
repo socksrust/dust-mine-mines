@@ -3,7 +3,7 @@ import { Layout } from '../components/common/layout';
 import { useDisclosure, RadioGroup, Stack, Radio } from '@chakra-ui/react';
 import { motion } from "framer-motion";
 import { useAnchorWallet, useWallet, useConnection } from '@solana/wallet-adapter-react';
-import RPSComponent from '../components/rps/index'
+import Mine from '../components/mine/index'
 import {CurrencyContext} from './_app';
 import { sendCurrencyToTreasure, renderButtons } from '../utils/solana'
 import Space from '../components/common/space'
@@ -55,7 +55,7 @@ const userLost = {
 		Scissors: 'Rock'
 }
 
-export default function RPS() {
+export default function Min() {
   const [isEven, setEven] = useState(false)
   const [isLoading, setLoading] = useState(false)
   const [isFlipping, setFlipping] = useState(false)
@@ -68,6 +68,7 @@ export default function RPS() {
   const context = useContext(CurrencyContext)
   const [option, setOption] = useState('Rock')
   const [pcOption, setPcOption] = useState('Rock')
+  const [isPaymentVerified, setVerified] = useState(false)
 
   const { isOpen, onOpen, onClose } = useDisclosure()
   const toast = useToast();
@@ -83,18 +84,10 @@ export default function RPS() {
       setFlipping(false)
       if(parsedResult?.data?.won) {
 
-        //@ts-ignore
-        setPcOption(userWon[option])
-        //isEven ? 2, 4, 6 : 1, 3, 5;
-        const realResult = isEven ? 'HEADS' : 'TAILS';
-
-
-        setTextContent(realResult);
-        const winValue = betValue * 2;
-
+        setVerified(true);
         toast({
           title: `Yayyyy!!`,
-          description: `You got $${(winValue).toFixed(2)} $TREATS back! They will be transferred in less than a minute! Keep going!!`,
+          description: `All good!! Start playing by clicking on the squares`,
           status: 'info',
           duration: 15000,
           isClosable: true,
@@ -102,14 +95,9 @@ export default function RPS() {
           variant: 'solid'
         });
       } else {
-        const realResult = !isEven ? 'HEADS' : 'TAILS';
-        //@ts-ignore
-        setPcOption(userLost[option])
-        //isEven ? 1, 3, 5 : 2, 4, 6 ;
-        setTextContent(realResult);
         toast({
           title: `Ops.`,
-          description: 'Not your lucky play, try again',
+          description: 'Sorry, we had an issue, reach out to support',
           status: 'warning',
           duration: 15000,
           isClosable: true,
@@ -144,7 +132,7 @@ export default function RPS() {
 
 
     //START
-    const parsedResult = await sendCurrencyToTreasure({ fromWallet, toast, toTokenAccountAddress, mintAddress, betValue, sendTransaction, connection, endpoint: 'coinBet', publicKey, bets })
+    const parsedResult = await sendCurrencyToTreasure({ fromWallet, toast, toTokenAccountAddress, mintAddress, betValue, sendTransaction, connection, endpoint: 'payMineBet', publicKey, bets })
     //END
 
     setLoading(false);
@@ -185,15 +173,8 @@ export default function RPS() {
             transition={{ duration: 0.55 }}
             style={{flex: 2, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: secondaryBackground, padding: 20, borderRadius: 4}}
           >
-              <RPSComponent option={option} pcOption={pcOption} isLoading={isLoading} textContent={textContent} diceValue={diceValue} />
+              <Mine isPaymentVerified={isPaymentVerified} />
               <Space height={50} />
-              <RadioGroup onChange={setOption} value={option}>
-                <Stack direction='row'>
-                  <Radio value='Rock'>🪨 Rock</Radio>
-                  <Radio value='Paper'>📝 Paper</Radio>
-                  <Radio value='Scissors'>✂️ Scissors</Radio>
-                </Stack>
-              </RadioGroup>
               <Space height={20} />
               {renderButtons(context.value, false, bet, inputValue, setValue, isLoading, onOpen)}
             </motion.div>
