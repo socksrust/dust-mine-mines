@@ -19,6 +19,7 @@ import { initializeUserCardList, initializeHouseCardList, handleHitClick, handle
 
 const Wrapper = styled.div`
   display: flex;
+  flex-direction: row-reverse;
   justify-content: space-around;
   align-items: center;
   width: 900px;
@@ -75,6 +76,37 @@ const BlackjackComponent = ({ won, isPaymentVerified, setVerified }) => {
   const hitClickCb = (props) => {
     const isEnd = handleHitClick(props)
 
+    if(!isEnd) {
+      return;
+    }
+
+    if(won) {
+      toast({
+        title: `Yayyyy!!`,
+        description: `You WON! Tokens will be transferred in less than a minute! Keep going!!`,
+        status: 'info',
+        duration: 15000,
+        isClosable: true,
+        position: 'bottom-right',
+        variant: 'solid'
+      });
+    } else {
+      toast({
+        title: `Ops.`,
+        description: 'Not your lucky play, try again',
+        status: 'warning',
+        duration: 15000,
+        isClosable: true,
+        position: 'bottom-right',
+        variant: 'solid'
+      });
+    }
+
+    return setIsDisabled(true);
+  }
+
+  const standClickCb = (props) => {
+    const isEnd = handleStandClick(props)
 
     if(!isEnd) {
       return;
@@ -102,6 +134,7 @@ const BlackjackComponent = ({ won, isPaymentVerified, setVerified }) => {
       });
     }
 
+    return setIsDisabled(true);
   }
 
 
@@ -141,7 +174,7 @@ const BlackjackComponent = ({ won, isPaymentVerified, setVerified }) => {
           <Text fontSize="14px" fontWeight="bold" color={primaryBackground}>HIT</Text>
         </Button>
         <Space width={20}/>
-        <Button disabled={!isPaymentVerified || isDisabled} backgroundColor={objectBackground} borderRadius="2rem" width="110px" height="34px" borderColor={objectBackground} borderWidth="1px" onClick={() => handleStandClick({ won, houseCardsTotal, setHouseCardsTotal, houseCardList, setHouseCardList })}>
+        <Button disabled={!isPaymentVerified || isDisabled} backgroundColor={objectBackground} borderRadius="2rem" width="110px" height="34px" borderColor={objectBackground} borderWidth="1px" onClick={() => standClickCb({ won, houseCardsTotal, setHouseCardsTotal, houseCardList, setHouseCardList })}>
           <Text fontSize="14px" fontWeight="bold" color={primaryBackground}>STAND</Text>
         </Button>
       </Row>
