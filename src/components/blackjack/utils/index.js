@@ -8,7 +8,7 @@ export const initializeUserCardList = ({ setUserCardList, userCardsTotal, setUse
   let total = 0;
   for(let i of [1,2]) {
     const suitsIndex = Math.floor(Math.random() * 4);
-    const ranksIndex = Math.floor(Math.random() * 13);
+    const ranksIndex = Math.floor(Math.random() * 6);
 
     const suit = SUITS[suitsIndex]
     const rank = RANKS[ranksIndex]
@@ -23,7 +23,7 @@ export const initializeUserCardList = ({ setUserCardList, userCardsTotal, setUse
 
 export const initializeHouseCardList = ({ setHouseCardList, houseCardsTotal, setHouseCardsTotal }) => {
   const suitsIndex = Math.floor(Math.random() * 4);
-  const ranksIndex = Math.floor(Math.random() * 13);
+  const ranksIndex = Math.floor(Math.random() * 6);
 
   const suit = SUITS[suitsIndex]
   const rank = RANKS[ranksIndex]
