@@ -128,14 +128,6 @@ export default function BlackjackComponent({ isPaymentVerified }) {
     dispatch({ type: "check" });
   }
 
-  function getButtons(playersHand) {
-    if (BlackJackUtilities.getTotal(playersHand) > 21 || state.isTurnEnd) {
-      return <GameProgressButton onClickNext={next} />;
-    } else {
-      return <BlackJackButtons onClickHit={doHit} onClickStand={doStand} isPaymentVerified={isPaymentVerified}  />;
-    }
-  }
-
   return (
     <Box>
       <PlayArea
@@ -143,7 +135,9 @@ export default function BlackjackComponent({ isPaymentVerified }) {
         playersHand={state.playersHand}
         isTurnEnd={state.isTurnEnd}
       />
-      <Box className={classes.messageArea}>{getButtons(state.playersHand)}</Box>
+      <Box className={classes.messageArea}>
+        <BlackJackButtons onClickHit={doHit} onClickStand={doStand} isPaymentVerified={isPaymentVerified}  />
+      </Box>
     </Box>
   );
 }

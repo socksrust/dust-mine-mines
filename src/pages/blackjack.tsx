@@ -50,6 +50,7 @@ export default function Blackjack() {
   const context = useContext(CurrencyContext)
   const [mySignature, setSignature] = useState(null)
   const [isPaymentVerified, setVerified] = useState(false)
+  const [won, setWon] = useState()
 
   const { onOpen } = useDisclosure()
   const toast = useToast();
@@ -59,32 +60,18 @@ export default function Blackjack() {
 
   const betCallback = ({ parsedResult, betValue }: any) => {
     setFlipped(!isFlipped);
-    setTimeout(() => {
-      if(parsedResult?.data?.won) {
+    setVerified(true);
+    toast({
+      title: `Yayyyy!!`,
+      description: `All good!! Start playing your blackjack game`,
+      status: 'info',
+      duration: 15000,
+      isClosable: true,
+      position: 'bottom-right',
+      variant: 'solid'
+    });
 
-        setVerified(true);
-        toast({
-          title: `Yayyyy!!`,
-          description: `All good!! Start playing your blackjack game`,
-          status: 'info',
-          duration: 15000,
-          isClosable: true,
-          position: 'bottom-right',
-          variant: 'solid'
-        });
-      } else {
-        toast({
-          title: `Ops.`,
-          description: 'Sorry, we had an issue, reach out to support',
-          status: 'warning',
-          duration: 15000,
-          isClosable: true,
-          position: 'bottom-right',
-          variant: 'solid'
-        });
-
-      }
-    }, 1000);
+    setWon(parsedResult?.data?.won)
   }
 
   if (typeof window === 'undefined') return <></>;
@@ -124,6 +111,8 @@ export default function Blackjack() {
 
   }
 
+  console.log('won', won);
+
   return (
     <Layout style={{ backgroundImage: "url('/images/bg-1.jpg')" }}>
       <Wrapper>
@@ -135,7 +124,7 @@ export default function Blackjack() {
             transition={{ duration: 0.55 }}
             style={{flex: 2, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: secondaryBackground, padding: 20, borderRadius: 4}}
           >
-              <BlackjackComponent isPaymentVerified={isPaymentVerified} setVerified={setVerified} mySignature={mySignature} setSignature={setSignature} />
+              <BlackjackComponent isPaymentVerified={isPaymentVerified} setVerified={setVerified} mySignature={mySignature} setSignature={setSignature} won={won} />
               <Space height={50} />
               <Space height={20} />
               {renderButtons(context.value, false, bet, inputValue, setValue, isLoading, onOpen)}

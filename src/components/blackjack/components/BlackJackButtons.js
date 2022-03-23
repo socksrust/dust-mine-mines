@@ -22,14 +22,7 @@ export default function BlackJackButtons({isPaymentVerified, ...props}) {
           break;
       }
     }
-    document.body.addEventListener("keydown", click, {
-      passive: false
-    });
-    return () => {
-      document.body.removeEventListener("keydown", click, {
-        passive: false
-      });
-    };
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
