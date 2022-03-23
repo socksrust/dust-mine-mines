@@ -13,7 +13,9 @@ export const initializeUserCardList = ({ setUserCardList, userCardsTotal, setUse
     const suit = SUITS[suitsIndex]
     const rank = RANKS[ranksIndex]
 
-    total = total + ranksIndex + 1;
+    const newRankIndex = ranksIndex >= 10 ? 10 : ranksIndex + 1;
+
+    total = total + newRankIndex;
 
     cardList = [...cardList, { suit, rank }]
   }
@@ -31,7 +33,7 @@ export const initializeHouseCardList = ({ setHouseCardList, houseCardsTotal, set
   const newRankIndex = ranksIndex >= 10 ? 10 : ranksIndex + 1;
 
 
-  setHouseCardsTotal(houseCardsTotal + ranksIndex)
+  setHouseCardsTotal(newRankIndex)
   setHouseCardList([{ suit, rank }])
 };
 
