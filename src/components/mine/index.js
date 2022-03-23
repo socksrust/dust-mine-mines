@@ -166,42 +166,42 @@ export default function MinComp(props) {
       <Row>
         <Square {...props} exploded={exploded[24]} explode={() => explode(24)}  />
         <Square {...props} exploded={exploded[25]} explode={() => explode(25)}  />
-        <Square {...props} exploded={exploded} explode={() => explode(0)}  />
-        <Square {...props} exploded={exploded} explode={() => explode(0)}  />
-        <Square {...props} exploded={exploded} explode={() => explode(0)}  />
-        <Square {...props} exploded={exploded} explode={() => explode(0)}  />
-        <Square {...props} exploded={exploded} explode={() => explode(0)}  />
-        <Square {...props} exploded={exploded} explode={() => explode(0)}  />
+        <Square {...props} exploded={exploded[26]} explode={() => explode(26)}  />
+        <Square {...props} exploded={exploded[27]} explode={() => explode(27)}  />
+        <Square {...props} exploded={exploded[28]} explode={() => explode(28)}  />
+        <Square {...props} exploded={exploded[29]} explode={() => explode(29)}  />
+        <Square {...props} exploded={exploded[30]} explode={() => explode(30)}  />
+        <Square {...props} exploded={exploded[31]} explode={() => explode(31)}  />
       </Row>
       <Row>
-        <Square {...props} exploded={exploded} explode={() => explode(0)}  />
-        <Square {...props} exploded={exploded} explode={() => explode(0)}  />
-        <Square {...props} exploded={exploded} explode={() => explode(0)}  />
-        <Square {...props} exploded={exploded} explode={() => explode(0)}  />
-        <Square {...props} exploded={exploded} explode={() => explode(0)}  />
-        <Square {...props} exploded={exploded} explode={() => explode(0)}  />
-        <Square {...props} exploded={exploded} explode={() => explode(0)}  />
-        <Square {...props} exploded={exploded} explode={() => explode(0)}  />
+        <Square {...props} exploded={exploded[32]} explode={() => explode(32)}  />
+        <Square {...props} exploded={exploded[33]} explode={() => explode(33)}  />
+        <Square {...props} exploded={exploded[34]} explode={() => explode(34)}  />
+        <Square {...props} exploded={exploded[35]} explode={() => explode(35)}  />
+        <Square {...props} exploded={exploded[36]} explode={() => explode(36)}  />
+        <Square {...props} exploded={exploded[37]} explode={() => explode(37)}  />
+        <Square {...props} exploded={exploded[38]} explode={() => explode(38)}  />
+        <Square {...props} exploded={exploded[39]} explode={() => explode(39)}  />
       </Row>
       <Row>
-        <Square {...props} exploded={exploded} explode={() => explode(0)}  />
-        <Square {...props} exploded={exploded} explode={() => explode(0)}  />
-        <Square {...props} exploded={exploded} explode={() => explode(0)}  />
-        <Square {...props} exploded={exploded} explode={() => explode(0)}  />
-        <Square {...props} exploded={exploded} explode={() => explode(0)}  />
-        <Square {...props} exploded={exploded} explode={() => explode(0)}  />
-        <Square {...props} exploded={exploded} explode={() => explode(0)}  />
-        <Square {...props} exploded={exploded} explode={() => explode(0)}  />
+        <Square {...props} exploded={exploded[40]} explode={() => explode(40)}  />
+        <Square {...props} exploded={exploded[41]} explode={() => explode(41)}  />
+        <Square {...props} exploded={exploded[42]} explode={() => explode(42)}  />
+        <Square {...props} exploded={exploded[43]} explode={() => explode(43)}  />
+        <Square {...props} exploded={exploded[44]} explode={() => explode(44)}  />
+        <Square {...props} exploded={exploded[45]} explode={() => explode(45)}  />
+        <Square {...props} exploded={exploded[46]} explode={() => explode(46)}  />
+        <Square {...props} exploded={exploded[47]} explode={() => explode(47)}  />
       </Row>
       <Row>
-        <Square {...props} exploded={exploded} explode={() => explode(0)}  />
-        <Square {...props} exploded={exploded} explode={() => explode(0)}  />
-        <Square {...props} exploded={exploded} explode={() => explode(0)}  />
-        <Square {...props} exploded={exploded} explode={() => explode(0)}  />
-        <Square {...props} exploded={exploded} explode={() => explode(0)}  />
-        <Square {...props} exploded={exploded} explode={() => explode(0)}  />
-        <Square {...props} exploded={exploded} explode={() => explode(0)}  />
-        <Square {...props} exploded={exploded} explode={() => explode(0)}  />
+        <Square {...props} exploded={exploded[48]} explode={() => explode(48)}  />
+        <Square {...props} exploded={exploded[49]} explode={() => explode(49)}  />
+        <Square {...props} exploded={exploded[50]} explode={() => explode(50)}  />
+        <Square {...props} exploded={exploded[51]} explode={() => explode(51)}  />
+        <Square {...props} exploded={exploded[52]} explode={() => explode(52)}  />
+        <Square {...props} exploded={exploded[53]} explode={() => explode(53)}  />
+        <Square {...props} exploded={exploded[54]} explode={() => explode(54)}  />
+        <Square {...props} exploded={exploded[55]} explode={() => explode(55)}  />
       </Row>
     </WholeContainer>
   );
