@@ -223,7 +223,7 @@ export default function Coin() {
             initial={{ opacity: 0, y: 20 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.55 }}
-            style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: secondaryBackground, padding: 20, borderRadius: 4}}
+            style={{overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: secondaryBackground, padding: 20, borderRadius: 4}}
           >
               <CoinComponent isFlipped={isFlipped} isFlipping={isFlipping} textContent={textContent} diceValue={diceValue} />
               <RowCentered>
