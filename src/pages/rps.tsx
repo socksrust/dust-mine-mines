@@ -66,7 +66,7 @@ export default function RPS() {
   const [textContent, setTextContent] = useState("HEADS");
   const [diceValue, setDiceValue] = useState(0); // integer state
   const context = useContext(CurrencyContext)
-  const [option, setOption] = useState('Rock')
+  const [option, setOption] = useState('Paper')
   const [pcOption, setPcOption] = useState('Rock')
 
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -183,17 +183,10 @@ export default function RPS() {
             initial={{ opacity: 0, y: 20 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.55 }}
-            style={{flex: 2, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: secondaryBackground, padding: 20, borderRadius: 4}}
+            style={{overflow: 'hidden', flex: 2, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: secondaryBackground, padding: 20, borderRadius: 4}}
           >
-              <RPSComponent option={option} pcOption={pcOption} isLoading={isLoading} textContent={textContent} diceValue={diceValue} />
+              <RPSComponent option={option} pcOption={pcOption} isLoading={isLoading} setOption={setOption} setPcOption={setPcOption} />
               <Space height={50} />
-              <RadioGroup onChange={setOption} value={option}>
-                <Stack direction='row'>
-                  <Radio value='Rock'>🪨 Rock</Radio>
-                  <Radio value='Paper'>📝 Paper</Radio>
-                  <Radio value='Scissors'>✂️ Scissors</Radio>
-                </Stack>
-              </RadioGroup>
               <Space height={20} />
               {renderButtons(context.value, false, bet, inputValue, setValue, isLoading, onOpen)}
             </motion.div>

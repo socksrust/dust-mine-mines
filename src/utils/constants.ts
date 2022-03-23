@@ -8,11 +8,11 @@ const constants = {
     serverUrl: 'https://spp-casino.herokuapp.com',
   },
   colors: {
-    primaryBackground: '#090d29',
+    primaryBackground: '#1A1740',
     secondaryBackground: '#18215f',
-    objectBackground: '#fff',
+    objectBackground: '#5D5FEF',
     objectText: '#fff',
-    buttonText: '#070b17',
+    buttonText: '#fff',
     accentColor: '#9949E4',
   },
   objects: {

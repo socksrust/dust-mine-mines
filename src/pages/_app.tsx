@@ -14,6 +14,7 @@ import '../components/dice/dice.css'
 import '../components/slot/slot.css'
 import '../components/coin/coin.css'
 import '../components/blackjack/components/cardStyle.css'
+import '../components/rps/carouselStyle.css'
 
 export const CurrencyContext = React.createContext<any>({value: 'SOL'});
 

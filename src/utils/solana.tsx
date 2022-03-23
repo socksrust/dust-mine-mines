@@ -57,6 +57,14 @@ const Row = styled.div`
   }
 `
 
+const BottomWrapper = styled.div`
+  padding: 50px;
+  padding-top: 25px;
+  border: 3px solid #5D5FEF;
+  border-radius: 2rem;
+  margin-bottom: -50px;
+`
+
 
 
 export const renderButtons = (value: any, modal: any, bet, inputValue, setValue, isLoading, onOpen, noCustom) => {
@@ -125,26 +133,30 @@ export const renderButtons = (value: any, modal: any, bet, inputValue, setValue,
 
 
     return (
-    <Row>
-      <Button backgroundColor={objectBackground} isLoading={isLoading} loadingText={`Loading $${currency}`} borderRadius="2px" width="180px" height="56px" onClick={() => bet(firstBetValue, mintAddress, toTokenAccountAddress)}>
-        <Text fontSize="14px" fontWeight="bold" color={buttonText}>{firstBetValue} ${currency}</Text>
-      </Button>
-      <Space width={10} />
-      <Button backgroundColor={objectBackground} isLoading={isLoading} loadingText={`Loading $${currency}`} borderRadius="2px" width="180px" height="56px" onClick={() => bet(secondBetValue, mintAddress, toTokenAccountAddress)}>
-        <Text fontSize="14px" fontWeight="bold" color={buttonText}>{secondBetValue} ${currency}</Text>
-      </Button>
-      <Space width={10} />
+      <BottomWrapper>
+        <Text fontSize="22px" fontWeight="bold" color={buttonText}>Puppy Pound</Text>
+        <Space height={20}/>
+        <Row>
+          <Button backgroundColor={objectBackground} isLoading={isLoading} loadingText={`Loading $${currency}`} borderRadius="2px" width="180px" height="56px" onClick={() => bet(firstBetValue, mintAddress, toTokenAccountAddress)}>
+            <Text fontSize="14px" fontWeight="bold" color={buttonText}>{firstBetValue} ${currency}</Text>
+          </Button>
+          <Space width={10} />
+          <Button backgroundColor={objectBackground} isLoading={isLoading} loadingText={`Loading $${currency}`} borderRadius="2px" width="180px" height="56px" onClick={() => bet(secondBetValue, mintAddress, toTokenAccountAddress)}>
+            <Text fontSize="14px" fontWeight="bold" color={buttonText}>{secondBetValue} ${currency}</Text>
+          </Button>
+          <Space width={10} />
 
-      {thirdBetValue && <Button backgroundColor={objectBackground} isLoading={isLoading} loadingText={`Loading $${currency}`} borderRadius="2px" width="180px" height="56px" onClick={() => bet(thirdBetValue, mintAddress, toTokenAccountAddress)}>
-        <Text fontSize="14px" fontWeight="bold" color={buttonText}>{thirdBetValue} ${currency}</Text>
-      </Button>}
-      <Space width={10} />
+          {thirdBetValue && <Button backgroundColor={objectBackground} isLoading={isLoading} loadingText={`Loading $${currency}`} borderRadius="2px" width="180px" height="56px" onClick={() => bet(thirdBetValue, mintAddress, toTokenAccountAddress)}>
+            <Text fontSize="14px" fontWeight="bold" color={buttonText}>{thirdBetValue} ${currency}</Text>
+          </Button>}
+          <Space width={10} />
 
-      {!noCustom && !thirdBetValue && <Button backgroundColor={objectBackground} isLoading={isLoading} loadingText={`Loading $${currency}`} borderRadius="2rem" width="180px" height="56px" borderColor={objectBackground} borderWidth="1px" backgroundColor={primaryBackground} onClick={onOpen}>
-        <Text fontSize="14px" fontWeight="bold" color={primaryBackground}>Custom ${currency} Value</Text>
-      </Button>}
-    </Row>
-  )
+          {!noCustom && !thirdBetValue && <Button backgroundColor={objectBackground} isLoading={isLoading} loadingText={`Loading $${currency}`} borderRadius="2rem" width="180px" height="56px" borderColor={objectBackground} borderWidth="1px" backgroundColor={primaryBackground} onClick={onOpen}>
+            <Text fontSize="14px" fontWeight="bold" color={primaryBackground}>Custom ${currency} Value</Text>
+          </Button>}
+        </Row>
+      </BottomWrapper>
+    )
 }
 
 
