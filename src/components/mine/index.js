@@ -112,10 +112,10 @@ export default function MinComp(props) {
   const [exploded, setExploded] = useState(INITIAL_STATE)
   
   useEffect(() => {
-    if(signature === null) {
+    if(props.mySignature === null) {
       setExploded(INITIAL_STATE)
     }
-  }, [signature])
+  }, [props.mySignature])
 
   const explode = (index) => {
     const explodedShadow = [...exploded];
