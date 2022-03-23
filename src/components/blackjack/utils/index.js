@@ -127,24 +127,22 @@ export const handleStandClick = ({ won, houseCardsTotal, setHouseCardsTotal, hou
     }
   }
   else {
-    //Lost
     if(missingPoints > 10) {
-      //Cant explode now
-      const ranksIndex = Math.floor(Math.random() * 11);
+      const ranksIndex = Math.floor(Math.random() * 13);
       const rank = RANKS[ranksIndex]
+
       const newRankIndex = ranksIndex >= 10 ? 10 : ranksIndex + 1;
 
       setHouseCardsTotal(houseCardsTotal + newRankIndex)
       setHouseCardList([...houseCardList, { suit, rank }])
-      return false;
+      return false
     } else {
-      const rank = RANKS[missingPoints + 1]
+      const rank = RANKS[missingPoints - 2]
+      console.log('won, else, rank ->', rank)
       setHouseCardsTotal(21)
       setHouseCardList([...houseCardList, { suit, rank }])
       return true;
     }
-
-
   }
 
 
