@@ -76,9 +76,12 @@ export const handleHitClick = ({ won, userCardsTotal, setUserCardsTotal, userCar
     } else {
       const minimumPoints = missingPoints;
 
-      const ranksIndex = Math.floor(Math.random() * 13);
+      let ranksIndex;
+      while(ranksIndex < minimumPoints) {
+        ranksIndex = Math.floor(Math.random() * 13);
+      }
 
-      const newRankIndex = ranksIndex >= 10 ? 10 : ranksIndex + 1;
+      const newRankIndex = ranksIndex + 1;
 
       const rank = RANKS[ranksIndex]
       setUserCardsTotal(userCardsTotal + newRankIndex)
