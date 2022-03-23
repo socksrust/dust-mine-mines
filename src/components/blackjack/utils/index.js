@@ -98,33 +98,33 @@ export const handleHitClick = ({ won, userCardsTotal, setUserCardsTotal, userCar
 export const handleStandClick = ({ won, houseCardsTotal, setHouseCardsTotal, houseCardList, setHouseCardList }) => {
   const suitsIndex = Math.floor(Math.random() * 4);
   const suit = SUITS[suitsIndex]
-  const missingPoints = 21 - houseCardsTotal;
+  const missingPoints = 22 - houseCardsTotal;
 
   console.log('missingPoints', missingPoints);
 
   if(won) {
     if(missingPoints > 10) {
       //Cant explode now
-      const ranksIndex = Math.floor(Math.random() * 11);
+      const ranksIndex = Math.floor(Math.random() * 13);
       const rank = RANKS[ranksIndex]
+
       const newRankIndex = ranksIndex >= 10 ? 10 : ranksIndex + 1;
 
       setHouseCardsTotal(houseCardsTotal + newRankIndex)
       setHouseCardList([...houseCardList, { suit, rank }])
       return false;
     } else {
-      // explode
-      const minimumPoints = missingPoints + 1;
-      const ranksIndex = Math.floor(Math.random() * 11);
-      const rank = RANKS[ranksIndex]
+      const minimumPoints = missingPoints;
+
+      const ranksIndex = randomIntFromInterval(minimumPoints, 12);
+
       const newRankIndex = ranksIndex >= 10 ? 10 : ranksIndex + 1;
 
+      const rank = RANKS[ranksIndex]
       setHouseCardsTotal(houseCardsTotal + newRankIndex)
       setHouseCardList([...houseCardList, { suit, rank }])
       return true;
     }
-
-
   }
   else {
     //Lost
