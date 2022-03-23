@@ -127,6 +127,7 @@ export default function Coin() {
         setTextContent(realResult);
         const winValue = betValue * 2;
 
+        
         toast({
           title: `Yayyyy!!`,
           description: `You got $${(winValue).toFixed(2)} $TREATS back! They will be transferred in less than a minute! Keep going!!`,
