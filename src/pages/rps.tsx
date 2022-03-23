@@ -147,6 +147,7 @@ export default function RPS() {
     const parsedResult = await sendCurrencyToTreasure({ fromWallet, toast, toTokenAccountAddress, mintAddress, betValue, sendTransaction, connection, endpoint: 'coinBet', publicKey, bets })
     //END
 
+    console.log('parsedResult', parsedResult);
     setLoading(false);
     onClose();
     flip({ parsedResult, betValue })
