@@ -11,66 +11,31 @@ import {
   Text,
   Button
 } from '@chakra-ui/react';
-const RANKS = ["A", 2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K"];
-const SUITS = ["♠", "♥", "♣", "♦"];
 
-const initializeCardList = () => {
-  const cardList = [];
-  SUITS.forEach(suit => {
-    RANKS.forEach(rank => {
-      cardList.push({ rank, suit });
-    });
-  });
-  return cardList;
-};
-
-const initializeUserCardList = ({ setUserCardList }) => {
-  let cardList = [];
-  for(let i of [1,2]) {
-    const suitsIndex = Math.floor(Math.random() * 4);
-    const ranksIndex = Math.floor(Math.random() * 13);
-    
-    const suit = SUITS[suitsIndex]
-    const rank = RANKS[ranksIndex]
-
-    cardList = [...cardList, { suit, rank }]
-  }
-
-  setUserCardList(cardList)
-};
-
-const initializeHouseCardList = ({ setHouseCardList }) => {
-  const suitsIndex = Math.floor(Math.random() * 4);
-  const ranksIndex = Math.floor(Math.random() * 13);
-
-  const suit = SUITS[suitsIndex]
-  const rank = RANKS[ranksIndex]
-
-
-  setHouseCardList([{ suit, rank }])
-};
-
+import { initializeUserCardList, initializeHouseCardList, handleHitClick, handleStandClick } from './utils/index'
 
 const RowCentered = styled.div`
   display: flex;
   justify-content: center;
 `
 
-const Table = () => {
-  const [cardList, setCardList] = useState([]);
+const BlackjackComponent = ({ won, isPaymentVerified }) => {
   const [userCardList, setUserCardList] = useState([]);
+  const [userCardsTotal, setUserCardsTotal] = useState(0);
+
   const [houseCardList, setHouseCardList] = useState([]);
+  const [houseCardsTotal, setHouseCardsTotal] = useState(0);
 
   useEffect(() => {
-    const initialCardList = initializeCardList();
-    setCardList(initialCardList);
-
-    initializeUserCardList({ setUserCardList })
-    initializeHouseCardList({ setHouseCardList })
+    initializeUserCardList({ setUserCardList, userCardsTotal, setUserCardsTotal })
+    initializeHouseCardList({ setHouseCardList, houseCardsTotal, setHouseCardsTotal })
   }, []);
 
   return (
     <main className="table">
+      <RowCentered>
+        <Text fontSize={30}>{houseCardsTotal}</Text>
+      </RowCentered>
       <RowCentered>
         {houseCardList.map(({suit, rank}) => (
           <Card
@@ -92,19 +57,21 @@ const Table = () => {
           />
         ))}
       </RowCentered>
+      <RowCentered>
+        <Text fontSize={30}>{userCardsTotal}</Text>
+      </RowCentered>
       <Space height={20}/>
       <RowCentered>
-        <Button backgroundColor={objectBackground} borderRadius="2rem" width="110px" height="34px" borderColor={objectBackground} borderWidth="1px">
+        <Button disabled={!isPaymentVerified} backgroundColor={objectBackground} borderRadius="2rem" width="110px" height="34px" borderColor={objectBackground} borderWidth="1px" onClick={() => handleHitClick({ won, userCardsTotal, setUserCardsTotal, userCardList, setUserCardList })}>
           <Text fontSize="14px" fontWeight="bold" color={primaryBackground}>HIT</Text>
         </Button>
         <Space width={20}/>
-        <Button backgroundColor={objectBackground} borderRadius="2rem" width="110px" height="34px" borderColor={objectBackground} borderWidth="1px">
+        <Button disabled={!isPaymentVerified} backgroundColor={objectBackground} borderRadius="2rem" width="110px" height="34px" borderColor={objectBackground} borderWidth="1px" onClick={() => handleStandClick({ won, houseCardsTotal, setHouseCardsTotal, houseCardList, setHouseCardList })}>
           <Text fontSize="14px" fontWeight="bold" color={primaryBackground}>STAND</Text>
         </Button>
-
       </RowCentered>
     </main>
   );
 };
 
-export default Table;
+export default BlackjackComponent;
