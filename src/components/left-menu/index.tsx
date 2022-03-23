@@ -65,7 +65,7 @@ const additionalOptions = coins && coins[0] ? coins.map(coin => ({
 })) : []
 
 const options = [
-  //{label: <Label label="$SOL" imgSrc="/images/coin-logos/sol.jpg" />, value: 'SOL'},
+  {label: <Label label="$SOL" imgSrc="/images/coin-logos/sol.jpg" />, value: 'SOL'},
   ...additionalOptions,
   /*{label: <Label label="$BETS" imgSrc="/images/coin-logos/bets.jpg" />, value: 'BETS'},
   {label: <Label label="$USDC" imgSrc="/images/coin-logos/usdc.jpg" />, value: 'USDC'},
@@ -83,13 +83,13 @@ const options = [
 
 const LeftMenu: FC<LeftMenuProps> = () => {
   const { push, replace } = useRouter();
-  const context = useContext(CurrencyContext) || 'TREATS'
+  const context = useContext(CurrencyContext) || {value: 'SOL'}
 
   return (
     <>
       <Wrapper>
         {/*<MenuOutItem text="Buy $BIP" onClick={() => window.open('https://app.thestarship.finance/', '_ blank')} />*/}
-        <Select value={options.find(a => a.value === 'TREATS')} options={options} onChange={(option) => context.setValue(option.value)} />
+        <Select value={options.find(a => a.value === context.value)} options={options} onChange={(option) => context.setValue(option.value)} />
         <Space width={30} />
         <MenuItem text="Coin Flip" onClick={() => push('/')} isActive={window.location.pathname === '/'} />
         <MenuItem text="Dice Roll" onClick={() => push('/dice')} isActive={window.location.pathname === '/dice'} />

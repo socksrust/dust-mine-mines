@@ -15,7 +15,7 @@ import '../components/slot/slot.css'
 import '../components/coin/coin.css'
 import '../components/blackjack/components/cardStyle.css'
 
-export const CurrencyContext = React.createContext<any>({value: 'TREATS'});
+export const CurrencyContext = React.createContext<any>({value: 'SOL'});
 
 const theme1 = createTheme({
   palette: {
@@ -67,11 +67,11 @@ function MyApp({ Component, pageProps }: AppProps) {
         localStorage.setItem('r', r);
       }
       if(currency && typeof currency === 'string') {
-        const newValue = currency.toUpperCase() || 'TREATS';
+        const newValue = currency.toUpperCase() || 'SOL';
         localStorage.setItem('value', newValue);
         setValue(newValue);
       }
-      const v: any = localStorage?.getItem('value') || 'TREATS';
+      const v: any = localStorage?.getItem('value') || 'SOL';
       setValue(v);
     }
   }, [currency, r])
