@@ -22,6 +22,11 @@ const Wrapper = styled.div`
   justify-content: space-around;
   align-items: center;
   width: 900px;
+  @media (max-width: 750px) {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
 `
 
 const RowCentered = styled.div`
