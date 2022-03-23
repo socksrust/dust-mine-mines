@@ -41,6 +41,7 @@ export const handleHitClick = ({ won, userCardsTotal, setUserCardsTotal, userCar
     const rank = RANKS[missingPoints - 1]
     setUserCardsTotal(21)
     setUserCardList([...userCardList, { suit, rank }])
+    return true;
   } else {
     if(missingPoints > 13) {
       //Cant explode now
@@ -48,6 +49,7 @@ export const handleHitClick = ({ won, userCardsTotal, setUserCardsTotal, userCar
       const rank = RANKS[ranksIndex]
       setUserCardsTotal(userCardsTotal + ranksIndex + 1)
       setUserCardList([...userCardList, { suit, rank }])
+      return false;
     } else {
       const minimumPoints = missingPoints + 1;
 
@@ -56,6 +58,7 @@ export const handleHitClick = ({ won, userCardsTotal, setUserCardsTotal, userCar
       const rank = RANKS[ranksIndex]
       setUserCardsTotal(userCardsTotal + ranksIndex + 1)
       setUserCardList([...userCardList, { suit, rank }])
+      return true;
     }
   }
 
@@ -75,6 +78,7 @@ export const handleStandClick = ({ won, houseCardsTotal, setHouseCardsTotal, hou
       const rank = RANKS[ranksIndex]
       setHouseCardsTotal(houseCardsTotal + ranksIndex + 1)
       setHouseCardList([...houseCardList, { suit, rank }])
+      return false;
     } else {
       // explode
       const minimumPoints = missingPoints + 1;
@@ -82,6 +86,7 @@ export const handleStandClick = ({ won, houseCardsTotal, setHouseCardsTotal, hou
       const rank = RANKS[ranksIndex]
       setHouseCardsTotal(houseCardsTotal + ranksIndex + 1)
       setHouseCardList([...houseCardList, { suit, rank }])
+      return true;
     }
 
 
@@ -94,10 +99,12 @@ export const handleStandClick = ({ won, houseCardsTotal, setHouseCardsTotal, hou
       const rank = RANKS[ranksIndex]
       setHouseCardsTotal(houseCardsTotal + ranksIndex + 1)
       setHouseCardList([...houseCardList, { suit, rank }])
+      return false;
     } else {
       const rank = RANKS[missingPoints + 1]
       setHouseCardsTotal(21)
       setHouseCardList([...houseCardList, { suit, rank }])
+      return true;
     }
 
 

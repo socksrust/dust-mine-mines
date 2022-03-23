@@ -3,6 +3,9 @@ import Card from './components/Card'
 import styled from '@emotion/styled';
 import Space from '../common/space'
 import constants from '../../utils/constants';
+import {
+  useToast,
+} from '@chakra-ui/react';
 
 const { colors, infos, objects: { coins } } = constants;
 const { primaryBackground, secondaryBackground, objectBackground, objectText, buttonText } = colors;
@@ -19,17 +22,55 @@ const RowCentered = styled.div`
   justify-content: center;
 `
 
-const BlackjackComponent = ({ won, isPaymentVerified }) => {
+const BlackjackComponent = ({ won, isPaymentVerified, setVerified }) => {
   const [userCardList, setUserCardList] = useState([]);
   const [userCardsTotal, setUserCardsTotal] = useState(0);
 
   const [houseCardList, setHouseCardList] = useState([]);
   const [houseCardsTotal, setHouseCardsTotal] = useState(0);
 
+  const toast = useToast();
+
+
   useEffect(() => {
     initializeUserCardList({ setUserCardList, userCardsTotal, setUserCardsTotal })
     initializeHouseCardList({ setHouseCardList, houseCardsTotal, setHouseCardsTotal })
   }, []);
+
+  const hitClickCb = (props) => {
+    const isEnd = handleHitClick(props)
+
+
+    if(!isEnd) {
+      return;
+    }
+
+    if(won) {
+      toast({
+        title: `Yayyyy!!`,
+        description: `You WON! Tokens will be transferred in less than a minute! Keep going!!`,
+        status: 'info',
+        duration: 15000,
+        isClosable: true,
+        position: 'bottom-right',
+        variant: 'solid'
+      });
+    } else {
+      toast({
+        title: `Ops.`,
+        description: 'Not your lucky play, try again',
+        status: 'warning',
+        duration: 15000,
+        isClosable: true,
+        position: 'bottom-right',
+        variant: 'solid'
+      });
+    }
+    setVerified(null)
+
+  }
+
+
 
   return (
     <main className="table">
@@ -62,7 +103,7 @@ const BlackjackComponent = ({ won, isPaymentVerified }) => {
       </RowCentered>
       <Space height={20}/>
       <RowCentered>
-        <Button disabled={!isPaymentVerified} backgroundColor={objectBackground} borderRadius="2rem" width="110px" height="34px" borderColor={objectBackground} borderWidth="1px" onClick={() => handleHitClick({ won, userCardsTotal, setUserCardsTotal, userCardList, setUserCardList })}>
+        <Button disabled={!isPaymentVerified} backgroundColor={objectBackground} borderRadius="2rem" width="110px" height="34px" borderColor={objectBackground} borderWidth="1px" onClick={() => hitClickCb({ won, userCardsTotal, setUserCardsTotal, userCardList, setUserCardList })}>
           <Text fontSize="14px" fontWeight="bold" color={primaryBackground}>HIT</Text>
         </Button>
         <Space width={20}/>
