@@ -93,6 +93,8 @@ export const handleStandClick = ({ won, houseCardsTotal, setHouseCardsTotal, hou
   const suit = SUITS[suitsIndex]
   const missingPoints = 21 - houseCardsTotal;
 
+  console.log('missingPoints', missingPoints);
+
   if(won) {
     if(missingPoints > 10) {
       //Cant explode now
