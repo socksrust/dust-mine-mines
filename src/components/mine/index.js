@@ -94,7 +94,7 @@ const Square = ({mySignature, setVerified, setSignature, ...props}) => {
 
   return (
     <SquareComponent {...props} onClick={async () => handleSquareClick()} isExploded={exploded}>
-      ⭐
+      {exploded ? '⭐' : ''}
     </SquareComponent>
   )
 }
