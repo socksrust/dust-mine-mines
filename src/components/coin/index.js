@@ -12,13 +12,11 @@ const Tails = styled.div`
 
 const Coin = ({ isFlipping, isFlipped, rotate, diceValue, textContent}) => {
 
-	const heads = <div className={`outcome ${isFlipping && 'toss'} ${isFlipped && 'flip'}`} style={{ background: "url('/images/front-coin.png')", backgroundSize: 'contain', borderColor: accentColor, color: objectText }} />
-	const tails = <Tails className={`outcome ${isFlipping && 'toss'} ${isFlipped && 'flip'}`} style={{ background: "url('/images/back-coin.png')", backgroundSize: 'contain', borderColor: accentColor, color: objectText }} />
-
 	return (
     <>
+			<p style={{color: secondaryBackground}}>{diceValue}</p>
 			<span style={{ color: objectText, fontSize: 24, marginBottom: 5 }}>{textContent}</span>
-			{textContent === 'HEADS' ? heads : tails}
+			{textContent === 'HEADS' ? <div className={`outcome ${isFlipping && 'toss'} ${isFlipped && 'flip'}`} style={{ background: "url('/images/front-coin.png')", backgroundSize: 'contain', borderColor: accentColor, color: objectText }} /> : <Tails className={`outcome ${isFlipping && 'toss'} ${isFlipped && 'flip'}`} style={{ background: "url('/images/back-coin.png')", backgroundSize: 'contain', borderColor: accentColor, color: objectText }} />}
 		</>
 	);
 };

@@ -118,11 +118,11 @@ export default function Coin() {
     setFlipped(!isFlipped);
     setTimeout(() => {
       setFlipping(false)
+      setDiceValue(diceValue + 1)
       if(parsedResult?.data?.won) {
 
         //isEven ? 2, 4, 6 : 1, 3, 5;
         const realResult = isEven ? 'HEADS' : 'TAILS';
-
 
         setTextContent(realResult);
         const winValue = betValue * 2;
