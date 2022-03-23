@@ -39,8 +39,9 @@ const Row = styled.div`
 const CardsWrapper = styled.div`
   display: flex;
   justify-content: center;
-  width: 289px;
-  height: 257px;
+  align-items: flex-end;
+  width: 233px;
+  height: 172px;
   background: #5D5FEF;
   border-radius: 1rem;
 `
