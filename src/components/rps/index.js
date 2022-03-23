@@ -91,6 +91,7 @@ export default function RockPaperScissors({ option, pcOption, isLoading, setOpti
   const handleLeftClick = () => {
     switch(option) {
       case 'Rock':
+        setOption('Scissors')
         return;
       case 'Paper':
         setOption('Rock')
@@ -109,6 +110,7 @@ export default function RockPaperScissors({ option, pcOption, isLoading, setOpti
         setOption('Scissors')
         return;
       case 'Scissors':
+        return setOption('Rock');
         return;
     }
   }
@@ -148,7 +150,6 @@ export default function RockPaperScissors({ option, pcOption, isLoading, setOpti
   return (
     <WholeContainer>
       <Row>
-
         <ArrowWrapper onClick={handleLeftClick}>
           <ArrowLeftIcon />
         </ArrowWrapper>
@@ -164,12 +165,11 @@ export default function RockPaperScissors({ option, pcOption, isLoading, setOpti
         </ArrowWrapper>
       </Row>
       <Text color="#FFA33A" fontFamily="MontSerrat" fontWeight={"black"} fontSize={"50px"} fontStyle="italic">VS.</Text>
-        <Column>
-          <RPSImg src={allOptions[pcOption]} />
-          <Space height={8} />
-          <Text fontSize="24px">{allTranslatedOptions[pcOption]}</Text>
-        </Column>
-      {/*<WinnerText>{evaluate()}</WinnerText>*/}
+      <Column>
+        <RPSImg src={allOptions[pcOption]} />
+        <Space height={8} />
+        <Text fontSize="24px">{allTranslatedOptions[pcOption]}</Text>
+      </Column>
     </WholeContainer>
   );
 }

@@ -28,6 +28,16 @@ const Wrapper = styled.div`
 `
 
 
+
+const Row = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  flex: 1;
+`
+
+
 const InnerWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -189,6 +199,18 @@ export default function RPS() {
               <RPSComponent option={option} pcOption={pcOption} isLoading={isLoading} setOption={setOption} setPcOption={setPcOption} />
               <Space height={50} />
               <Space height={20} />
+              <Row>
+                <Text>Shiba > Husky</Text>
+                <Space width={10}/>
+                <Text>||</Text>
+                <Space width={10}/>
+                <Text>Frenchie > Shiba</Text>
+                <Space width={10}/>
+                <Text>||</Text>
+                <Space width={10}/>
+                <Text>Husky > Frenchie</Text>
+              </Row>
+              <Space height={10} />
               {renderButtons(context.value, false, bet, inputValue, setValue, isLoading, onOpen)}
             </motion.div>
           </InnerWrapper>
