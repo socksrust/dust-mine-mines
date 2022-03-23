@@ -22,6 +22,7 @@ import styled from '@emotion/styled'
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   flex: 1;
 `
 
@@ -36,6 +37,7 @@ const InnerWrapper = styled.div`
   padding-top: 20px;
   @media (max-width: 1250px) {
     height: 100%;
+    width: 100%;
     flex-direction: column;
     padding-bottom: 40px;
   }
@@ -48,6 +50,9 @@ const RowCentered = styled.div`
   align-items: center;
   width: 246px;
   padding-top: 10px;
+  @media (max-width: 1250px) {
+    width: unset;
+  }
 `
 
 
@@ -165,73 +170,23 @@ export default function Dice() {
             initial={{ opacity: 0, y: 20 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.55 }}
-            style={{overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: secondaryBackground, padding: 20, borderRadius: 4}}
+            style={{overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: secondaryBackground, borderRadius: 4, width: '100%'}}
           >
             <DiceComponent isRolling={isLoading} rotate={rotate} diceValue={diceValue} />
           <RowCentered/>
           <RowCentered/>
           <RowCentered>
-            <Text fontSize="48px" fontWeight="bold" color={!isEven ? '#fff' : 'rgba(255,255,255, 0.6)'}>Husky</Text>
+            <Text fontSize="36px" fontWeight="bold" color={!isEven ? '#fff' : 'rgba(255,255,255, 0.6)'}>Husky</Text>
             <Space width={10} />
             <Switch size="lg" isChecked={isEven} value={isEven ? 'isEven' : 'isOdd'} onChange={(e) => setEven(e.target.value !== 'isEven')} />
             <Space width={10} />
-            <Text fontSize="48px" fontWeight="bold" color={isEven ? '#fff' : 'rgba(255,255,255, 0.6)'}>Frenchie</Text>
+            <Text fontSize="36px" fontWeight="bold" color={isEven ? '#fff' : 'rgba(255,255,255, 0.6)'}>Frenchie</Text>
           </RowCentered>
           <RowCentered/>
           {renderButtons(context.value, false, bet, inputValue, setValue, isLoading, onOpen)}
           </motion.div>
         </InnerWrapper>
       </Wrapper>
-    </Layout>
-  );
-
-  return (
-    <Layout>
-      <Wrapper>
-        <motion.div
-            animate={{ opacity: 1, y: 0 }}
-            initial={{ opacity: 0, y: 20 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.55 }}
-          >
-        </motion.div>
-        <InnerWrapper>
-        <motion.div
-            animate={{ opacity: 1, y: 0 }}
-            initial={{ opacity: 0, y: 20 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.55 }}
-          >
-            <DiceComponent isRolling={isLoading} rotate={rotate} diceValue={diceValue} />
-          </motion.div>
-          <motion.div
-            style={{width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center'}}
-            animate={{ opacity: 1, y: 0 }}
-            initial={{ opacity: 0, y: 20 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.55, delay: 0.35 }}
-          >
-          <RowCentered>
-            <Text fontSize="48px" fontWeight="bold" color={!isEven ? '#fff' : 'rgba(255,255,255, 0.6)'}>Odd</Text>
-            <Space width={10} />
-            <Switch size="lg" isChecked={isEven} value={isEven ? 'isEven' : 'isOdd'} onChange={(e) => setEven(e.target.value !== 'isEven')} />
-            <Space width={10} />
-            <Text fontSize="48px" fontWeight="bold" color={isEven ? '#fff' : 'rgba(255,255,255, 0.6)'}>Even</Text>
-            <Space width={50} />
-            <Checkbox size='lg' colorScheme='green' onChange={(e) => setChecked(e.target.checked)} isChecked={isChecked}>
-              <Text fontSize="24px" fontWeight="medium" color={'#fff'}>Auto</Text>
-            </Checkbox>
-            <Space width={15} />
-          </RowCentered>
-          {renderButtons(context.value, false, bet, inputValue, setValue, isLoading, onOpen)}
-          </motion.div>
-
-        </InnerWrapper>
-      </Wrapper>
-      <Modal onClose={onClose} isOpen={isOpen} isCentered>
-        <ModalOverlay />
-        {renderButtons(context.value, true, bet, inputValue, setValue, isLoading, onOpen)}
-      </Modal>
     </Layout>
   );
 }

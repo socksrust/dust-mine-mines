@@ -47,6 +47,10 @@ const SquareComponent = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  @media (max-width: 470px) {
+    width: 35px;
+    height: 35px;
+  }
 `;
 
 const INITIAL_STATE = [

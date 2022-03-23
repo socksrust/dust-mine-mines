@@ -54,7 +54,7 @@ const Header: FC<HeaderProps> = () => {
         }}
       >
         <Flex
-          p="20px"
+          // p="20px"
           alignItems="center"
           justifyContent="center"
           direction="row"

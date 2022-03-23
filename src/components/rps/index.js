@@ -13,6 +13,12 @@ const WholeContainer = styled.div`
   justify-content: space-around;
   align-items: center;
   width: 910px;
+  @media (max-width: 1154px) {
+    width: 100%;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
 `;
 
 

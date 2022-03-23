@@ -11,9 +11,9 @@ const Select = (props) => {
   }
 
   return (
-    <ReactSelect {...props} 
+    <ReactSelect {...props}
     menuPortalTarget={document.body}
-    menuPosition={'fixed'} 
+    menuPosition={'fixed'}
     styles={{
       option: (provided, state) => ({
         ...provided,
@@ -41,7 +41,7 @@ const Select = (props) => {
         background: objectBackground,
         borderRadius: '4px',
         borderWidth: 1,
-        width: window.innerWidth <= 750 ? 100 : 170,
+        width: window.innerWidth <= 750 ? 170 : 170,
         color: buttonText,
       }),
       listBox: (provided) => ({

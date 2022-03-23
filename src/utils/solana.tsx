@@ -54,6 +54,9 @@ const Row = styled.div`
   width: 100%;
   @media (max-width: 1280px) {
     width: 100% !important;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
   }
 `
 
@@ -63,6 +66,9 @@ const BottomWrapper = styled.div`
   border: 3px solid #5D5FEF;
   border-radius: 2rem;
   margin-bottom: -50px;
+  @media (max-width: 1154px) {
+    width: 100%;
+  }
 `
 
 
@@ -140,16 +146,16 @@ export const renderButtons = (value: any, modal: any, bet, inputValue, setValue,
           <Button backgroundColor={objectBackground} isLoading={isLoading} loadingText={`Loading $${currency}`} borderRadius="2px" width="180px" height="56px" onClick={() => bet(firstBetValue, mintAddress, toTokenAccountAddress)}>
             <Text fontSize="14px" fontWeight="bold" color={buttonText}>{firstBetValue} ${currency}</Text>
           </Button>
-          <Space width={10} />
+          <Space width={10} height={30} />
           <Button backgroundColor={objectBackground} isLoading={isLoading} loadingText={`Loading $${currency}`} borderRadius="2px" width="180px" height="56px" onClick={() => bet(secondBetValue, mintAddress, toTokenAccountAddress)}>
             <Text fontSize="14px" fontWeight="bold" color={buttonText}>{secondBetValue} ${currency}</Text>
           </Button>
-          <Space width={10} />
+          <Space width={10} height={30} />
 
           {thirdBetValue && <Button backgroundColor={objectBackground} isLoading={isLoading} loadingText={`Loading $${currency}`} borderRadius="2px" width="180px" height="56px" onClick={() => bet(thirdBetValue, mintAddress, toTokenAccountAddress)}>
             <Text fontSize="14px" fontWeight="bold" color={buttonText}>{thirdBetValue} ${currency}</Text>
           </Button>}
-          <Space width={10} />
+          <Space width={10} height={20} />
 
           {!noCustom && !thirdBetValue && <Button backgroundColor={objectBackground} isLoading={isLoading} loadingText={`Loading $${currency}`} borderRadius="2rem" width="180px" height="56px" borderColor={objectBackground} borderWidth="1px" backgroundColor={primaryBackground} onClick={onOpen}>
             <Text fontSize="14px" fontWeight="bold" color={primaryBackground}>Custom ${currency} Value</Text>
