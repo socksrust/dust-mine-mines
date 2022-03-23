@@ -234,7 +234,6 @@ export default function Wheel() {
     <Layout style={{ backgroundImage: "url('/images/bg-3.jpg')" }}>
       <Wrapper>
         <InnerWrapper>
-          
         <motion.div
             animate={{ opacity: 1, y: 0 }}
             initial={{ opacity: 0, y: 20 }}

@@ -17,9 +17,32 @@ import {
 
 import { initializeUserCardList, initializeHouseCardList, handleHitClick, handleStandClick } from './utils/index'
 
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 900px;
+`
+
 const RowCentered = styled.div`
   display: flex;
+  justify-content: space-around;
+  align-items: center;
+`
+
+const Row = styled.div`
+  display: flex;
   justify-content: center;
+  align-items: center;
+`
+
+const CardsWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 289px;
+  height: 257px;
+  background: #5D5FEF;
+  border-radius: 1rem;
 `
 
 const BlackjackComponent = ({ won, isPaymentVerified, setVerified }) => {
@@ -79,35 +102,35 @@ const BlackjackComponent = ({ won, isPaymentVerified, setVerified }) => {
 
   return (
     <main className="table">
-      <RowCentered>
-        <Text fontSize={30}>{houseCardsTotal}</Text>
-      </RowCentered>
-      <RowCentered>
-        {houseCardList.map(({suit, rank}) => (
-          <Card
-            rank={rank}
-            suit={suit}
-          />
-        ))}
-      </RowCentered>
-      <Space height={20}/>
-      <RowCentered>
-        <Text fontSize={30}>Vs.</Text>
-      </RowCentered>
-      <Space height={20}/>
-      <RowCentered>
-        {userCardList.map(({suit, rank}) => (
-          <Card
-            rank={rank}
-            suit={suit}
-          />
-        ))}
-      </RowCentered>
-      <RowCentered>
-        <Text fontSize={30}>{userCardsTotal}</Text>
-      </RowCentered>
-      <Space height={20}/>
-      <RowCentered>
+      <Wrapper>
+        <RowCentered>
+          <Text fontSize={30}>{houseCardsTotal}</Text>
+        </RowCentered>
+        <CardsWrapper>
+          {houseCardList.map(({suit, rank}) => (
+            <Card
+              rank={rank}
+              suit={suit}
+            />
+          ))}
+        </CardsWrapper>
+        <RowCentered>
+          <Text color="#FFA33A" fontFamily="MontSerrat" fontWeight={"black"} fontSize={"50px"} fontStyle="italic">VS.</Text>
+        </RowCentered>
+        <CardsWrapper>
+          {userCardList.map(({suit, rank}) => (
+            <Card
+              rank={rank}
+              suit={suit}
+            />
+          ))}
+        </CardsWrapper>
+        <RowCentered>
+          <Text fontSize={30}>{userCardsTotal}</Text>
+        </RowCentered>
+      </Wrapper>
+      <Space height={12}/>
+      <Row>
         <Button disabled={!isPaymentVerified || isDisabled} backgroundColor={objectBackground} borderRadius="2rem" width="110px" height="34px" borderColor={objectBackground} borderWidth="1px" onClick={() => hitClickCb({ won, userCardsTotal, setUserCardsTotal, userCardList, setUserCardList })}>
           <Text fontSize="14px" fontWeight="bold" color={primaryBackground}>HIT</Text>
         </Button>
@@ -115,7 +138,7 @@ const BlackjackComponent = ({ won, isPaymentVerified, setVerified }) => {
         <Button disabled={!isPaymentVerified || isDisabled} backgroundColor={objectBackground} borderRadius="2rem" width="110px" height="34px" borderColor={objectBackground} borderWidth="1px" onClick={() => handleStandClick({ won, houseCardsTotal, setHouseCardsTotal, houseCardList, setHouseCardList })}>
           <Text fontSize="14px" fontWeight="bold" color={primaryBackground}>STAND</Text>
         </Button>
-      </RowCentered>
+      </Row>
     </main>
   );
 };
