@@ -28,7 +28,7 @@ const Span = styled.span`
 const SquareComponent = styled.div`
   width: 65px;
   height: 65px;
-  background: ${p => !p.isPaymentVerified ? 'grey' : (p.won ? 'green' : (p.isExploded ? `rgba(255,0,0, ${1 * p.squareCount/20})` : 'white'))};
+  background: ${p => !p.isPaymentVerified ? 'grey' : (p.won ? 'green' : (p.isExploded ? `rgba(255,0,0,1)` : 'white'))};
   border: 1px black solid;
   cursor: pointer;
   display: flex;
@@ -38,7 +38,6 @@ const SquareComponent = styled.div`
 
 const Square = ({count, setCount, mySignature, setVerified, setSignature, ...props}) => {
   const [exploded, setExploded] = useState(false)
-  const [squareCount, setSquareCount] = useState(-20)
   const [bomb, setBomb] = useState(false)
   const toast = useToast();
 
@@ -97,8 +96,8 @@ const Square = ({count, setCount, mySignature, setVerified, setSignature, ...pro
   }
 
   return (
-    <SquareComponent {...props} won={count === 80} onClick={async () => handleSquareClick()} isExploded={exploded} squareCount={squareCount}>
-      {20 + squareCount}%
+    <SquareComponent {...props} won={count === 80} onClick={async () => handleSquareClick()} isExploded={exploded}>
+      ⭐
     </SquareComponent>
   )
 }
