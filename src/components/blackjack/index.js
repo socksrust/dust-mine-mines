@@ -61,6 +61,7 @@ const BlackjackComponent = ({ won, isPaymentVerified, setVerified }) => {
 
   const [isDisabled, setIsDisabled] = useState(true);
 
+  console.log({ userCardsTotal, houseCardsTotal, userCardList, houseCardList })
 
   const toast = useToast();
 
