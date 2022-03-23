@@ -179,7 +179,7 @@ export default function Min() {
             transition={{ duration: 0.55 }}
             style={{flex: 2, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: secondaryBackground, padding: 20, borderRadius: 4}}
           >
-              <Mine isPaymentVerified={isPaymentVerified} mySignature={mySignature} />
+              <Mine isPaymentVerified={isPaymentVerified} setVerified={setVerified} mySignature={mySignature} setSignature={setSignature} />
               <Space height={50} />
               <Space height={20} />
               {renderButtons(context.value, false, bet, inputValue, setValue, isLoading, onOpen)}
