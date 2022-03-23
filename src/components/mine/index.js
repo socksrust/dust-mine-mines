@@ -58,6 +58,19 @@ const Square = ({count, setCount, mySignature, ...props}) => {
   
     const parsedResult = await resp.json();
     console.log('====4====')
+    console.log('parsedResult', parsedResult);
+    if(parsedResult?.message) {
+      return toast({
+        title: `Message`,
+        description: parsedResult.message,
+        status: 'warning',
+        duration: 5000,
+        isClosable: true,
+        position: 'top-right',
+        variant: 'solid'
+      });
+    }
+
 
     setExploded(true)
     setSquareCount(count + 20)
