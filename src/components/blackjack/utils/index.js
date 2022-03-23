@@ -46,13 +46,14 @@ export const handleHitClick = ({ won, userCardsTotal, setUserCardsTotal, userCar
 
       setUserCardsTotal(userCardsTotal + newRankIndex + 1)
       setUserCardList([...userCardList, { suit, rank }])
+      return false
     } else {
       const rank = RANKS[missingPoints - 1]
       setUserCardsTotal(21)
       setUserCardList([...userCardList, { suit, rank }])
+      return true;
     }
 
-    return true;
   } else {
     if(missingPoints > 10) {
       //Cant explode now
