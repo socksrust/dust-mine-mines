@@ -35,7 +35,7 @@ const InnerWrapper = styled.div`
   justify-content: flex-start;
   align-items: center;
   width: 100%;
-  padding-top: 70px;
+  padding-top: 10px;
   @media (max-width: 1250px) {
     height: 100%;
     flex-direction: column;
@@ -67,7 +67,7 @@ export default function Min() {
   const [diceValue, setDiceValue] = useState(0); // integer state
   const context = useContext(CurrencyContext)
   const [option, setOption] = useState('Rock')
-  const [mySignature, setSignature] = useState('Rock')
+  const [mySignature, setSignature] = useState(null)
   const [isPaymentVerified, setVerified] = useState(false)
 
   const { isOpen, onOpen, onClose } = useDisclosure()

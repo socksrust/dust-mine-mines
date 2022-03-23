@@ -50,9 +50,10 @@ const Square = ({mySignature, setVerified, setSignature, explode, exploded, ...p
   const [bomb, setBomb] = useState(false)
   const toast = useToast();
 
+  console.log('mySignature', mySignature);
   const handleSquareClick = async () => {
     console.log('====1====')
-    if(exploded === true) {
+    if(exploded === true || !mySignature) {
       return;
     }
     console.log('====2====')
