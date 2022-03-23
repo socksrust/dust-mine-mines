@@ -29,11 +29,15 @@ const BlackjackComponent = ({ won, isPaymentVerified, setVerified }) => {
   const [houseCardList, setHouseCardList] = useState([]);
   const [houseCardsTotal, setHouseCardsTotal] = useState(0);
 
+  const [isDisabled, setIsDisabled] = useState(true);
+
+
   const toast = useToast();
 
 
   useEffect(() => {
     if(isPaymentVerified) {
+      setIsDisabled(false)
       initializeUserCardList({ setUserCardList, userCardsTotal, setUserCardsTotal })
       initializeHouseCardList({ setHouseCardList, houseCardsTotal, setHouseCardsTotal })
     }
@@ -104,11 +108,11 @@ const BlackjackComponent = ({ won, isPaymentVerified, setVerified }) => {
       </RowCentered>
       <Space height={20}/>
       <RowCentered>
-        <Button disabled={!isPaymentVerified} backgroundColor={objectBackground} borderRadius="2rem" width="110px" height="34px" borderColor={objectBackground} borderWidth="1px" onClick={() => hitClickCb({ won, userCardsTotal, setUserCardsTotal, userCardList, setUserCardList })}>
+        <Button disabled={!isPaymentVerified || isDisabled} backgroundColor={objectBackground} borderRadius="2rem" width="110px" height="34px" borderColor={objectBackground} borderWidth="1px" onClick={() => hitClickCb({ won, userCardsTotal, setUserCardsTotal, userCardList, setUserCardList })}>
           <Text fontSize="14px" fontWeight="bold" color={primaryBackground}>HIT</Text>
         </Button>
         <Space width={20}/>
-        <Button disabled={!isPaymentVerified} backgroundColor={objectBackground} borderRadius="2rem" width="110px" height="34px" borderColor={objectBackground} borderWidth="1px" onClick={() => handleStandClick({ won, houseCardsTotal, setHouseCardsTotal, houseCardList, setHouseCardList })}>
+        <Button disabled={!isPaymentVerified || isDisabled} backgroundColor={objectBackground} borderRadius="2rem" width="110px" height="34px" borderColor={objectBackground} borderWidth="1px" onClick={() => handleStandClick({ won, houseCardsTotal, setHouseCardsTotal, houseCardList, setHouseCardList })}>
           <Text fontSize="14px" fontWeight="bold" color={primaryBackground}>STAND</Text>
         </Button>
       </RowCentered>
