@@ -3,7 +3,7 @@ import { Layout } from '../components/common/layout';
 import { useDisclosure } from '@chakra-ui/react';
 import { motion } from "framer-motion";
 import { useAnchorWallet, useWallet, useConnection } from '@solana/wallet-adapter-react';
-import Mine from '../components/mine/index'
+import BlackjackComponent from '../components/blackjack/index'
 import {CurrencyContext} from './_app';
 import { sendCurrencyToTreasure, renderButtons } from '../utils/solana'
 import Space from '../components/common/space'
@@ -41,7 +41,7 @@ const InnerWrapper = styled.div`
   }
 `
 
-export default function Minesweeping() {
+export default function Blackjack() {
   const [isLoading, setLoading] = useState(false)
   const [isFlipped, setFlipped] = useState(false)
   const [inputValue, setValue] = useState()
@@ -111,7 +111,7 @@ export default function Minesweeping() {
 
     console.log('a')
     //START
-    const { parsedResult, signature} = await sendCurrencyToTreasure({ fromWallet, toast, toTokenAccountAddress, mintAddress, betValue, sendTransaction, connection, endpoint: 'payMineBet', publicKey, bets })
+    const { parsedResult, signature} = await sendCurrencyToTreasure({ fromWallet, toast, toTokenAccountAddress, mintAddress, betValue, sendTransaction, connection, endpoint: 'payBlackjackBet', publicKey, bets })
     //END
     setSignature(signature);
     console.log('b')
@@ -135,7 +135,7 @@ export default function Minesweeping() {
             transition={{ duration: 0.55 }}
             style={{flex: 2, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: secondaryBackground, padding: 20, borderRadius: 4}}
           >
-              <Mine isPaymentVerified={isPaymentVerified} setVerified={setVerified} mySignature={mySignature} setSignature={setSignature} />
+              <BlackjackComponent isPaymentVerified={isPaymentVerified} setVerified={setVerified} mySignature={mySignature} setSignature={setSignature} />
               <Space height={50} />
               <Space height={20} />
               {renderButtons(context.value, false, bet, inputValue, setValue, isLoading, onOpen)}

@@ -7,7 +7,8 @@ import {
 import Space from "../common/space";
 import constants from '../../utils/constants';
 
-const { infos } = constants;
+const { infos, colors } = constants;
+const { objectText } = colors;
 
 const WholeContainer = styled.div`
   text-align: center;
@@ -128,9 +129,9 @@ export default function MinComp(props) {
 
   return (
     <WholeContainer>
-      <Text fontSize={"24px"} fontWeight={"bold"}>3 Bombs have been planted</Text>
+      <Text fontSize={"24px"} fontWeight={"bold"} color={objectText}>3 Bombs have been planted</Text>
       <Space height={10}/>
-      <Text fontSize={"16px"}>Check 5 squares to win
+      <Text fontSize={"16px"} color={objectText}>Check 5 squares to win
         <Span> 100x</Span>
       </Text>
       <Space height={40}/>

@@ -13,6 +13,7 @@ import '../styles/styles.css'
 import '../components/dice/dice.css'
 import '../components/slot/slot.css'
 import '../components/coin/coin.css'
+import '../components/blackjack/styles.css'
 
 export const CurrencyContext = React.createContext<any>({value: 'TREATS'});
 
