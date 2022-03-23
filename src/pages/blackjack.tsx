@@ -65,7 +65,7 @@ export default function Blackjack() {
         setVerified(true);
         toast({
           title: `Yayyyy!!`,
-          description: `All good!! Start playing by clicking on the squares`,
+          description: `All good!! Start playing your blackjack game`,
           status: 'info',
           duration: 15000,
           isClosable: true,

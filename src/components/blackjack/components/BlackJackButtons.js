@@ -30,7 +30,6 @@ export default function BlackJackButtons({isPaymentVerified, ...props}) {
         passive: false
       });
     };
-    // マウント時にのみ呼び出したいため、 Missing dependencies の警告を抑制
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

@@ -111,7 +111,6 @@ export default function BlackjackComponent({ isPaymentVerified }) {
   useEffect(() => {
     if (state.deck.length <= state.minimumNumber) {
       dispatch({ type: "shuffle" });
-      
     }
   }, [state.deck, state.minimumNumber]);
 
@@ -133,7 +132,7 @@ export default function BlackjackComponent({ isPaymentVerified }) {
     if (BlackJackUtilities.getTotal(playersHand) > 21 || state.isTurnEnd) {
       return <GameProgressButton onClickNext={next} />;
     } else {
-      return <BlackJackButtons onClickHit={doHit} isPaymentVerified={isPaymentVerified} onClickStand={doStand} />;
+      return <BlackJackButtons onClickHit={doHit} onClickStand={doStand} isPaymentVerified={isPaymentVerified}  />;
     }
   }
 
