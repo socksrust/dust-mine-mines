@@ -43,7 +43,7 @@ const Square = ({mySignature, setVerified, setSignature, ...props}) => {
 
   const handleSquareClick = async () => {
     console.log('====1====')
-    if(exploded === true || count === 80) {
+    if(exploded === true) {
       return;
     }
     console.log('====2====')
@@ -93,7 +93,7 @@ const Square = ({mySignature, setVerified, setSignature, ...props}) => {
   }
 
   return (
-    <SquareComponent {...props} won={count === 80} onClick={async () => handleSquareClick()} isExploded={exploded}>
+    <SquareComponent {...props} onClick={async () => handleSquareClick()} isExploded={exploded}>
       ⭐
     </SquareComponent>
   )
