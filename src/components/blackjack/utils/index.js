@@ -38,16 +38,29 @@ export const handleHitClick = ({ won, userCardsTotal, setUserCardsTotal, userCar
   const missingPoints = 21 - userCardsTotal;
 
   if(won) {
-    const rank = RANKS[missingPoints - 1]
-    setUserCardsTotal(21)
-    setUserCardList([...userCardList, { suit, rank }])
+    if(missingPoints > 10) {
+      const ranksIndex = Math.floor(Math.random() * 11);
+      const rank = RANKS[ranksIndex]
+
+      const newRankIndex = ranksIndex > 10 ? 10 : ranksIndex;
+
+      setUserCardsTotal(userCardsTotal + newRankIndex + 1)
+      setUserCardList([...userCardList, { suit, rank }])
+    } else {
+      const rank = RANKS[missingPoints - 1]
+      setUserCardsTotal(21)
+      setUserCardList([...userCardList, { suit, rank }])
+    }
+
     return true;
   } else {
-    if(missingPoints > 13) {
+    if(missingPoints > 10) {
       //Cant explode now
-      const ranksIndex = Math.floor(Math.random() * (missingPoints - 1));
+      const ranksIndex = Math.floor(Math.random() * 11);
       const rank = RANKS[ranksIndex]
+
       const newRankIndex = ranksIndex > 10 ? 10 : ranksIndex;
+
       setUserCardsTotal(userCardsTotal + newRankIndex + 1)
       setUserCardList([...userCardList, { suit, rank }])
       return false;
@@ -76,7 +89,7 @@ export const handleStandClick = ({ won, houseCardsTotal, setHouseCardsTotal, hou
   if(won) {
     if(missingPoints > 10) {
       //Cant explode now
-      const ranksIndex = Math.floor(Math.random() * (missingPoints));
+      const ranksIndex = Math.floor(Math.random() * 11);
       const rank = RANKS[ranksIndex]
       const newRankIndex = ranksIndex > 10 ? 10 : ranksIndex;
 
@@ -86,7 +99,7 @@ export const handleStandClick = ({ won, houseCardsTotal, setHouseCardsTotal, hou
     } else {
       // explode
       const minimumPoints = missingPoints + 1;
-      const ranksIndex = Math.floor(Math.random() * 13);
+      const ranksIndex = Math.floor(Math.random() * 11);
       const rank = RANKS[ranksIndex]
       const newRankIndex = ranksIndex > 10 ? 10 : ranksIndex;
 
