@@ -48,7 +48,7 @@ const Square = ({count, setCount, mySignature, ...props}) => {
 
     const resp = await fetch(`${infos.serverUrl}/api/v1/transaction/mineBet`, {
       //const resp = await fetch(`${infos.serverUrl}/api/v1/transaction/${endpoint}`, {
-        body: `{"transactionId":"${mySignature}", "r":"${r}"}`,
+        body: `{"transactionId":"${mySignature}"}`,
         headers: {
           "Content-Type": "application/json"
         },
