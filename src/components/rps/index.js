@@ -4,7 +4,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 import Space from '../common/space'
-import Carousel from './Carousel'
+import Carousel from './carousel'
 import { ArrowLeftIcon, ArrowRightIcon } from '@chakra-ui/icons'
 
 const WholeContainer = styled.div`
