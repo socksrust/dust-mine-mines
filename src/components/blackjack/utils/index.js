@@ -23,12 +23,15 @@ export const initializeUserCardList = ({ setUserCardList, userCardsTotal, setUse
 
 export const initializeHouseCardList = ({ setHouseCardList, houseCardsTotal, setHouseCardsTotal }) => {
   const suitsIndex = Math.floor(Math.random() * 4);
-  const ranksIndex = Math.floor(Math.random() * 6);
+  const ranksIndex = Math.floor(Math.random() * 13);
 
   const suit = SUITS[suitsIndex]
   const rank = RANKS[ranksIndex]
 
-  setHouseCardsTotal(houseCardsTotal + ranksIndex + 1)
+  const newRankIndex = ranksIndex >= 10 ? 10 : ranksIndex + 1;
+
+
+  setHouseCardsTotal(houseCardsTotal + ranksIndex)
   setHouseCardList([{ suit, rank }])
 };
 
@@ -39,12 +42,12 @@ export const handleHitClick = ({ won, userCardsTotal, setUserCardsTotal, userCar
 
   if(won) {
     if(missingPoints > 10) {
-      const ranksIndex = Math.floor(Math.random() * 11);
+      const ranksIndex = Math.floor(Math.random() * 13);
       const rank = RANKS[ranksIndex]
 
-      const newRankIndex = ranksIndex > 10 ? 10 : ranksIndex;
+      const newRankIndex = ranksIndex >= 10 ? 10 : ranksIndex + 1;
 
-      setUserCardsTotal(userCardsTotal + newRankIndex + 1)
+      setUserCardsTotal(userCardsTotal + newRankIndex)
       setUserCardList([...userCardList, { suit, rank }])
       return false
     } else {
@@ -57,22 +60,23 @@ export const handleHitClick = ({ won, userCardsTotal, setUserCardsTotal, userCar
   } else {
     if(missingPoints > 10) {
       //Cant explode now
-      const ranksIndex = Math.floor(Math.random() * 11);
+      const ranksIndex = Math.floor(Math.random() * 13);
       const rank = RANKS[ranksIndex]
 
-      const newRankIndex = ranksIndex > 10 ? 10 : ranksIndex;
+      const newRankIndex = ranksIndex >= 10 ? 10 : ranksIndex + 1;
 
-      setUserCardsTotal(userCardsTotal + newRankIndex + 1)
+      setUserCardsTotal(userCardsTotal + newRankIndex)
       setUserCardList([...userCardList, { suit, rank }])
       return false;
     } else {
       const minimumPoints = missingPoints + 1;
 
       const ranksIndex = Math.floor(Math.random() * 13);
-      const newRankIndex = ranksIndex > 10 ? 10 : ranksIndex;
+
+      const newRankIndex = ranksIndex >= 10 ? 10 : ranksIndex + 1;
 
       const rank = RANKS[ranksIndex]
-      setUserCardsTotal(userCardsTotal + newRankIndex + 1)
+      setUserCardsTotal(userCardsTotal + newRankIndex)
       setUserCardList([...userCardList, { suit, rank }])
       return true;
     }
@@ -92,9 +96,9 @@ export const handleStandClick = ({ won, houseCardsTotal, setHouseCardsTotal, hou
       //Cant explode now
       const ranksIndex = Math.floor(Math.random() * 11);
       const rank = RANKS[ranksIndex]
-      const newRankIndex = ranksIndex > 10 ? 10 : ranksIndex;
+      const newRankIndex = ranksIndex >= 10 ? 10 : ranksIndex + 1;
 
-      setHouseCardsTotal(houseCardsTotal + newRankIndex + 1)
+      setHouseCardsTotal(houseCardsTotal + newRankIndex)
       setHouseCardList([...houseCardList, { suit, rank }])
       return false;
     } else {
@@ -102,9 +106,9 @@ export const handleStandClick = ({ won, houseCardsTotal, setHouseCardsTotal, hou
       const minimumPoints = missingPoints + 1;
       const ranksIndex = Math.floor(Math.random() * 11);
       const rank = RANKS[ranksIndex]
-      const newRankIndex = ranksIndex > 10 ? 10 : ranksIndex;
+      const newRankIndex = ranksIndex >= 10 ? 10 : ranksIndex + 1;
 
-      setHouseCardsTotal(houseCardsTotal + newRankIndex + 1)
+      setHouseCardsTotal(houseCardsTotal + newRankIndex)
       setHouseCardList([...houseCardList, { suit, rank }])
       return true;
     }
@@ -117,9 +121,9 @@ export const handleStandClick = ({ won, houseCardsTotal, setHouseCardsTotal, hou
       //Cant explode now
       const ranksIndex = Math.floor(Math.random() * 11);
       const rank = RANKS[ranksIndex]
-      const newRankIndex = ranksIndex > 10 ? 10 : ranksIndex;
+      const newRankIndex = ranksIndex >= 10 ? 10 : ranksIndex + 1;
 
-      setHouseCardsTotal(houseCardsTotal + newRankIndex + 1)
+      setHouseCardsTotal(houseCardsTotal + newRankIndex)
       setHouseCardList([...houseCardList, { suit, rank }])
       return false;
     } else {
