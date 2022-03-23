@@ -90,6 +90,9 @@ export default function Blackjack() {
       });
       return;
     }
+    // @ts-ignore
+    setVerified(false)
+
 
     //forceUpdate
     setDiceValue(diceValue + 1)

@@ -33,9 +33,11 @@ const BlackjackComponent = ({ won, isPaymentVerified, setVerified }) => {
 
 
   useEffect(() => {
-    initializeUserCardList({ setUserCardList, userCardsTotal, setUserCardsTotal })
-    initializeHouseCardList({ setHouseCardList, houseCardsTotal, setHouseCardsTotal })
-  }, []);
+    if(isPaymentVerified) {
+      initializeUserCardList({ setUserCardList, userCardsTotal, setUserCardsTotal })
+      initializeHouseCardList({ setHouseCardList, houseCardsTotal, setHouseCardsTotal })
+    }
+  }, [isPaymentVerified]);
 
   const hitClickCb = (props) => {
     const isEnd = handleHitClick(props)
@@ -66,7 +68,6 @@ const BlackjackComponent = ({ won, isPaymentVerified, setVerified }) => {
         variant: 'solid'
       });
     }
-    setVerified(null)
 
   }
 
