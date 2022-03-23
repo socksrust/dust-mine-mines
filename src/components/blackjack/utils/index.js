@@ -37,6 +37,10 @@ export const initializeHouseCardList = ({ setHouseCardList, houseCardsTotal, set
   setHouseCardList([{ suit, rank }])
 };
 
+function randomIntFromInterval(min, max) { // min and max included 
+  return Math.floor(Math.random() * (max - min + 1) + min)
+}
+
 export const handleHitClick = ({ won, userCardsTotal, setUserCardsTotal, userCardList, setUserCardList }) => {
   const suitsIndex = Math.floor(Math.random() * 4);
   const suit = SUITS[suitsIndex]
@@ -76,12 +80,9 @@ export const handleHitClick = ({ won, userCardsTotal, setUserCardsTotal, userCar
     } else {
       const minimumPoints = missingPoints;
 
-      let ranksIndex;
-      while(ranksIndex < minimumPoints) {
-        ranksIndex = Math.floor(Math.random() * 13);
-      }
+      const ranksIndex = randomIntFromInterval(minimumPoints, 12);
 
-      const newRankIndex = ranksIndex + 1;
+      const newRankIndex = ranksIndex >= 10 ? 10 : ranksIndex + 1;
 
       const rank = RANKS[ranksIndex]
       setUserCardsTotal(userCardsTotal + newRankIndex)
