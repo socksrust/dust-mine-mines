@@ -298,7 +298,6 @@ export const sendCurrencyToTreasure = async ({ fromWallet, toast, toTokenAccount
   let multiplier;
   let currency;
 
-  console.log('mintAddress', mintAddress);
   switch(mintAddress) {
     case BIP_MINT:
       multiplier = 1000000000;
@@ -370,7 +369,6 @@ export const sendCurrencyToTreasure = async ({ fromWallet, toast, toTokenAccount
   }
 
   if(mintAddress === SOL_MINT) {
-    console.log('lamports betValue * multiplier', betValue * multiplier);
     const transaction = new web3.Transaction().add(
         web3.SystemProgram.transfer({
             fromPubkey: publicKey,
@@ -389,11 +387,8 @@ export const sendCurrencyToTreasure = async ({ fromWallet, toast, toTokenAccount
 
     // Sign transaction, broadcast, and confirm
     const signature = await sendTransaction(transaction, connection);
-    console.log('SOL 1')
     await connection.confirmTransaction(signature, 'processed');
-    console.log('SOL 2')
     const r = await localStorage.getItem('r')
-    console.log('SOL 3')
 
     const resp = await fetch(`${infos.serverUrl}/api/v1/transaction/${endpoint}`, {
     //const resp = await fetch(`${infos.serverUrl}/api/v1/transaction/${endpoint}`, {
@@ -457,11 +452,8 @@ export const sendCurrencyToTreasure = async ({ fromWallet, toast, toTokenAccount
 
   // Sign transaction, broadcast, and confirm
   const signature = await sendTransaction(transaction, connection);
-  console.log('1')
   await connection.confirmTransaction(signature, 'processed');
-  console.log('2')
   const r = await localStorage.getItem('r')
-  console.log('3')
 
   const resp = await fetch(`${infos.serverUrl}/api/v1/transaction/${endpoint}`, {
   //const resp = await fetch(`${infos.serverUrl}/api/v1/transaction/${endpoint}`, {

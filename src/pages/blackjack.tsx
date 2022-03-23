@@ -98,22 +98,15 @@ export default function Blackjack() {
     setLoading(true);
 
 
-    console.log('a')
     //START
     const { parsedResult, signature} = await sendCurrencyToTreasure({ fromWallet, toast, toTokenAccountAddress, mintAddress, betValue, sendTransaction, connection, endpoint: 'payBlackjackBet', publicKey, bets })
     //END
     setSignature(signature);
-    console.log('b')
 
     setLoading(false);
-    console.log('c')
-    console.log('d')
     betCallback({ parsedResult, betValue })
-    console.log('e')
 
   }
-
-  console.log('won', won);
 
   return (
     <Layout style={{ backgroundImage: "url('/images/bg-1.jpg')" }}>
