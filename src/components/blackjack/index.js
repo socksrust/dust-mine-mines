@@ -1,143 +1,110 @@
-import React, { useEffect, useReducer } from "react";
-import { Box } from "@material-ui/core";
-import { useStyles } from "./hooks/useStyles";
-import PlayArea from "./components/PlayArea";
-import BlackJackButtons from "./components/BlackJackButtons";
-import GameProgressButton from "./components/GameProgressButton";
-import * as BlackJackUtilities from "./utilities/BlackJackUtilities";
+import React, { useState, useEffect } from "react";
+import Card from './components/Card'
+import styled from '@emotion/styled';
+import Space from '../common/space'
+import constants from '../../utils/constants';
 
-const initialDeck = BlackJackUtilities.getDeck(3);
-const penetration = 0.8;
+const { colors, infos, objects: { coins } } = constants;
+const { primaryBackground, secondaryBackground, objectBackground, objectText, buttonText } = colors;
 
-const initialState = {
-  deck: initialDeck,
-  minimumNumber: getMinimumNumber(initialDeck, penetration),
-  dealersHand: [],
-  playersHand: [],
-  isTurnEnd: false
+import {
+  Text,
+  Button
+} from '@chakra-ui/react';
+const RANKS = ["A", 2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K"];
+const SUITS = ["♠", "♥", "♣", "♦"];
+
+const initializeCardList = () => {
+  const cardList = [];
+  SUITS.forEach(suit => {
+    RANKS.forEach(rank => {
+      cardList.push({ rank, suit });
+    });
+  });
+  return cardList;
 };
 
-function getMinimumNumber(initialDeck, penetration) {
-  return initialDeck.length - Math.floor(initialDeck.length * penetration);
-}
+const initializeUserCardList = ({ setUserCardList }) => {
+  let cardList = [];
+  for(let i of [1,2]) {
+    const suitsIndex = Math.floor(Math.random() * 4);
+    const ranksIndex = Math.floor(Math.random() * 13);
+    
+    const suit = SUITS[suitsIndex]
+    const rank = RANKS[ranksIndex]
 
-function dealForDealer(deck, hand) {
-  const newDeck = deck.slice();
-  const newHand = hand.slice();
-  while (BlackJackUtilities.checkDealersScore(newHand)) {
-    const index = Math.floor(Math.random() * newDeck.length);
-    newHand.push(newDeck[index]);
-    newDeck.splice(index, 1);
+    cardList = [...cardList, { suit, rank }]
   }
-  return [newDeck, newHand];
-}
 
-function deal(deck, hand, time) {
-  const newDeck = deck.slice();
-  const newHand = hand.slice();
-  for (let i = 0; i < time; i++) {
-    const index = Math.floor(Math.random() * newDeck.length);
-    newHand.push(newDeck[index]);
-    newDeck.splice(index, 1);
-  }
-  return [newDeck, newHand];
-}
+  setUserCardList(cardList)
+};
 
-function initDealersHand(state) {
-  const [newDeck, newHand] = deal(state.deck, [], 2);
-  return { ...state, deck: newDeck, dealersHand: newHand };
-}
+const initializeHouseCardList = ({ setHouseCardList }) => {
+  const suitsIndex = Math.floor(Math.random() * 4);
+  const ranksIndex = Math.floor(Math.random() * 13);
 
-function initPlayersHand(state) {
-  const [newDeck, newHand] = deal(state.deck, [], 2);
-  return { ...state, deck: newDeck, playersHand: newHand };
-}
+  const suit = SUITS[suitsIndex]
+  const rank = RANKS[ranksIndex]
 
-function reducer(state, action) {
-  switch (action.type) {
-    case "init": {
-      state = initDealersHand(state);
-      state = initPlayersHand(state);
-      return { ...state, isTurnEnd: false };
-    }
-    case "hit": {
-      const [newDeck, newHand] = deal(state.deck, state.playersHand, 1);
-      return { ...state, deck: newDeck, playersHand: newHand };
-    }
-    case "stand": {
-      const [newDeck, newHand] = dealForDealer(state.deck, state.dealersHand);
-      return { ...state, deck: newDeck, dealersHand: newHand, isTurnEnd: true };
-    }
-    case "check": {
-      if (
-        BlackJackUtilities.isBlackJack(state.dealersHand) ||
-        BlackJackUtilities.isBlackJack(state.playersHand)
-      ) {
-        return { ...state, isTurnEnd: true };
-      }
 
-      if (BlackJackUtilities.getTotal(state.playersHand) === 21) {
-        const [newDeck, newHand] = dealForDealer(state.deck, state.dealersHand);
-        return {
-          ...state,
-          deck: newDeck,
-          dealersHand: newHand,
-          isTurnEnd: true
-        };
-      }
-      // プレイヤーがバーストしたらターンは終わり
-      if (BlackJackUtilities.getTotal(state.playersHand) > 21) {
-        return { ...state, isTurnEnd: true };
-      }
-      return { ...state };
-    }
-    case "shuffle": {
-      const newDeck = BlackJackUtilities.getDeck(3);
-      return { ...state, deck: newDeck };
-    }
-    default:
-  }
-}
+  setHouseCardList([{ suit, rank }])
+};
 
-export default function BlackjackComponent({ isPaymentVerified }) {
-  const classes = useStyles();
-  const [state, dispatch] = useReducer(reducer, initialState);
+
+const RowCentered = styled.div`
+  display: flex;
+  justify-content: center;
+`
+
+const Table = () => {
+  const [cardList, setCardList] = useState([]);
+  const [userCardList, setUserCardList] = useState([]);
+  const [houseCardList, setHouseCardList] = useState([]);
 
   useEffect(() => {
-    dispatch({ type: "init" });
-    dispatch({ type: "check" });
+    const initialCardList = initializeCardList();
+    setCardList(initialCardList);
+
+    initializeUserCardList({ setUserCardList })
+    initializeHouseCardList({ setHouseCardList })
   }, []);
 
-  useEffect(() => {
-    if (state.deck.length <= state.minimumNumber) {
-      dispatch({ type: "shuffle" });
-    }
-  }, [state.deck, state.minimumNumber]);
-
-  function doHit() {
-    dispatch({ type: "hit" });
-    dispatch({ type: "check" });
-  }
-
-  function doStand() {
-    dispatch({ type: "stand" });
-  }
-
-  function next() {
-    dispatch({ type: "init" });
-    dispatch({ type: "check" });
-  }
-
   return (
-    <Box>
-      <PlayArea
-        dealersHand={state.dealersHand}
-        playersHand={state.playersHand}
-        isTurnEnd={state.isTurnEnd}
-      />
-      <Box className={classes.messageArea}>
-        <BlackJackButtons onClickHit={doHit} onClickStand={doStand} isPaymentVerified={isPaymentVerified}  />
-      </Box>
-    </Box>
+    <main className="table">
+      <RowCentered>
+        {houseCardList.map(({suit, rank}) => (
+          <Card
+            rank={rank}
+            suit={suit}
+          />
+        ))}
+      </RowCentered>
+      <Space height={20}/>
+      <RowCentered>
+        <Text fontSize={30}>Vs.</Text>
+      </RowCentered>
+      <Space height={20}/>
+      <RowCentered>
+        {userCardList.map(({suit, rank}) => (
+          <Card
+            rank={rank}
+            suit={suit}
+          />
+        ))}
+      </RowCentered>
+      <Space height={20}/>
+      <RowCentered>
+        <Button backgroundColor={objectBackground} borderRadius="2rem" width="110px" height="34px" borderColor={objectBackground} borderWidth="1px">
+          <Text fontSize="14px" fontWeight="bold" color={primaryBackground}>HIT</Text>
+        </Button>
+        <Space width={20}/>
+        <Button backgroundColor={objectBackground} borderRadius="2rem" width="110px" height="34px" borderColor={objectBackground} borderWidth="1px">
+          <Text fontSize="14px" fontWeight="bold" color={primaryBackground}>STAND</Text>
+        </Button>
+
+      </RowCentered>
+    </main>
   );
-}
+};
+
+export default Table;
