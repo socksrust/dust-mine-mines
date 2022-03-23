@@ -40,6 +40,8 @@ export const handleHitClick = ({ won, userCardsTotal, setUserCardsTotal, userCar
   const suit = SUITS[suitsIndex]
   const missingPoints = 21 - userCardsTotal;
 
+  console.log('missingPoints', missingPoints);
+
   if(won) {
     if(missingPoints > 10) {
       const ranksIndex = Math.floor(Math.random() * 13);
@@ -52,8 +54,7 @@ export const handleHitClick = ({ won, userCardsTotal, setUserCardsTotal, userCar
       return false
     } else {
       const rank = RANKS[missingPoints - 1]
-      console.log('missingPoints', missingPoints)
-      console.log('rank', rank)
+      console.log('won, else, rank ->', rank)
       setUserCardsTotal(21)
       setUserCardList([...userCardList, { suit, rank }])
       return true;
@@ -71,7 +72,7 @@ export const handleHitClick = ({ won, userCardsTotal, setUserCardsTotal, userCar
       setUserCardList([...userCardList, { suit, rank }])
       return false;
     } else {
-      const minimumPoints = missingPoints + 1;
+      const minimumPoints = missingPoints;
 
       const ranksIndex = Math.floor(Math.random() * 13);
 
