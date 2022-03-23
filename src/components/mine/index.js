@@ -36,7 +36,7 @@ const SquareComponent = styled.div`
   justify-content: center;
 `;
 
-const Square = ({count, setCount, mySignature, setVerified, setSignature, ...props}) => {
+const Square = ({mySignature, setVerified, setSignature, ...props}) => {
   const [exploded, setExploded] = useState(false)
   const [bomb, setBomb] = useState(false)
   const toast = useToast();
@@ -75,7 +75,6 @@ const Square = ({count, setCount, mySignature, setVerified, setSignature, ...pro
       setSignature(null);
       setVerified(false);
       setBomb(true)
-      setCount(-20);
       return toast({
         title: `Boom!!`,
         description: 'The bomb exploded!! Try again!',
@@ -89,8 +88,6 @@ const Square = ({count, setCount, mySignature, setVerified, setSignature, ...pro
 
 
     setExploded(true)
-    setSquareCount(count + 20)
-    setCount(count + 20)
     console.log('====5====')
 
   }
@@ -102,8 +99,7 @@ const Square = ({count, setCount, mySignature, setVerified, setSignature, ...pro
   )
 }
 
-export default function MinComp({ isPaymentVerified, mySignature, setVerified, setSignature }) {
-  const [count, setCount] = useState(-20)
+export default function MinComp(props) {
   return (
     <WholeContainer>
       <Text fontSize={"24px"} fontWeight={"bold"}>3 Bombs have been planted</Text>
@@ -113,74 +109,74 @@ export default function MinComp({ isPaymentVerified, mySignature, setVerified, s
       </Text>
       <Space height={40}/>
       <Row>
-        <Square count={count} setCount={setCount} isPaymentVerified={isPaymentVerified} mySignature={mySignature} setVerified={setVerified} setSignature={setSignature} />
-        <Square count={count} setCount={setCount} isPaymentVerified={isPaymentVerified} mySignature={mySignature} setVerified={setVerified} setSignature={setSignature} />
-        <Square count={count} setCount={setCount} isPaymentVerified={isPaymentVerified} mySignature={mySignature} setVerified={setVerified} setSignature={setSignature}  />
-        <Square count={count} setCount={setCount} isPaymentVerified={isPaymentVerified} mySignature={mySignature} setVerified={setVerified} setSignature={setSignature}  />
-        <Square count={count} setCount={setCount} isPaymentVerified={isPaymentVerified} mySignature={mySignature} setVerified={setVerified} setSignature={setSignature}  />
-        <Square count={count} setCount={setCount} isPaymentVerified={isPaymentVerified} mySignature={mySignature} setVerified={setVerified} setSignature={setSignature}  />
-        <Square count={count} setCount={setCount} isPaymentVerified={isPaymentVerified} mySignature={mySignature} setVerified={setVerified} setSignature={setSignature}  />
-        <Square count={count} setCount={setCount} isPaymentVerified={isPaymentVerified} mySignature={mySignature} setVerified={setVerified} setSignature={setSignature}  />
+        <Square {...props} />
+        <Square {...props} />
+        <Square {...props}  />
+        <Square {...props}  />
+        <Square {...props}  />
+        <Square {...props}  />
+        <Square {...props}  />
+        <Square {...props}  />
       </Row>
       <Row>
-        <Square count={count} setCount={setCount} isPaymentVerified={isPaymentVerified} mySignature={mySignature} setVerified={setVerified} setSignature={setSignature}  />
-        <Square count={count} setCount={setCount} isPaymentVerified={isPaymentVerified} mySignature={mySignature} setVerified={setVerified} setSignature={setSignature}  />
-        <Square count={count} setCount={setCount} isPaymentVerified={isPaymentVerified} mySignature={mySignature} setVerified={setVerified} setSignature={setSignature}  />
-        <Square count={count} setCount={setCount} isPaymentVerified={isPaymentVerified} mySignature={mySignature} setVerified={setVerified} setSignature={setSignature}  />
-        <Square count={count} setCount={setCount} isPaymentVerified={isPaymentVerified} mySignature={mySignature} setVerified={setVerified} setSignature={setSignature}  />
-        <Square count={count} setCount={setCount} isPaymentVerified={isPaymentVerified} mySignature={mySignature} setVerified={setVerified} setSignature={setSignature}  />
-        <Square count={count} setCount={setCount} isPaymentVerified={isPaymentVerified} mySignature={mySignature} setVerified={setVerified} setSignature={setSignature}  />
-        <Square count={count} setCount={setCount} isPaymentVerified={isPaymentVerified} mySignature={mySignature} setVerified={setVerified} setSignature={setSignature}  />
+        <Square {...props}  />
+        <Square {...props}  />
+        <Square {...props}  />
+        <Square {...props}  />
+        <Square {...props}  />
+        <Square {...props}  />
+        <Square {...props}  />
+        <Square {...props}  />
       </Row>
       <Row>
-        <Square count={count} setCount={setCount} isPaymentVerified={isPaymentVerified} mySignature={mySignature} setVerified={setVerified} setSignature={setSignature}  />
-        <Square count={count} setCount={setCount} isPaymentVerified={isPaymentVerified} mySignature={mySignature} setVerified={setVerified} setSignature={setSignature}  />
-        <Square count={count} setCount={setCount} isPaymentVerified={isPaymentVerified} mySignature={mySignature} setVerified={setVerified} setSignature={setSignature}  />
-        <Square count={count} setCount={setCount} isPaymentVerified={isPaymentVerified} mySignature={mySignature} setVerified={setVerified} setSignature={setSignature}  />
-        <Square count={count} setCount={setCount} isPaymentVerified={isPaymentVerified} mySignature={mySignature} setVerified={setVerified} setSignature={setSignature}  />
-        <Square count={count} setCount={setCount} isPaymentVerified={isPaymentVerified} mySignature={mySignature} setVerified={setVerified} setSignature={setSignature}  />
-        <Square count={count} setCount={setCount} isPaymentVerified={isPaymentVerified} mySignature={mySignature} setVerified={setVerified} setSignature={setSignature}  />
-        <Square count={count} setCount={setCount} isPaymentVerified={isPaymentVerified} mySignature={mySignature} setVerified={setVerified} setSignature={setSignature}  />
+        <Square {...props}  />
+        <Square {...props}  />
+        <Square {...props}  />
+        <Square {...props}  />
+        <Square {...props}  />
+        <Square {...props}  />
+        <Square {...props}  />
+        <Square {...props}  />
       </Row>
       <Row>
-        <Square count={count} setCount={setCount} isPaymentVerified={isPaymentVerified} mySignature={mySignature} setVerified={setVerified} setSignature={setSignature}  />
-        <Square count={count} setCount={setCount} isPaymentVerified={isPaymentVerified} mySignature={mySignature} setVerified={setVerified} setSignature={setSignature}  />
-        <Square count={count} setCount={setCount} isPaymentVerified={isPaymentVerified} mySignature={mySignature} setVerified={setVerified} setSignature={setSignature}  />
-        <Square count={count} setCount={setCount} isPaymentVerified={isPaymentVerified} mySignature={mySignature} setVerified={setVerified} setSignature={setSignature}  />
-        <Square count={count} setCount={setCount} isPaymentVerified={isPaymentVerified} mySignature={mySignature} setVerified={setVerified} setSignature={setSignature}  />
-        <Square count={count} setCount={setCount} isPaymentVerified={isPaymentVerified} mySignature={mySignature} setVerified={setVerified} setSignature={setSignature}  />
-        <Square count={count} setCount={setCount} isPaymentVerified={isPaymentVerified} mySignature={mySignature} setVerified={setVerified} setSignature={setSignature}  />
-        <Square count={count} setCount={setCount} isPaymentVerified={isPaymentVerified} mySignature={mySignature} setVerified={setVerified} setSignature={setSignature}  />
+        <Square {...props}  />
+        <Square {...props}  />
+        <Square {...props}  />
+        <Square {...props}  />
+        <Square {...props}  />
+        <Square {...props}  />
+        <Square {...props}  />
+        <Square {...props}  />
       </Row>
       <Row>
-        <Square count={count} setCount={setCount} isPaymentVerified={isPaymentVerified} mySignature={mySignature} setVerified={setVerified} setSignature={setSignature}  />
-        <Square count={count} setCount={setCount} isPaymentVerified={isPaymentVerified} mySignature={mySignature} setVerified={setVerified} setSignature={setSignature}  />
-        <Square count={count} setCount={setCount} isPaymentVerified={isPaymentVerified} mySignature={mySignature} setVerified={setVerified} setSignature={setSignature}  />
-        <Square count={count} setCount={setCount} isPaymentVerified={isPaymentVerified} mySignature={mySignature} setVerified={setVerified} setSignature={setSignature}  />
-        <Square count={count} setCount={setCount} isPaymentVerified={isPaymentVerified} mySignature={mySignature} setVerified={setVerified} setSignature={setSignature}  />
-        <Square count={count} setCount={setCount} isPaymentVerified={isPaymentVerified} mySignature={mySignature} setVerified={setVerified} setSignature={setSignature}  />
-        <Square count={count} setCount={setCount} isPaymentVerified={isPaymentVerified} mySignature={mySignature} setVerified={setVerified} setSignature={setSignature}  />
-        <Square count={count} setCount={setCount} isPaymentVerified={isPaymentVerified} mySignature={mySignature} setVerified={setVerified} setSignature={setSignature}  />
+        <Square {...props}  />
+        <Square {...props}  />
+        <Square {...props}  />
+        <Square {...props}  />
+        <Square {...props}  />
+        <Square {...props}  />
+        <Square {...props}  />
+        <Square {...props}  />
       </Row>
       <Row>
-        <Square count={count} setCount={setCount} isPaymentVerified={isPaymentVerified} mySignature={mySignature} setVerified={setVerified} setSignature={setSignature}  />
-        <Square count={count} setCount={setCount} isPaymentVerified={isPaymentVerified} mySignature={mySignature} setVerified={setVerified} setSignature={setSignature}  />
-        <Square count={count} setCount={setCount} isPaymentVerified={isPaymentVerified} mySignature={mySignature} setVerified={setVerified} setSignature={setSignature}  />
-        <Square count={count} setCount={setCount} isPaymentVerified={isPaymentVerified} mySignature={mySignature} setVerified={setVerified} setSignature={setSignature}  />
-        <Square count={count} setCount={setCount} isPaymentVerified={isPaymentVerified} mySignature={mySignature} setVerified={setVerified} setSignature={setSignature}  />
-        <Square count={count} setCount={setCount} isPaymentVerified={isPaymentVerified} mySignature={mySignature} setVerified={setVerified} setSignature={setSignature}  />
-        <Square count={count} setCount={setCount} isPaymentVerified={isPaymentVerified} mySignature={mySignature} setVerified={setVerified} setSignature={setSignature}  />
-        <Square count={count} setCount={setCount} isPaymentVerified={isPaymentVerified} mySignature={mySignature} setVerified={setVerified} setSignature={setSignature}  />
+        <Square {...props}  />
+        <Square {...props}  />
+        <Square {...props}  />
+        <Square {...props}  />
+        <Square {...props}  />
+        <Square {...props}  />
+        <Square {...props}  />
+        <Square {...props}  />
       </Row>
       <Row>
-        <Square count={count} setCount={setCount} isPaymentVerified={isPaymentVerified} mySignature={mySignature} setVerified={setVerified} setSignature={setSignature}  />
-        <Square count={count} setCount={setCount} isPaymentVerified={isPaymentVerified} mySignature={mySignature} setVerified={setVerified} setSignature={setSignature}  />
-        <Square count={count} setCount={setCount} isPaymentVerified={isPaymentVerified} mySignature={mySignature} setVerified={setVerified} setSignature={setSignature}  />
-        <Square count={count} setCount={setCount} isPaymentVerified={isPaymentVerified} mySignature={mySignature} setVerified={setVerified} setSignature={setSignature}  />
-        <Square count={count} setCount={setCount} isPaymentVerified={isPaymentVerified} mySignature={mySignature} setVerified={setVerified} setSignature={setSignature}  />
-        <Square count={count} setCount={setCount} isPaymentVerified={isPaymentVerified} mySignature={mySignature} setVerified={setVerified} setSignature={setSignature}  />
-        <Square count={count} setCount={setCount} isPaymentVerified={isPaymentVerified} mySignature={mySignature} setVerified={setVerified} setSignature={setSignature}  />
-        <Square count={count} setCount={setCount} isPaymentVerified={isPaymentVerified} mySignature={mySignature} setVerified={setVerified} setSignature={setSignature}  />
+        <Square {...props}  />
+        <Square {...props}  />
+        <Square {...props}  />
+        <Square {...props}  />
+        <Square {...props}  />
+        <Square {...props}  />
+        <Square {...props}  />
+        <Square {...props}  />
       </Row>
     </WholeContainer>
   );
