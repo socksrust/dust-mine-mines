@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from '@emotion/styled'
 import {
   Text,
+  useToast
 } from '@chakra-ui/react';
 import Space from "../common/space";
 import constants from '../../utils/constants';
@@ -39,6 +40,7 @@ const Square = ({count, setCount, mySignature, setVerified, setSignature, ...pro
   const [exploded, setExploded] = useState(false)
   const [squareCount, setSquareCount] = useState(-20)
   const [bomb, setBomb] = useState(false)
+  const toast = useToast();
 
   const handleSquareClick = async () => {
     console.log('====1====')
