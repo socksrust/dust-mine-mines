@@ -52,6 +52,8 @@ export const handleHitClick = ({ won, userCardsTotal, setUserCardsTotal, userCar
       return false
     } else {
       const rank = RANKS[missingPoints - 1]
+      console.log('missingPoints', missingPoints)
+      console.log('rank', rank)
       setUserCardsTotal(21)
       setUserCardList([...userCardList, { suit, rank }])
       return true;
