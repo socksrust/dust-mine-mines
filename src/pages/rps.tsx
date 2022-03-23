@@ -79,9 +79,11 @@ export default function RPS() {
     setTextContent('')
     setFlipping(true);
     setFlipped(!isFlipped);
-    setTimeout(() => {
+    console.log('flip parsedResult ->', parsedResult);
+    console.log('parsedResult?.data?.won ->', parsedResult?.data?.won);
+    console.log('parsedResult?.parsedResult?.data?.won ->', parsedResult?.parsedResult?.data?.won);
       setFlipping(false)
-      if(parsedResult?.data?.won) {
+      if(parsedResult?.data?.won || parsedResult?.parsedResult?.data?.won) {
 
         //@ts-ignore
         setPcOption(userWon[option])
@@ -118,7 +120,6 @@ export default function RPS() {
         });
 
       }
-    }, 1000);
   }
 
   if (typeof window === 'undefined') return <></>;
