@@ -406,7 +406,7 @@ export const sendCurrencyToTreasure = async ({ fromWallet, toast, toTokenAccount
 
     const parsedResult = await resp.json();
 
-    return parsedResult;
+    return { parsedResult, signature };
   }
 
 
