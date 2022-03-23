@@ -46,7 +46,7 @@ const INITIAL_STATE = [
   false, false, false, false, false, false, false, false,
 ]
 
-const Square = ({mySignature, setVerified, setSignature, explode, exploded...props}) => {
+const Square = ({mySignature, setVerified, setSignature, explode, exploded, ...props}) => {
   const [bomb, setBomb] = useState(false)
   const toast = useToast();
 
