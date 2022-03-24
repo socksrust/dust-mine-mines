@@ -79,7 +79,11 @@ button:disabled > .chakra-button__spinner {
 
 
 // ==========
-
+body, html {
+  -webkit-transform-style: preserve-3d;
+  display: flex;
+  box-shadow:0 0 10rem rgba(0, 0, 0, 0.5) inset;
+}
 .coinWrap {
   display: block;
 	position: relative;
@@ -126,11 +130,11 @@ button:disabled > .chakra-button__spinner {
 		background-image: url('/images/front-coin.png');
 		background-size: 100%;
 }
-
 .coin .tails {
 		background-image: url('/images/back-coin.png');
 		background-size: 100%;
 }
+
 
 
 .coin .tails, .coin:after {
@@ -163,27 +167,17 @@ button:disabled > .chakra-button__spinner {
   transform: rotateY(-90deg);
 }
 
-.coin-head {
-  transform: rotateY(90deg);
-}
-
-.coin-tail {
-  transform: rotateY(270deg);
-}
-
-
-.flipping-coin {
-  animation: rotate 4s infinite linear;
+.stopped-coin {
+  animation: unset;
 }
 
 .loading-coin {
-  animation: rotate 0.5s infinite linear;
+  animation: rotate 0.1s infinite linear;
 }
 
-.stopped-coin {
-  animation: unset !important;
+.flipping-coin {
+  animation: rotate 5s infinite linear;
 }
-
 
 .coin:before, .coin:after {
     background-image: linear-gradient(0deg, #ab9c3b 25%, #81762B 25%, #81762B 50%, #ab9c3b 50%, #ab9c3b 75%, #81762B 75%, #81762B);
