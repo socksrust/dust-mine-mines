@@ -10,7 +10,7 @@ const Tails = styled.div`
 	background-size: contain !important;
 `
 
-const Coin = ({ isFlipping, isFlipped}) => {
+const Coin = ({ isFlipping, isFlipped, textContent}) => {
 
 	return (
     <>
