@@ -240,7 +240,7 @@ export default function Coin() {
             transition={{ duration: 0.55 }}
           >
               <Wr style={{overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: secondaryBackground, padding: 20, borderRadius: 4}}>
-                <CoinComponent isFlipped={isFlipped} isFlipping={isFlipping} textContent={textContent} diceValue={diceValue} />
+                <CoinComponent isFlipped={isFlipped} isFlipping={isFlipping || isLoading} textContent={textContent} diceValue={diceValue} />
                 <RowCentered>
                   <Text fontSize="36px" fontWeight="bold" color={!isEven ? objectBackground : 'rgba(255, 255, 255, 0.5)'}>TAILS</Text>
                   <Space width={10} />

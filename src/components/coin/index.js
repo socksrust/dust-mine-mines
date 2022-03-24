@@ -17,7 +17,7 @@ const Coin = ({ isFlipping, isFlipped, rotate, diceValue, textContent}) => {
 			<p style={{color: secondaryBackground}}>{diceValue}</p>
 			<span style={{ color: objectText, fontSize: 24, marginBottom: 5 }}>{textContent}</span>
 			<div className="coinWrap">
-			<div className={`coin ${isFlipped ? 'stopped-coin' : isFlipping ? 'loading-coin' : 'flipping-coin'} ${textContent === 'HEADS' ? 'coin-head' : 'coin-tail'}`}>
+			<div className={`coin ${isFlipped ? 'stopped-coin' : (isFlipping ? 'loading-coin' : 'flipping-coin')} ${isFlipped && textContent === 'HEADS' ? 'coin-head' : 'coin-tail'}`}>
 				<div className="side heads"></div>
 				<div className="side tails"></div>
 			</div>
