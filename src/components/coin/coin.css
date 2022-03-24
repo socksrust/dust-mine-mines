@@ -180,7 +180,7 @@ body, html {
 }
 
 .loading-coin {
-  animation: rotate 0.1s infinite linear;
+  animation: rotate 0.3s infinite linear;
 }
 
 .flipping-coin {
