@@ -15,7 +15,7 @@ const Coin = ({ isFlipping, isFlipped}) => {
 	return (
     <>
 			<div className="coinWrap">
-			<div className={`coin ${isFlipped ? 'stopped-coin' : (isFlipping ? 'loading-coin' : 'flipping-coin')} ${isFlipped && textContent === 'HEADS' ? 'coin-head' : 'coin-tail'}`}>
+			<div className={`coin ${isFlipped ? 'stopped-coin' : (isFlipping ? 'loading-coin' : 'flipping-coin')} ${isFlipped && textContent === 'HEADS' && 'coin-head'} ${isFlipped && textContent === 'TAILS' && 'coin-tail'}`}>
 				<div className="side heads"></div>
 				<div className="side tails"></div>
 			</div>
