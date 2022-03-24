@@ -30,6 +30,17 @@ const Wrapper = styled.div`
   padding-right: 90px;
 `
 
+const Wr = styled.div`
+  background: #FFCC00;   
+  -webkit-transform-style: preserve-3d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  box-shadow:0 0 10rem rgba(0, 0, 0, 0.5) inset;
+`
+
 
 const InnerWrapper = styled.div`
   display: flex;
@@ -115,7 +126,6 @@ export default function Coin() {
   const flip = ({ parsedResult, betValue }: any) => {
     setTextContent('')
     setFlipping(true);
-    setFlipped(!isFlipped);
     setTimeout(() => {
       setFlipping(false)
       setDiceValue(diceValue + 1)
@@ -124,6 +134,7 @@ export default function Coin() {
         //isEven ? 2, 4, 6 : 1, 3, 5;
         const realResult = isEven ? 'HEADS' : 'TAILS';
 
+        setFlipped(true);
         setTextContent(realResult);
         const winValue = betValue * 2;
 
@@ -141,6 +152,7 @@ export default function Coin() {
         const realResult = !isEven ? 'HEADS' : 'TAILS';
 
         //isEven ? 1, 3, 5 : 2, 4, 6 ;
+        setFlipped(true);
         setTextContent(realResult);
         toast({
           title: `Ops.`,
@@ -172,6 +184,8 @@ export default function Coin() {
       });
       return;
     }
+    setFlipped(false);
+
 
     //forceUpdate
     setDiceValue(diceValue + 1)
@@ -224,22 +238,23 @@ export default function Coin() {
             initial={{ opacity: 0, y: 20 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.55 }}
-            style={{overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: secondaryBackground, padding: 20, borderRadius: 4}}
           >
-              <CoinComponent isFlipped={isFlipped} isFlipping={isFlipping} textContent={textContent} diceValue={diceValue} />
-              <RowCentered>
-                <Text fontSize="36px" fontWeight="bold" color={!isEven ? objectBackground : 'rgba(255, 255, 255, 0.5)'}>TAILS</Text>
-                <Space width={10} />
-                <Switch size="lg" isChecked={isEven} value={isEven ? 'isEven' : 'isOdd'} onChange={(e) => setEven(e.target.value !== 'isEven')} />
-                <Space width={10} />
-                <Text fontSize="36px" fontWeight="bold" color={isEven ? objectBackground : 'rgba(255, 255, 255, 0.5)'}>HEADS</Text>
-                <Space width={50} />
-                <Checkbox size='lg' colorScheme='green' onChange={(e) => setChecked(e.target.checked)} isChecked={isChecked}>
-                  <Text fontSize="24px" fontWeight="medium" color={objectBackground}>Auto</Text>
-                </Checkbox>
-                <Space width={15} />
-              </RowCentered>
-              {renderButtons(context.value, false, bet, inputValue, setValue, isLoading, onOpen)}
+              <Wr style={{overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: secondaryBackground, padding: 20, borderRadius: 4}}>
+                <CoinComponent isFlipped={isFlipped} isFlipping={isFlipping} textContent={textContent} diceValue={diceValue} />
+                <RowCentered>
+                  <Text fontSize="36px" fontWeight="bold" color={!isEven ? objectBackground : 'rgba(255, 255, 255, 0.5)'}>TAILS</Text>
+                  <Space width={10} />
+                  <Switch size="lg" isChecked={isEven} value={isEven ? 'isEven' : 'isOdd'} onChange={(e) => setEven(e.target.value !== 'isEven')} />
+                  <Space width={10} />
+                  <Text fontSize="36px" fontWeight="bold" color={isEven ? objectBackground : 'rgba(255, 255, 255, 0.5)'}>HEADS</Text>
+                  <Space width={50} />
+                  <Checkbox size='lg' colorScheme='green' onChange={(e) => setChecked(e.target.checked)} isChecked={isChecked}>
+                    <Text fontSize="24px" fontWeight="medium" color={objectBackground}>Auto</Text>
+                  </Checkbox>
+                  <Space width={15} />
+                </RowCentered>
+                {renderButtons(context.value, false, bet, inputValue, setValue, isLoading, onOpen)}
+              </Wr>
             </motion.div>
             <Space height={70} />
             <LiveBets />

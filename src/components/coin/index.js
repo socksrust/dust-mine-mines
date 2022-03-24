@@ -16,8 +16,13 @@ const Coin = ({ isFlipping, isFlipped, rotate, diceValue, textContent}) => {
     <>
 			<p style={{color: secondaryBackground}}>{diceValue}</p>
 			<span style={{ color: objectText, fontSize: 24, marginBottom: 5 }}>{textContent}</span>
-			{textContent === 'HEADS' ? <div className={`outcome ${isFlipping && 'toss'} ${isFlipped && 'flip'}`} style={{ background: "url('/images/front-coin.png')", backgroundSize: 'contain', borderColor: accentColor, color: objectText }} /> : <Tails className={`outcome ${isFlipping && 'toss'} ${isFlipped && 'flip'}`} style={{ background: "url('/images/back-coin.png')", backgroundSize: 'contain', borderColor: accentColor, color: objectText }} />}
-		</>
+			<div className="coinWrap">
+			<div className={`coin ${isFlipped ? 'stopped-coin' : isFlipping ? 'loading-coin' : 'flipping-coin'} ${textContent === 'HEADS' ? 'coin-head' : 'coin-tail'}`}>
+				<div className="side heads"></div>
+				<div className="side tails"></div>
+			</div>
+		</div>
+	</>
 	);
 };
 export default Coin;
