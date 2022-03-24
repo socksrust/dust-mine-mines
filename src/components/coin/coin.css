@@ -167,6 +167,14 @@ body, html {
   transform: rotateY(-90deg);
 }
 
+.coin-head {
+  transform: rotateY(90deg) !important;
+}
+
+.coin-tail {
+  transform: rotateY(270deg) !important;
+}
+
 .stopped-coin {
   animation: unset;
 }
