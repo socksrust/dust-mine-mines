@@ -168,7 +168,7 @@ export default function Wheel() {
     roll();
     setLoading(true);
 
-    const parsedResult = await sendCurrencyToTreasure({ fromWallet, toast, toTokenAccountAddress, mintAddress, betValue, sendTransaction, connection, endpoint: 'wheelBet', publicKey })
+    const { parsedResult } = await sendCurrencyToTreasure({ fromWallet, toast, toTokenAccountAddress, mintAddress, betValue, sendTransaction, connection, endpoint: 'wheelBet', publicKey })
 
     setLoading(false);
     onClose();
