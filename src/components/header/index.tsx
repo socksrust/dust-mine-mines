@@ -79,6 +79,7 @@ const Header: FC<HeaderProps> = () => {
               direction="row"
               justifyContent="flex-end"
               alignItems="center"
+              overflow="scroll"
             >
               <LeftMenu />
               <ConnectWallet />
