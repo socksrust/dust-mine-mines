@@ -10,12 +10,10 @@ const Tails = styled.div`
 	background-size: contain !important;
 `
 
-const Coin = ({ isFlipping, isFlipped, rotate, diceValue, textContent}) => {
+const Coin = ({ isFlipping, isFlipped}) => {
 
 	return (
     <>
-			<p style={{color: secondaryBackground}}>{diceValue}</p>
-			<span style={{ color: objectText, fontSize: 24, marginBottom: 5 }}>{textContent}</span>
 			<div className="coinWrap">
 			<div className={`coin ${isFlipped ? 'stopped-coin' : (isFlipping ? 'loading-coin' : 'flipping-coin')} ${isFlipped && textContent === 'HEADS' ? 'coin-head' : 'coin-tail'}`}>
 				<div className="side heads"></div>
