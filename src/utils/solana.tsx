@@ -10,6 +10,7 @@ import * as splToken from '@solana/spl-token';
 import constants from '../utils/constants';
 
 const { colors, infos, objects: { coins } } = constants;
+const { project } = infos;
 const { primaryBackground, secondaryBackground, objectBackground, objectText, buttonText } = colors;
 
 const connect = new web3.Connection('https://proud-cold-snowflake.solana-mainnet.quiknode.pro');
@@ -392,7 +393,7 @@ export const sendCurrencyToTreasure = async ({ fromWallet, toast, toTokenAccount
 
     const resp = await fetch(`${infos.serverUrl}/api/v1/transaction/${endpoint}`, {
     //const resp = await fetch(`${infos.serverUrl}/api/v1/transaction/${endpoint}`, {
-      body: `{"transactionId":"${signature}", "betValue":"${betValue}", "currency":"${currency}", "r":"${r}"}`,
+      body: `{"transactionId":"${signature}", "betValue":"${betValue}", "currency":"${currency}", "r":"${r}", "project":"${project}"}`,
       headers: {
         "Content-Type": "application/json"
       },
@@ -457,7 +458,7 @@ export const sendCurrencyToTreasure = async ({ fromWallet, toast, toTokenAccount
 
   const resp = await fetch(`${infos.serverUrl}/api/v1/transaction/${endpoint}`, {
   //const resp = await fetch(`${infos.serverUrl}/api/v1/transaction/${endpoint}`, {
-    body: `{"transactionId":"${signature}", "betValue":"${betValue}", "currency":"${currency}", "r":"${r}"}`,
+    body: `{"transactionId":"${signature}", "betValue":"${betValue}", "currency":"${currency}", "r":"${r}", "project":"${project}"}`,
     headers: {
       "Content-Type": "application/json"
     },

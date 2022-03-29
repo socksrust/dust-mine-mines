@@ -16,6 +16,8 @@ import { keyframes } from '@emotion/react'
 import constants from '../utils/constants';
 
 const { colors, infos } = constants;
+const { project } = infos;
+
 const { secondaryBackground, accentColor, objectText } = colors;
 
 
@@ -167,7 +169,7 @@ export default function RPS() {
   useEffect(() => {
     async function fetchStatus() {
       const resp = await fetch(`${infos.serverUrl}/api/v1/transaction/bets`, {
-        body: `{"publicKeyString":"${publicKey?.toString()}"}`,
+        body: `{"publicKeyString":"${publicKey?.toString()}", "project":"${project}"}`,
         headers: {
           "Content-Type": "application/json"
         },

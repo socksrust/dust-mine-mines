@@ -5,7 +5,8 @@ const constants = {
     website: 'https://twitter.com/solpuppypound',
     image: 'https://media.discordapp.net/attachments/953774408470761544/953787077651234906/SOLANA-PUPPY-POUND.png?width=1504&height=1112',
     publicKey: 'GneuCzhfTiDCVEAwLAcFGEkWhyfjM6QKEFhhVo7DBLkU',
-    serverUrl: 'https://spp-casino.herokuapp.com',
+    serverUrl: 'https://solaland-bet.herokuapp.com',
+    project: 'spp',
   },
   colors: {
     primaryBackground: '#1A1740',

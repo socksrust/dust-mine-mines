@@ -8,6 +8,7 @@ import Space from "../common/space";
 import constants from '../../utils/constants';
 
 const { infos, colors } = constants;
+const { project } = infos;
 const { objectText, objectBackground } = colors;
 
 const WholeContainer = styled.div`
@@ -77,7 +78,7 @@ const Square = ({mySignature, setVerified, setSignature, explode, exploded, ...p
 
     const resp = await fetch(`${infos.serverUrl}/api/v1/transaction/mineBet`, {
       //const resp = await fetch(`${infos.serverUrl}/api/v1/transaction/${endpoint}`, {
-        body: `{"transactionId":"${mySignature}"}`,
+        body: `{"transactionId":"${mySignature}", "project":"${project}"}`,
         headers: {
           "Content-Type": "application/json"
         },
