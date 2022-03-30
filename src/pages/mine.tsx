@@ -23,6 +23,7 @@ const Wrapper = styled.div`
   align-items: center;
   flex: 1;
   height: 100%;
+  padding-top: 50px;
 `
 
 
@@ -124,7 +125,7 @@ export default function Minesweeping() {
   }
 
   return (
-    <Layout style={{ backgroundImage: "url('/images/bg-1.jpg')" }}>
+    <Layout>
       <Wrapper>
         <InnerWrapper>
           <motion.div

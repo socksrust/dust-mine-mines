@@ -1,35 +1,35 @@
 const constants = {
   infos: {
-    name: 'SAINTxBLACKJACK',
-    website: 'https://twitter.com/solalandhq',
-    image: 'https://media.discordapp.net/attachments/950052662597021696/951555806615203890/Logo.png?width=1146&height=1146',
-    publicKey: 'HR4E7PZATrihJ48ExoMQsFuDrXdNvKTBt1JAy4ZgddQu',
+    name: 'ZANKOKU ROULETTE',
+    website: 'https://mobile.twitter.com/solalandhq',
+    image: 'https://media.discordapp.net/attachments/953409170827272225/953780138875699250/OEZ1Sf6Z_400x400.png',
+    publicKey: 'GPeVU9AqopiNoZN7vvjknBjjed8JX63YxXwDq22aaSy1',
     serverUrl: 'https://solaland-bet.herokuapp.com',
-    project: 'saint',
-  },
+    project: 'zankoku'
+},
   colors: {
-    primaryBackground: '#000',
-    secondaryBackground: 'rgba(255,255,255,0.1)',
+    primaryBackground: '#090d29',
+    secondaryBackground: '#18215f',
     objectBackground: '#fff',
     objectText: '#fff',
-    buttonText: '#000',
-    accentColor: '#ff0000',
+    buttonText: '#070b17',
+    accentColor: '#9949E4',
   },
   objects: {
-    logo: 'SAINTxBLACKJACK',
-    logoUrl: 'https://media.discordapp.net/attachments/950052662597021696/951555806615203890/Logo.png?width=1146&height=1146',
+    logo: 'ZANKOKU ROULETTE',
+    logoUrl: 'https://i.imgur.com/g6Tx8Cc.png',
     coins: [
       {
-        label: '$GEMS',
-        imgSrc: 'https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/CS5tMuXYGR1cd2XnVQjoZ42Z1jWoW1Bu8ySdRBT99PDc/logo.png',
-        value: 'GEMS',
-        mintAddress: 'CS5tMuXYGR1cd2XnVQjoZ42Z1jWoW1Bu8ySdRBT99PDc',
+        label: '$JUNK',
+        imgSrc: 'https://raw.githubusercontent.com/XAGBack/JUNKToken1/main/JunkToken.png',
+        value: 'JUNK',
+        mintAddress: 'AMzmwvDRKdt5AQ3m1m28tWjzBxmQNe1PsmHnYitVZwzp',
         multiplier: 1000000000,
-        firstBetValue: 10,
+        firstBetValue: 15,
         secondBetValue: 50,
-        thirdBetValue: 500,
-        maxBetValue: 1000,
-        toTokenAccountAddress: '866REczYqjMaMgxRQmisDK3HNzrQF3Z9hMD3Sq6wKMFE',
+        thirdBetValue: 100,
+        maxBetValue: 500,
+        toTokenAccountAddress: '2EpPXxBFvNSzUQDa3DEZsTMsRkVa8faZKqnheTgXhqNf',
       }
     ]
   }
