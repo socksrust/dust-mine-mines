@@ -27,7 +27,6 @@ const Wrapper = styled.div`
   align-items: center;
   flex: 1;
   height: 100%;
-  padding-right: 90px;
 `
 
 const Wr = styled.div`
