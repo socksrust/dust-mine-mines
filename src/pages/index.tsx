@@ -11,7 +11,7 @@ import Space from '../components/common/space'
 import constants from '../utils/constants';
 
 const { colors } = constants;
-const { secondaryBackground, accentColor, objectText } = colors;
+const { secondaryBackground, accentColor, objectText, disabledColor } = colors;
 
 const MASTER_PK = 'B8e4g2SP7AC9SqQXPChEEmduhwBuZ8MTMb5xEGUchU2t';
 const connect = new web3.Connection('https://proud-cold-snowflake.solana-mainnet.quiknode.pro');
@@ -246,14 +246,14 @@ export default function Wheel() {
           <RowCentered/>
           <RowCentered/>
           <RowCentered>
-            <Text fontSize="36px" fontWeight="bold" color={!isEven ? '#fff' : 'rgba(255,255,255, 0.6)'}>Odd</Text>
+            <Text fontSize="36px" fontWeight="bold" color={!isEven ? objectText : disabledColor}>Odd</Text>
             <Switch size="lg" isChecked={isEven} value={isEven ? 'isEven' : 'isOdd'} onChange={(e) => setEven(e.target.value !== 'isEven')} />
-            <Text fontSize="36px" fontWeight="bold" color={isEven ? '#fff' : 'rgba(255,255,255, 0.6)'}>Even</Text>
+            <Text fontSize="36px" fontWeight="bold" color={isEven ? objectText : disabledColor}>Even</Text>
           </RowCentered>
           <RowCentered>
-            <Text fontSize="36px" fontWeight="bold" color={!isBlack ? '#fff' : 'rgba(255,255,255, 0.6)'}>Red</Text>
+            <Text fontSize="36px" fontWeight="bold" color={!isBlack ? objectText : disabledColor}>Red</Text>
             <Switch size="lg" isChecked={isBlack} value={isBlack ? 'isBlack' : 'isRed'} onChange={(e) => setBlack(e.target.value !== 'isBlack')} />
-            <Text fontSize="36px" fontWeight="bold" color={isBlack ? '#fff' : 'rgba(255,255,255, 0.6)'}>Black</Text>
+            <Text fontSize="36px" fontWeight="bold" color={isBlack ? objectText : disabledColor}>Black</Text>
           </RowCentered>
           <RowCentered/>
           {renderButtons(context.value, false, bet, inputValue, setValue, isLoading, onOpen)}

@@ -9,7 +9,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 import constants from '../../utils/constants';
-const { objects: { coins }, colors: {accentColor} } = constants
+const { objects: { coins }, colors: {accentColor, objectText} } = constants
 
 const Wrapper = styled.div`
   display: flex;
@@ -39,7 +39,7 @@ const MenuItemWrapper = styled.div`
 
 const MenuItem = ({text, onClick, isActive}) => (
   <MenuItemWrapper onClick={onClick} isActive={isActive}>
-    <Text fontSize="14" fontWeight="bold" color={'#fff'} style={{ whiteSpace: 'nowrap' }} >{text}</Text>
+    <Text fontSize="14" fontWeight="bold" color={objectText} style={{ whiteSpace: 'nowrap' }} >{text}</Text>
   </MenuItemWrapper>
 )
 
@@ -94,9 +94,11 @@ const LeftMenu: FC<LeftMenuProps> = () => {
         <MenuItem text="Roulette Wheel" onClick={() => push('/')} isActive={window.location.pathname === '/'} />
         {/*<MenuItem text="Dice Roll" onClick={() => push('/dice')} isActive={window.location.pathname === '/dice'} />
         <MenuItem text="Roulette Wheel" onClick={() => push('/wheel')} isActive={window.location.pathname === '/wheel'}  />
-        <MenuItem text="RPS" onClick={() => push('/rps')} isActive={window.location.pathname === '/rps'}  />
+                <MenuItem text="Mine" onClick={() => push('/mine')} isActive={window.location.pathname === '/mine'}  />
+
         <MenuItem text="Blackjack" onClick={() => push('/blackjack')} isActive={window.location.pathname === '/blackjack'}  />*/}
-        <MenuItem text="Mine" onClick={() => push('/mine')} isActive={window.location.pathname === '/mine'}  />
+        <MenuItem text="RPS" onClick={() => push('/rps')} isActive={window.location.pathname === '/rps'}  />
+
         {/*<MenuItem text="Buy $TREATS" onClick={() => replace('https://raydium.io/swap/?inputCurrency=sol&outputCurrency=14r8dWfzmUUBpw59w5swNRb5F1YWqmUnSPgD6djUs1Jj&inputAmount=1&outputAmount=3014.368777&fixed=in')} isActive={false}  />*/}
         {/*<MenuItem text="Rock paper scissors" onClick={() => push('/rps')} isActive={window.location.pathname === '/rps'}  />*/}
       </Wrapper>

@@ -188,7 +188,7 @@ export default function RPS() {
   }, [publicKey && publicKey?.toString()])
 
   return (
-    <Layout style={{ backgroundImage: "url('/images/bg-1.jpg')" }}>
+    <Layout>
       <Wrapper>
         <InnerWrapper>
           <motion.div
@@ -201,17 +201,17 @@ export default function RPS() {
               <RPSComponent option={option} pcOption={pcOption} isLoading={isLoading} setOption={setOption} setPcOption={setPcOption} />
               <Space height={50} />
               <Space height={20} />
-              <Row>
-                <Text>Shiba > Husky</Text>
+              {/*<Row>
+                <Text color={objectText}>Shiba > Husky</Text>
                 <Space width={10}/>
-                <Text>||</Text>
+                <Text color={objectText}>||</Text>
                 <Space width={10}/>
-                <Text>Frenchie > Shiba</Text>
+                <Text color={objectText}>Frenchie > Shiba</Text>
                 <Space width={10}/>
-                <Text>||</Text>
+                <Text color={objectText}>||</Text>
                 <Space width={10}/>
-                <Text>Husky > Frenchie</Text>
-              </Row>
+                <Text color={objectText}>Husky > Frenchie</Text>
+              </Row>*/}
               <Space height={10} />
               {renderButtons(context.value, false, bet, inputValue, setValue, isLoading, onOpen)}
             </motion.div>

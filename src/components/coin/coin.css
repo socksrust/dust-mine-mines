@@ -81,7 +81,6 @@ button:disabled > .chakra-button__spinner {
 body, html {
   -webkit-transform-style: preserve-3d;
   display: flex;
-  box-shadow:0 0 10rem rgba(0, 0, 0, 0.5) inset;
 }
 .coinWrap {
   display: block;
