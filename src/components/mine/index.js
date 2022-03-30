@@ -42,7 +42,7 @@ const Span = styled.span`
 const SquareComponent = styled.div`
   width: 50px;
   height: 50px;
-  background: ${p => !p.isPaymentVerified ? 'transparent' : (p.won ? 'green' : (p.isExploded ? `rgba(255,0,0,1)` : 'white'))};
+  background: ${p => !p.isPaymentVerified ? 'transparent' : (p.won ? 'green' : (p.isExploded ? `rgba(255,0,0,1)` : 'rgba(255,255,255,0.8)'))};
   border: 1px ${objectBackground} solid;
   cursor: pointer;
   display: flex;
