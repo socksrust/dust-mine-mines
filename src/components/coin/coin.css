@@ -123,14 +123,17 @@ body, html {
 
 .coin .side {
 		background-size: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+    background-size: 8px 8px;
 }
 
 .coin .heads {
-		background-image: url('/images/front-coin.png');
 		background-size: 100%;
 }
 .coin .tails {
-		background-image: url('/images/back-coin.png');
 		background-size: 100%;
 }
 

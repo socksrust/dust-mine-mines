@@ -11,7 +11,7 @@ import constants from '../utils/constants';
 
 const { colors, infos, objects: { coins } } = constants;
 const { project } = infos;
-const { primaryBackground, secondaryBackground, objectBackground, objectText, buttonText } = colors;
+const { primaryBackground, secondaryBackground, objectBackground, objectText, buttonText, accentColor } = colors;
 
 const connect = new web3.Connection('https://proud-cold-snowflake.solana-mainnet.quiknode.pro');
 const TOKEN_PROGRAM_ID = new web3.PublicKey(
@@ -64,7 +64,7 @@ const Row = styled.div`
 const BottomWrapper = styled.div`
   padding: 50px;
   padding-top: 25px;
-  border: 3px solid #5D5FEF;
+  border: 3px solid ${accentColor};
   border-radius: 2rem;
   margin-bottom: -50px;
   @media (max-width: 1154px) {
@@ -141,7 +141,6 @@ export const renderButtons = (value: any, modal: any, bet, inputValue, setValue,
 
     return (
       <BottomWrapper>
-        <Text fontSize="22px" fontWeight="bold" color={buttonText}>Puppy Pound</Text>
         <Space height={20}/>
         <Row>
           <Button backgroundColor={objectBackground} isLoading={isLoading} loadingText={`Loading $${currency}`} borderRadius="2px" width="180px" height="56px" onClick={() => bet(firstBetValue, mintAddress, toTokenAccountAddress)}>

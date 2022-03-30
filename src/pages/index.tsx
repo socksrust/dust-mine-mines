@@ -230,7 +230,7 @@ export default function Coin() {
   console.log('context', context);
 
   return (
-    <Layout style={{ backgroundImage: "url('/images/bg-1.jpg')" }}>
+    <Layout>
       <Wrapper>
         <InnerWrapper>
           <motion.div

@@ -8,7 +8,7 @@ import {
 } from '@chakra-ui/react';
 
 const { colors, infos, objects: { coins } } = constants;
-const { primaryBackground, secondaryBackground, objectBackground, objectText, buttonText } = colors;
+const { accentColor, primaryBackground, secondaryBackground, objectBackground, objectText, buttonText } = colors;
 
 import {
   Text,
@@ -48,7 +48,7 @@ const CardsWrapper = styled.div`
   align-items: flex-end;
   width: 233px;
   height: 172px;
-  background: #5D5FEF;
+  background: ${secondaryBackground};
   border-radius: 1rem;
 `
 
@@ -153,7 +153,7 @@ const BlackjackComponent = ({ won, isPaymentVerified, setVerified }) => {
           ))}
         </CardsWrapper>
         <RowCentered>
-          <Text color="#FFA33A" fontFamily="MontSerrat" fontWeight={"black"} fontSize={"50px"} fontStyle="italic">VS.</Text>
+          <Text color={accentColor} fontFamily="MontSerrat" fontWeight={"black"} fontSize={"50px"} fontStyle="italic">VS.</Text>
         </RowCentered>
         <CardsWrapper>
           {userCardList.map(({suit, rank}) => (

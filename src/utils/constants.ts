@@ -1,36 +1,35 @@
-
 const constants = {
   infos: {
-    name: 'Solana Puppy Pound Casino',
-    website: 'https://twitter.com/solpuppypound',
-    image: 'https://media.discordapp.net/attachments/953774408470761544/953787077651234906/SOLANA-PUPPY-POUND.png?width=1504&height=1112',
-    publicKey: 'GneuCzhfTiDCVEAwLAcFGEkWhyfjM6QKEFhhVo7DBLkU',
+    name: 'SAINTxBLACKJACK',
+    website: 'https://twitter.com/solalandhq',
+    image: 'https://media.discordapp.net/attachments/950052662597021696/951555806615203890/Logo.png?width=1146&height=1146',
+    publicKey: 'HR4E7PZATrihJ48ExoMQsFuDrXdNvKTBt1JAy4ZgddQu',
     serverUrl: 'https://solaland-bet.herokuapp.com',
-    project: 'spp',
+    project: 'saint',
   },
   colors: {
-    primaryBackground: '#1A1740',
-    secondaryBackground: '#18215f',
-    objectBackground: '#5D5FEF',
+    primaryBackground: '#000',
+    secondaryBackground: 'rgba(255,255,255,0.1)',
+    objectBackground: '#fff',
     objectText: '#fff',
-    buttonText: '#fff',
-    accentColor: '#9949E4',
+    buttonText: '#000',
+    accentColor: '#ff0000',
   },
   objects: {
-    logo: 'Solana Puppy Pound Casino',
-    logoUrl: 'https://media.discordapp.net/attachments/953774408470761544/953787076933984367/SOLANA-PUPPY-POUND.gif',
+    logo: 'SAINTxBLACKJACK',
+    logoUrl: 'https://media.discordapp.net/attachments/950052662597021696/951555806615203890/Logo.png?width=1146&height=1146',
     coins: [
       {
-        label: '$TREATS',
-        imgSrc: 'https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/14r8dWfzmUUBpw59w5swNRb5F1YWqmUnSPgD6djUs1Jj/logo.png',
-        value: 'TREATS',
-        mintAddress: '14r8dWfzmUUBpw59w5swNRb5F1YWqmUnSPgD6djUs1Jj',
+        label: '$GEMS',
+        imgSrc: 'https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/CS5tMuXYGR1cd2XnVQjoZ42Z1jWoW1Bu8ySdRBT99PDc/logo.png',
+        value: 'GEMS',
+        mintAddress: 'CS5tMuXYGR1cd2XnVQjoZ42Z1jWoW1Bu8ySdRBT99PDc',
         multiplier: 1000000000,
-        firstBetValue: 100,
-        secondBetValue: 200,
-        thirdBetValue: 300,
+        firstBetValue: 10,
+        secondBetValue: 50,
+        thirdBetValue: 500,
         maxBetValue: 1000,
-        toTokenAccountAddress: 'BFzabon2xfiaBkXmJBdEdUkfKsppcCxRoB6uXEgqRcLj',
+        toTokenAccountAddress: '866REczYqjMaMgxRQmisDK3HNzrQF3Z9hMD3Sq6wKMFE',
       }
     ]
   }

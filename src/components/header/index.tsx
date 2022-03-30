@@ -14,8 +14,10 @@ const { objects, colors } = constants;
 const { logo, logoUrl } = objects;
 
 const Image = styled.img`
-  width: 110px;
+  width: 50px;
   margin-left: 20px;
+  border-radius: 50%;
+  border: 1px solid white;
   @media (max-width: 750px) {
     display: none;
   }
@@ -51,6 +53,7 @@ const Header: FC<HeaderProps> = () => {
           left: 0,
           right: 0,
           transition: '0.1s',
+          paddingTop: 20,
         }}
       >
         <Flex
