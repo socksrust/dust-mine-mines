@@ -122,7 +122,7 @@ const Square = ({mySignature, setVerified, setSignature, explode, exploded, ...p
 
   return (
     <SquareComponent {...props} exploded={exploded} onClick={async () => handleSquareClick()} isExploded={exploded}>
-      {bomb ? '💣' : exploded ? <Image src="/images/frenchie.jpeg"/> : ''}
+      {bomb ? '💣' : exploded ? '⭐' : ''}
     </SquareComponent>
   )
 }
