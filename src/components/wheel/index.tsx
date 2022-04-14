@@ -31,7 +31,7 @@ const MyWheel = ({ isRolling, rotate, diceValue }) => {
 
   return (
     <div style={{ position: 'relative' }}>
-      <p style={{color: secondaryBackground}}>{diceValue}</p>
+      {/* <p style={{color: secondaryBackground}}>{diceValue}</p> */}
 
       <Arrow/>
       <WheelImage src="/images/wheel.png" diceValue={diceValue} style={{ transform: rotate, transition: `transform ${isRolling ? '10000s' : '0s'}` }} />

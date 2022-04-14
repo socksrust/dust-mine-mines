@@ -1,10 +1,10 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Layout } from '../components/common/layout';
-import { useDisclosure, RadioGroup, Stack, Radio } from '@chakra-ui/react';
+import { useDisclosure, RadioGroup, Stack, Radio, background } from '@chakra-ui/react';
 import { motion } from "framer-motion";
 import { useAnchorWallet, useWallet, useConnection } from '@solana/wallet-adapter-react';
 import RPSComponent from '../components/rps/index'
-import {CurrencyContext} from './_app';
+import { CurrencyContext } from './_app';
 import { sendCurrencyToTreasure, renderButtons } from '../utils/solana'
 import Space from '../components/common/space'
 import {
@@ -55,15 +55,15 @@ const InnerWrapper = styled.div`
 `
 
 const userWon = {
-		Rock: 'Scissors',
-		Paper: 'Rock',
-		Scissors: 'Paper'
+  Rock: 'Scissors',
+  Paper: 'Rock',
+  Scissors: 'Paper'
 }
 
 const userLost = {
-		Rock: 'Paper',
-		Paper: 'Scissors',
-		Scissors: 'Rock'
+  Rock: 'Paper',
+  Paper: 'Scissors',
+  Scissors: 'Rock'
 }
 
 export default function RPS() {
@@ -90,54 +90,54 @@ export default function RPS() {
     setTextContent('')
     setFlipping(true);
     setFlipped(!isFlipped);
-    console.log('flip parsedResult ->', parsedResult);
-    console.log('parsedResult?.data?.won ->', parsedResult?.data?.won);
-    console.log('parsedResult?.parsedResult?.data?.won ->', parsedResult?.parsedResult?.data?.won);
-      setFlipping(false)
-      if(parsedResult?.data?.won || parsedResult?.parsedResult?.data?.won) {
+    // console.log('flip parsedResult ->', parsedResult);
+    // console.log('parsedResult?.data?.won ->', parsedResult?.data?.won);
+    // console.log('parsedResult?.parsedResult?.data?.won ->', parsedResult?.parsedResult?.data?.won);
+    setFlipping(false)
+    if (parsedResult?.data?.won || parsedResult?.parsedResult?.data?.won) {
 
-        //@ts-ignore
-        setPcOption(userWon[option])
-        //isEven ? 2, 4, 6 : 1, 3, 5;
-        const realResult = isEven ? 'HEADS' : 'TAILS';
+      //@ts-ignore
+      setPcOption(userWon[option])
+      //isEven ? 2, 4, 6 : 1, 3, 5;
+      const realResult = isEven ? 'HEADS' : 'TAILS';
 
 
-        setTextContent(realResult);
-        const winValue = betValue * 2;
+      setTextContent(realResult);
+      const winValue = betValue * 2;
 
-        toast({
-          title: `Yayyyy!!`,
-          description: `You got $${(winValue).toFixed(2)} $TREATS back! They will be transferred in less than a minute! Keep going!!`,
-          status: 'info',
-          duration: 15000,
-          isClosable: true,
-          position: 'bottom-right',
-          variant: 'solid'
-        });
-      } else {
-        const realResult = !isEven ? 'HEADS' : 'TAILS';
-        //@ts-ignore
-        setPcOption(userLost[option])
-        //isEven ? 1, 3, 5 : 2, 4, 6 ;
-        setTextContent(realResult);
-        toast({
-          title: `Ops.`,
-          description: 'Not your lucky play, try again',
-          status: 'warning',
-          duration: 15000,
-          isClosable: true,
-          position: 'bottom-right',
-          variant: 'solid'
-        });
+      toast({
+        title: `Yayyyy!!`,
+        description: `You got $${(winValue).toFixed(2)} $Tokens back! They will be transferred in less than a minute! Keep going!!`,
+        status: 'info',
+        duration: 15000,
+        isClosable: true,
+        position: 'bottom-right',
+        variant: 'solid'
+      });
+    } else {
+      const realResult = !isEven ? 'HEADS' : 'TAILS';
+      //@ts-ignore
+      setPcOption(userLost[option])
+      //isEven ? 1, 3, 5 : 2, 4, 6 ;
+      setTextContent(realResult);
+      toast({
+        title: `Ops.`,
+        description: 'Not your lucky play, try again',
+        status: 'warning',
+        duration: 15000,
+        isClosable: true,
+        position: 'bottom-right',
+        variant: 'solid'
+      });
 
-      }
+    }
   }
 
   if (typeof window === 'undefined') return <></>;
 
 
   const bet = async (betValue: number, mintAddress: string, toTokenAccountAddress: string) => {
-    if(!fromWallet) {
+    if (!fromWallet) {
       toast({
         title: `Error`,
         description: 'You must connect your wallet before',
@@ -154,12 +154,11 @@ export default function RPS() {
     setDiceValue(diceValue + 1)
     setLoading(true);
 
-
     //START
     const { parsedResult } = await sendCurrencyToTreasure({ fromWallet, toast, toTokenAccountAddress, mintAddress, betValue, sendTransaction, connection, endpoint: 'coinBet', publicKey, bets })
     //END
 
-    console.log('parsedResult', parsedResult);
+    // console.log('parsedResult', parsedResult);
     setLoading(false);
     onClose();
     flip({ parsedResult, betValue })
@@ -177,11 +176,11 @@ export default function RPS() {
       });
 
       const parsedResponse = await resp.json();
-      console.log('parsedResponse', parsedResponse.data);
+      // console.log('parsedResponse', parsedResponse.data);
       setBets(parsedResponse.data);
     }
 
-    if(publicKey?.toString()) {
+    if (publicKey?.toString()) {
       fetchStatus();
     }
 
@@ -196,12 +195,25 @@ export default function RPS() {
             initial={{ opacity: 0, y: 20 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.55 }}
-            style={{overflow: 'hidden', flex: 2, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: secondaryBackground, padding: 20, borderRadius: 4}}
+            style={
+              {
+                overflow: 'hidden',
+                flex: 2,
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+                padding: 20,
+                borderRadius: 4,
+                backgroundColor: 'rgba(255, 255, 255, .08)',
+                // backgroundImage: 'url("https://i.imgur.com/hRHsRLJ.png")'
+              }
+            }
           >
-              <RPSComponent option={option} pcOption={pcOption} isLoading={isLoading} setOption={setOption} setPcOption={setPcOption} />
-              <Space height={50} />
-              <Space height={20} />
-              {/*<Row>
+            <RPSComponent option={option} pcOption={pcOption} isLoading={isLoading} setOption={setOption} setPcOption={setPcOption} />
+            <Space height={50} />
+            <Space height={20} />
+            {/*<Row>
                 <Text color={objectText}>Shiba > Husky</Text>
                 <Space width={10}/>
                 <Text color={objectText}>||</Text>
@@ -212,10 +224,10 @@ export default function RPS() {
                 <Space width={10}/>
                 <Text color={objectText}>Husky > Frenchie</Text>
               </Row>*/}
-              <Space height={10} />
-              {renderButtons(context.value, false, bet, inputValue, setValue, isLoading, onOpen)}
-            </motion.div>
-          </InnerWrapper>
+            <Space height={10} />
+            {renderButtons(context.value, false, bet, inputValue, setValue, isLoading, onOpen)}
+          </motion.div>
+        </InnerWrapper>
       </Wrapper>
     </Layout>
   );

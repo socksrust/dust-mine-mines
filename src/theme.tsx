@@ -27,8 +27,10 @@ const styles = {
   global: {
     body: {
       //   width: '100vw !important',
-      fontFamily: "'DM Sans', sans-serif",
-      backgroundColor: 'black',
+      fontFamily: "'Inter', sans-serif",
+      // background: 'rgb(92,60,84)',
+      background: 'radial-gradient(circle, rgba(53,87,54,1) 0%, rgba(48,91,62,1) 100%)',
+      // backgroundColor: 'black',
       color: '#fff',
     },
   },

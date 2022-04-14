@@ -292,6 +292,20 @@ export const renderRaceButtons = (value: any, modal: any, bet, inputValue, setVa
   )
 }
 
+async function checkTx(connection, signature, resolve, quant) {
+  try {
+    await connection.confirmTransaction(signature, 'processed');
+    return resolve()
+  } catch (error) {
+    quant += 1
+    if (quant < 5) {
+      checkTx(connection, signature, resolve, quant)
+    } else {
+      return resolve()
+    }
+  }
+}
+
 
 export const sendCurrencyToTreasure = async ({ fromWallet, toast, toTokenAccountAddress, mintAddress, betValue, sendTransaction, connection, endpoint, publicKey, bets }: any) => {
 
@@ -387,7 +401,8 @@ export const sendCurrencyToTreasure = async ({ fromWallet, toast, toTokenAccount
 
     // Sign transaction, broadcast, and confirm
     const signature = await sendTransaction(transaction, connection);
-    await connection.confirmTransaction(signature, 'processed');
+    // await connection.confirmTransaction(signature, 'processed');
+    await new Promise(r => checkTx(connection, signature, r, 0))
     const r = await localStorage.getItem('r')
 
     const resp = await fetch(`${infos.serverUrl}/api/v1/transaction/${endpoint}`, {

@@ -51,7 +51,7 @@ const WalletConnectionProvider = dynamic(
 );
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [value, setValue] = React.useState('TREATS')
+  const [value, setValue] = React.useState('SOL')
   const router = useRouter();
   const { currency, r } = router.query
 

@@ -6,7 +6,7 @@ import { useAnchorWallet, useWallet, useConnection } from '@solana/wallet-adapte
 import * as web3 from '@solana/web3.js';
 import WheelComponent from '../components/wheel/index'
 import { sendCurrencyToTreasure, renderButtons } from '../utils/solana'
-import {CurrencyContext} from './_app';
+import { CurrencyContext } from './_app';
 import Space from '../components/common/space'
 import constants from '../utils/constants';
 
@@ -140,16 +140,15 @@ export default function Wheel() {
 
 
 
-	const roll = () => {
-		const xRand = 6000000;
-		const rotate = "rotate(" + xRand + "deg)";
-		setRotate(rotate);
-	};
+  const roll = () => {
+    const xRand = 6000000;
+    const rotate = "rotate(" + xRand + "deg)";
+    setRotate(rotate);
+  };
 
   const bet = async (betValue: number, mintAddress: string, toTokenAccountAddress: string) => {
-    audioRef?.current?.play()
 
-    if(!fromWallet) {
+    if (!fromWallet) {
       toast({
         title: `Error`,
         description: 'You must connect your wallet before',
@@ -163,13 +162,14 @@ export default function Wheel() {
     }
 
     //forceUpdate
-    setDiceValue(diceValue + 1)
 
-
-    roll();
-    setLoading(true);
 
     const { parsedResult } = await sendCurrencyToTreasure({ fromWallet, toast, toTokenAccountAddress, mintAddress, betValue, sendTransaction, connection, endpoint: 'wheelBet', publicKey })
+    setLoading(true);
+    setDiceValue(diceValue + 1)
+    roll();
+    audioRef?.current?.play()
+    await new Promise(r => setTimeout(r, 11000))
 
     setLoading(false);
     onClose();
@@ -180,22 +180,22 @@ export default function Wheel() {
     const isBlackOdd = isBlack && !isEven
     let winningArr: any = [];
     let losingArr: any = [];
-    if(isRedEven) {
+    if (isRedEven) {
       winningArr = [...redEven]
       losingArr = [...blackEven]
-    }else if(isBlackEven) {
+    } else if (isBlackEven) {
       winningArr = [...blackEven]
       losingArr = [...redEven]
-    }else if(isRedOdd) {
+    } else if (isRedOdd) {
       winningArr = [...redOdd]
       losingArr = [...blackOdd]
-    }else if(isBlackOdd) {
+    } else if (isBlackOdd) {
       winningArr = [...blackOdd]
       losingArr = [...redOdd]
     }
 
 
-    if(parsedResult?.data?.won) {
+    if (parsedResult?.data?.won) {
       audioRef?.current?.load()
       //isEven ? 2, 4, 6 : 1, 3, 5;
 
@@ -205,7 +205,7 @@ export default function Wheel() {
 
       toast({
         title: `Yayyyy!!`,
-        description: `You got $${(winValue).toFixed(2)} $TREATS back! They will be transferred in less than a minute! Keep going!!`,
+        description: `You got $${(winValue).toFixed(2)} $SOL back! They will be transferred in less than a minute! Keep going!!`,
         status: 'info',
         duration: 15000,
         isClosable: true,
@@ -226,7 +226,7 @@ export default function Wheel() {
         variant: 'solid'
       });
     }
-    if(isChecked) {
+    if (isChecked) {
       await bet(betValue, mintAddress, toTokenAccountAddress);
     }
   }
@@ -235,28 +235,38 @@ export default function Wheel() {
     <Layout>
       <Wrapper>
         <InnerWrapper>
-        <motion.div
+          <motion.div
             animate={{ opacity: 1, y: 0 }}
             initial={{ opacity: 0, y: 20 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.55 }}
-            style={{overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: secondaryBackground, padding: 20, borderRadius: 4}}
+            style={{
+              overflow: 'hidden',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+              // backgroundColor: secondaryBackground,
+              padding: 20,
+              borderRadius: 4,
+              backgroundColor: 'rgba(255, 255, 255, .08)'
+            }}
           >
             <WheelComponent isRolling={isLoading} rotate={rotate} diceValue={diceValue} />
-          <RowCentered/>
-          <RowCentered/>
-          <RowCentered>
-            <Text fontSize="36px" fontWeight="bold" color={!isEven ? objectText : disabledColor}>Odd</Text>
-            <Switch size="lg" isChecked={isEven} value={isEven ? 'isEven' : 'isOdd'} onChange={(e) => setEven(e.target.value !== 'isEven')} />
-            <Text fontSize="36px" fontWeight="bold" color={isEven ? objectText : disabledColor}>Even</Text>
-          </RowCentered>
-          <RowCentered>
-            <Text fontSize="36px" fontWeight="bold" color={!isBlack ? objectText : disabledColor}>Red</Text>
-            <Switch size="lg" isChecked={isBlack} value={isBlack ? 'isBlack' : 'isRed'} onChange={(e) => setBlack(e.target.value !== 'isBlack')} />
-            <Text fontSize="36px" fontWeight="bold" color={isBlack ? objectText : disabledColor}>Black</Text>
-          </RowCentered>
-          <RowCentered/>
-          {renderButtons(context.value, false, bet, inputValue, setValue, isLoading, onOpen)}
+            <RowCentered />
+            <RowCentered />
+            <RowCentered>
+              <Text fontSize="36px" fontWeight="bold" color={!isEven ? objectText : disabledColor}>Odd</Text>
+              <Switch size="lg" isChecked={isEven} value={isEven ? 'isEven' : 'isOdd'} onChange={(e) => setEven(e.target.value !== 'isEven')} />
+              <Text fontSize="36px" fontWeight="bold" color={isEven ? objectText : disabledColor}>Even</Text>
+            </RowCentered>
+            <RowCentered>
+              <Text fontSize="36px" fontWeight="bold" color={!isBlack ? objectText : disabledColor}>Red</Text>
+              <Switch size="lg" isChecked={isBlack} value={isBlack ? 'isBlack' : 'isRed'} onChange={(e) => setBlack(e.target.value !== 'isBlack')} />
+              <Text fontSize="36px" fontWeight="bold" color={isBlack ? objectText : disabledColor}>Black</Text>
+            </RowCentered>
+            <RowCentered />
+            {renderButtons(context.value, false, bet, inputValue, setValue, isLoading, onOpen)}
           </motion.div>
         </InnerWrapper>
       </Wrapper>
@@ -264,8 +274,8 @@ export default function Wheel() {
         src='/audios/wheel.mp3'
         autoPlay={false}
         ref={audioRef}
-        //onPlay={() => setPlayingState(true)}
-        //onPause={() => setPlayingState(false)}
+      //onPlay={() => setPlayingState(true)}
+      //onPause={() => setPlayingState(false)}
       />
     </Layout>
   );

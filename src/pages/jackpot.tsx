@@ -120,7 +120,7 @@ export default function Jackpot() {
       setTimeout(() => {
         toast({
           title: `JACKPOT!!`,
-          description: `You got ${(winValue).toFixed(2)} $ $TREATS back! They will be transferred in less than a minute! Keep going!!`,
+          description: `You got ${(winValue).toFixed(2)} $ $Tokens back! They will be transferred in less than a minute! Keep going!!`,
           status: 'info',
           duration: 15000,
           isClosable: true,

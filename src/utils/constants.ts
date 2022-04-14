@@ -8,11 +8,11 @@ const constants = {
     project: 'metajuana'
   },
   colors: {
-    primaryBackground: '#ffffff',
+    primaryBackground: '#FFF',
     secondaryBackground: '#f0f0f0',
-    objectBackground: '#4EFF8A',
-    objectText: '#000',
-    buttonText: '#070b17',
+    objectBackground: '#162b1d',
+    objectText: '#FFF',
+    buttonText: '#FFF',
     accentColor: '#4EFF8A',
     disabledColor: 'grey',
   },

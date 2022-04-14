@@ -7,7 +7,7 @@ import Space from '../common/space'
 import Carousel from './carousel'
 import { ArrowLeftIcon, ArrowRightIcon } from '@chakra-ui/icons'
 import constants from '../../utils/constants'
-const { colors: {accentColor, objectText}} = constants;
+const { colors: { accentColor, objectText } } = constants;
 
 
 
@@ -17,6 +17,7 @@ const WholeContainer = styled.div`
   justify-content: space-around;
   align-items: center;
   width: 910px;
+
   @media (max-width: 1154px) {
     width: 100%;
     flex-direction: column;
@@ -27,11 +28,10 @@ const WholeContainer = styled.div`
 
 
 const RPSImg = styled.img`
-  width: 190px;
-  border-radius: 50%;
-  border: 5px solid ${accentColor};
+  width: 80%;
+  /* border-radius: 50%; */
+  /* border: 5px solid ${accentColor}; */
 `;
-
 
 const Row = styled.div`
   display: flex;
@@ -43,8 +43,6 @@ const Column = styled.div`
   flex-direction: column;
 `;
 
-
-
 const ArrowWrapper = styled.div`
   background: ${accentColor};
   display: flex;
@@ -54,6 +52,19 @@ const ArrowWrapper = styled.div`
   border-radius: 50%;
   cursor: pointer;
 `;
+
+const ImageWrapper = styled.div`
+  height: 260px;
+  width: 220px;
+  background: rgb(92,60,84);
+  background: radial-gradient(circle, rgba(137,172,138,1) 0%, rgba(0,74,25,1) 100%);
+  padding: 10px;
+  border: 4px solid #FFF;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
 
 const WinnerText = styled.p``;
 
@@ -68,33 +79,33 @@ export default function RockPaperScissors({ option, pcOption, isLoading, setOpti
     {
       name: "Rock",
       img:
-        "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/apple/271/rock_1faa8.png"
+        "https://i.imgur.com/lJog52h.png"
     },
     {
       name: "Paper",
       img:
-        "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/mozilla/36/memo_1f4dd.png"
+        "https://i.imgur.com/oBTD7Cj.png"
     },
     {
       name: "Scissors",
-      img: "https://images.emojiterra.com/twitter/512px/2702.png"
+      img: "https://i.imgur.com/l0t5FiO.png"
     }
   ];
 
-	const allOptions = {
-		Rock: 'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/apple/271/rock_1faa8.png',
-		Paper: 'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/mozilla/36/memo_1f4dd.png',
-		Scissors: 'https://images.emojiterra.com/twitter/512px/2702.png'
-	}
+  const allOptions = {
+    Rock: 'https://i.imgur.com/lJog52h.png',
+    Paper: 'https://i.imgur.com/oBTD7Cj.png',
+    Scissors: 'https://i.imgur.com/l0t5FiO.png'
+  }
 
-	const allTranslatedOptions = {
-		Rock: 'Rock',
-		Paper: 'Paper',
-		Scissors: 'Scissors'
-	}
+  const allTranslatedOptions = {
+    Rock: 'Rock',
+    Paper: 'Paper',
+    Scissors: 'Scissors'
+  }
 
   const handleLeftClick = () => {
-    switch(option) {
+    switch (option) {
       case 'Rock':
         setOption('Scissors')
         return;
@@ -108,7 +119,7 @@ export default function RockPaperScissors({ option, pcOption, isLoading, setOpti
   }
 
   const handleRightClick = () => {
-    switch(option) {
+    switch (option) {
       case 'Rock':
         return setOption('Paper');
       case 'Paper':
@@ -158,22 +169,26 @@ export default function RockPaperScissors({ option, pcOption, isLoading, setOpti
         <ArrowWrapper onClick={handleLeftClick}>
           <ArrowLeftIcon />
         </ArrowWrapper>
-        <Space width={15}/>
+        <Space width={15} />
         <Column>
-          <RPSImg src={allOptions[option]} />
+          <ImageWrapper>
+            <RPSImg src={allOptions[option]} />
+          </ImageWrapper>
           <Space height={8} />
-          <Text fontSize="24px" color={objectText}>{allTranslatedOptions[option]}</Text>
+          <Text backgroundColor='#162b1e' borderRadius='12px' fontSize="28px" color={objectText} fontWeight='bold'>{allTranslatedOptions[option].toUpperCase()}</Text>
         </Column>
-        <Space width={15}/>
+        <Space width={15} />
         <ArrowWrapper onClick={handleRightClick}>
           <ArrowRightIcon />
         </ArrowWrapper>
       </Row>
       <Text color={objectText} fontFamily="MontSerrat" fontWeight={"black"} fontSize={"50px"} fontStyle="italic">VS.</Text>
       <Column>
-        <RPSImg src={allOptions[pcOption]} />
+        <ImageWrapper>
+          <RPSImg src={allOptions[pcOption]} />
+        </ImageWrapper>
         <Space height={8} />
-        <Text fontSize="24px" color={objectText}>{allTranslatedOptions[pcOption]}</Text>
+        <Text backgroundColor='#162b1e' borderRadius='12px' fontSize="28px" color={objectText} fontWeight='bold'>{allTranslatedOptions[pcOption].toUpperCase()}</Text>
       </Column>
     </WholeContainer>
   );
