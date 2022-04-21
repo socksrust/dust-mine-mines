@@ -1,6 +1,6 @@
 const constants = {
   infos: {
-    name: 'Baby Ape Pixel Club',
+    name: 'UGA Nation',
     website: 'https://twitter.com/UGA_NATI0N',
     image: 'https://i.imgur.com/AmgOt6C.png',
     publicKey: 'yJfwBxpMupdF2B4hDcsWv8wsj56mEcRyn1sY23yukRx',
@@ -17,7 +17,7 @@ const constants = {
     disabledColor: 'grey',
   },
   objects: {
-    logo: 'Baby Ape Pixel Club',
+    logo: 'UGA Nation',
     logoUrl: 'https://i.imgur.com/AmgOt6C.png',
     coins: [
       {

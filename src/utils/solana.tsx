@@ -13,7 +13,7 @@ const { colors, infos, objects: { coins } } = constants;
 const { project } = infos;
 const { primaryBackground, secondaryBackground, objectBackground, objectText, buttonText, accentColor } = colors;
 
-const connect = new web3.Connection('https://small-red-dew.solana-mainnet.quiknode.pro/a7a53c5e116e9196170c3ee6ddc1a150dd64cf9b/');
+const connect = new web3.Connection('https://proud-cold-snowflake.solana-mainnet.quiknode.pro');
 const TOKEN_PROGRAM_ID = new web3.PublicKey(
   "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
 );
