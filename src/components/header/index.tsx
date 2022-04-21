@@ -14,10 +14,10 @@ const { objects, colors } = constants;
 const { logo, logoUrl } = objects;
 
 const Image = styled.img`
-  width: 50px;
+  width: 100px;
   margin-left: 20px;
-  border-radius: 50%;
-  border: 1px solid white;
+  /* border-radius: 50%; */
+  /* border: 1px solid white; */
   @media (max-width: 750px) {
     display: none;
   }

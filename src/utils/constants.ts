@@ -1,36 +1,36 @@
 const constants = {
   infos: {
-    name: 'METAFARMERS ROULETTE',
-    website: 'https://twitter.com/MetajuanaNFT',
-    image: 'https://media.discordapp.net/attachments/953409170827272225/953784448229462046/logooo.png',
-    publicKey: 'uMxPuQiTGDzxZEB3adR6z4NQ3xQ8aDMWgeGeot3YT95',
+    name: 'Baby Ape Pixel Club',
+    website: 'https://twitter.com/UGA_NATI0N',
+    image: 'https://i.imgur.com/AmgOt6C.png',
+    publicKey: 'yJfwBxpMupdF2B4hDcsWv8wsj56mEcRyn1sY23yukRx',
     serverUrl: 'https://solaland-bet.herokuapp.com',
-    project: 'metajuana'
+    project: 'uga'
   },
   colors: {
     primaryBackground: '#FFF',
     secondaryBackground: '#f0f0f0',
-    objectBackground: '#162b1d',
+    objectBackground: '#EBBC00',
     objectText: '#FFF',
-    buttonText: '#FFF',
-    accentColor: '#4EFF8A',
+    buttonText: '#000',
+    accentColor: '#EBBC00',
     disabledColor: 'grey',
   },
   objects: {
-    logo: 'METAFARMERS ROULETTE',
-    logoUrl: 'https://media.discordapp.net/attachments/953409170827272225/953784448229462046/logooo.png',
+    logo: 'Baby Ape Pixel Club',
+    logoUrl: 'https://i.imgur.com/AmgOt6C.png',
     coins: [
       {
-        label: '$WATR',
-        imgSrc: 'https://raw.githubusercontent.com/XAGBack/MCSTOKEN/main/WATR.png',
-        value: 'WATR',
-        mintAddress: '5Emw7mifMM86nfHhyMC12p8pAW5DvWTFJeFtsP7DBHn2',
+        label: '$UGA',
+        imgSrc: 'https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/7aENbEssDsZZ7T1HP7LLgoHJF8q4JDKfxArkmdLReUZc/logo.png',
+        value: 'UGA',
+        mintAddress: '282Weh31UZ1yw99dYV8JqxPLtFBNbN1UfZhjBiKNk9Zb',
         multiplier: 1000000,
         firstBetValue: 15,
         secondBetValue: 50,
         thirdBetValue: 100,
         maxBetValue: 500,
-        toTokenAccountAddress: '894CEF4iPmbZnVDEvvSe8yd4BHueXaxnNW5enMea6d21',
+        toTokenAccountAddress: 'Ce9WoJM8mcNYNWnb2wkrD9EP4RCNSTQDSNx4uztht8ik',
       }
     ]
   }

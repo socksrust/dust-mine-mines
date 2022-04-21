@@ -9,7 +9,7 @@ const fonts = { mono: `'Barlow', Barlow` };
 const color = {
   green: '#ABFC4F',
   linearGradient:
-    'linear-gradient(180deg, rgba(136, 255, 0, 0.5) 0%, rgba(149, 242, 43, 0) 100%);',
+    'linear-gradient(180deg, #ACC0E3 0%, rgba(149, 242, 43, 0) 100%);',
   white: '#FFFFFF',
   black: primaryBackground,
   grey: '#8A898B',
@@ -29,8 +29,11 @@ const styles = {
       //   width: '100vw !important',
       fontFamily: "'Inter', sans-serif",
       // background: 'rgb(92,60,84)',
-      background: 'radial-gradient(circle, rgba(53,87,54,1) 0%, rgba(48,91,62,1) 100%)',
+      background: 'radial-gradient(circle, rgba(203,222,255,1) 0%, rgba(172,192,227,1) 100%)',
       // backgroundColor: 'black',
+      backgroundImage: "https://i.imgur.com/384wnoE.jpg",
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: 'cover',
       color: '#fff',
     },
   },

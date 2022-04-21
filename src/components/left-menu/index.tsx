@@ -2,14 +2,14 @@ import React, { FC, useContext, useState } from 'react';
 import { useRouter } from 'next/router';
 import Select from '../common/select'
 import Space from '../common/space'
-import {CurrencyContext} from '../../pages/_app';
+import { CurrencyContext } from '../../pages/_app';
 
 import styled from '@emotion/styled'
 import {
   Text,
 } from '@chakra-ui/react';
 import constants from '../../utils/constants';
-const { objects: { coins }, colors: {accentColor, objectText} } = constants
+const { objects: { coins }, colors: { accentColor, objectText } } = constants
 
 const Wrapper = styled.div`
   display: flex;
@@ -37,13 +37,13 @@ const MenuItemWrapper = styled.div`
 `
 
 
-const MenuItem = ({text, onClick, isActive}) => (
+const MenuItem = ({ text, onClick, isActive }) => (
   <MenuItemWrapper onClick={onClick} isActive={isActive}>
     <Text fontSize="14" fontWeight="bold" color={objectText} style={{ whiteSpace: 'nowrap' }} >{text}</Text>
   </MenuItemWrapper>
 )
 
-interface LeftMenuProps {}
+interface LeftMenuProps { }
 
 const LabelWrapper = styled.div`
   display: flex;
@@ -54,7 +54,7 @@ const LabelWrapper = styled.div`
 
 const Label = ({ label, imgSrc }) => (
   <LabelWrapper>
-    <img src={imgSrc} height="20px" width="20px" style={{borderRadius:"55%", border: '0.8px solid #070B17'}}/>
+    <img src={imgSrc} height="20px" width="20px" style={{ borderRadius: "55%", border: '0.8px solid #070B17' }} />
     <Space width={8} />
     {label}
   </LabelWrapper>
@@ -65,7 +65,7 @@ const additionalOptions = coins && coins[0] ? coins.map(coin => ({
 })) : []
 
 const options = [
-  {label: <Label label="$SOL" imgSrc="/images/coin-logos/sol.jpg" />, value: 'SOL'},
+  { label: <Label label="$SOL" imgSrc="/images/coin-logos/sol.jpg" />, value: 'SOL' },
   ...additionalOptions,
   /*{label: <Label label="$BETS" imgSrc="/images/coin-logos/bets.jpg" />, value: 'BETS'},
   {label: <Label label="$USDC" imgSrc="/images/coin-logos/usdc.jpg" />, value: 'USDC'},
@@ -83,7 +83,7 @@ const options = [
 
 const LeftMenu: FC<LeftMenuProps> = () => {
   const { push, replace } = useRouter();
-  const context = useContext(CurrencyContext) || {value: 'SOL'}
+  const context = useContext(CurrencyContext) || { value: 'SOL' }
 
   return (
     <>
@@ -91,13 +91,13 @@ const LeftMenu: FC<LeftMenuProps> = () => {
         {/*<MenuOutItem text="Buy $BIP" onClick={() => window.open('https://app.thestarship.finance/', '_ blank')} />*/}
         <Select value={options.find(a => a.value === context.value)} options={options} onChange={(option) => context.setValue(option.value)} />
         <Space width={30} />
-        <MenuItem text="Roulette Wheel" onClick={() => push('/')} isActive={window.location.pathname === '/'} />
-        {/*<MenuItem text="Dice Roll" onClick={() => push('/dice')} isActive={window.location.pathname === '/dice'} />
-        <MenuItem text="Roulette Wheel" onClick={() => push('/wheel')} isActive={window.location.pathname === '/wheel'}  />
-                <MenuItem text="Mine" onClick={() => push('/mine')} isActive={window.location.pathname === '/mine'}  />
+        <MenuItem text="Coinflip" onClick={() => push('/')} isActive={window.location.pathname === '/'} />
+        {/* <MenuItem text="Dice Roll" onClick={() => push('/dice')} isActive={window.location.pathname === '/dice'} /> */}
+        <MenuItem text="Roulette Wheel" onClick={() => push('/wheel')} isActive={window.location.pathname === '/wheel'} />
+        {/* <MenuItem text="Mine" onClick={() => push('/mine')} isActive={window.location.pathname === '/mine'}  /> */}
 
-        <MenuItem text="Blackjack" onClick={() => push('/blackjack')} isActive={window.location.pathname === '/blackjack'}  />*/}
-        <MenuItem text="RPS" onClick={() => push('/rps')} isActive={window.location.pathname === '/rps'}  />
+        {/* <MenuItem text="Blackjack" onClick={() => push('/blackjack')} isActive={window.location.pathname === '/blackjack'}  /> */}
+        {/* <MenuItem text="RPS" onClick={() => push('/rps')} isActive={window.location.pathname === '/rps'}  /> */}
 
         {/*<MenuItem text="Buy $TREATS" onClick={() => replace('https://raydium.io/swap/?inputCurrency=sol&outputCurrency=14r8dWfzmUUBpw59w5swNRb5F1YWqmUnSPgD6djUs1Jj&inputAmount=1&outputAmount=3014.368777&fixed=in')} isActive={false}  />*/}
         {/*<MenuItem text="Rock paper scissors" onClick={() => push('/rps')} isActive={window.location.pathname === '/rps'}  />*/}

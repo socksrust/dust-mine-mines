@@ -205,7 +205,7 @@ export default function RPS() {
                 alignItems: 'center',
                 padding: 20,
                 borderRadius: 4,
-                backgroundColor: 'rgba(255, 255, 255, .08)',
+                backgroundColor: 'rgba(255, 255, 255, .18)',
                 // backgroundImage: 'url("https://i.imgur.com/hRHsRLJ.png")'
               }
             }
