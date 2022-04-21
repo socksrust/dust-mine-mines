@@ -110,7 +110,7 @@ export default function Dice() {
 
 
     //START
-    const { parsedResult } = await sendCurrencyToTreasure({ fromWallet, toast, toTokenAccountAddress, mintAddress, betValue, sendTransaction, connection, endpoint: 'diceBet', publicKey })
+    const parsedResult = await sendCurrencyToTreasure({ fromWallet, toast, toTokenAccountAddress, mintAddress, betValue, sendTransaction, connection, endpoint: 'diceBet', publicKey })
     //END
 
 
@@ -131,7 +131,7 @@ export default function Dice() {
 
       toast({
         title: `Yayyyy!!`,
-        description: `You got $${(winValue).toFixed(2)} $Tokens back! They will be transferred in less than a minute! Keep going!!`,
+        description: `You got $${(winValue).toFixed(2)} $SOL back! They will be transferred in less than a minute! Keep going!!`,
         status: 'info',
         duration: 15000,
         isClosable: true,
@@ -162,7 +162,7 @@ export default function Dice() {
 
 
   return (
-    <Layout style={{ backgroundImage: "url('/images/bg-2.jpg')" }}>
+    <Layout>
       <Wrapper>
         <InnerWrapper>
         <motion.div
@@ -170,17 +170,17 @@ export default function Dice() {
             initial={{ opacity: 0, y: 20 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.55 }}
-            style={{overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: secondaryBackground, borderRadius: 4, padding: 20}}
+            style={{overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(255, 255, 255, .25)', padding: 20, borderRadius: 4}}
           >
             <DiceComponent isRolling={isLoading} rotate={rotate} diceValue={diceValue} />
           <RowCentered/>
           <RowCentered/>
           <RowCentered>
-            <Text fontSize="36px" fontWeight="bold" color={!isEven ? '#fff' : 'rgba(255,255,255, 0.6)'}>Husky</Text>
+            <Text fontSize="36px" fontWeight="bold" color={!isEven ? '#fff' : 'rgba(255,255,255, 0.6)'}>Odd</Text>
             <Space width={10} />
             <Switch size="lg" isChecked={isEven} value={isEven ? 'isEven' : 'isOdd'} onChange={(e) => setEven(e.target.value !== 'isEven')} />
             <Space width={10} />
-            <Text fontSize="36px" fontWeight="bold" color={isEven ? '#fff' : 'rgba(255,255,255, 0.6)'}>Frenchie</Text>
+            <Text fontSize="36px" fontWeight="bold" color={isEven ? '#fff' : 'rgba(255,255,255, 0.6)'}>Even</Text>
           </RowCentered>
           <RowCentered/>
           {renderButtons(context.value, false, bet, inputValue, setValue, isLoading, onOpen)}

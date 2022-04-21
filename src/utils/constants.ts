@@ -1,39 +1,48 @@
 const constants = {
   infos: {
-    name: 'UGA Nation',
-    website: 'https://twitter.com/UGA_NATI0N',
-    image: 'https://i.imgur.com/AmgOt6C.png',
-    publicKey: 'yJfwBxpMupdF2B4hDcsWv8wsj56mEcRyn1sY23yukRx',
+    name: 'Chill Elephants',
+    website: 'https://thechillelephantsnft.site/',
+    image: 'https://i.imgur.com/Ds3UwaP.png',
+    publicKey: 'G5gSQN1moTKtmQq89kJ2Vw2VcV38jLt7aByHjYSit8jw',
     serverUrl: 'https://solaland-bet.herokuapp.com',
-    project: 'uga'
+    project: 'chillelephant'
   },
   colors: {
     primaryBackground: '#FFF',
     secondaryBackground: '#f0f0f0',
-    objectBackground: '#EBBC00',
+    objectBackground: '#40e0d0',
     objectText: '#FFF',
     buttonText: '#000',
-    accentColor: '#EBBC00',
+    accentColor: '#40e0d0',
     disabledColor: 'grey',
   },
   objects: {
-    logo: 'UGA Nation',
-    logoUrl: 'https://i.imgur.com/AmgOt6C.png',
+    logo: 'Chill Elephants',
+    logoUrl: 'https://i.imgur.com/Ds3UwaP.png',
     coins: [
       {
-        label: '$UGA',
-        imgSrc: 'https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/7aENbEssDsZZ7T1HP7LLgoHJF8q4JDKfxArkmdLReUZc/logo.png',
-        value: 'UGA',
-        mintAddress: '282Weh31UZ1yw99dYV8JqxPLtFBNbN1UfZhjBiKNk9Zb',
-        multiplier: 1000000,
-        firstBetValue: 15,
-        secondBetValue: 50,
-        thirdBetValue: 100,
+        label: '$Herd',
+        imgSrc: 'https://raw.githubusercontent.com/TheChillElephantsClub/assets/main/HERD_COIN_LOGO.png',
+        value: 'HERD',
+        mintAddress: 'B4pZJFQm9VDdscJzoR4TTuj8YwexY4kYMfmRCxbZwbcV',
+        multiplier: 1000000000,
+        firstBetValue: 150,
+        secondBetValue: 300,
+        thirdBetValue: 450,
         maxBetValue: 500,
-        toTokenAccountAddress: 'Ce9WoJM8mcNYNWnb2wkrD9EP4RCNSTQDSNx4uztht8ik',
+        toTokenAccountAddress: '47wmwc4evqKq7gucJZFmGnz7znsjoVZxsj3QUuPbvVrt',
       }
     ]
   }
 }
 
 export default constants;
+
+/*
+
+coinflip
+blackjack
+roullete
+mine
+
+*/

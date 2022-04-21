@@ -118,7 +118,7 @@ export default function Blackjack() {
             initial={{ opacity: 0, y: 20 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.55 }}
-            style={{overflow: 'hidden', flex: 2, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: secondaryBackground, padding: 20, borderRadius: 4}}
+            style={{overflow: 'hidden', flex: 2, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(255, 255, 255, .25)', padding: 20, borderRadius: 4}}
           >
               <BlackjackComponent isPaymentVerified={isPaymentVerified} setVerified={setVerified} won={won} />
               <Space height={50} />

@@ -28,32 +28,92 @@
 	background: #fff;
 	border-radius: 15px;
 }
-
-.front {
-	background-image: url('/images/husky-1.png') !important;
-  background-size: contain !important;
+.front .dot1 {
+	top: 85px;
+	left: 85px;
 }
-
-.back {
-	background-image: url('/images/frenchie-1.png') !important;
-  background-size: contain !important;
+.back .dot1 {
+	top: 45px;
+	left: 45px;
+}
+.back .dot2 {
+	top: 125px;
+	left: 125px;
+}
+.right .dot1 {
+	top: 45px;
+	left: 45px;
+}
+.right .dot2 {
+	top: 85px;
+	left: 85px;
 }
 .right .dot3 {
-	background-image: url('/images/husky-2.png') !important;
-  background-size: contain !important;
+	top: 125px;
+	left: 125px;
 }
-.left {
-	background-image: url('/images/frenchie-2.png') !important;
-  background-size: contain !important;
+.left .dot1 {
+	top: 45px;
+	left: 45px;
 }
-.top {
-	background-image: url('/images/husky-3.png') !important;
-  background-size: contain !important;
+.left .dot2 {
+	top: 45px;
+	left: 125px;
 }
-.bottom {
-	background-image: url('/images/frenchie-3.png') !important;
-  background-size: contain !important;
+.left .dot3 {
+	top: 125px;
+	left: 45px;
 }
+.left .dot4 {
+	top: 125px;
+	left: 125px;
+}
+.top .dot1 {
+	top: 45px;
+	left: 45px;
+}
+.top .dot2 {
+	top: 45px;
+	left: 125px;
+}
+.top .dot3 {
+	top: 85px;
+	left: 85px;
+}
+.top .dot4 {
+	top: 125px;
+	left: 45px;
+}
+.top .dot5 {
+	top: 125px;
+	left: 125px;
+}
+.bottom .dot1 {
+	top: 45px;
+	left: 45px;
+}
+.bottom .dot2 {
+	top: 45px;
+	left: 85px;
+}
+.bottom .dot3 {
+	top: 45px;
+	left: 125px;
+}
+.bottom .dot4 {
+	top: 125px;
+	left: 45px;
+}
+.bottom .dot5 {
+	top: 125px;
+	left: 85px;
+}
+.bottom .dot6 {
+	top: 125px;
+	left: 125px;
+}
+
+
 
 .dot-center .cube.show-front {
 	transform: translateZ(100px);
