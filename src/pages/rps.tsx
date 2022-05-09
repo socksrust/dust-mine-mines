@@ -14,6 +14,8 @@ import {
 import styled from '@emotion/styled'
 import { keyframes } from '@emotion/react'
 import constants from '../utils/constants';
+import { sendBetToBalance } from '../utils/sendBetToBalance';
+import axios from 'axios';
 
 const { colors, infos } = constants;
 const { project } = infos;
@@ -54,6 +56,21 @@ const InnerWrapper = styled.div`
   }
 `
 
+const BalanceArea = styled.div`
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 18px;
+
+  span {
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+`
+
 const userWon = {
   Rock: 'Scissors',
   Paper: 'Rock',
@@ -83,8 +100,36 @@ export default function RPS() {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const toast = useToast();
   const fromWallet = useAnchorWallet();
-  const { sendTransaction, publicKey } = useWallet();
   const { connection } = useConnection();
+
+  const { sendTransaction, publicKey, connected, signMessage } = useWallet();
+  const [solBalance, setSolBalance] = useState(0)
+  const [flyBalance, setFlyBalance] = useState(0)
+
+  useEffect(() => {
+    if (connected) {
+      updateBalances()
+    }
+  }, [connected])
+
+
+  function updateBalances() {
+    const body = {
+      project: infos.project,
+      wallet: publicKey?.toString()
+    }
+
+    axios.post(`${infos.serverUrl}/balance`, body).then(({ data }) => {
+
+      data.forEach(({ amount, tokenMint }) => {
+        if (tokenMint === "11111111111111111111111111111111") {
+          setSolBalance(amount)
+        } else {
+          // setFlyBalance(amount)
+        }
+      })
+    })
+  }
 
   const flip = ({ parsedResult, betValue }: any) => {
     setTextContent('')
@@ -94,7 +139,7 @@ export default function RPS() {
     // console.log('parsedResult?.data?.won ->', parsedResult?.data?.won);
     // console.log('parsedResult?.parsedResult?.data?.won ->', parsedResult?.parsedResult?.data?.won);
     setFlipping(false)
-    if (parsedResult?.data?.won || parsedResult?.parsedResult?.data?.won) {
+    if (parsedResult?.won || parsedResult?.parsedResult?.data?.won) {
 
       //@ts-ignore
       setPcOption(userWon[option])
@@ -107,13 +152,14 @@ export default function RPS() {
 
       toast({
         title: `Yayyyy!!`,
-        description: `You got $${(winValue).toFixed(2)} $Tokens back! They will be transferred in less than a minute! Keep going!!`,
+        description: `You got $${(winValue).toFixed(2)} $${context.value} back! They will be transferred in less than a minute! Keep going!!`,
         status: 'info',
         duration: 15000,
         isClosable: true,
         position: 'bottom-right',
         variant: 'solid'
       });
+      updateBalances()
     } else {
       const realResult = !isEven ? 'HEADS' : 'TAILS';
       //@ts-ignore
@@ -129,6 +175,7 @@ export default function RPS() {
         position: 'bottom-right',
         variant: 'solid'
       });
+      updateBalances()
 
     }
   }
@@ -155,7 +202,8 @@ export default function RPS() {
     setLoading(true);
 
     //START
-    const { parsedResult } = await sendCurrencyToTreasure({ fromWallet, toast, toTokenAccountAddress, mintAddress, betValue, sendTransaction, connection, endpoint: 'coinBet', publicKey, bets })
+    // const { parsedResult } = await sendCurrencyToTreasure({ fromWallet, toast, toTokenAccountAddress, mintAddress, betValue, sendTransaction, connection, endpoint: 'coinBet', publicKey, bets })
+    const { parsedResult } = await sendBetToBalance(betValue, mintAddress, { publicKey, connected, signMessage })
     //END
 
     // console.log('parsedResult', parsedResult);
@@ -164,27 +212,6 @@ export default function RPS() {
     flip({ parsedResult, betValue })
 
   }
-
-  useEffect(() => {
-    async function fetchStatus() {
-      const resp = await fetch(`${infos.serverUrl}/api/v1/transaction/bets`, {
-        body: `{"publicKeyString":"${publicKey?.toString()}", "project":"${project}"}`,
-        headers: {
-          "Content-Type": "application/json"
-        },
-        method: "POST"
-      });
-
-      const parsedResponse = await resp.json();
-      // console.log('parsedResponse', parsedResponse.data);
-      setBets(parsedResponse.data);
-    }
-
-    if (publicKey?.toString()) {
-      fetchStatus();
-    }
-
-  }, [publicKey && publicKey?.toString()])
 
   return (
     <Layout>
@@ -210,6 +237,13 @@ export default function RPS() {
               }
             }
           >
+
+            {connected && (
+              <BalanceArea>
+                <span>$SOL: {solBalance.toFixed(2)}</span>
+                <span>$HERD: {flyBalance.toFixed(2)}</span>
+              </BalanceArea>
+            )}
             <RPSComponent option={option} pcOption={pcOption} isLoading={isLoading} setOption={setOption} setPcOption={setPcOption} />
             <Space height={50} />
             <Space height={20} />

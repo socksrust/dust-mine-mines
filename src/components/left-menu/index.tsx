@@ -65,7 +65,7 @@ const additionalOptions = coins && coins[0] ? coins.map(coin => ({
 })) : []
 
 const options = [
-  { label: <Label label="$SOL" imgSrc="/images/coin-logos/sol.jpg" />, value: 'SOL' },
+  // { label: <Label label="$SOL" imgSrc="/images/coin-logos/sol.jpg" />, value: 'SOL' },
   ...additionalOptions,
   /*{label: <Label label="$BETS" imgSrc="/images/coin-logos/bets.jpg" />, value: 'BETS'},
   {label: <Label label="$USDC" imgSrc="/images/coin-logos/usdc.jpg" />, value: 'USDC'},
@@ -98,6 +98,7 @@ const LeftMenu: FC<LeftMenuProps> = () => {
 
         <MenuItem text="Blackjack" onClick={() => push('/blackjack')} isActive={window.location.pathname === '/blackjack'}  />
         <MenuItem text="RPS" onClick={() => push('/rps')} isActive={window.location.pathname === '/rps'}  />
+        <MenuItem text="Balance" onClick={() => push('/balance')} isActive={window.location.pathname === '/balance'}  />
 
         {/*<MenuItem text="Buy $TREATS" onClick={() => replace('https://raydium.io/swap/?inputCurrency=sol&outputCurrency=14r8dWfzmUUBpw59w5swNRb5F1YWqmUnSPgD6djUs1Jj&inputAmount=1&outputAmount=3014.368777&fixed=in')} isActive={false}  />*/}
         {/*<MenuItem text="Rock paper scissors" onClick={() => push('/rps')} isActive={window.location.pathname === '/rps'}  />*/}

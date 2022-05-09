@@ -1,4 +1,4 @@
-import React, { useState, useRef, useContext } from 'react';
+import React, { useState, useRef, useContext, useEffect } from 'react';
 import { Layout } from '../components/common/layout';
 import { Switch, Modal, ModalOverlay, Checkbox, useDisclosure } from '@chakra-ui/react';
 import { motion } from "framer-motion";
@@ -10,7 +10,7 @@ import {CurrencyContext} from './_app';
 import Space from '../components/common/space'
 import constants from '../utils/constants';
 
-const { colors } = constants;
+const { colors, infos } = constants;
 const { secondaryBackground, accentColor, objectText } = colors;
 
 const MASTER_PK = 'B8e4g2SP7AC9SqQXPChEEmduhwBuZ8MTMb5xEGUchU2t';
@@ -25,6 +25,8 @@ import {
   useToast,
 } from '@chakra-ui/react';
 import styled from '@emotion/styled'
+import { sendBetToBalance } from '../utils/sendBetToBalance';
+import axios from 'axios';
 
 const Wrapper = styled.div`
   display: flex;
@@ -67,6 +69,20 @@ const Row = styled.div`
     width: 100% !important;
   }
 `
+const BalanceArea = styled.div`
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 18px;
+
+  span {
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+`
 
 
 
@@ -85,8 +101,36 @@ export default function Wheel() {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const toast = useToast();
   const fromWallet = useAnchorWallet();
-  const { sendTransaction, publicKey } = useWallet();
   const { connection } = useConnection();
+
+  const { sendTransaction, publicKey, connected, signMessage } = useWallet();
+  const [solBalance, setSolBalance] = useState(0)
+  const [flyBalance, setFlyBalance] = useState(0)
+
+  useEffect(() => {
+    if (connected) {
+      updateBalances()
+    }
+  }, [connected])
+
+
+  function updateBalances() {
+    const body = {
+      project: infos.project,
+      wallet: publicKey?.toString()
+    }
+
+    axios.post(`${infos.serverUrl}/balance`, body).then(({ data }) => {
+
+      data.forEach(({ amount, tokenMint }) => {
+        if (tokenMint === "11111111111111111111111111111111") {
+          setSolBalance(amount)
+        } else {
+          // setFlyBalance(amount)
+        }
+      })
+    })
+  }
 
   if (typeof window === 'undefined') return <></>;
 
@@ -168,8 +212,8 @@ export default function Wheel() {
     roll();
     setLoading(true);
 
-    const { parsedResult } = await sendCurrencyToTreasure({ fromWallet, toast, toTokenAccountAddress, mintAddress, betValue, sendTransaction, connection, endpoint: 'wheelBet', publicKey })
-
+    // const { parsedResult } = await sendCurrencyToTreasure({ fromWallet, toast, toTokenAccountAddress, mintAddress, betValue, sendTransaction, connection, endpoint: 'wheelBet', publicKey })
+    const { parsedResult } = await sendBetToBalance(betValue, mintAddress, { publicKey, connected, signMessage })
     setLoading(false);
     onClose();
     const dice = Math.floor(Math.random() * 4);
@@ -194,7 +238,7 @@ export default function Wheel() {
     }
 
 
-    if(parsedResult?.data?.won) {
+    if(parsedResult?.won) {
       audioRef?.current?.load()
       //isEven ? 2, 4, 6 : 1, 3, 5;
 
@@ -204,13 +248,14 @@ export default function Wheel() {
 
       toast({
         title: `Yayyyy!!`,
-        description: `You got $${(winValue).toFixed(2)} $TREATS back! They will be transferred in less than a minute! Keep going!!`,
+        description: `You got $${(winValue).toFixed(2)} $${context.value} back! They will be transferred in less than a minute! Keep going!!`,
         status: 'info',
         duration: 15000,
         isClosable: true,
         position: 'bottom-right',
         variant: 'solid'
       });
+      updateBalances()
     } else {
       audioRef?.current?.load()
 
@@ -224,6 +269,7 @@ export default function Wheel() {
         position: 'bottom-right',
         variant: 'solid'
       });
+      updateBalances()
     }
     if(isChecked) {
       await bet(betValue, mintAddress, toTokenAccountAddress);
@@ -241,6 +287,12 @@ export default function Wheel() {
             transition={{ duration: 0.55 }}
             style={{overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(255, 255, 255, .25)', padding: 20, borderRadius: 4}}
           >
+            {connected && (
+                <BalanceArea>
+                  <span>$SOL: {solBalance.toFixed(2)}</span>
+                  <span>$HERD: {flyBalance.toFixed(2)}</span>
+                </BalanceArea>
+              )}
             <WheelComponent isRolling={isLoading} rotate={rotate} diceValue={diceValue} />
           <RowCentered/>
           <RowCentered/>

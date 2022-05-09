@@ -55,6 +55,7 @@ const CardsWrapper = styled.div`
 const BlackjackComponent = ({ won, isPaymentVerified, setVerified }) => {
   const [userCardList, setUserCardList] = useState([]);
   const [userCardsTotal, setUserCardsTotal] = useState(0);
+  const [isEnd, setIsEnd] = useState({ acabou: false, rodou: 0 })
 
   const [houseCardList, setHouseCardList] = useState([]);
   const [houseCardsTotal, setHouseCardsTotal] = useState(0);
@@ -65,7 +66,7 @@ const BlackjackComponent = ({ won, isPaymentVerified, setVerified }) => {
 
 
   useEffect(() => {
-    if(isPaymentVerified) {
+    if (isPaymentVerified) {
       setIsDisabled(false)
       initializeUserCardList({ setUserCardList, userCardsTotal, setUserCardsTotal })
       initializeHouseCardList({ setHouseCardList, houseCardsTotal, setHouseCardsTotal })
@@ -75,11 +76,11 @@ const BlackjackComponent = ({ won, isPaymentVerified, setVerified }) => {
   const hitClickCb = (props) => {
     const isEnd = handleHitClick(props)
 
-    if(!isEnd) {
+    if (!isEnd) {
       return;
     }
 
-    if(won) {
+    if (won) {
       toast({
         title: `Yayyyy!!`,
         description: `You WON! Tokens will be transferred in less than a minute! Keep going!!`,
@@ -104,14 +105,23 @@ const BlackjackComponent = ({ won, isPaymentVerified, setVerified }) => {
     return setIsDisabled(true);
   }
 
-  const standClickCb = (props) => {
-    const isEnd = handleStandClick(props)
+  useEffect(async () => {
+    if (!isEnd.acabou && isEnd.rodou > 0) {
+      await new Promise(r => setTimeout(r, 500))
+      standClickCb({ won, houseCardsTotal, setHouseCardsTotal, houseCardList, setHouseCardList })
+    }
+  }, [isEnd])
 
-    if(!isEnd) {
-      return;
+  const standClickCb = (props) => {
+    const acabou = handleStandClick(props)
+    setIsEnd({ acabou, rodou: 1 })
+    setIsDisabled(true);
+
+    if (!acabou) {
+      return
     }
 
-    if(won) {
+    if (won) {
       toast({
         title: `Yayyyy!!`,
         description: `You WON! Tokens will be transferred in less than a minute! Keep going!!`,
@@ -133,7 +143,7 @@ const BlackjackComponent = ({ won, isPaymentVerified, setVerified }) => {
       });
     }
 
-    return setIsDisabled(true);
+    return
   }
 
 
@@ -145,7 +155,7 @@ const BlackjackComponent = ({ won, isPaymentVerified, setVerified }) => {
           <Text fontSize={30}>{houseCardsTotal}</Text>
         </RowCentered>
         <CardsWrapper>
-          {houseCardList.map(({suit, rank}) => (
+          {houseCardList.map(({ suit, rank }) => (
             <Card
               rank={rank}
               suit={suit}
@@ -156,7 +166,7 @@ const BlackjackComponent = ({ won, isPaymentVerified, setVerified }) => {
           <Text color={accentColor} fontFamily="MontSerrat" fontWeight={"black"} fontSize={"50px"} fontStyle="italic">VS.</Text>
         </RowCentered>
         <CardsWrapper>
-          {userCardList.map(({suit, rank}) => (
+          {userCardList.map(({ suit, rank }) => (
             <Card
               rank={rank}
               suit={suit}
@@ -167,12 +177,12 @@ const BlackjackComponent = ({ won, isPaymentVerified, setVerified }) => {
           <Text fontSize={30}>{userCardsTotal}</Text>
         </RowCentered>
       </Wrapper>
-      <Space height={12}/>
+      <Space height={12} />
       <Row>
         <Button disabled={!isPaymentVerified || isDisabled} backgroundColor={objectBackground} borderRadius="2rem" width="110px" height="34px" borderColor={objectBackground} borderWidth="1px" onClick={() => hitClickCb({ won, userCardsTotal, setUserCardsTotal, userCardList, setUserCardList })}>
           <Text fontSize="14px" fontWeight="bold" color={buttonText}>HIT</Text>
         </Button>
-        <Space width={20}/>
+        <Space width={20} />
         <Button disabled={!isPaymentVerified || isDisabled} backgroundColor={objectBackground} borderRadius="2rem" width="110px" height="34px" borderColor={objectBackground} borderWidth="1px" onClick={() => standClickCb({ won, houseCardsTotal, setHouseCardsTotal, houseCardList, setHouseCardList })}>
           <Text fontSize="14px" fontWeight="bold" color={buttonText}>STAND</Text>
         </Button>

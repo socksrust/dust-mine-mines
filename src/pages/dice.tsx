@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Layout } from '../components/common/layout';
 import { Switch, Modal, ModalOverlay, useDisclosure, Checkbox } from '@chakra-ui/react';
 import { motion } from "framer-motion";
@@ -9,7 +9,7 @@ import { sendCurrencyToTreasure, renderButtons } from '../utils/solana'
 import Space from '../components/common/space'
 import constants from '../utils/constants';
 
-const { colors } = constants;
+const { colors, infos } = constants;
 const { secondaryBackground, accentColor, objectText } = colors;
 
 import {
@@ -17,6 +17,8 @@ import {
   useToast,
 } from '@chakra-ui/react';
 import styled from '@emotion/styled'
+import axios from 'axios';
+import { sendBetToBalance } from '../utils/sendBetToBalance';
 
 
 const Wrapper = styled.div`
@@ -55,6 +57,21 @@ const RowCentered = styled.div`
   }
 `
 
+const BalanceArea = styled.div`
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 18px;
+
+  span {
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+`
+
 
 export default function Dice() {
   const [isEven, setEven] = useState(false)
@@ -68,8 +85,36 @@ export default function Dice() {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const toast = useToast();
   const fromWallet = useAnchorWallet();
-  const { sendTransaction, publicKey } = useWallet();
   const { connection } = useConnection();
+
+  const { sendTransaction, publicKey, connected, signMessage } = useWallet();
+  const [solBalance, setSolBalance] = useState(0)
+  const [flyBalance, setFlyBalance] = useState(0)
+
+  useEffect(() => {
+    if (connected) {
+      updateBalances()
+    }
+  }, [connected])
+
+
+  function updateBalances() {
+    const body = {
+      project: infos.project,
+      wallet: publicKey?.toString()
+    }
+
+    axios.post(`${infos.serverUrl}/balance`, body).then(({ data }) => {
+
+      data.forEach(({ amount, tokenMint }) => {
+        if (tokenMint === "11111111111111111111111111111111") {
+          setSolBalance(amount)
+        } else {
+          // setFlyBalance(amount)
+        }
+      })
+    })
+  }
 
   if (typeof window === 'undefined') return <></>;
 
@@ -110,7 +155,8 @@ export default function Dice() {
 
 
     //START
-    const parsedResult = await sendCurrencyToTreasure({ fromWallet, toast, toTokenAccountAddress, mintAddress, betValue, sendTransaction, connection, endpoint: 'diceBet', publicKey })
+    // const parsedResult = await sendCurrencyToTreasure({ fromWallet, toast, toTokenAccountAddress, mintAddress, betValue, sendTransaction, connection, endpoint: 'diceBet', publicKey })
+    const { parsedResult } = await sendBetToBalance(betValue, mintAddress, { publicKey, connected, signMessage })
     //END
 
 
@@ -120,7 +166,7 @@ export default function Dice() {
     const oddValues = [1,3,5]
     const dice = Math.floor(Math.random() * 3);
 
-    if(parsedResult?.data?.won) {
+    if(parsedResult?.won) {
 
       //isEven ? 2, 4, 6 : 1, 3, 5;
       const realResult = isEven ? evenValues[dice] : oddValues[dice];
@@ -138,6 +184,7 @@ export default function Dice() {
         position: 'bottom-right',
         variant: 'solid'
       });
+      updateBalances()
     } else {
       const realResult = !isEven ? evenValues[dice] : oddValues[dice];
 
@@ -152,6 +199,7 @@ export default function Dice() {
         position: 'bottom-right',
         variant: 'solid'
       });
+      updateBalances()
 
     }
     if(isChecked) {
@@ -172,6 +220,12 @@ export default function Dice() {
             transition={{ duration: 0.55 }}
             style={{overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(255, 255, 255, .25)', padding: 20, borderRadius: 4}}
           >
+            {connected && (
+                <BalanceArea>
+                  <span>$SOL: {solBalance.toFixed(2)}</span>
+                  <span>$HERD: {flyBalance.toFixed(2)}</span>
+                </BalanceArea>
+              )}
             <DiceComponent isRolling={isLoading} rotate={rotate} diceValue={diceValue} />
           <RowCentered/>
           <RowCentered/>

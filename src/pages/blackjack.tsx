@@ -4,7 +4,7 @@ import { useDisclosure } from '@chakra-ui/react';
 import { motion } from "framer-motion";
 import { useAnchorWallet, useWallet, useConnection } from '@solana/wallet-adapter-react';
 import BlackjackComponent from '../components/blackjack/index'
-import {CurrencyContext} from './_app';
+import { CurrencyContext } from './_app';
 import { sendCurrencyToTreasure, renderButtons } from '../utils/solana'
 import Space from '../components/common/space'
 import {
@@ -12,6 +12,8 @@ import {
 } from '@chakra-ui/react';
 import styled from '@emotion/styled'
 import constants from '../utils/constants';
+import axios from 'axios';
+import { sendBetToBalance } from '../utils/sendBetToBalance';
 
 const { colors, infos } = constants;
 const { secondaryBackground, accentColor, objectText } = colors;
@@ -41,6 +43,21 @@ const InnerWrapper = styled.div`
   }
 `
 
+const BalanceArea = styled.div`
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 18px;
+
+  span {
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+`
+
 export default function Blackjack() {
   const [isLoading, setLoading] = useState(false)
   const [isFlipped, setFlipped] = useState(false)
@@ -55,8 +72,36 @@ export default function Blackjack() {
   const { onOpen } = useDisclosure()
   const toast = useToast();
   const fromWallet = useAnchorWallet();
-  const { sendTransaction, publicKey } = useWallet();
   const { connection } = useConnection();
+
+  const { sendTransaction, publicKey, connected, signMessage } = useWallet();
+  const [solBalance, setSolBalance] = useState(0)
+  const [flyBalance, setFlyBalance] = useState(0)
+
+  useEffect(() => {
+    if (connected) {
+      updateBalances()
+    }
+  }, [connected])
+
+
+  function updateBalances() {
+    const body = {
+      project: infos.project,
+      wallet: publicKey?.toString()
+    }
+
+    axios.post(`${infos.serverUrl}/balance`, body).then(({ data }) => {
+
+      data.forEach(({ amount, tokenMint }) => {
+        if (tokenMint === "11111111111111111111111111111111") {
+          setSolBalance(amount)
+        } else {
+          // setFlyBalance(amount)
+        }
+      })
+    })
+  }
 
   const betCallback = ({ parsedResult, betValue }: any) => {
     setFlipped(!isFlipped);
@@ -71,14 +116,14 @@ export default function Blackjack() {
       variant: 'solid'
     });
 
-    setWon(parsedResult?.data?.won)
+    setWon(parsedResult?.won)
   }
 
   if (typeof window === 'undefined') return <></>;
 
 
   const bet = async (betValue: number, mintAddress: string, toTokenAccountAddress: string) => {
-    if(!fromWallet) {
+    if (!fromWallet) {
       toast({
         title: `Error`,
         description: 'You must connect your wallet before',
@@ -100,9 +145,10 @@ export default function Blackjack() {
 
 
     //START
-    const { parsedResult, signature} = await sendCurrencyToTreasure({ fromWallet, toast, toTokenAccountAddress, mintAddress, betValue, sendTransaction, connection, endpoint: 'payBlackjackBet', publicKey, bets })
+    // const { parsedResult, signature} = await sendCurrencyToTreasure({ fromWallet, toast, toTokenAccountAddress, mintAddress, betValue, sendTransaction, connection, endpoint: 'payBlackjackBet', publicKey, bets })
+    const { parsedResult } = await sendBetToBalance(betValue, mintAddress, { publicKey, connected, signMessage })
     //END
-    setSignature(signature);
+    // setSignature(signature);
 
     setLoading(false);
     betCallback({ parsedResult, betValue })
@@ -118,14 +164,20 @@ export default function Blackjack() {
             initial={{ opacity: 0, y: 20 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.55 }}
-            style={{overflow: 'hidden', flex: 2, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(255, 255, 255, .25)', padding: 20, borderRadius: 4}}
+            style={{ overflow: 'hidden', flex: 2, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(255, 255, 255, .25)', padding: 20, borderRadius: 4 }}
           >
-              <BlackjackComponent isPaymentVerified={isPaymentVerified} setVerified={setVerified} won={won} />
-              <Space height={50} />
-              <Space height={20} />
-              {renderButtons(context.value, false, bet, inputValue, setValue, isLoading, onOpen)}
-            </motion.div>
-          </InnerWrapper>
+            {connected && (
+              <BalanceArea>
+                <span>$SOL: {solBalance.toFixed(2)}</span>
+                <span>$HERD: {flyBalance.toFixed(2)}</span>
+              </BalanceArea>
+            )}
+            <BlackjackComponent isPaymentVerified={isPaymentVerified} setVerified={setVerified} won={won} />
+            <Space height={50} />
+            <Space height={20} />
+            {renderButtons(context.value, false, bet, inputValue, setValue, isLoading, onOpen)}
+          </motion.div>
+        </InnerWrapper>
       </Wrapper>
     </Layout>
   );

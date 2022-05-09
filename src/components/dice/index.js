@@ -10,7 +10,7 @@ const Dice = ({ isRolling, rotate, diceValue }) => {
 
 	return (
 		<>
-			<p style={{ color: secondaryBackground }}>{diceValue}</p>
+			{/* <p style={{ color: secondaryBackground }}>{diceValue}</p> */}
 			<div className="scene dim mt2 mb4 " >
 				<div className="cube" style={{ transform: rotate, transition: `transform ${isRolling ? '10000s' : '0s'}` }}>
 					<div className="bg-white cube__face cube__face--front front">

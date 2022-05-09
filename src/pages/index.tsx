@@ -4,7 +4,7 @@ import { Switch, Modal, ModalOverlay, useDisclosure, Checkbox, Button } from '@c
 import { motion } from "framer-motion";
 import { useAnchorWallet, useWallet, useConnection } from '@solana/wallet-adapter-react';
 import CoinComponent from '../components/coin/index'
-import {CurrencyContext} from './_app';
+import { CurrencyContext } from './_app';
 import { sendCurrencyToTreasure, renderButtons } from '../utils/solana'
 import Space from '../components/common/space'
 import LiveBets from '../components/live-bets/index'
@@ -16,6 +16,8 @@ import styled from '@emotion/styled'
 import { keyframes } from '@emotion/react'
 import constants from '../utils/constants';
 import { url } from 'inspector';
+import axios from 'axios';
+import { sendBetToBalance } from '../utils/sendBetToBalance';
 
 const { colors, infos } = constants;
 const { objectBackground, secondaryBackground, accentColor, objectText } = colors;
@@ -90,6 +92,21 @@ const breeding = keyframes`
 
 `;
 
+const BalanceArea = styled.div`
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 18px;
+
+  span {
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+`
+
 const LoadingBall = styled.div`
   width: 35px;
   height: 35px;
@@ -118,8 +135,36 @@ export default function Coin() {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const toast = useToast();
   const fromWallet = useAnchorWallet();
-  const { sendTransaction, publicKey } = useWallet();
   const { connection } = useConnection();
+
+  const { sendTransaction, publicKey, connected, signMessage } = useWallet();
+  const [solBalance, setSolBalance] = useState(0)
+  const [flyBalance, setFlyBalance] = useState(0)
+
+  useEffect(() => {
+    if (connected) {
+      updateBalances()
+    }
+  }, [connected])
+
+
+  function updateBalances() {
+    const body = {
+      project: infos.project,
+      wallet: publicKey?.toString()
+    }
+
+    axios.post(`${infos.serverUrl}/balance`, body).then(({ data }) => {
+
+      data.forEach(({ amount, tokenMint }) => {
+        if (tokenMint === "11111111111111111111111111111111") {
+          setSolBalance(amount)
+        } else {
+          // setFlyBalance(amount)
+        }
+      })
+    })
+  }
 
   const flip = ({ parsedResult, betValue }: any) => {
     setTextContent('')
@@ -127,7 +172,7 @@ export default function Coin() {
     setTimeout(() => {
       setFlipping(false)
       setDiceValue(diceValue + 1)
-      if(parsedResult?.data?.won) {
+      if (parsedResult?.won) {
 
         //isEven ? 2, 4, 6 : 1, 3, 5;
         const realResult = isEven ? 'HEADS' : 'TAILS';
@@ -136,7 +181,7 @@ export default function Coin() {
         setTextContent(realResult);
         const winValue = betValue * 2;
 
-        
+
         toast({
           title: `Yayyyy!!`,
           description: `You got $${(winValue).toFixed(2)} $Tokens back! They will be transferred in less than a minute! Keep going!!`,
@@ -146,6 +191,7 @@ export default function Coin() {
           position: 'bottom-right',
           variant: 'solid'
         });
+        updateBalances()
       } else {
         const realResult = !isEven ? 'HEADS' : 'TAILS';
 
@@ -161,6 +207,7 @@ export default function Coin() {
           position: 'bottom-right',
           variant: 'solid'
         });
+        updateBalances()
 
       }
     }, 1000);
@@ -170,7 +217,7 @@ export default function Coin() {
 
 
   const bet = async (betValue: number, mintAddress: string, toTokenAccountAddress: string) => {
-    if(!fromWallet) {
+    if (!fromWallet) {
       toast({
         title: `Error`,
         description: 'You must connect your wallet before',
@@ -191,7 +238,8 @@ export default function Coin() {
 
 
     //START
-    const { parsedResult } = await sendCurrencyToTreasure({ fromWallet, toast, toTokenAccountAddress, mintAddress, betValue, sendTransaction, connection, endpoint: 'coinBet', publicKey, bets })
+    // const { parsedResult } = await sendCurrencyToTreasure({ fromWallet, toast, toTokenAccountAddress, mintAddress, betValue, sendTransaction, connection, endpoint: 'coinBet', publicKey, bets })
+    const { parsedResult } = await sendBetToBalance(betValue, mintAddress, { publicKey, connected, signMessage })
     //END
 
     setBets(bets >= 4 ? 0 : bets + 1)
@@ -199,7 +247,7 @@ export default function Coin() {
     onClose();
     flip({ parsedResult, betValue })
 
-    if(isChecked) {
+    if (isChecked) {
       await bet(betValue, mintAddress, toTokenAccountAddress);
     }
   }
@@ -219,7 +267,7 @@ export default function Coin() {
       setBets(parsedResponse.data);
     }
 
-    if(publicKey?.toString()) {
+    if (publicKey?.toString()) {
       fetchStatus();
     }
 
@@ -242,26 +290,32 @@ export default function Coin() {
               }
             }
           >
-              <Wr style={{overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(255, 255, 255, .18)', padding: 20, borderRadius: 4}}>
-                <CoinComponent isFlipped={isFlipped} isFlipping={isFlipping || isLoading} textContent={textContent} diceValue={diceValue} />
-                <RowCentered>
-                  <Text fontSize="36px" fontWeight="bold" color={!isEven ? objectBackground : 'rgba(255, 255, 255, 0.5)'}>TAILS</Text>
-                  <Space width={10} />
-                  <Switch size="lg" isChecked={isEven} value={isEven ? 'isEven' : 'isOdd'} onChange={(e) => setEven(e.target.value !== 'isEven')} />
-                  <Space width={10} />
-                  <Text fontSize="36px" fontWeight="bold" color={isEven ? objectBackground : 'rgba(255, 255, 255, 0.5)'}>HEADS</Text>
-                  <Space width={50} />
-                  <Checkbox size='lg' colorScheme='green' onChange={(e) => setChecked(e.target.checked)} isChecked={isChecked}>
-                    <Text fontSize="24px" fontWeight="medium" color={objectBackground}>Auto</Text>
-                  </Checkbox>
-                  <Space width={15} />
-                </RowCentered>
-                {renderButtons(context.value, false, bet, inputValue, setValue, isLoading, onOpen)}
-              </Wr>
-            </motion.div>
-            {/* <Space height={70} /> */}
-            {/* <LiveBets /> */}
-          </InnerWrapper>
+            <Wr style={{ overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(255, 255, 255, .18)', padding: 20, borderRadius: 4 }}>
+              {connected && (
+                <BalanceArea>
+                  <span>$SOL: {solBalance.toFixed(2)}</span>
+                  <span>$HERD: {flyBalance.toFixed(2)}</span>
+                </BalanceArea>
+              )}
+              <CoinComponent isFlipped={isFlipped} isFlipping={isFlipping || isLoading} textContent={textContent} diceValue={diceValue} />
+              <RowCentered>
+                <Text fontSize="36px" fontWeight="bold" color={!isEven ? objectBackground : 'rgba(255, 255, 255, 0.5)'}>TAILS</Text>
+                <Space width={10} />
+                <Switch size="lg" isChecked={isEven} value={isEven ? 'isEven' : 'isOdd'} onChange={(e) => setEven(e.target.value !== 'isEven')} />
+                <Space width={10} />
+                <Text fontSize="36px" fontWeight="bold" color={isEven ? objectBackground : 'rgba(255, 255, 255, 0.5)'}>HEADS</Text>
+                <Space width={50} />
+                <Checkbox size='lg' colorScheme='green' onChange={(e) => setChecked(e.target.checked)} isChecked={isChecked}>
+                  <Text fontSize="24px" fontWeight="medium" color={objectBackground}>Auto</Text>
+                </Checkbox>
+                <Space width={15} />
+              </RowCentered>
+              {renderButtons(context.value, false, bet, inputValue, setValue, isLoading, onOpen)}
+            </Wr>
+          </motion.div>
+          {/* <Space height={70} /> */}
+          {/* <LiveBets /> */}
+        </InnerWrapper>
       </Wrapper>
 
     </Layout>

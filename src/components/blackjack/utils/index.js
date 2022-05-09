@@ -6,7 +6,7 @@ const SUITS = ["♠", "♥", "♣", "♦"];
 export const initializeUserCardList = ({ setUserCardList, userCardsTotal, setUserCardsTotal }) => {
   let cardList = [];
   let total = 0;
-  for(let i of [1,2]) {
+  for (let i of [1, 2]) {
     const suitsIndex = Math.floor(Math.random() * 4);
     const ranksIndex = Math.floor(Math.random() * 6);
 
@@ -46,12 +46,12 @@ export const handleHitClick = ({ won, userCardsTotal, setUserCardsTotal, userCar
   const suit = SUITS[suitsIndex]
   const missingPoints = 21 - userCardsTotal;
 
-  if(won) {
-    if(missingPoints > 10) {
-      const ranksIndex = Math.floor(Math.random() * 13);
+  if (won) {
+    if (missingPoints > 10) {
+      const ranksIndex = randomIntFromInterval(5, 13);
       const rank = RANKS[ranksIndex]
 
-      const newRankIndex = ranksIndex >= 10 ? 10 : ranksIndex + 1;
+      let newRankIndex = ranksIndex >= 10 ? 10 : ranksIndex + 1;
 
       setUserCardsTotal(userCardsTotal + newRankIndex)
       setUserCardList([...userCardList, { suit, rank }])
@@ -64,7 +64,7 @@ export const handleHitClick = ({ won, userCardsTotal, setUserCardsTotal, userCar
     }
 
   } else {
-    if(missingPoints > 10) {
+    if (missingPoints > 10) {
       //Cant explode now
       const ranksIndex = Math.floor(Math.random() * 13);
       const rank = RANKS[ranksIndex]
@@ -74,7 +74,19 @@ export const handleHitClick = ({ won, userCardsTotal, setUserCardsTotal, userCar
       setUserCardsTotal(userCardsTotal + newRankIndex)
       setUserCardList([...userCardList, { suit, rank }])
       return false;
+    } else if (missingPoints === 10) {
+
+      const ranksIndex = randomIntFromInterval(0, 7);
+
+      const newRankIndex = ranksIndex >= 10 ? 10 : ranksIndex + 1;
+
+      const rank = RANKS[ranksIndex]
+      setUserCardsTotal(userCardsTotal + newRankIndex)
+      setUserCardList([...userCardList, { suit, rank }])
+      return false;
+
     } else {
+
       const minimumPoints = missingPoints;
 
       const ranksIndex = randomIntFromInterval(minimumPoints, 12);
@@ -92,23 +104,48 @@ export const handleHitClick = ({ won, userCardsTotal, setUserCardsTotal, userCar
 }
 
 
-export const handleStandClick = ({ won, houseCardsTotal, setHouseCardsTotal, houseCardList, setHouseCardList }) => {
+export const handleStandClick = ({ won, houseCardsTotal, setHouseCardsTotal, houseCardList, setHouseCardList, userCardsTotal }) => {
   const suitsIndex = Math.floor(Math.random() * 4);
   const suit = SUITS[suitsIndex]
   const missingPoints = 22 - houseCardsTotal;
 
 
-  if(won) {
-    if(missingPoints > 10) {
-      //Cant explode now
-      const ranksIndex = Math.floor(Math.random() * 13);
-      const rank = RANKS[ranksIndex]
-
+  if (won) {
+    if (missingPoints > 10) {
+      if (houseCardsTotal < userCardsTotal) {
+        const maxPoints = userCardsTotal - houseCardsTotal - 1
+        const ranksIndex = randomIntFromInterval(0, maxPoints);
+        const newRankIndex = ranksIndex >= 10 ? 10 : ranksIndex + 1;
+  
+  
+        const rank = RANKS[ranksIndex]
+        setHouseCardsTotal(houseCardsTotal + newRankIndex)
+        setHouseCardList([...houseCardList, { suit, rank }])
+        return false
+  
+      } else {
+        //Cant explode now
+        const ranksIndex = Math.floor(Math.random() * 13);
+        const rank = RANKS[ranksIndex]
+  
+        const newRankIndex = ranksIndex >= 10 ? 10 : ranksIndex + 1;
+  
+        setHouseCardsTotal(houseCardsTotal + newRankIndex)
+        setHouseCardList([...houseCardList, { suit, rank }])
+        return false;
+      }
+    } else if (houseCardsTotal < userCardsTotal - 1) {
+      const teste = Math.floor(Math.random() * 100)
+      const maxPoints = userCardsTotal - houseCardsTotal - (teste % 2 === 0 ? 1 : 2)
+      const ranksIndex = randomIntFromInterval(0, maxPoints);
       const newRankIndex = ranksIndex >= 10 ? 10 : ranksIndex + 1;
 
+
+      const rank = RANKS[ranksIndex]
       setHouseCardsTotal(houseCardsTotal + newRankIndex)
       setHouseCardList([...houseCardList, { suit, rank }])
-      return false;
+      return false
+
     } else {
       const minimumPoints = missingPoints;
 
@@ -123,7 +160,7 @@ export const handleStandClick = ({ won, houseCardsTotal, setHouseCardsTotal, hou
     }
   }
   else {
-    if(missingPoints > 10) {
+    if (missingPoints > 10) {
       const ranksIndex = Math.floor(Math.random() * 13);
       const rank = RANKS[ranksIndex]
 

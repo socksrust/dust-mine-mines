@@ -4,7 +4,8 @@ const constants = {
     website: 'https://thechillelephantsnft.site/',
     image: 'https://i.imgur.com/Ds3UwaP.png',
     publicKey: 'G5gSQN1moTKtmQq89kJ2Vw2VcV38jLt7aByHjYSit8jw',
-    serverUrl: 'https://solaland-bet.herokuapp.com',
+    // serverUrl: 'https://solaland-bet.herokuapp.com',
+    serverUrl: 'https://new-back-games.herokuapp.com',
     project: 'chillelephant'
   },
   colors: {
@@ -21,7 +22,19 @@ const constants = {
     logoUrl: 'https://i.imgur.com/Ds3UwaP.png',
     coins: [
       {
-        label: '$Herd',
+        label: '$SOL',
+        imgSrc: 'https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/So11111111111111111111111111111111111111112/logo.png',
+        value: 'SOL',
+        mintAddress: '11111111111111111111111111111111',
+        multiplier: Math.pow(10, 9),
+        firstBetValue: .1,
+        secondBetValue: .25,
+        thirdBetValue: .5,
+        maxBetValue: .5,
+        toTokenAccountAddress: 'G5gSQN1moTKtmQq89kJ2Vw2VcV38jLt7aByHjYSit8jw',
+      },
+      {
+        label: '$HERD',
         imgSrc: 'https://raw.githubusercontent.com/TheChillElephantsClub/assets/main/HERD_COIN_LOGO.png',
         value: 'HERD',
         mintAddress: 'B4pZJFQm9VDdscJzoR4TTuj8YwexY4kYMfmRCxbZwbcV',
