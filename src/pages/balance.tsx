@@ -39,7 +39,7 @@ const Content = styled.div`
 
 const Button = styled.button<{ isLoading: boolean }>`
   margin: 0;
-  background-color: #40e0d0;
+  background-color: #1F3F39;
   color: ${objectText};
   width: 160px;
   height: 40px;
@@ -59,7 +59,7 @@ const Input = styled.input`
   color: #000;
   padding: 0 6px;
   border-radius: 6px;
-  background-color: #40e0d0;
+  background-color: #1F3F39;
   color: ${objectText};
 
   ::placeholder {
@@ -90,7 +90,7 @@ const Select = styled.select`
   height: 40px;
   width: 160px;
   border-radius: 6px;
-  background-color: #40e0d0;
+  background-color: #1F3F39;
   color: ${objectText};
 `
 
@@ -191,7 +191,7 @@ export default function Balance() {
 
 
   return (
-    <Layout style={{ backgroundImage: "url('/images/bros-bg.jpg')", backgroundPosition: 'center', backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}>
+    <Layout style={{ backgroundImage: "url('https://i.imgur.com/e5W6Pyn.png')", backgroundPosition: 'center', backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}>
       <Area>
         <Content>
           <span>

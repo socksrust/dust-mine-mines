@@ -1,25 +1,25 @@
 const constants = {
   infos: {
-    name: 'Chill Elephants',
-    website: 'https://thechillelephantsnft.site/',
-    image: 'https://i.imgur.com/Ds3UwaP.png',
-    publicKey: 'G5gSQN1moTKtmQq89kJ2Vw2VcV38jLt7aByHjYSit8jw',
+    name: 'SolRobos',
+    website: 'https://magiceden.io/marketplace/srobos',
+    image: 'https://dl.airtable.com/.attachmentThumbnails/56caa3ea3840825f0508c9fc8aedff91/04fab6f2',
+    publicKey: 'AJSnsqD2fKwcpiPwto2Qcw2VmLsK3cvkFTcqwJxwuBUD',
     // serverUrl: 'https://solaland-bet.herokuapp.com',
     serverUrl: 'https://new-back-games.herokuapp.com',
-    project: 'chillelephant'
+    project: 'solrobos'
   },
   colors: {
     primaryBackground: '#FFF',
     secondaryBackground: '#f0f0f0',
-    objectBackground: '#40e0d0',
+    objectBackground: '#1F3F39',
     objectText: '#FFF',
     buttonText: '#000',
-    accentColor: '#40e0d0',
+    accentColor: '#1F3F39',
     disabledColor: 'grey',
   },
   objects: {
-    logo: 'Chill Elephants',
-    logoUrl: 'https://i.imgur.com/Ds3UwaP.png',
+    logo: 'SolRobos',
+    logoUrl: 'https://dl.airtable.com/.attachmentThumbnails/56caa3ea3840825f0508c9fc8aedff91/04fab6f2',
     coins: [
       {
         label: '$SOL',
@@ -31,19 +31,7 @@ const constants = {
         secondBetValue: .25,
         thirdBetValue: .5,
         maxBetValue: .5,
-        toTokenAccountAddress: 'G5gSQN1moTKtmQq89kJ2Vw2VcV38jLt7aByHjYSit8jw',
-      },
-      {
-        label: '$HERD',
-        imgSrc: 'https://raw.githubusercontent.com/TheChillElephantsClub/assets/main/HERD_COIN_LOGO.png',
-        value: 'HERD',
-        mintAddress: 'B4pZJFQm9VDdscJzoR4TTuj8YwexY4kYMfmRCxbZwbcV',
-        multiplier: 1000000000,
-        firstBetValue: 150,
-        secondBetValue: 300,
-        thirdBetValue: 450,
-        maxBetValue: 500,
-        toTokenAccountAddress: '47wmwc4evqKq7gucJZFmGnz7znsjoVZxsj3QUuPbvVrt',
+        toTokenAccountAddress: 'AJSnsqD2fKwcpiPwto2Qcw2VmLsK3cvkFTcqwJxwuBUD',
       }
     ]
   }

@@ -156,7 +156,7 @@ export default function Blackjack() {
   }
 
   return (
-    <Layout>
+    <Layout style={{ backgroundImage: "url('https://i.imgur.com/e5W6Pyn.png')", backgroundPosition: 'center', backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}>
       <Wrapper>
         <InnerWrapper>
           <motion.div
@@ -169,7 +169,7 @@ export default function Blackjack() {
             {connected && (
               <BalanceArea>
                 <span>$SOL: {solBalance.toFixed(2)}</span>
-                <span>$HERD: {flyBalance.toFixed(2)}</span>
+                {/* <span>$HERD: {flyBalance.toFixed(2)}</span> */}
               </BalanceArea>
             )}
             <BlackjackComponent isPaymentVerified={isPaymentVerified} setVerified={setVerified} won={won} />

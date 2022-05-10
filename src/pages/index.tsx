@@ -276,7 +276,7 @@ export default function Coin() {
   console.log('context', context);
 
   return (
-    <Layout>
+    <Layout style={{ backgroundImage: "url('https://i.imgur.com/e5W6Pyn.png')", backgroundPosition: 'center', backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}>
       <Wrapper>
         <InnerWrapper>
           <motion.div
@@ -294,7 +294,7 @@ export default function Coin() {
               {connected && (
                 <BalanceArea>
                   <span>$SOL: {solBalance.toFixed(2)}</span>
-                  <span>$HERD: {flyBalance.toFixed(2)}</span>
+                  {/* <span>$HERD: {flyBalance.toFixed(2)}</span> */}
                 </BalanceArea>
               )}
               <CoinComponent isFlipped={isFlipped} isFlipping={isFlipping || isLoading} textContent={textContent} diceValue={diceValue} />

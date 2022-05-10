@@ -4,7 +4,7 @@ import { Switch, Modal, ModalOverlay, useDisclosure, Checkbox } from '@chakra-ui
 import { motion } from "framer-motion";
 import { useAnchorWallet, useWallet, useConnection } from '@solana/wallet-adapter-react';
 import DiceComponent from '../components/dice/index'
-import {CurrencyContext} from './_app';
+import { CurrencyContext } from './_app';
 import { sendCurrencyToTreasure, renderButtons } from '../utils/solana'
 import Space from '../components/common/space'
 import constants from '../utils/constants';
@@ -127,15 +127,15 @@ export default function Dice() {
     "rotateX(" + 3690 + "deg) rotateY(" + 3690 + "deg)",
   ]
 
-	const roll = () => {
-		const xRand = 100000 * 90;
-		const yRand = 100000 * 90;
-		const rotate = "rotateX(" + xRand + "deg) rotateY(" + yRand + "deg)";
-		setRotate(rotate);
-	};
+  const roll = () => {
+    const xRand = 100000 * 90;
+    const yRand = 100000 * 90;
+    const rotate = "rotateX(" + xRand + "deg) rotateY(" + yRand + "deg)";
+    setRotate(rotate);
+  };
 
   const bet = async (betValue: number, mintAddress: string, toTokenAccountAddress: string) => {
-    if(!fromWallet) {
+    if (!fromWallet) {
       toast({
         title: `Error`,
         description: 'You must connect your wallet before',
@@ -162,17 +162,17 @@ export default function Dice() {
 
     setLoading(false);
     onClose();
-    const evenValues = [2,4,6]
-    const oddValues = [1,3,5]
+    const evenValues = [2, 4, 6]
+    const oddValues = [1, 3, 5]
     const dice = Math.floor(Math.random() * 3);
 
-    if(parsedResult?.won) {
+    if (parsedResult?.won) {
 
       //isEven ? 2, 4, 6 : 1, 3, 5;
       const realResult = isEven ? evenValues[dice] : oddValues[dice];
 
 
-      setRotate(possibleResults[realResult-1]);
+      setRotate(possibleResults[realResult - 1]);
       const winValue = betValue * 2;
 
       toast({
@@ -189,7 +189,7 @@ export default function Dice() {
       const realResult = !isEven ? evenValues[dice] : oddValues[dice];
 
       //isEven ? 1, 3, 5 : 2, 4, 6 ;
-      setRotate(possibleResults[realResult-1]);
+      setRotate(possibleResults[realResult - 1]);
       toast({
         title: `Ops.`,
         description: 'Not your lucky play, try again',
@@ -202,7 +202,7 @@ export default function Dice() {
       updateBalances()
 
     }
-    if(isChecked) {
+    if (isChecked) {
       await bet(betValue, mintAddress, toTokenAccountAddress);
     }
 
@@ -213,31 +213,31 @@ export default function Dice() {
     <Layout>
       <Wrapper>
         <InnerWrapper>
-        <motion.div
+          <motion.div
             animate={{ opacity: 1, y: 0 }}
             initial={{ opacity: 0, y: 20 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.55 }}
-            style={{overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(255, 255, 255, .25)', padding: 20, borderRadius: 4}}
+            style={{ overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(255, 255, 255, .25)', padding: 20, borderRadius: 4 }}
           >
             {connected && (
-                <BalanceArea>
-                  <span>$SOL: {solBalance.toFixed(2)}</span>
-                  <span>$HERD: {flyBalance.toFixed(2)}</span>
-                </BalanceArea>
-              )}
+              <BalanceArea>
+                <span>$SOL: {solBalance.toFixed(2)}</span>
+                <span>$HERD: {flyBalance.toFixed(2)}</span>
+              </BalanceArea>
+            )}
             <DiceComponent isRolling={isLoading} rotate={rotate} diceValue={diceValue} />
-          <RowCentered/>
-          <RowCentered/>
-          <RowCentered>
-            <Text fontSize="36px" fontWeight="bold" color={!isEven ? '#fff' : 'rgba(255,255,255, 0.6)'}>Odd</Text>
-            <Space width={10} />
-            <Switch size="lg" isChecked={isEven} value={isEven ? 'isEven' : 'isOdd'} onChange={(e) => setEven(e.target.value !== 'isEven')} />
-            <Space width={10} />
-            <Text fontSize="36px" fontWeight="bold" color={isEven ? '#fff' : 'rgba(255,255,255, 0.6)'}>Even</Text>
-          </RowCentered>
-          <RowCentered/>
-          {renderButtons(context.value, false, bet, inputValue, setValue, isLoading, onOpen)}
+            <RowCentered />
+            <RowCentered />
+            <RowCentered>
+              <Text fontSize="36px" fontWeight="bold" color={!isEven ? '#fff' : 'rgba(255,255,255, 0.6)'}>Odd</Text>
+              <Space width={10} />
+              <Switch size="lg" isChecked={isEven} value={isEven ? 'isEven' : 'isOdd'} onChange={(e) => setEven(e.target.value !== 'isEven')} />
+              <Space width={10} />
+              <Text fontSize="36px" fontWeight="bold" color={isEven ? '#fff' : 'rgba(255,255,255, 0.6)'}>Even</Text>
+            </RowCentered>
+            <RowCentered />
+            {renderButtons(context.value, false, bet, inputValue, setValue, isLoading, onOpen)}
           </motion.div>
         </InnerWrapper>
       </Wrapper>

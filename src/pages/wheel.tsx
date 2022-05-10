@@ -277,7 +277,7 @@ export default function Wheel() {
   }
 
   return (
-    <Layout>
+    <Layout style={{ backgroundImage: "url('https://i.imgur.com/e5W6Pyn.png')", backgroundPosition: 'center', backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}>
       <Wrapper>
         <InnerWrapper>
         <motion.div
@@ -290,7 +290,7 @@ export default function Wheel() {
             {connected && (
                 <BalanceArea>
                   <span>$SOL: {solBalance.toFixed(2)}</span>
-                  <span>$HERD: {flyBalance.toFixed(2)}</span>
+                  {/* <span>$HERD: {flyBalance.toFixed(2)}</span> */}
                 </BalanceArea>
               )}
             <WheelComponent isRolling={isLoading} rotate={rotate} diceValue={diceValue} />

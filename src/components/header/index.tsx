@@ -14,9 +14,9 @@ const { objects, colors } = constants;
 const { logo, logoUrl } = objects;
 
 const Image = styled.img`
-  width: 100px;
+  width: 120px;
   margin-left: 20px;
-  /* border-radius: 50%; */
+  border-radius: 50%;
   /* border: 1px solid white; */
   @media (max-width: 750px) {
     display: none;
