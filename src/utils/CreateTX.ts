@@ -161,8 +161,6 @@ export async function CreateTX({ publicKey, signTransaction, token, amount, call
     tokenMint: token.mintAddress,
     amount: Number(amount)
   }
-  console.log(body)
-  console.log('171')
   // const txSig = await genesysRpc.sendRawTransaction(serialized);
   // console.log('txSig', txSig.lastIndexOf.toString())
   callToast()
@@ -239,7 +237,6 @@ export async function handleClaim(publicKey: string, token, signTransaction, amo
     // const fees = 0;
 
     const mintPublicKey = new PublicKey(token.mintAddress);
-    console.log('token.mintAddress', token.mintAddress)
 
     console.log(4);
 
@@ -277,7 +274,6 @@ export async function handleClaim(publicKey: string, token, signTransaction, amo
 
       if (claimerAccount === null) {
         console.log('creating account');
-        tokens.push(mintToken);
 
         instructions.push(
           Token.createAssociatedTokenAccountInstruction(
@@ -338,7 +334,6 @@ export async function handleClaim(publicKey: string, token, signTransaction, amo
         )
       );
 
-      console.log('pub', accounts[0].pubkey.toString());
     }
 
     console.log(10);
@@ -371,7 +366,6 @@ export async function handleClaim(publicKey: string, token, signTransaction, amo
       amount
     }
 
-    console.log(body)
     callToast()
 
     const { data } = await axios.post(`${infos.serverUrl}/withdraw`, body)
@@ -414,9 +408,9 @@ export async function ClaimSol(publicKey: string, token, signTransaction, amount
       })
     )
 
-    console.log(10, instructions);
+    console.log(10);
     const transaction = new web3.Transaction().add(...instructions);
-    console.log(11, transaction);
+    console.log(11);
 
     transaction.feePayer = claimerPublicKey;
 
@@ -427,14 +421,14 @@ export async function ClaimSol(publicKey: string, token, signTransaction, amount
     //@ts-ignore
     const tx = await signTransaction(transaction);
 
-    console.log(12, tx);
+    console.log(12);
     
     await new Promise((resolve) => setTimeout(resolve, 1000));
     
     const serialized = tx.serialize({
       verifySignatures: false,
     });
-    console.log(12, serialized);
+    console.log(12);
 
     const body = {
       tx: serialized,
@@ -444,7 +438,6 @@ export async function ClaimSol(publicKey: string, token, signTransaction, amount
       amount: Number(amount)
     }
 
-    console.log(body)
     callToast()
 
     const { data } = await axios.post(`${infos.serverUrl}/withdraw`, body)
