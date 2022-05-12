@@ -200,7 +200,7 @@ export default function Balance() {
           {connected && (
             <BalanceArea>
               <span>$SOL: {solBalance.toFixed(2)}</span>
-              {/* <span>$QUACK: {flyBalance.toFixed(2)}</span> */}
+              <span>$DMC: {flyBalance.toFixed(2)}</span>
             </BalanceArea>
           )}
           <Input
@@ -234,7 +234,7 @@ export default function Balance() {
           {connected && (
             <BalanceArea>
               <span>$SOL: {solBalance.toFixed(2)}</span>
-              {/* <span>$QUACK: {flyBalance.toFixed(2)}</span> */}
+              <span>$DMC: {flyBalance.toFixed(2)}</span>
             </BalanceArea>
           )}
           <Input

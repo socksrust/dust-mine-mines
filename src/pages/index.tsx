@@ -294,7 +294,7 @@ export default function Coin() {
               {connected && (
                 <BalanceArea>
                   <span>$SOL: {solBalance.toFixed(2)}</span>
-                  {/* <span>$HERD: {flyBalance.toFixed(2)}</span> */}
+                  <span>$DMC: {flyBalance.toFixed(2)}</span>
                 </BalanceArea>
               )}
               <CoinComponent isFlipped={isFlipped} isFlipping={isFlipping || isLoading} textContent={textContent} diceValue={diceValue} />

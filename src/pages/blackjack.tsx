@@ -169,7 +169,7 @@ export default function Blackjack() {
             {connected && (
               <BalanceArea>
                 <span>$SOL: {solBalance.toFixed(2)}</span>
-                {/* <span>$HERD: {flyBalance.toFixed(2)}</span> */}
+                <span>$DMC: {flyBalance.toFixed(2)}</span>
               </BalanceArea>
             )}
             <BlackjackComponent isPaymentVerified={isPaymentVerified} setVerified={setVerified} won={won} />

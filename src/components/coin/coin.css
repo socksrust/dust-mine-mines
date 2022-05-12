@@ -9,6 +9,11 @@ button:disabled {
   font-weight: normal;
 }
 
+.image {
+  height: 100%;
+  width: 100%;
+}
+
 
 button:disabled > .chakra-button__spinner {
   color: black !important;

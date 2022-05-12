@@ -290,7 +290,7 @@ export default function Wheel() {
             {connected && (
                 <BalanceArea>
                   <span>$SOL: {solBalance.toFixed(2)}</span>
-                  {/* <span>$HERD: {flyBalance.toFixed(2)}</span> */}
+                  <span>$DMC: {flyBalance.toFixed(2)}</span>
                 </BalanceArea>
               )}
             <WheelComponent isRolling={isLoading} rotate={rotate} diceValue={diceValue} />
@@ -302,7 +302,7 @@ export default function Wheel() {
             <Text fontSize="36px" fontWeight="bold" color={isEven ? '#fff' : 'rgba(255,255,255, 0.6)'}>Even</Text>
           </RowCentered>
           <RowCentered>
-            <Text fontSize="36px" fontWeight="bold" color={!isBlack ? '#fff' : 'rgba(255,255,255, 0.6)'}>Orange</Text>
+            <Text fontSize="36px" fontWeight="bold" color={!isBlack ? '#fff' : 'rgba(255,255,255, 0.6)'}>Red</Text>
             <Switch size="lg" isChecked={isBlack} value={isBlack ? 'isBlack' : 'isRed'} onChange={(e) => setBlack(e.target.value !== 'isBlack')} />
             <Text fontSize="36px" fontWeight="bold" color={isBlack ? '#fff' : 'rgba(255,255,255, 0.6)'}>Black</Text>
           </RowCentered>

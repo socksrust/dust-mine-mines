@@ -2,7 +2,7 @@ const constants = {
   infos: {
     name: 'SolRobos',
     website: 'https://magiceden.io/marketplace/srobos',
-    image: 'https://dl.airtable.com/.attachmentThumbnails/56caa3ea3840825f0508c9fc8aedff91/04fab6f2',
+    image: 'https://i.imgur.com/DnW7Und.jpg',
     publicKey: 'AJSnsqD2fKwcpiPwto2Qcw2VmLsK3cvkFTcqwJxwuBUD',
     // serverUrl: 'https://solaland-bet.herokuapp.com',
     serverUrl: 'https://new-back-games.herokuapp.com',
@@ -19,7 +19,7 @@ const constants = {
   },
   objects: {
     logo: 'SolRobos',
-    logoUrl: 'https://dl.airtable.com/.attachmentThumbnails/56caa3ea3840825f0508c9fc8aedff91/04fab6f2',
+    logoUrl: 'https://i.imgur.com/DnW7Und.jpg',
     coins: [
       {
         label: '$SOL',
@@ -32,6 +32,18 @@ const constants = {
         thirdBetValue: .5,
         maxBetValue: .5,
         toTokenAccountAddress: 'AJSnsqD2fKwcpiPwto2Qcw2VmLsK3cvkFTcqwJxwuBUD',
+      },
+      {
+        label: '$DMC',
+        imgSrc: 'https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/DMC8y7kpeBYfkbM3MmLREKeSGnw1sdWSv68aDUfH97Bu/logo.png',
+        value: 'DMC',
+        mintAddress: 'DMC8y7kpeBYfkbM3MmLREKeSGnw1sdWSv68aDUfH97Bu',
+        multiplier: Math.pow(10, 9),
+        firstBetValue: 1,
+        secondBetValue: 5,
+        thirdBetValue: 10,
+        maxBetValue: 10,
+        toTokenAccountAddress: 'CptdRBJZGEgn7hajrGygeGrMS7xgf4TdnQpCTDwE856j',
       }
     ]
   }
