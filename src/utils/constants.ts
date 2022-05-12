@@ -1,6 +1,6 @@
 const constants = {
   infos: {
-    name: 'SolRobos',
+    name: 'DMC Revival',
     website: 'https://magiceden.io/marketplace/srobos',
     image: 'https://i.imgur.com/DnW7Und.jpg',
     publicKey: 'AJSnsqD2fKwcpiPwto2Qcw2VmLsK3cvkFTcqwJxwuBUD',
@@ -18,7 +18,7 @@ const constants = {
     disabledColor: 'grey',
   },
   objects: {
-    logo: 'SolRobos',
+    logo: 'DMC Revival',
     logoUrl: 'https://i.imgur.com/DnW7Und.jpg',
     coins: [
       {
