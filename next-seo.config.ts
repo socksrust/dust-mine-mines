@@ -4,7 +4,7 @@ const { name, website, image } = infos;
 
 
 const title = name;
-const description = `CoinFlip game based on Solana`;
+const description = `Variety of games for all the degens in Solana`;
 
 const SEO = {
   title,
