@@ -13,7 +13,7 @@ const constants = {
     secondaryBackground: '#f0f0f0',
     objectBackground: '#1F3F39',
     objectText: '#FFF',
-    buttonText: '#000',
+    buttonText: '#FFF',
     accentColor: '#1F3F39',
     disabledColor: 'grey',
   },

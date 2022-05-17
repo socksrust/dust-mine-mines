@@ -276,8 +276,6 @@ export default function Coin() {
 
   }, [publicKey && publicKey?.toString()])
 
-  console.log('context', context);
-
   return (
     <Layout style={{ backgroundImage: "url('https://i.imgur.com/e5W6Pyn.png')", backgroundPosition: 'center', backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}>
       <Wrapper>
