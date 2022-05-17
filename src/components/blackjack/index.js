@@ -40,6 +40,8 @@ const Row = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+
 `
 
 const CardsWrapper = styled.div`
@@ -180,11 +182,11 @@ const BlackjackComponent = ({ won, isPaymentVerified, setVerified }) => {
       <Space height={12} />
       <Row>
         <Button disabled={!isPaymentVerified || isDisabled} backgroundColor={objectBackground} borderRadius="2rem" width="110px" height="34px" borderColor={objectBackground} borderWidth="1px" onClick={() => hitClickCb({ won, userCardsTotal, setUserCardsTotal, userCardList, setUserCardList })}>
-          <Text fontSize="14px" fontWeight="bold" color={buttonText}>HIT</Text>
+          <Text fontSize="14px" fontWeight="bold" color='#000'>HIT</Text>
         </Button>
         <Space width={20} />
         <Button disabled={!isPaymentVerified || isDisabled} backgroundColor={objectBackground} borderRadius="2rem" width="110px" height="34px" borderColor={objectBackground} borderWidth="1px" onClick={() => standClickCb({ won, houseCardsTotal, setHouseCardsTotal, houseCardList, setHouseCardList })}>
-          <Text fontSize="14px" fontWeight="bold" color={buttonText}>STAND</Text>
+          <Text fontSize="14px" fontWeight="bold" color='#000'>STAND</Text>
         </Button>
       </Row>
     </main>
