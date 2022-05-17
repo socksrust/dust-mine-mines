@@ -144,16 +144,16 @@ export const renderButtons = (value: any, modal: any, bet, inputValue, setValue,
         <Space height={20}/>
         <Row>
           <Button backgroundColor={objectBackground} isLoading={isLoading} loadingText={`Loading $${currency}`} borderRadius="2px" width="180px" height="56px" onClick={() => bet(firstBetValue, mintAddress, toTokenAccountAddress)}>
-            <Text fontSize="14px" fontWeight="bold" color={buttonText}>{firstBetValue} ${currency}</Text>
+            <Text fontSize="14px" fontWeight="bold" color='#000'>{firstBetValue} ${currency}</Text>
           </Button>
           <Space width={10} height={30} />
           <Button backgroundColor={objectBackground} isLoading={isLoading} loadingText={`Loading $${currency}`} borderRadius="2px" width="180px" height="56px" onClick={() => bet(secondBetValue, mintAddress, toTokenAccountAddress)}>
-            <Text fontSize="14px" fontWeight="bold" color={buttonText}>{secondBetValue} ${currency}</Text>
+            <Text fontSize="14px" fontWeight="bold" color='#000'>{secondBetValue} ${currency}</Text>
           </Button>
           <Space width={10} height={30} />
 
           {thirdBetValue && <Button backgroundColor={objectBackground} isLoading={isLoading} loadingText={`Loading $${currency}`} borderRadius="2px" width="180px" height="56px" onClick={() => bet(thirdBetValue, mintAddress, toTokenAccountAddress)}>
-            <Text fontSize="14px" fontWeight="bold" color={buttonText}>{thirdBetValue} ${currency}</Text>
+            <Text fontSize="14px" fontWeight="bold" color='#000'>{thirdBetValue} ${currency}</Text>
           </Button>}
           <Space width={10} height={20} />
 
