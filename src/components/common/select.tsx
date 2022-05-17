@@ -20,6 +20,7 @@ const Select = (props) => {
         color: buttonText,
         backgroundColor: objectBackground,
         zIndex: 9999,
+        overflow: 'hidden'
       }),
       indicatorSeparator: (provided) => ({
         ...provided,
