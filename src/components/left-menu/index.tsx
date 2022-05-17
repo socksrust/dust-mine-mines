@@ -9,17 +9,18 @@ import {
   Text,
 } from '@chakra-ui/react';
 import constants from '../../utils/constants';
+import { ConnectWallet } from '../button/connectWallet';
 const { objects: { coins }, colors: { accentColor, objectText } } = constants
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
   background-color: transparent;
   height: 100%;
-  margin-right: 30px;
   z-index: 4;
+  flex-wrap: wrap;
 `
 
 const MenuItemWrapper = styled.div`
@@ -103,6 +104,7 @@ const LeftMenu: FC<LeftMenuProps> = () => {
 
         {/*<MenuItem text="Buy $TREATS" onClick={() => replace('https://raydium.io/swap/?inputCurrency=sol&outputCurrency=14r8dWfzmUUBpw59w5swNRb5F1YWqmUnSPgD6djUs1Jj&inputAmount=1&outputAmount=3014.368777&fixed=in')} isActive={false}  />*/}
         {/*<MenuItem text="Rock paper scissors" onClick={() => push('/rps')} isActive={window.location.pathname === '/rps'}  />*/}
+        <ConnectWallet />
       </Wrapper>
     </>
   );

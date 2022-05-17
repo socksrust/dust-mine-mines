@@ -38,6 +38,7 @@ const Wr = styled.div`
   align-items: center;
   height: 100%;
   width: 100%;
+  
   box-shadow:0 0 10rem rgba(0, 0, 0, 0.2) inset;
 `
 
@@ -53,16 +54,18 @@ const InnerWrapper = styled.div`
     height: 100%;
     flex-direction: column;
     padding-bottom: 40px;
+    width: 100%;
   }
 `
 
 const RowCentered = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   width: 400px;
   padding: 15px 0px;
+  gap: 18px;
 `
 
 const LoadingWrapper = styled.div`
@@ -286,11 +289,12 @@ export default function Coin() {
             transition={{ duration: 0.55 }}
             style={
               {
-                backgroundColor: 'rgba(255, 255, 255, .25)',
+                width: 'fit-content',
+                maxWidth: window.innerWidth <= 400 ? '380px': '1000px'
               }
             }
           >
-            <Wr style={{ overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(255, 255, 255, .18)', padding: 20, borderRadius: 4 }}>
+            <Wr style={{ overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(255, 255, 255, .18)', padding: 20, borderRadius: 4, width: '100%' }}>
               {connected && (
                 <BalanceArea>
                   <span>$SOL: {solBalance.toFixed(2)}</span>
@@ -300,15 +304,8 @@ export default function Coin() {
               <CoinComponent isFlipped={isFlipped} isFlipping={isFlipping || isLoading} textContent={textContent} diceValue={diceValue} />
               <RowCentered>
                 <Text fontSize="36px" fontWeight="bold" color={!isEven ? objectBackground : 'rgba(255, 255, 255, 0.5)'}>TAILS</Text>
-                <Space width={10} />
                 <Switch size="lg" isChecked={isEven} value={isEven ? 'isEven' : 'isOdd'} onChange={(e) => setEven(e.target.value !== 'isEven')} />
-                <Space width={10} />
                 <Text fontSize="36px" fontWeight="bold" color={isEven ? objectBackground : 'rgba(255, 255, 255, 0.5)'}>HEADS</Text>
-                <Space width={50} />
-                <Checkbox size='lg' colorScheme='green' onChange={(e) => setChecked(e.target.checked)} isChecked={isChecked}>
-                  <Text fontSize="24px" fontWeight="medium" color={objectBackground}>Auto</Text>
-                </Checkbox>
-                <Space width={15} />
               </RowCentered>
               {renderButtons(context.value, false, bet, inputValue, setValue, isLoading, onOpen)}
             </Wr>

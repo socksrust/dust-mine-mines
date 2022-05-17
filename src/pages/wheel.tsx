@@ -84,6 +84,22 @@ const BalanceArea = styled.div`
 
 `
 
+const Button = styled.button<{ selected: boolean }>`
+  height: 50px;
+  width: 40%;
+  background-color: ${({ selected }) => selected ? '#1F3F39' : 'transparent'};
+  border: 3px solid ${({ selected }) => selected ? '#1F3F39' : '#FFF'};
+  color: #FFF;
+  ${({ selected }) => selected && `
+    -webkit-box-shadow: 0px 0px 15px 7px rgba(255, 255, 255, .6); 
+    box-shadow: 0px 0px 15px 7px rgba(255, 255, 255, .6);
+  ` }
+  font-weight: bold;
+  font-size: 20px;
+
+  transition: .2s;
+`
+
 
 
 export default function Wheel() {
@@ -102,6 +118,7 @@ export default function Wheel() {
   const toast = useToast();
   const fromWallet = useAnchorWallet();
   const { connection } = useConnection();
+  const [option, setOption] = useState('ODD')
 
   const { sendTransaction, publicKey, connected, signMessage } = useWallet();
   const [solBalance, setSolBalance] = useState(0)
@@ -135,50 +152,50 @@ export default function Wheel() {
   if (typeof window === 'undefined') return <></>;
 
 
-  const redOdd = [0, 4, 8, 12]
-  const blackOdd = [1, 5, 9, 13]
-  const redEven = [2, 6, 10, 14]
-  const blackEven = [3, 7, 11, 15]
+  const oddResult = [0, 1, 4, 5, 8, 9, 12, 13, 16, 18, 21, 23, 24, 27, 28, 30, 32, 33]
+  const evenResult = [2, 3, 6, 7, 10, 11, 14, 15, 17, 19, 20, 22, 25, 26, 29, 31, 34, 35]
+  const redResult = [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34]
+  const blackResult = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35]
 
   const possibleResults = [
-    "rotate(3deg)", //odd, red
-    "rotate(13deg)", //odd
-    "rotate(23deg)", //even, red
-    "rotate(32deg)", //even
-    "rotate(42deg)", //odd, red
-    "rotate(52deg)", //odd
-    "rotate(61deg)", //even, red
-    "rotate(71deg)", //even
-    "rotate(81deg)", //odd, red
-    "rotate(91deg)", //odd
-    "rotate(101deg)", //even, red
-    "rotate(110deg)", //even
-    "rotate(120deg)", //odd, red
-    "rotate(130deg)", //odd
-    "rotate(140deg)", //even, red
-    "rotate(150deg)", //even 24
+    "rotate(3deg)", //odd, red 3 0
+    "rotate(13deg)", //odd 35 black 1
+    "rotate(23deg)", //even, red 12 2
+    "rotate(32deg)", //even 28 black 3
+    "rotate(42deg)", //odd, red 7 4
+    "rotate(52deg)", //odd 29 black 5
+    "rotate(61deg)", //even, red 18 6
+    "rotate(71deg)", //even 22 black 7
+    "rotate(81deg)", //odd, red 9 8
+    "rotate(91deg)", //odd 31 black 9
+    "rotate(101deg)", //even, red 14 10
+    "rotate(110deg)", //even 20 black 11 
+    "rotate(120deg)", //odd, red 1 12
+    "rotate(130deg)", //odd 33 black 13 
+    "rotate(140deg)", //even, red 16 14
+    "rotate(150deg)", //even 24 black 15
 
-    "rotate(159deg)", //odd, red
-    "rotate(168deg)", //even
-    "rotate(179deg)", //odd, red
-    "rotate(189deg)", //even
-    "rotate(198deg)", //even 30, red
-    "rotate(207deg)", //odd
-    "rotate(217deg)", //even, red
-    "rotate(227deg)", //odd
-    "rotate(237deg)", //odd 27, red
-    "rotate(246deg)", //even 6
-    "rotate(256deg)", //even, red
-    "rotate(266deg)", //odd 17
-    "rotate(276deg)", //odd 25, red
-    "rotate(286deg)", //even 2
-    "rotate(296deg)", //odd 21, red
-    "rotate(305deg)", //even 4
-    "rotate(315deg)", //odd, red
-    "rotate(325deg)", //odd
-    "rotate(335deg)", //even, red
+    "rotate(159deg)", //odd, red 5 16
+    "rotate(168deg)", //even 10 black 17
+    "rotate(179deg)", //odd, red 23 18
+    "rotate(189deg)", //even 8 black 19
+    "rotate(198deg)", //even 30, red 20
+    "rotate(207deg)", //odd 11 black 21
+    "rotate(217deg)", //even, red 36 22
+    "rotate(227deg)", //odd 13 black 23
+    "rotate(237deg)", //odd 27, red 24
+    "rotate(246deg)", //even 6 black 25
+    "rotate(256deg)", //even, red 34 26
+    "rotate(266deg)", //odd 17 black 27
+    "rotate(276deg)", //odd 25, red 28
+    "rotate(286deg)", //even 2 black 29
+    "rotate(296deg)", //odd 21, red 30
+    "rotate(305deg)", //even 4 black 31
+    "rotate(315deg)", //odd, red 19 32
+    "rotate(325deg)", //odd 15 black 33
+    "rotate(335deg)", //even, red 32 34
     //"rotate(345deg)",
-    "rotate(355deg)", //even
+    "rotate(355deg)", //even 26 black 35
   ]
 
 
@@ -216,27 +233,26 @@ export default function Wheel() {
     const { parsedResult } = await sendBetToBalance(betValue, mintAddress, { publicKey, connected, signMessage })
     setLoading(false);
     onClose();
-    const dice = Math.floor(Math.random() * 4);
-    const isRedEven = !isBlack && isEven
-    const isBlackEven = isBlack && isEven
-    const isRedOdd = !isBlack && !isEven
-    const isBlackOdd = isBlack && !isEven
+    const dice = Math.floor(Math.random() * 17);
+    // const isRedEven = !isBlack && isEven
+    // const isBlackEven = isBlack && isEven
+    // const isRedOdd = !isBlack && !isEven
+    // const isBlackOdd = isBlack && !isEven
     let winningArr: any = [];
     let losingArr: any = [];
-    if(isRedEven) {
-      winningArr = [...redEven]
-      losingArr = [...blackEven]
-    }else if(isBlackEven) {
-      winningArr = [...blackEven]
-      losingArr = [...redEven]
-    }else if(isRedOdd) {
-      winningArr = [...redOdd]
-      losingArr = [...blackOdd]
-    }else if(isBlackOdd) {
-      winningArr = [...blackOdd]
-      losingArr = [...redOdd]
+    if (option === 'ODD') {
+      winningArr = [...oddResult]
+      losingArr = [...evenResult]
+    } else if (option === 'EVEN') {
+      winningArr = [...evenResult]
+      losingArr = [...oddResult]
+    } else if (option === 'BLACK') {
+      winningArr = [...blackResult]
+      losingArr = [...redResult]
+    } else if (option === 'RED') {
+      winningArr = [...redResult]
+      losingArr = [...blackResult]
     }
-
 
     if(parsedResult?.won) {
       audioRef?.current?.load()
@@ -297,15 +313,41 @@ export default function Wheel() {
           <RowCentered/>
           <RowCentered/>
           <RowCentered>
-            <Text fontSize="36px" fontWeight="bold" color={!isEven ? '#fff' : 'rgba(255,255,255, 0.6)'}>Odd</Text>
-            <Switch size="lg" isChecked={isEven} value={isEven ? 'isEven' : 'isOdd'} onChange={(e) => setEven(e.target.value !== 'isEven')} />
-            <Text fontSize="36px" fontWeight="bold" color={isEven ? '#fff' : 'rgba(255,255,255, 0.6)'}>Even</Text>
-          </RowCentered>
-          <RowCentered>
-            <Text fontSize="36px" fontWeight="bold" color={!isBlack ? '#fff' : 'rgba(255,255,255, 0.6)'}>Red</Text>
-            <Switch size="lg" isChecked={isBlack} value={isBlack ? 'isBlack' : 'isRed'} onChange={(e) => setBlack(e.target.value !== 'isBlack')} />
-            <Text fontSize="36px" fontWeight="bold" color={isBlack ? '#fff' : 'rgba(255,255,255, 0.6)'}>Black</Text>
-          </RowCentered>
+              <Button
+                selected={option == 'ODD'}
+                onClick={() => setOption('ODD')}
+                disabled={isLoading}
+              >
+                Odd
+              </Button>
+
+              <Button
+                selected={option == 'EVEN'}
+                onClick={() => setOption('EVEN')}
+                disabled={isLoading}
+              >
+                Even
+              </Button>
+
+            </RowCentered>
+            <RowCentered>
+              <Button
+                selected={option == 'RED'}
+                onClick={() => setOption('RED')}
+                disabled={isLoading}
+              >
+                Red
+              </Button>
+
+              <Button
+                selected={option == 'BLACK'}
+                onClick={() => setOption('BLACK')}
+                disabled={isLoading}
+              >
+                Black
+              </Button>
+
+            </RowCentered>
           <RowCentered/>
           {renderButtons(context.value, false, bet, inputValue, setValue, isLoading, onOpen)}
           </motion.div>

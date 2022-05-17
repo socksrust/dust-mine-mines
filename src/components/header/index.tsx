@@ -19,13 +19,11 @@ const Image = styled.img`
   border-radius: 50%;
   /* border: 1px solid white; */
   @media (max-width: 750px) {
-    display: none;
   }
 `
 
 const MyText = styled(Text)`
   @media (max-width: 750px) {
-    display: none;
   }
 `
 
@@ -63,11 +61,13 @@ const Header: FC<HeaderProps> = () => {
           direction="row"
         >
           <Flex
-            direction="row"
+            direction="column"
             justifyContent="space-between"
             w="100%"
             alignItems="center"
-            style={window.innerWidth <= 800 ? { overflow: 'scroll'} : {zIndex: 9,}}
+            flexWrap='wrap'
+            justifyItems='center'
+            style={window.innerWidth <= 800 ? { direction: 'initial'} : {zIndex: 9,}}
           >
             <div
               onClick={() => push('/')}
@@ -80,12 +80,14 @@ const Header: FC<HeaderProps> = () => {
             <Space width={30} height={20}/>
             <Flex
               direction="row"
-              justifyContent="flex-end"
+              justifyContent="center"
               alignItems="center"
-              overflow="scroll"
+              overflow="hidden"
+              flexWrap='wrap'
+              justifyItems='center'
             >
               <LeftMenu />
-              <ConnectWallet />
+              
             </Flex>
           </Flex>
         </Flex>

@@ -11,7 +11,7 @@ import { useToast } from '@chakra-ui/react';
 const { objects: { coins }, colors: { accentColor, objectText, objectBackground, buttonText }, infos } = constants
 
 const Area = styled.div`
-  height: calc(100vh - 100px);
+  min-height: calc(100vh - 300px);
   width: 100%;
   display: flex;
   align-items: center;
