@@ -21,6 +21,27 @@ const Wrapper = styled.div`
   height: 100%;
   z-index: 4;
   flex-wrap: wrap;
+
+  @media only screen and (max-width: 750px) {
+    display: none;
+  }
+
+
+`
+
+const Wrapper2 = styled.div`
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  height: 100%;
+  z-index: 4;
+  flex-wrap: wrap;
+  display: none;
+
+  @media only screen and (max-width: 750px) {
+    display: flex;
+  }
 `
 
 const MenuItemWrapper = styled.div`
@@ -106,6 +127,26 @@ const LeftMenu: FC<LeftMenuProps> = () => {
         {/*<MenuItem text="Rock paper scissors" onClick={() => push('/rps')} isActive={window.location.pathname === '/rps'}  />*/}
         <ConnectWallet />
       </Wrapper>
+
+
+      <Wrapper2>
+        {/*<MenuOutItem text="Buy $BIP" onClick={() => window.open('https://app.thestarship.finance/', '_ blank')} />*/}
+        <Select value={options.find(a => a.value === context.value)} options={options} onChange={(option) => context.setValue(option.value)} />
+        <Space width={30} />
+        <MenuItem text="Balance" onClick={() => push('/balance')} isActive={window.location.pathname === '/balance'}  />
+        <MenuItem text="Coinflip" onClick={() => push('/')} isActive={window.location.pathname === '/'} />
+        {/* <MenuItem text="Dice" onClick={() => push('/dice')} isActive={window.location.pathname === '/dice'} /> */}
+        <MenuItem text="Roulette" onClick={() => push('/wheel')} isActive={window.location.pathname === '/wheel'} />
+        {/* <MenuItem text="Mine" onClick={() => push('/mine')} isActive={window.location.pathname === '/mine'}  /> */}
+
+        <MenuItem text="Blackjack" onClick={() => push('/blackjack')} isActive={window.location.pathname === '/blackjack'}  />
+        {/* <MenuItem text="RPS" onClick={() => push('/rps')} isActive={window.location.pathname === '/rps'}  /> */}
+        {/* <MenuItem text="Balance" onClick={() => push('/balance')} isActive={window.location.pathname === '/balance'}  /> */}
+
+        {/*<MenuItem text="Buy $TREATS" onClick={() => replace('https://raydium.io/swap/?inputCurrency=sol&outputCurrency=14r8dWfzmUUBpw59w5swNRb5F1YWqmUnSPgD6djUs1Jj&inputAmount=1&outputAmount=3014.368777&fixed=in')} isActive={false}  />*/}
+        {/*<MenuItem text="Rock paper scissors" onClick={() => push('/rps')} isActive={window.location.pathname === '/rps'}  />*/}
+        <ConnectWallet />
+      </Wrapper2>
     </>
   );
 };
