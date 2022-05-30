@@ -241,7 +241,7 @@ export default function Home() {
                   active={currentValue === amount}
                   onClick={() => setBetValue(amount)}
                 >
-                  {amount.toFixed(2)}${currentCurrency}
+                  {amount.toFixed(2)} ${currentCurrency}
                 </AmountButton>
               ))
             }

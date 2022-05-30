@@ -21,7 +21,7 @@ export default function BetList () {
       {
         bets.map(({ option, value, currency, id }: iBet) => (
           <Bet key={option + currency}>
-            {option} - Amount: {value}{currency}
+            {option} - Amount: {value} {currency}
             <DeleteArea
               onClick={() => removeBet(id)}
             >
