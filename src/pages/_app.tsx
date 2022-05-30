@@ -15,8 +15,10 @@ import '../components/slot/slot.css'
 import '../components/coin/coin.css'
 import '../components/blackjack/components/cardStyle.css'
 import '../components/rps/carouselStyle.css'
+import { BetsProvider } from '../contexts/RouletteProvider';
+import { CurrencyProvider } from '../contexts/CurrencyProvider';
 
-export const CurrencyContext = React.createContext<any>({value: 'SOL'});
+export const CurrencyContext = React.createContext<any>({ value: 'SOL' });
 
 const theme1 = createTheme({
   palette: {
@@ -64,10 +66,10 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      if(r && typeof r === 'string') {
+      if (r && typeof r === 'string') {
         localStorage.setItem('r', r);
       }
-      if(currency && typeof currency === 'string') {
+      if (currency && typeof currency === 'string') {
         const newValue = currency.toUpperCase() || 'SOL';
         localStorage.setItem('value', newValue);
         setValue(newValue);
@@ -93,18 +95,22 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, [router.events]);
 
   return (
-    <CurrencyContext.Provider value={{value, setValue: (v: string) => handleValue(v)}}>
-      <ThemeProvider theme={theme1}>
-        <ChakraProvider theme={theme}>
-          <DefaultSeo {...SEO} />
-          <WalletConnectionProvider>
-            <WalletDialogProvider>
-              <Component {...pageProps} />
-            </WalletDialogProvider>
-          </WalletConnectionProvider>
-        </ChakraProvider>
-      </ThemeProvider>
-    </CurrencyContext.Provider>
+    <BetsProvider>
+      <CurrencyProvider>
+        <CurrencyContext.Provider value={{ value, setValue: (v: string) => handleValue(v) }}>
+          <ThemeProvider theme={theme1}>
+            <ChakraProvider theme={theme}>
+              <DefaultSeo {...SEO} />
+              <WalletConnectionProvider>
+                <WalletDialogProvider>
+                  <Component {...pageProps} />
+                </WalletDialogProvider>
+              </WalletConnectionProvider>
+            </ChakraProvider>
+          </ThemeProvider>
+        </CurrencyContext.Provider>
+      </CurrencyProvider>
+    </BetsProvider>
   );
 }
 
