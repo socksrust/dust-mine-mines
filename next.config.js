@@ -14,6 +14,7 @@ const withTM = require('next-transpile-modules')([
 /** @type {import('next').NextConfig} */
 module.exports = withTM({
   reactStrictMode: true,
+  pageExtensions: ['jsx', 'tsx'],
   webpack5: true,
   webpack: (config, { isServer }) => {
     if (!isServer) {
