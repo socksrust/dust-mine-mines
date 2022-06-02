@@ -83,6 +83,13 @@ export default function Blackjack() {
   const [gameList, setGameList] = useState([])
   const { connected, publicKey, signTransaction, signMessage } = useWallet()
   const [balance, setBalance] = useState(0)
+  const [flyBalance, setFlyBalance] = useState(0)
+
+  useEffect(() => {
+    if (connected) {
+      updateBalances()
+    }
+  }, [connected])
 
   async function handleNewGame(amount: number, tokenMint: string) {
     if (!connected) return
@@ -99,6 +106,7 @@ export default function Blackjack() {
     setHouse(data.house)
     const temp = data.games.map(({ gameId }: any) => gameId)
     setGameList(temp)
+    updateBalances()
   }
 
   async function handleClick(id: string, param: string) {
@@ -113,6 +121,25 @@ export default function Blackjack() {
     setHouse(data.house)
     const temp = data.games.map(({ gameId }: any) => gameId)
     setGameList(temp)
+    updateBalances()
+  }
+
+  function updateBalances() {
+    const body = {
+      project: infos.project,
+      wallet: publicKey?.toString()
+    }
+
+    axios.post(`${infos.serverUrl}/balance`, body).then(({ data }) => {
+
+      data.forEach(({ amount, tokenMint }) => {
+        if (tokenMint === "11111111111111111111111111111111") {
+          // setSolBalance(amount)
+        } else {
+          setFlyBalance(amount)
+        }
+      })
+    })
   }
 
   return (
@@ -126,12 +153,12 @@ export default function Blackjack() {
             transition={{ duration: 0.55 }}
             style={{ overflow: 'hidden', flex: 2, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(255, 255, 255, .25)', padding: 20, borderRadius: 4 }}
           >
-            {/* {connected && (
+            {connected && (
               <BalanceArea>
-                <span>$SOL: {solBalance.toFixed(2)}</span>
-                <span>$DMC: {flyBalance.toFixed(2)}</span>
+                {/* <span>$SOL: {solBalance.toFixed(2)}</span> */}
+                <span>$TBF: {flyBalance.toFixed(2)}</span>
               </BalanceArea>
-            )} */}
+            )}
             <GamesWrapper>
               <GameArea>
                 <HouseArea>
