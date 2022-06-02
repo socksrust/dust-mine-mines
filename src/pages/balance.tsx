@@ -97,7 +97,7 @@ const Select = styled.select`
 export default function Balance() {
   const [amount, setAmount] = useState(1)
   const [withdraw, setWithdraw] = useState(1)
-  const [currency, setCurrency] = useState('$SOL')
+  const [currency, setCurrency] = useState('$TBF')
   const { objects: { coins } } = constants
   const { connected, publicKey, signTransaction } = useWallet();
 
