@@ -1,6 +1,6 @@
-import MobileTable from '../../components/MobileTable'
-import { CurrencyContext } from '../../contexts/CurrencyProvider'
-import { BetsContext } from '../../contexts/RouletteProvider'
+import MobileTable from '../../MobileTable'
+import { CurrencyContext } from '../../../contexts/CurrencyProvider'
+import { BetsContext } from '../../../contexts/RouletteProvider'
 import { useContext, useState } from 'react'
 import {
   All,

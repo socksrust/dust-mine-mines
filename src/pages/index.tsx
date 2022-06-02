@@ -277,7 +277,7 @@ export default function Coin() {
   }, [publicKey && publicKey?.toString()])
 
   return (
-    <Layout style={{ backgroundImage: "url('https://i.imgur.com/e5W6Pyn.png')", backgroundPosition: 'center', backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}>
+    <Layout style={{ backgroundImage: "url('https://i.imgur.com/Z0WJFIX.jpg')", backgroundPosition: 'center', backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}>
       <Wrapper>
         <InnerWrapper>
           <motion.div

@@ -191,7 +191,7 @@ export default function Balance() {
 
 
   return (
-    <Layout style={{ backgroundImage: "url('https://i.imgur.com/e5W6Pyn.png')", backgroundPosition: 'center', backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}>
+    <Layout style={{ backgroundImage: "url('https://i.imgur.com/Z0WJFIX.jpg')", backgroundPosition: 'center', backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}>
       <Area>
         <Content>
           <span>

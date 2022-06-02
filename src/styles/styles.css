@@ -3,6 +3,7 @@ p {
 }
 body {
   font-family: 'Poppins' !important;
+  overflow-x: hidden;
 }
 
 #__next {

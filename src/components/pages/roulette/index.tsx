@@ -3,7 +3,7 @@
 // @ts-nocheck
 import dynamic from 'next/dynamic'
 import { useContext, useEffect, useState } from 'react'
-import { CurrencyContext as Teste } from '../_app';
+import { CurrencyContext as Teste } from '../../../pages/_app';
 import {
   AmountArea,
   AmountButton,
@@ -25,19 +25,19 @@ import { useWallet } from '@solana/wallet-adapter-react'
 import Card from 'components/Card'
 import Connect from 'components/Connect'
 import Table from './table'
-import { BetsContext } from '../../contexts/RouletteProvider'
-import BetList from '../../components/BetList'
-import { CurrencyContext } from '../../contexts/CurrencyProvider'
+import { BetsContext } from '../../../contexts/RouletteProvider'
+import BetList from '../../BetList'
+import { CurrencyContext } from '../../../contexts/CurrencyProvider'
 import axios from 'axios'
 import Link from 'next/link'
-import { Layout } from '../../components/common/layout';
+import { Layout } from '../../common/layout';
 const Wheel = dynamic(
   () => import('react-custom-roulette').then(mod => mod.Wheel),
   { ssr: false }
 )
 
-import constants from '../../utils/constants';
-import { SignMessage } from '../../utils/SignMessage';
+import constants from '../../../utils/constants';
+import { SignMessage } from '../../../utils/SignMessage';
 import bs58 from 'bs58'
 import { useToast } from '@chakra-ui/react';
 

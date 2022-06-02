@@ -14,9 +14,9 @@ const { objects, colors } = constants;
 const { logo, logoUrl } = objects;
 
 const Image = styled.img`
-  width: 120px;
-  margin-left: 20px;
-  border-radius: 50%;
+  width: 360px;
+  /* margin-left: 20px; */
+  /* border-radius: 50%; */
   /* border: 1px solid white; */
   @media (max-width: 750px) {
   }
@@ -75,7 +75,7 @@ const Header: FC<HeaderProps> = () => {
               style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}
             >
               <Image src={logoUrl}/>
-              <MyText color={colors.objectText} ml={5} fontSize="24px" fontWeight="bold">{logo}</MyText>
+              {/* <MyText color={colors.objectText} ml={5} fontSize="24px" fontWeight="bold">{logo}</MyText> */}
               </div>
             <Space width={30} height={20}/>
             <Flex

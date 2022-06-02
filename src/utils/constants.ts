@@ -1,49 +1,38 @@
 const constants = {
   infos: {
-    name: 'DMC Revival',
-    website: 'https://magiceden.io/marketplace/srobos',
-    image: 'https://i.imgur.com/DnW7Und.jpg',
+    name: 'The Big Five',
+    website: 'https://thebig5nft.com/',
+    image: 'https://i.imgur.com/5D2tDuk.png',
     publicKey: 'AJSnsqD2fKwcpiPwto2Qcw2VmLsK3cvkFTcqwJxwuBUD',
     // serverUrl: 'https://solaland-bet.herokuapp.com',
     serverUrl: 'https://new-back-games.herokuapp.com',
-    project: 'solrobos'
+    // project: 'bigfive'
+    project: 'tester'
   },
   colors: {
-    primaryBackground: '#FFF',
+    primaryBackground: '#000',
     secondaryBackground: '#f0f0f0',
-    objectBackground: '#1F3F39',
-    objectText: '#FFF',
-    buttonText: '#FFF',
-    accentColor: '#1F3F39',
+    objectBackground: '#AEC8AE',
+    objectText: '#000',
+    buttonText: '#000',
+    accentColor: '#AEC8AE',
     disabledColor: 'grey',
   },
   objects: {
-    logo: 'DMC Revival',
-    logoUrl: 'https://i.imgur.com/DnW7Und.jpg',
+    logo: 'The Big Five',
+    logoUrl: 'https://i.imgur.com/5D2tDuk.png',
     coins: [
       {
-        label: '$SOL',
-        imgSrc: 'https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/So11111111111111111111111111111111111111112/logo.png',
-        value: 'SOL',
-        mintAddress: '11111111111111111111111111111111',
-        multiplier: Math.pow(10, 9),
-        firstBetValue: .1,
-        secondBetValue: .25,
-        thirdBetValue: .5,
-        maxBetValue: .5,
-        toTokenAccountAddress: 'AJSnsqD2fKwcpiPwto2Qcw2VmLsK3cvkFTcqwJxwuBUD',
-      },
-      {
-        label: '$DMC',
-        imgSrc: 'https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/DMC8y7kpeBYfkbM3MmLREKeSGnw1sdWSv68aDUfH97Bu/logo.png',
-        value: 'DMC',
+        label: '$TBF',
+        imgSrc: 'https://raw.githubusercontent.com/thebigfivenft/asset/main/the-big-fiv.png',
+        value: 'TBF',
         mintAddress: 'DMC8y7kpeBYfkbM3MmLREKeSGnw1sdWSv68aDUfH97Bu',
         multiplier: Math.pow(10, 9),
         firstBetValue: 1,
         secondBetValue: 5,
         thirdBetValue: 10,
         maxBetValue: 10,
-        toTokenAccountAddress: 'CptdRBJZGEgn7hajrGygeGrMS7xgf4TdnQpCTDwE856j',
+        toTokenAccountAddress: 'BgTQeR6JQjUW8fDYmNKa1xS9RhwULJiQFQd2yDJZnjtN',
       }
     ]
   }

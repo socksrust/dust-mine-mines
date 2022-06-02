@@ -1,13 +1,13 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { Layout } from '../components/common/layout';
+import { Layout } from '../common/layout';
 import { Switch, Modal, ModalOverlay, useDisclosure, Checkbox } from '@chakra-ui/react';
 import { motion } from "framer-motion";
 import { useAnchorWallet, useWallet, useConnection } from '@solana/wallet-adapter-react';
-import DiceComponent from '../components/dice/index'
-import { CurrencyContext } from './_app';
-import { sendCurrencyToTreasure, renderButtons } from '../utils/solana'
-import Space from '../components/common/space'
-import constants from '../utils/constants';
+import DiceComponent from '../dice/index'
+import { CurrencyContext } from '../../pages/_app';
+import { sendCurrencyToTreasure, renderButtons } from '../../utils/solana'
+import Space from '../common/space'
+import constants from '../../utils/constants';
 
 const { colors, infos } = constants;
 const { secondaryBackground, accentColor, objectText } = colors;
@@ -18,7 +18,7 @@ import {
 } from '@chakra-ui/react';
 import styled from '@emotion/styled'
 import axios from 'axios';
-import { sendBetToBalance } from '../utils/sendBetToBalance';
+import { sendBetToBalance } from '../../utils/sendBetToBalance';
 
 
 const Wrapper = styled.div`

@@ -16,6 +16,7 @@ const Wrapper = styled.div`
   /* padding: 0px 100px; */
   justify-content: center;
   align-items: center;
+  padding-bottom: 40px;
   @media only screen and (max-width: 800px) {
     width: 100vw;
     padding: 0px;
