@@ -136,7 +136,7 @@ const LeftMenu: FC<LeftMenuProps> = () => {
         <MenuItem text="Balance" onClick={() => push('/balance')} isActive={window.location.pathname === '/balance'}  />
         <MenuItem text="Coinflip" onClick={() => push('/')} isActive={window.location.pathname === '/'} />
         {/* <MenuItem text="Dice" onClick={() => push('/dice')} isActive={window.location.pathname === '/dice'} /> */}
-        <MenuItem text="Roulette" onClick={() => push('/wheel')} isActive={window.location.pathname === '/wheel'} />
+        {/* <MenuItem text="Roulette" onClick={() => push('/wheel')} isActive={window.location.pathname === '/wheel'} /> */}
         {/* <MenuItem text="Mine" onClick={() => push('/mine')} isActive={window.location.pathname === '/mine'}  /> */}
 
         <MenuItem text="Blackjack" onClick={() => push('/blackjack')} isActive={window.location.pathname === '/blackjack'}  />
