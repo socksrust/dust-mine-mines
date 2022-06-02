@@ -288,11 +288,11 @@ export default function Coin() {
             style={
               {
                 width: 'fit-content',
-                maxWidth: window.innerWidth <= 400 ? '380px': '1000px'
+                maxWidth: window.innerWidth <= 400 ? '360px': '1000px'
               }
             }
           >
-            <Wr style={{ overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(255, 255, 255, .18)', padding: 20, borderRadius: 4, width: '100%' }}>
+            <Wr style={{ overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(255, 255, 255, .18)', borderRadius: 4, width: '100%' }}>
               {connected && (
                 <BalanceArea>
                   {/* <span>$SOL: {solBalance.toFixed(2)}</span> */}
