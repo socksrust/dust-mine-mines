@@ -39,12 +39,3 @@ const constants = {
 }
 
 export default constants;
-
-/*
-
-coinflip
-blackjack
-roullete
-mine
-
-*/

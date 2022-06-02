@@ -18,7 +18,7 @@ import '../components/rps/carouselStyle.css'
 import { BetsProvider } from '../contexts/RouletteProvider';
 import { CurrencyProvider } from '../contexts/CurrencyProvider';
 
-export const CurrencyContext = React.createContext<any>({ value: 'SOL' });
+export const CurrencyContext = React.createContext<any>({ value: 'TBF' });
 
 const theme1 = createTheme({
   palette: {
