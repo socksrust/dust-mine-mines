@@ -295,8 +295,8 @@ export default function Coin() {
             <Wr style={{ overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(255, 255, 255, .18)', padding: 20, borderRadius: 4, width: '100%' }}>
               {connected && (
                 <BalanceArea>
-                  <span>$SOL: {solBalance.toFixed(2)}</span>
-                  <span>$DMC: {flyBalance.toFixed(2)}</span>
+                  {/* <span>$SOL: {solBalance.toFixed(2)}</span> */}
+                  <span>$TBF: {flyBalance.toFixed(2)}</span>
                 </BalanceArea>
               )}
               <CoinComponent isFlipped={isFlipped} isFlipping={isFlipping || isLoading} textContent={textContent} diceValue={diceValue} />
