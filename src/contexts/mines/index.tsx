@@ -4,7 +4,7 @@ import { useContext, useState } from "react";
 import { Layout } from "../../components/common/layout";
 import { SignMessage } from "../../utils/SignMessage";
 import { renderButtons } from "../../utils/solana";
-import { CurrencyContext } from "../_app";
+import { CurrencyContext } from "../../pages/_app";
 import {
   Area,
   BetsArea,

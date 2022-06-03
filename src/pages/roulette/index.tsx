@@ -54,7 +54,7 @@ export default function Home() {
   const context = useContext(Teste)
   const [balances, setBalances] = useState([])
   const toast = useToast();
-  const project = 'sss'
+  const project = 'iconic'
 
   const data = [
     { option: 0, style: { backgroundColor: '#17BF68' } },

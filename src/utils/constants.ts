@@ -1,13 +1,13 @@
 const constants = {
   infos: {
-    name: 'The Big Five',
+    name: 'Iconic Casino',
     website: 'https://thebig5nft.com/',
     image: 'https://i.imgur.com/BbvHBVp.png',
-    publicKey: 'AJSnsqD2fKwcpiPwto2Qcw2VmLsK3cvkFTcqwJxwuBUD',
+    publicKey: 'kLd3C1Psm2PBZBQKTcNEg385U1jVsfsKd5Vg13iQxeZ',
     // serverUrl: 'https://solaland-bet.herokuapp.com',
     serverUrl: 'https://new-back-games.herokuapp.com',
-    // project: 'bigfive'
-    project: 'tester'
+    project: 'iconic'
+    // project: 'tester'
   },
   colors: {
     primaryBackground: '#FFF',
@@ -19,7 +19,7 @@ const constants = {
     disabledColor: 'grey',
   },
   objects: {
-    logo: 'The Big Five',
+    logo: 'Iconic Casino',
     logoUrl: 'https://i.imgur.com/BbvHBVp.png',
     coins: [
       {
@@ -32,7 +32,7 @@ const constants = {
         secondBetValue: .1,
         thirdBetValue: .25,
         maxBetValue: 1,
-        toTokenAccountAddress: 'EMcUqmGaAw14FZTZ2tdcj8NG2GeUoCGfYhyUcKxJYofK',
+        toTokenAccountAddress: 'kLd3C1Psm2PBZBQKTcNEg385U1jVsfsKd5Vg13iQxeZ',
       },
     ]
   }
