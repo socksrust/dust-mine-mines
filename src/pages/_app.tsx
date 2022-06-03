@@ -18,7 +18,7 @@ import '../components/rps/carouselStyle.css'
 import { BetsProvider } from '../contexts/RouletteProvider';
 import { CurrencyProvider } from '../contexts/CurrencyProvider';
 
-export const CurrencyContext = React.createContext<any>({ value: 'TBF' });
+export const CurrencyContext = React.createContext<any>({ value: 'SOL' });
 
 const theme1 = createTheme({
   palette: {
@@ -53,7 +53,7 @@ const WalletConnectionProvider = dynamic(
 );
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [value, setValue] = React.useState('TBF')
+  const [value, setValue] = React.useState('SOL')
   const router = useRouter();
   const { currency, r } = router.query
 
@@ -70,11 +70,11 @@ function MyApp({ Component, pageProps }: AppProps) {
         localStorage.setItem('r', r);
       }
       if (currency && typeof currency === 'string') {
-        const newValue = currency.toUpperCase() || 'TBF';
+        const newValue = currency.toUpperCase() || 'SOL';
         localStorage.setItem('value', newValue);
         setValue(newValue);
       }
-      const v: any = localStorage?.getItem('value') || 'TBF';
+      const v: any = localStorage?.getItem('value') || 'SOL';
       setValue(v);
     }
   }, [currency, r])

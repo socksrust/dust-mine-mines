@@ -5,16 +5,17 @@ import axios from "axios"
 const { infos } = constants
 
 
-export async function sendBetToBalance(value, mintAddress, { publicKey, connected, signMessage }) {
+export async function sendBetToBalance(value, mintAddress, { publicKey, connected, signMessage }, selected = false, route='bet') {
   const signature = await SignMessage({ publicKey, connected, signMessage })
   const body = {
     project: infos.project,
     wallet: publicKey?.toString(),
     tokenMint: mintAddress,
     bet: value,
-    signature: bs58.encode(signature)
+    signature: bs58.encode(signature),
+    selected
   }
 
-  const { data } = await axios.post(`${infos.serverUrl}/bet`, body)
+  const { data } = await axios.post(`${infos.serverUrl}/${route}`, body)
   return { parsedResult: data }
 }

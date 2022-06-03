@@ -84,6 +84,7 @@ export default function Blackjack() {
   const { connected, publicKey, signTransaction, signMessage } = useWallet()
   const [balance, setBalance] = useState(0)
   const [flyBalance, setFlyBalance] = useState(0)
+  const [solBalance, setSolBalance] = useState(0)
 
   useEffect(() => {
     if (connected) {
@@ -134,7 +135,7 @@ export default function Blackjack() {
 
       data.forEach(({ amount, tokenMint }) => {
         if (tokenMint === "11111111111111111111111111111111") {
-          // setSolBalance(amount)
+          setSolBalance(amount)
         } else {
           setFlyBalance(amount)
         }
@@ -143,7 +144,10 @@ export default function Blackjack() {
   }
 
   return (
-    <Layout style={{ backgroundImage: "url('https://i.imgur.com/Z0WJFIX.jpg')", backgroundPosition: 'center', backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}>
+    <Layout style={{
+      background: 'rgb(141,0,233)',
+      background: 'linear-gradient(0deg, rgba(141,0,233,1) 0%, rgba(255,0,110,1) 100%)'
+    }}>
       <Wrapper>
         <InnerWrapper>
           <motion.div
@@ -155,8 +159,8 @@ export default function Blackjack() {
           >
             {connected && (
               <BalanceArea>
-                {/* <span>$SOL: {solBalance.toFixed(2)}</span> */}
-                <span>$TBF: {flyBalance.toFixed(2)}</span>
+                <span>$SOL: {solBalance.toFixed(2)}</span>
+                {/* <span>$TBF: {flyBalance.toFixed(2)}</span> */}
               </BalanceArea>
             )}
             <GamesWrapper>
@@ -184,18 +188,6 @@ export default function Blackjack() {
                 <PlayerArea>
                   <Title>
                     Player
-                    {/* <Button
-                    onClick={() => handleNewGame()}
-                  >
-                    New Game
-                  </Button> */}
-                    {/* <Button
-                      onClick={() => handleBalanceClick()}
-                    >
-                      Update
-                    </Button>
-                    {balance} */}
-
                   </Title>
                   <Games>
                     {

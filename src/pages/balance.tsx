@@ -24,7 +24,7 @@ const Content = styled.div`
   height: 400px;
   width: 90%;
   max-width: 360px;
-  background-color: rgba(0, 0, 0, .25);
+  background-color: rgba(255, 255, 255, .25);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -39,7 +39,7 @@ const Content = styled.div`
 
 const Button = styled.button<{ isLoading: boolean }>`
   margin: 0;
-  background-color: #1F3F39;
+  background-color: #121E30;
   color: ${objectText};
   width: 160px;
   height: 40px;
@@ -59,7 +59,7 @@ const Input = styled.input`
   color: #000;
   padding: 0 6px;
   border-radius: 6px;
-  background-color: #1F3F39;
+  background-color: #121E30;
   color: ${objectText};
 
   ::placeholder {
@@ -90,14 +90,14 @@ const Select = styled.select`
   height: 40px;
   width: 160px;
   border-radius: 6px;
-  background-color: #1F3F39;
+  background-color: #121E30;
   color: ${objectText};
 `
 
 export default function Balance() {
   const [amount, setAmount] = useState(1)
   const [withdraw, setWithdraw] = useState(1)
-  const [currency, setCurrency] = useState('$TBF')
+  const [currency, setCurrency] = useState('$SOL')
   const { objects: { coins } } = constants
   const { connected, publicKey, signTransaction } = useWallet();
 
@@ -191,7 +191,10 @@ export default function Balance() {
 
 
   return (
-    <Layout style={{ backgroundImage: "url('https://i.imgur.com/Z0WJFIX.jpg')", backgroundPosition: 'center', backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}>
+    <Layout style={{
+      background: 'rgb(141,0,233)',
+      background: 'linear-gradient(0deg, rgba(141,0,233,1) 0%, rgba(255,0,110,1) 100%)'
+    }}>
       <Area>
         <Content>
           <span>
@@ -199,8 +202,8 @@ export default function Balance() {
           </span>
           {connected && (
             <BalanceArea>
-              {/* <span>$SOL: {solBalance.toFixed(2)}</span> */}
-              <span>$TBF: {flyBalance.toFixed(2)}</span>
+              <span>$SOL: {solBalance.toFixed(2)}</span>
+              {/* <span>$TBF: {flyBalance.toFixed(2)}</span> */}
             </BalanceArea>
           )}
           <Input
@@ -233,8 +236,8 @@ export default function Balance() {
           </span>
           {connected && (
             <BalanceArea>
-              {/* <span>$SOL: {solBalance.toFixed(2)}</span> */}
-              <span>$TBF: {flyBalance.toFixed(2)}</span>
+              <span>$SOL: {solBalance.toFixed(2)}</span>
+              {/* <span>$TBF: {flyBalance.toFixed(2)}</span> */}
             </BalanceArea>
           )}
           <Input

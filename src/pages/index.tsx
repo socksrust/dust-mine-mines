@@ -277,7 +277,10 @@ export default function Coin() {
   }, [publicKey && publicKey?.toString()])
 
   return (
-    <Layout style={{ backgroundImage: "url('https://i.imgur.com/Z0WJFIX.jpg')", backgroundPosition: 'center', backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}>
+    <Layout style={{ 
+      background: 'rgb(141,0,233)',
+      background: 'linear-gradient(0deg, rgba(141,0,233,1) 0%, rgba(255,0,110,1) 100%)'
+     }}>
       <Wrapper>
         <InnerWrapper>
           <motion.div
@@ -295,8 +298,8 @@ export default function Coin() {
             <Wr style={{ overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(255, 255, 255, .18)', borderRadius: 4, width: '100%' }}>
               {connected && (
                 <BalanceArea>
-                  {/* <span>$SOL: {solBalance.toFixed(2)}</span> */}
-                  <span>$TBF: {flyBalance.toFixed(2)}</span>
+                  <span>$SOL: {solBalance.toFixed(2)}</span>
+                  {/* <span>$TBF: {flyBalance.toFixed(2)}</span> */}
                 </BalanceArea>
               )}
               <CoinComponent isFlipped={isFlipped} isFlipping={isFlipping || isLoading} textContent={textContent} diceValue={diceValue} />

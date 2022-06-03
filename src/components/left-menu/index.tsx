@@ -114,14 +114,14 @@ const LeftMenu: FC<LeftMenuProps> = () => {
         <Select value={options.find(a => a.value === context.value)} options={options} onChange={(option) => context.setValue(option.value)} />
         <Space width={30} />
         <MenuItem text="Coinflip" onClick={() => push('/')} isActive={window.location.pathname === '/'} />
-        {/* <MenuItem text="Dice" onClick={() => push('/dice')} isActive={window.location.pathname === '/dice'} /> */}
-        {/* <MenuItem text="Roulette" onClick={() => push('/roulette')} isActive={window.location.pathname === '/wheel'} /> */}
+        <MenuItem text="Dice" onClick={() => push('/dice')} isActive={window.location.pathname === '/dice'} />
+        <MenuItem text="Roulette" onClick={() => push('/roulette')} isActive={window.location.pathname === '/roulette'} />
         {/* <MenuItem text="Mine" onClick={() => push('/mine')} isActive={window.location.pathname === '/mine'}  /> */}
 
         <MenuItem text="Blackjack" onClick={() => push('/blackjack')} isActive={window.location.pathname === '/blackjack'}  />
+        <MenuItem text="RPS" onClick={() => push('/rps')} isActive={window.location.pathname === '/rps'}  />
+        <MenuItem text="Baccarat" onClick={() => push('/baccarat')} isActive={window.location.pathname === '/baccarat'}  />
         <MenuItem text="Balance" onClick={() => push('/balance')} isActive={window.location.pathname === '/balance'}  />
-        {/* <MenuItem text="RPS" onClick={() => push('/rps')} isActive={window.location.pathname === '/rps'}  /> */}
-        {/* <MenuItem text="Balance" onClick={() => push('/balance')} isActive={window.location.pathname === '/balance'}  /> */}
 
         {/*<MenuItem text="Buy $TREATS" onClick={() => replace('https://raydium.io/swap/?inputCurrency=sol&outputCurrency=14r8dWfzmUUBpw59w5swNRb5F1YWqmUnSPgD6djUs1Jj&inputAmount=1&outputAmount=3014.368777&fixed=in')} isActive={false}  />*/}
         {/*<MenuItem text="Rock paper scissors" onClick={() => push('/rps')} isActive={window.location.pathname === '/rps'}  />*/}

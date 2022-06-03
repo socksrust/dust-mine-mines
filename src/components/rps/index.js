@@ -57,7 +57,7 @@ const ImageWrapper = styled.div`
   height: 260px;
   width: 220px;
   background: rgb(92,60,84);
-  background: radial-gradient(circle, rgba(137,172,138,1) 0%, rgba(0,74,25,1) 100%);
+  background: radial-gradient(circle, rgba(137,172,138,1) 0%, rgba(141, 0, 233,1) 100%);
   padding: 10px;
   border: 4px solid #FFF;
   border-radius: 12px;

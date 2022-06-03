@@ -82,7 +82,7 @@ export const Games = styled.div`
   height: 100%;
   width: 100%;
   /* background-color: #F00; */
-  background-color: #aec8ae;
+  background-color: #121E30;
   display: flex;
   justify-content: space-around;
   align-items: center;

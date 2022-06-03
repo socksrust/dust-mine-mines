@@ -1,13 +1,13 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { Layout } from '../common/layout';
+import { Layout } from '../components/common/layout';
 import { Switch, Modal, ModalOverlay, useDisclosure, Checkbox } from '@chakra-ui/react';
 import { motion } from "framer-motion";
 import { useAnchorWallet, useWallet, useConnection } from '@solana/wallet-adapter-react';
-import DiceComponent from '../dice/index'
-import { CurrencyContext } from '../../pages/_app';
-import { sendCurrencyToTreasure, renderButtons } from '../../utils/solana'
-import Space from '../common/space'
-import constants from '../../utils/constants';
+import DiceComponent from '../components/dice/index'
+import { CurrencyContext } from './_app';
+import { sendCurrencyToTreasure, renderButtons } from '../utils/solana'
+import Space from '../components/common/space'
+import constants from '../utils/constants';
 
 const { colors, infos } = constants;
 const { secondaryBackground, accentColor, objectText } = colors;
@@ -18,7 +18,7 @@ import {
 } from '@chakra-ui/react';
 import styled from '@emotion/styled'
 import axios from 'axios';
-import { sendBetToBalance } from '../../utils/sendBetToBalance';
+import { sendBetToBalance } from '../utils/sendBetToBalance';
 
 
 const Wrapper = styled.div`
@@ -33,7 +33,7 @@ const InnerWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   height: 75vh;
   width: 100%;
   padding-top: 20px;
@@ -210,7 +210,10 @@ export default function Dice() {
 
 
   return (
-    <Layout>
+    <Layout style={{
+      background: 'rgb(141,0,233)',
+      background: 'linear-gradient(0deg, rgba(141,0,233,1) 0%, rgba(255,0,110,1) 100%)'
+    }}>
       <Wrapper>
         <InnerWrapper>
           <motion.div
@@ -218,12 +221,21 @@ export default function Dice() {
             initial={{ opacity: 0, y: 20 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.55 }}
-            style={{ overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(255, 255, 255, .25)', padding: 20, borderRadius: 4 }}
+            style={{
+              overflow: 'hidden',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+              backgroundColor: 'rgba(255, 255, 255, .25)',
+              padding: 20,
+              borderRadius: 4
+            }}
           >
             {connected && (
               <BalanceArea>
                 <span>$SOL: {solBalance.toFixed(2)}</span>
-                <span>$HERD: {flyBalance.toFixed(2)}</span>
+                {/* <span>$HERD: {flyBalance.toFixed(2)}</span> */}
               </BalanceArea>
             )}
             <DiceComponent isRolling={isLoading} rotate={rotate} diceValue={diceValue} />

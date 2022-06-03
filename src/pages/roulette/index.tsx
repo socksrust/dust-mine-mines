@@ -3,7 +3,7 @@
 // @ts-nocheck
 import dynamic from 'next/dynamic'
 import { useContext, useEffect, useState } from 'react'
-import { CurrencyContext as Teste } from '../../../pages/_app';
+import { CurrencyContext as Teste } from '../../pages/_app';
 import {
   AmountArea,
   AmountButton,
@@ -25,19 +25,19 @@ import { useWallet } from '@solana/wallet-adapter-react'
 import Card from 'components/Card'
 import Connect from 'components/Connect'
 import Table from './table'
-import { BetsContext } from '../../../contexts/RouletteProvider'
-import BetList from '../../BetList'
-import { CurrencyContext } from '../../../contexts/CurrencyProvider'
+import { BetsContext } from '../../contexts/RouletteProvider'
+import BetList from '../../components/BetList'
+import { CurrencyContext } from '../../contexts/CurrencyProvider'
 import axios from 'axios'
 import Link from 'next/link'
-import { Layout } from '../../common/layout';
+import { Layout } from '../../components/common/layout';
 const Wheel = dynamic(
   () => import('react-custom-roulette').then(mod => mod.Wheel),
   { ssr: false }
 )
 
-import constants from '../../../utils/constants';
-import { SignMessage } from '../../../utils/SignMessage';
+import constants from '../../utils/constants';
+import { SignMessage } from '../../utils/SignMessage';
 import bs58 from 'bs58'
 import { useToast } from '@chakra-ui/react';
 
@@ -226,7 +226,10 @@ export default function Home() {
   }
 
   return (
-    <Layout style={{ backgroundImage: "url('https://i.imgur.com/e5W6Pyn.png')", backgroundPosition: 'center', backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}>
+    <Layout style={{ 
+      background: 'rgb(141,0,233)',
+      background: 'linear-gradient(0deg, rgba(141,0,233,1) 0%, rgba(255,0,110,1) 100%)'
+     }}>
       <Container>
         <Content>
           <AmountArea>
@@ -256,7 +259,7 @@ export default function Home() {
           </AmountArea>
           <Area>
             <GameArea>
-              <RouletteCenter src='https://i.imgur.com/DnW7Und.jpg' />
+              <RouletteCenter src='https://i.imgur.com/WhUvzPV.png' />
               <Wheel
                 mustStartSpinning={mustSpin}
                 prizeNumber={prizeNumber}
@@ -280,7 +283,6 @@ export default function Home() {
                   Toast()
                 }}
               />
-
             </GameArea>
             <Table />
           </Area>

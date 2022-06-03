@@ -25,7 +25,7 @@ export const Cell = styled.div<{ height: number, width: number, color: string, b
   border: ${({ border }) => border && `1px solid ${border}`};
   cursor: pointer;
   transition: .2s;
-  color: ${({ textColor }) => textColor ? 'rgba(151, 151, 151, 1)' : '#FFF'};
+  color: ${({ textColor }) => textColor ? 'rgba(255, 255, 255, 1)' : '#FFF'};
 
   :hover {
     background-color: ${({ color }) => color === '#C90022' ? '#fc7086' : '#5f5b69'};
@@ -97,7 +97,7 @@ export const BetButton = styled.button<{ width: number, color?: string }>`
   cursor: pointer;
   font-weight: bold;
   font-size: 18px;
-  color: #979797;
+  color: #FFF;
 
   :hover {
     background-color: ${({ color }) => color ? '' : '#5f5b69'};

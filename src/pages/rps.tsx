@@ -214,7 +214,10 @@ export default function RPS() {
   }
 
   return (
-    <Layout>
+    <Layout style={{
+      background: 'rgb(141,0,233)',
+      background: 'linear-gradient(0deg, rgba(141,0,233,1) 0%, rgba(255,0,110,1) 100%)'
+    }}>
       <Wrapper>
         <InnerWrapper>
           <motion.div
@@ -241,7 +244,7 @@ export default function RPS() {
             {connected && (
               <BalanceArea>
                 <span>$SOL: {solBalance.toFixed(2)}</span>
-                <span>$HERD: {flyBalance.toFixed(2)}</span>
+                {/* <span>$HERD: {flyBalance.toFixed(2)}</span> */}
               </BalanceArea>
             )}
             <RPSComponent option={option} pcOption={pcOption} isLoading={isLoading} setOption={setOption} setPcOption={setPcOption} />

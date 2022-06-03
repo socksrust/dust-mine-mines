@@ -53,8 +53,8 @@ const Row = styled.div`
   justify-content: space-around;
   align-items: center;
   width: 100%;
-  @media (max-width: 1280px) {
-    width: 100% !important;
+  @media (max-width: 750px) {
+    /* width: 100% !important; */
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
