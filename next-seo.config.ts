@@ -4,7 +4,7 @@ const { name, website, image } = infos;
 
 
 const title = name;
-const description = `Casino games from The Big Five`;
+const description = `Casino games from Iconic HUB`;
 
 const SEO = {
   title,
