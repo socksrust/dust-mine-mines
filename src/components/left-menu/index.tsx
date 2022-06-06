@@ -121,6 +121,7 @@ const LeftMenu: FC<LeftMenuProps> = () => {
         <MenuItem text="Blackjack" onClick={() => push('/blackjack')} isActive={window.location.pathname === '/blackjack'}  />
         <MenuItem text="RPS" onClick={() => push('/rps')} isActive={window.location.pathname === '/rps'}  />
         <MenuItem text="Baccarat" onClick={() => push('/baccarat')} isActive={window.location.pathname === '/baccarat'}  />
+        <MenuItem text="Mines" onClick={() => push('/mines')} isActive={window.location.pathname === '/mines'}  />
         <MenuItem text="Balance" onClick={() => push('/balance')} isActive={window.location.pathname === '/balance'}  />
         <MenuItem text="HUB" onClick={() => push('https://www.iconiclabs.xyz/')} isActive={window.location.pathname === 'https://www.iconiclabs.xyz/'}  />
 
@@ -139,6 +140,7 @@ const LeftMenu: FC<LeftMenuProps> = () => {
         <MenuItem text="Blackjack" onClick={() => push('/blackjack')} isActive={window.location.pathname === '/blackjack'}  />
         <MenuItem text="RPS" onClick={() => push('/rps')} isActive={window.location.pathname === '/rps'}  />
         <MenuItem text="Baccarat" onClick={() => push('/baccarat')} isActive={window.location.pathname === '/baccarat'}  />
+        <MenuItem text="Mines" onClick={() => push('/mines')} isActive={window.location.pathname === '/mines'}  />
         <MenuItem text="Balance" onClick={() => push('/balance')} isActive={window.location.pathname === '/balance'}  />
         <MenuItem text="HUB" onClick={() => push('https://www.iconiclabs.xyz/')} isActive={window.location.pathname === 'https://www.iconiclabs.xyz/'}  />
         {/* <MenuItem text="Dice" onClick={() => push('/dice')} isActive={window.location.pathname === '/dice'} /> */}
