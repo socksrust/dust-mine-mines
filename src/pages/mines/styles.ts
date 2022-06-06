@@ -1,10 +1,10 @@
 import styled from 'styled-components'
 
 export const Area = styled.div`
-  height: 660px;
+  min-height: 660px;
   width: 90%;
   max-width: 900px;
-  background-color: #F00;
+  /* background-color: #F00; */
   margin-top: 40px;
   display: flex;
   flex-direction: column;
@@ -15,28 +15,47 @@ export const Area = styled.div`
 export const GameArea = styled.div`
   display: flex;
   width: 100%;
-  background-color: #F0F;
-  height: 80%;
+  background-color: #121e2f;
+  min-height: 440px;
+
+  @media only screen and (max-width: 1023px) {
+    flex-direction: column-reverse;
+    padding: 40px 0;
+    margin-bottom: 20px;
+  }
 `
 
 export const BetsArea = styled.div`
-  height: 100%;
+  /* height: 100%; */
   width: 30%;
-  background-color: #dadada;
+  background-color: #121e2f;
   display: flex;
   flex-direction: column;
+  /* justify-content: center; */
   padding: 20px;
   gap: 18px;
+  border-right: 1px solid #FFF;
+  padding-top: 40px;
+
+  @media only screen and (max-width: 1023px) {
+    height: fit-content;
+    width: 100%;
+    border-right: none;
+  }
 `
 
 export const Game = styled.div`
-  height: 100%;
+  /* height: 100%; */
   width: 70%;
-  background-color: #cdcdcd;
+  background-color: #121e2f;
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 6px;
+  @media only screen and (max-width: 1023px) {
+    height: fit-content;
+    width: 100%;
+  }
 `
 
 export const Input = styled.input`
@@ -71,14 +90,15 @@ export const Select = styled.select`
   }
 `
 
-export const BetButton = styled.button`
+export const BetButton = styled.button<{ isBottom: boolean }>`
   height: 54px;
   width: 100%;
   background-color: #01fd21;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
   border-radius: 6px;
   transition: .2s;
+  margin-top: ${({ isBottom }) => isBottom && 'auto' };
 
   :hover {
     transform: translate(0, -4px);
@@ -88,23 +108,41 @@ export const BetButton = styled.button`
 export const Line = styled.div`
   height: 64px;
   width: 100%;
-  background-color: #abcabc;
+  /* background-color: #abcabc; */
   display: flex;
   justify-content: center;
   gap: 6px;
+
+  @media only screen and (max-width: 1023px) {
+    height: 58px;
+  }
 `
 
 export const Mine = styled.button`
   height: 64px;
   width: 64px;
-  background-color: #F00;
+  background-color: #9900DD;
   border-radius: 6px;
   transition: .2s;
   filter: opacity(.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
 
   :hover {
     transform: translate(0, -4px);
     filter: opacity(1);
   }
 
+  @media only screen and (max-width: 1023px) {
+    height: 58px;
+    width: 58px;
+  }
+
+`
+
+export const Bomb = styled.img`
+  height: 70%;
+  width: auto;
 `
