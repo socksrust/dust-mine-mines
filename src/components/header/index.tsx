@@ -11,7 +11,7 @@ import Space from '../common/space';
 import constants from '../../utils/constants';
 
 const { objects, colors } = constants;
-const { logo, logoUrl } = objects;
+const { logoUrl } = objects;
 
 const Image = styled.img`
   width: 280px;
@@ -58,7 +58,18 @@ const Header: FC<HeaderProps> = () => {
           alignItems="center"
           justifyContent="center"
           direction="row"
+          bg="#0D1624"
+          height="100px"
+          position="relative"
         >
+          <div
+              onClick={() => push('/')}
+              width="120px"
+              style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}
+            >
+              <Image src={logoUrl}/>
+              {/* <MyText color={colors.objectText} ml={5} fontSize="24px" fontWeight="bold">{logo}</MyText> */}
+              </div>
           <Flex
             direction="column"
             justifyContent="space-between"
@@ -68,22 +79,16 @@ const Header: FC<HeaderProps> = () => {
             justifyItems='center'
             style={window.innerWidth <= 800 ? { direction: 'initial'} : {zIndex: 9,}}
           >
-            <div
-              onClick={() => push('/')}
-              width="120px"
-              style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}
-            >
-              <Image src={logoUrl}/>
-              {/* <MyText color={colors.objectText} ml={5} fontSize="24px" fontWeight="bold">{logo}</MyText> */}
-              </div>
-            <Space width={30} height={20}/>
+            
+            {/* <Space width={30} height={20}/> */}
             <Flex
               direction="row"
-              justifyContent="center"
+              justifyContent="space-between"
               alignItems="center"
               overflow="hidden"
-              flexWrap='wrap'
-              justifyItems='center'
+              // flexWrap='wrap'
+              // justifyItems='center'
+              w="100%"
             >
               <LeftMenu />
               

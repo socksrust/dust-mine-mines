@@ -278,8 +278,8 @@ export default function Coin() {
 
   return (
     <Layout style={{ 
-      background: 'rgb(141,0,233)',
-      background: 'linear-gradient(0deg, rgba(141,0,233,1) 0%, rgba(255,0,110,1) 100%)'
+      background: '#121E30',
+      // background: 'linear-gradient(0deg, rgba(141,0,233,1) 0%, rgba(255,0,110,1) 100%)'
      }}>
       <Wrapper>
         <InnerWrapper>
