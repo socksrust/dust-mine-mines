@@ -206,7 +206,17 @@ export default function Blackjack() {
             <BaccaratComponent isPaymentVerified={isPaymentVerified} setVerified={setVerified} won={won} selected={selected} setSelected={setSelected} />
             <Space height={50} />
             <Space height={20} />
-            {renderButtons(context.value, false, bet, inputValue, setValue, isLoading, onOpen)}
+            {renderButtons(
+              { value: context.value,
+               modal: false, 
+               bet,
+               inputValue,
+               setValue,
+               isLoading,
+               onOpen,
+               noCustom: false,
+               direction: "row"
+               })}
           </motion.div>
         </InnerWrapper>
       </Wrapper>

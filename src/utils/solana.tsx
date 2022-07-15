@@ -79,9 +79,9 @@ export const YODA_MINT = "YodaXmvJfRMEecpYacvcvDEM3TCom6dVdFik4x8HyFe";
 export const HIPPO_MINT = "3EkHyexJLGCvSxzn5umbtd9N69GoT4p5pfdLTFqCNP9Y";
 export const BETS_MINT = "9mto3a7pbJpGL69h9xxSNLhr1zeQtUcsH87TYq9zT4nQ";
 
-const Row = styled.div`
+const Row = styled.div<{direction: string}>`
   display: flex;
-  flex-direction: column;
+  flex-direction: ${(props) => (props.direction ? props.direction : "row")};
   justify-content: space-around;
   position: relative;
   z-index: 1;
@@ -105,16 +105,20 @@ const BottomWrapper = styled.div`
   }
 `;
 
-export const renderButtons = (
-  value: any,
-  modal: any,
+export const renderButtons = ({
+  value,
+  modal,
   bet,
   inputValue,
   setValue,
   isLoading,
   onOpen,
-  noCustom
-) => {
+  noCustom,
+  direction
+}: any) => {
+
+  console.log({})
+
   let mintAddress: string;
   let currency;
   let firstBetValue: {} | null | undefined;
@@ -201,7 +205,7 @@ export const renderButtons = (
   return (
     <BottomWrapper>
       <Space height={5} />
-      <Row>
+      <Row direction={direction}>
         <Button
           border="3px solid #0d1624"
           backgroundColor={objectBackground}

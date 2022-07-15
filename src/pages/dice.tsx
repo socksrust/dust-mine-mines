@@ -262,15 +262,17 @@ export default function Dice() {
             
           </motion.div>
           <Box position="absolute" bottom="25px" left="0" zIndex="1">
-              {renderButtons(
-                context.value,
-                false,
-                bet,
-                inputValue,
-                setValue,
-                isLoading,
-                onOpen
-              )}
+              {renderButtons({
+                value: context.value,
+                modal: false,
+                bet: bet,
+                inputValue: inputValue,
+                setValue: setValue,
+                isLoading: isLoading,
+                onOpen: onOpen,
+                noCustom: false,
+                direction: "column"
+              })}
             </Box>
         </InnerWrapper>
         <RowCentered>

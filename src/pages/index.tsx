@@ -351,15 +351,17 @@ export default function Coin() {
               </RowCentered> */}
             </Wr>
             <Box position="absolute" left="-150px" zIndex="1" top="75px">
-              {renderButtons(
-                context.value,
-                false,
+              {renderButtons({
+                value: context.value,
+                modal: false,
                 bet,
                 inputValue,
                 setValue,
                 isLoading,
-                onOpen
-              )}
+                onOpen,
+                noCustom: false,
+                direction: "column"
+              })}
             </Box>
           </motion.div>
           {/* <Space height={70} /> */}

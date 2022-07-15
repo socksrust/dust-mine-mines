@@ -262,7 +262,17 @@ export default function RPS() {
                 <Text color={objectText}>Husky > Frenchie</Text>
               </Row>*/}
             <Space height={10} />
-            {renderButtons(context.value, false, bet, inputValue, setValue, isLoading, onOpen)}
+            {renderButtons(
+              { value: context.value,
+               modal: false, 
+               bet,
+               inputValue,
+               setValue,
+               isLoading,
+               onOpen,
+               noCustom: false,
+               direction: "row"
+               })}
           </motion.div>
         </InnerWrapper>
       </Wrapper>
