@@ -48,6 +48,7 @@ const InnerWrapper = styled.div`
   align-items: center;
   width: 100%;
   padding-top: 70px;
+  background-color: red;
   @media (max-width: 1250px) {
     height: 100%;
     flex-direction: column;
@@ -58,6 +59,7 @@ const InnerWrapper = styled.div`
 const RowCentered = styled.div`
   display: flex;
   flex-direction: row;
+  
   justify-content: space-between;
   align-items: center;
   width: 400px;
@@ -238,7 +240,7 @@ export default function Coin() {
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.55 }}
           >
-              <Wr style={{overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: secondaryBackground, padding: 20, borderRadius: 4}}>
+              <Wr style={{overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: 'red', padding: 20, borderRadius: 4}}>
                 <CoinComponent isFlipped={isFlipped} isFlipping={isFlipping || isLoading} textContent={textContent} diceValue={diceValue} />
                 <RowCentered>
                   <Text fontSize="36px" fontWeight="bold" color={!isEven ? objectBackground : 'rgba(255, 255, 255, 0.5)'}>TAILS</Text>

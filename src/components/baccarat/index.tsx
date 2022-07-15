@@ -4,6 +4,7 @@ import styled from '@emotion/styled';
 import Space from '../common/space'
 import constants from '../../utils/constants';
 import {
+  Flex,
   useToast,
 } from '@chakra-ui/react';
 
@@ -16,6 +17,9 @@ import {
 } from '@chakra-ui/react';
 
 import { initializeUserCardList, initializeHouseCardList, handleHitClick, handleStandClick } from './utils/index'
+import bacaratHouse from '../../../public/images/bacaratHouse.svg'
+import Image from "next/image";
+
 
 const Wrapper = styled.div`
   display: flex;
@@ -50,7 +54,7 @@ const CardsWrapper = styled.div`
   height: 172px;
   background-color: rgba(7,112,47, 1)
   border-radius: 1rem;
-  border: 1px solid ${secondaryBackground};
+  
   border-radius: 6px;
 `
 
@@ -172,14 +176,18 @@ const BaccaratComponent = ({ won, isPaymentVerified, setVerified, updateBalances
 
   return (
     <main className="table">
-      <DealerArea>
+      {/* <DealerArea>
         House
-      </DealerArea>
+      </DealerArea> */}
       <Wrapper>
         <RowCentered>
-          <Text fontSize={30}>{houseCardsTotal}</Text>
+          <Flex flexDirection="column">
+            <Text fontFamily="Montserrat" color="#FF0074" fontStyle="italic" fontWeight="bold" fontSize="25px">House</Text>
+            <Text fontFamily="Montserrat" fontWeight="bold" fontSize={30}>{houseCardsTotal} POINTS</Text>
+          </Flex>
         </RowCentered>
         <CardsWrapper>
+          <Image src={bacaratHouse}/>
           {houseCardList.map(({ suit, rank }) => (
             <Card
               rank={rank}
@@ -188,9 +196,10 @@ const BaccaratComponent = ({ won, isPaymentVerified, setVerified, updateBalances
           ))}
         </CardsWrapper>
         <RowCentered>
-          <Text color='#FFF' fontFamily="MontSerrat" fontWeight={"black"} fontSize={"50px"} fontStyle="italic">VS.</Text>
+          <Text color='#FFF' fontFamily="MontSerrat" fontWeight={"black"} fontSize={"60px"} >X</Text>
         </RowCentered>
         <CardsWrapper>
+          <Image src={bacaratHouse}/>
           {userCardList.map(({ suit, rank }) => (
             <Card
               rank={rank}
@@ -199,7 +208,10 @@ const BaccaratComponent = ({ won, isPaymentVerified, setVerified, updateBalances
           ))}
         </CardsWrapper>
         <RowCentered>
-          <Text fontSize={30}>{userCardsTotal}</Text>
+        <Flex flexDirection="column">
+            <Text fontFamily="Montserrat" color="#FF0074" fontStyle="italic" fontWeight="bold" fontSize="25px">PLAYER</Text>
+            <Text fontFamily="Montserrat"  fontWeight="bold"  fontSize={30}>{userCardsTotal} POINTS</Text>
+          </Flex>
         </RowCentered>
       </Wrapper>
       <Space height={12} />

@@ -3,10 +3,11 @@ import styled from 'styled-components'
 export const Area = styled.div`
   min-height: 660px;
   width: 90%;
-  max-width: 900px;
+  max-width: 650px;
   /* background-color: #F00; */
   margin-top: 40px;
   display: flex;
+  border-radius: 36px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -17,7 +18,8 @@ export const GameArea = styled.div`
   width: 100%;
   background-color: #121e2f;
   min-height: 440px;
-
+  border: 1px solid rgba(13, 22, 36, 1);
+  border-radius: 36px;
   @media only screen and (max-width: 1023px) {
     flex-direction: column-reverse;
     padding: 40px 0;
@@ -27,14 +29,15 @@ export const GameArea = styled.div`
 
 export const BetsArea = styled.div`
   /* height: 100%; */
-  width: 30%;
-  background-color: #121e2f;
+  width: 35%;
+  border-radius: 36px 0 0 36px;
+  background-color: transparent;
   display: flex;
   flex-direction: column;
   /* justify-content: center; */
   padding: 20px;
   gap: 18px;
-  border-right: 1px solid #FFF;
+  
   padding-top: 40px;
 
   @media only screen and (max-width: 1023px) {
@@ -49,6 +52,7 @@ export const Game = styled.div`
   width: 70%;
   background-color: #121e2f;
   display: flex;
+  border-radius: 36px;
   flex-direction: column;
   justify-content: center;
   gap: 6px;
@@ -74,6 +78,7 @@ export const Input = styled.input`
 export const Label = styled.div`
   display: flex;
   flex-direction: column;
+  
 `
 
 export const Select = styled.select`
@@ -112,7 +117,7 @@ export const Line = styled.div`
   display: flex;
   justify-content: center;
   gap: 6px;
-
+  
   @media only screen and (max-width: 1023px) {
     height: 58px;
   }
@@ -121,7 +126,7 @@ export const Line = styled.div`
 export const Mine = styled.button`
   height: 64px;
   width: 64px;
-  background-color: #9900DD;
+  background-color: #FF0074;
   border-radius: 6px;
   transition: .2s;
   filter: opacity(.8);

@@ -14,6 +14,7 @@ const color = {
   black: primaryBackground,
   grey: '#8A898B',
   textGradient: 'linear-gradient(95.34deg, #ABFC4F 2.47%, #FFFFFF 82.15%)',
+  bgTabs: 'rgba(255,0,110,1)'
 };
 
 const breakpoints = createBreakpoints({
@@ -22,6 +23,10 @@ const breakpoints = createBreakpoints({
   lg: '64em',
   xl: '80em',
 });
+
+const colorScheme = {
+  
+}
 
 const styles = {
   global: {

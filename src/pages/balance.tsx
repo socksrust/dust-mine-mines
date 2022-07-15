@@ -24,10 +24,12 @@ const Content = styled.div`
   height: 400px;
   width: 90%;
   max-width: 360px;
-  background-color: rgba(255, 255, 255, .25);
+  background-color: #111c2e;
   display: flex;
   flex-direction: column;
   align-items: center;
+  
+  border-radius: 50px;
   justify-content: center;
   gap: 12px;
 
@@ -41,6 +43,7 @@ const Button = styled.button<{ isLoading: boolean }>`
   margin: 0;
   background-color: #121E30;
   color: ${objectText};
+  border: 2px solid #dadada;
   width: 160px;
   height: 40px;
   border-radius: 6px;
@@ -192,8 +195,8 @@ export default function Balance() {
 
   return (
     <Layout style={{
-      background: 'rgb(141,0,233)',
-      background: 'linear-gradient(0deg, rgba(141,0,233,1) 0%, rgba(255,0,110,1) 100%)'
+      background: "#121E30"
+      
     }}>
       <Area>
         <Content>

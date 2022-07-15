@@ -9,6 +9,7 @@ import { ArrowLeftIcon, ArrowRightIcon } from '@chakra-ui/icons'
 import constants from '../../utils/constants'
 const { colors: { accentColor, objectText } } = constants;
 
+import ScissorsImg from '../../../public/images/scissors.svg';
 
 
 const WholeContainer = styled.div`
@@ -28,7 +29,7 @@ const WholeContainer = styled.div`
 
 
 const RPSImg = styled.img`
-  width: 80%;
+  width: 100%;
   /* border-radius: 50%; */
   /* border: 5px solid ${accentColor}; */
 `;
@@ -55,11 +56,8 @@ const ArrowWrapper = styled.div`
 
 const ImageWrapper = styled.div`
   height: 260px;
-  width: 220px;
-  background: rgb(92,60,84);
-  background: radial-gradient(circle, rgba(137,172,138,1) 0%, rgba(141, 0, 233,1) 100%);
+  width: 200px;
   padding: 10px;
-  border: 4px solid #FFF;
   border-radius: 12px;
   display: flex;
   align-items: center;
@@ -79,23 +77,23 @@ export default function RockPaperScissors({ option, pcOption, isLoading, setOpti
     {
       name: "Rock",
       img:
-        "https://i.imgur.com/lJog52h.png"
+        "https://i.imgur.com/60Wl8fY.png"
     },
     {
       name: "Paper",
       img:
-        "https://i.imgur.com/oBTD7Cj.png"
+        "https://i.imgur.com/oxafOTQ.png"
     },
     {
       name: "Scissors",
-      img: "https://i.imgur.com/l0t5FiO.png"
+      img: "https://i.imgur.com/EvOvG4U.png"
     }
   ];
 
   const allOptions = {
-    Rock: 'https://i.imgur.com/lJog52h.png',
-    Paper: 'https://i.imgur.com/oBTD7Cj.png',
-    Scissors: 'https://i.imgur.com/l0t5FiO.png'
+    Rock: 'https://i.imgur.com/zn48hSW.png',
+    Paper: 'https://i.imgur.com/oxafOTQ.png',
+    Scissors: 'https://i.imgur.com/EvOvG4U.png'
   }
 
   const allTranslatedOptions = {
@@ -127,7 +125,6 @@ export default function RockPaperScissors({ option, pcOption, isLoading, setOpti
         return;
       case 'Scissors':
         return setOption('Rock');
-        return;
     }
   }
 
