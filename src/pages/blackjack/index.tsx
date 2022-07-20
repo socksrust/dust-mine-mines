@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Layout } from '../../components/common/layout';
-import { useDisclosure } from '@chakra-ui/react';
+import { Box, useDisclosure } from '@chakra-ui/react';
 import { motion } from "framer-motion";
 import { useAnchorWallet, useWallet, useConnection } from '@solana/wallet-adapter-react';
 import BlackjackComponent from '../../components/blackjack/index'
@@ -21,7 +21,7 @@ import Card from '../../components/Card';
 
 const { colors, infos } = constants;
 const { secondaryBackground, accentColor, objectText } = colors;
-
+const MotionBox = motion(Box);
 
 const Wrapper = styled.div`
   display: flex;
@@ -150,12 +150,23 @@ export default function Blackjack() {
     }}>
       <Wrapper>
         <InnerWrapper>
-          <motion.div
+          <MotionBox
             animate={{ opacity: 1, y: 0 }}
             initial={{ opacity: 0, y: 20 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.55 }}
-            style={{ width: '600px', overflow: 'hidden', flex: 2, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(255, 255, 255, .25)', padding: 20, borderRadius: 4 }}
+            sx={{ 
+              width: {base: '300px', md:'600px'}, 
+              overflow: 'hidden', 
+              flex: 2, 
+              display: 'flex', 
+              flexDirection: 'column', 
+              justifyContent: 'center', 
+              alignItems: 'center', 
+              backgroundColor: 'rgba(255, 255, 255, .25)', 
+              padding: {base: '5px', md: 20}, 
+              borderRadius: 4 
+            }}
           >
             {connected && (
               <BalanceArea>
@@ -261,7 +272,7 @@ export default function Blackjack() {
             </GamesWrapper>
             <Space height={20} />
             {renderButtons(context.value, false, handleNewGame, inputValue, setValue, isLoading, onOpen)}
-          </motion.div>
+          </MotionBox>
         </InnerWrapper>
       </Wrapper>
     </Layout>

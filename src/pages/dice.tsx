@@ -29,6 +29,8 @@ import axios from "axios";
 import { sendBetToBalance } from "../utils/sendBetToBalance";
 import zIndex from "@material-ui/core/styles/zIndex";
 
+const MotionBox = motion(Box);
+
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -233,12 +235,12 @@ export default function Dice() {
           </BalanceArea>
         )}
         <InnerWrapper>
-          <motion.div
+          <MotionBox
             animate={{ opacity: 1, y: 0 }}
             initial={{ opacity: 0, y: 20 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.55 }}
-            style={{
+            sx={{
               // overflow: "hidden",
               display: "flex",
               flexDirection: "column",
@@ -246,7 +248,7 @@ export default function Dice() {
               alignItems: "center",
               backgroundColor: "#111C2E",
               border: "2px solid #0D1624",
-              padding: "50px 90px",
+              padding: {base: '', lg: "50px 90px"},
               borderRadius: "38px",
               position: "relative",
               zIndex: "4",
@@ -260,8 +262,8 @@ export default function Dice() {
             <RowCentered />
             <RowCentered />
             
-          </motion.div>
-          <Box position="absolute" bottom="25px" left="0" zIndex="1">
+          </MotionBox>
+          <Box position={{base: 'relative', md: "absolute"}} bottom={{base: '0', lg: "25px"}} left="0" zIndex="1" maxWidth={{base: "330px", sm: "100%"}}>
               {renderButtons({
                 value: context.value,
                 modal: false,

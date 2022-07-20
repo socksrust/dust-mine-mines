@@ -350,7 +350,7 @@ export default function Coin() {
 
               </RowCentered> */}
             </Wr>
-            <Box position="absolute" left="-150px" zIndex="1" top="75px">
+            <Box position={{base: 'relative', md: "absolute"}} left={{base: '0', sm: '-104px', lg: "-150px"}} zIndex="1" top={{base: '0', sm:'93px', lg: "75px"}}>
               {renderButtons({
                 value: context.value,
                 modal: false,

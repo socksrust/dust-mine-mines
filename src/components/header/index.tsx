@@ -1,14 +1,22 @@
-import React, { FC, useEffect, useState } from 'react';
-import styled from '@emotion/styled'
-import { useRouter } from 'next/router';
-import { Text } from '@chakra-ui/react';
-import { Flex } from '@chakra-ui/layout';
-import { ConnectWallet } from '../button/connectWallet';
-import { motion } from 'framer-motion';
-import { useScrollFramer } from '../../hooks/useScrollFramer';
-import LeftMenu from '../left-menu';
-import Space from '../common/space';
-import constants from '../../utils/constants';
+import React, { FC, useEffect, useState } from "react";
+import styled from "@emotion/styled";
+import { useRouter } from "next/router";
+import {
+  IconButton,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+  Text,
+} from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/layout";
+import { ConnectWallet } from "../button/connectWallet";
+import { motion } from "framer-motion";
+import { useScrollFramer } from "../../hooks/useScrollFramer";
+import LeftMenu from "../left-menu";
+import Space from "../common/space";
+import constants from "../../utils/constants";
+import { HamburgerIcon } from "@chakra-ui/icons";
 
 const { objects, colors } = constants;
 const { logoUrl } = objects;
@@ -20,12 +28,12 @@ const Image = styled.img`
   /* border: 1px solid white; */
   @media (max-width: 750px) {
   }
-`
+`;
 
 const MyText = styled(Text)`
   @media (max-width: 750px) {
   }
-`
+`;
 
 interface HeaderProps {}
 
@@ -33,7 +41,7 @@ const Header: FC<HeaderProps> = () => {
   const { push } = useRouter();
   const { startedScrolling } = useScrollFramer(0.04);
 
-  if(!window) {
+  if (!window) {
     return null;
   }
 
@@ -50,7 +58,7 @@ const Header: FC<HeaderProps> = () => {
           top: 0,
           left: 0,
           right: 0,
-          transition: '0.1s',
+          transition: "0.1s",
         }}
       >
         <Flex
@@ -63,23 +71,26 @@ const Header: FC<HeaderProps> = () => {
           position="relative"
         >
           <div
-              onClick={() => push('/')}
-              width="120px"
-              style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}
-            >
-              <Image src={logoUrl}/>
-              {/* <MyText color={colors.objectText} ml={5} fontSize="24px" fontWeight="bold">{logo}</MyText> */}
-              </div>
+            onClick={() => push("/")}
+            width="120px"
+            style={{ display: "flex", alignItems: "center", cursor: "pointer" }}
+          >
+            <Image src={logoUrl} />
+            {/* <MyText color={colors.objectText} ml={5} fontSize="24px" fontWeight="bold">{logo}</MyText> */}
+          </div>
           <Flex
             direction="column"
             justifyContent="space-between"
             w="100%"
             alignItems="center"
-            flexWrap='wrap'
-            justifyItems='center'
-            style={window.innerWidth <= 800 ? { direction: 'initial'} : {zIndex: 9,}}
+            flexWrap="wrap"
+            justifyItems="center"
+            style={
+              window.innerWidth <= 800
+                ? { direction: "initial" }
+                : { zIndex: 9 }
+            }
           >
-            
             {/* <Space width={30} height={20}/> */}
             <Flex
               direction="row"
@@ -91,8 +102,43 @@ const Header: FC<HeaderProps> = () => {
               w="100%"
             >
               <LeftMenu />
-              
             </Flex>
+            <Box display={{base: 'block', md: 'none'}}>
+              <Menu>
+                <MenuButton
+                  as={IconButton}
+                  aria-label="Options"
+                  icon={<HamburgerIcon />}
+                  variant="outline"
+                />
+                <MenuList>
+                  <MenuItem  color="red">
+                    Coin
+                  </MenuItem>
+                  <MenuItem  color="red">
+                    Dice
+                  </MenuItem>
+                  <MenuItem  color="red">
+                    Roulette
+                  </MenuItem>
+                  <MenuItem color="red">
+                    RPS
+                  </MenuItem>
+                  <MenuItem  color="red">
+                    Baccarat
+                  </MenuItem>
+                  <MenuItem  color="red">
+                    Mines
+                  </MenuItem>
+                  <MenuItem  color="red">
+                    Balance
+                  </MenuItem>
+                  <MenuItem  color="red">
+                    HUB
+                  </MenuItem>
+                </MenuList>
+              </Menu>
+            </Box>
           </Flex>
         </Flex>
       </motion.div>

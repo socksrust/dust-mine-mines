@@ -89,9 +89,12 @@ const Row = styled.div<{direction: string}>`
   width: 100%;
   @media (max-width: 750px) {
     /* width: 100% !important; */
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-around;
     align-items: center;
+    max-width: 270px;
+    margin: 0 auto;
+
   }
 `;
 
@@ -102,6 +105,8 @@ const BottomWrapper = styled.div`
   margin-bottom: -50px;
   @media (max-width: 1154px) {
     width: 100%;
+    padding: 5px;
+    margin: 0;
   }
 `;
 
