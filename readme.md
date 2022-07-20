@@ -1,4 +1,4 @@
-# Octopus Candy Machine
+# Octopus Candy Machine.
 
 ### Resources
 

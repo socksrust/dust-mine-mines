@@ -134,7 +134,7 @@ export default function Blackjack() {
       updateBalances()
       toast({
         title: `Ops.`,
-        description: 'Not your lucky play, try again',
+        description: `Not your lucky play, try again. You lost ${betValue} ${context.value}`,
         status: 'warning',
         duration: 15000,
         isClosable: true,

@@ -50,7 +50,7 @@ export default function Mines() {
 
     const body = {
       wallet: publicKey?.toString(),
-      project: 'tester',
+      project: 'iconic',
       // project: infos.project,
       amount: inputValue,
       tokenMint: tokenMint.mintAddress,
@@ -80,6 +80,15 @@ export default function Mines() {
     setCashoutAvailable(data.cashoutAvailable)
     const finder = data.mines.find(({ odds }) => odds === 0)
     if (finder) {
+      toast({
+        title: `Ops.`,
+        description: `Not your lucky play, try again. You lost ${inputValue} ${context.value}`,
+        status: 'warning',
+        duration: 15000,
+        isClosable: true,
+        position: 'bottom-right',
+        variant: 'solid'
+      });
       setLose(true)
     }
   }
