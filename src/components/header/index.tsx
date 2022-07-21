@@ -17,6 +17,7 @@ import LeftMenu from "../left-menu";
 import Space from "../common/space";
 import constants from "../../utils/constants";
 import { HamburgerIcon } from "@chakra-ui/icons";
+import Link from "next/link";
 
 const { objects, colors } = constants;
 const { logoUrl } = objects;
@@ -39,6 +40,7 @@ interface HeaderProps {}
 
 const Header: FC<HeaderProps> = () => {
   const { push } = useRouter();
+
   const { startedScrolling } = useScrollFramer(0.04);
 
   if (!window) {
@@ -92,6 +94,7 @@ const Header: FC<HeaderProps> = () => {
             }
           >
             {/* <Space width={30} height={20}/> */}
+
             <Flex
               direction="row"
               justifyContent="space-between"
@@ -103,43 +106,47 @@ const Header: FC<HeaderProps> = () => {
             >
               <LeftMenu />
             </Flex>
-            <Box display={{base: 'block', md: 'none'}}>
-              <Menu>
-                <MenuButton
-                  as={IconButton}
-                  aria-label="Options"
-                  icon={<HamburgerIcon />}
-                  variant="outline"
-                />
-                <MenuList>
-                  <MenuItem  color="red">
-                    Coin
-                  </MenuItem>
-                  <MenuItem  color="red">
-                    Dice
-                  </MenuItem>
-                  <MenuItem  color="red">
-                    Roulette
-                  </MenuItem>
-                  <MenuItem color="red">
-                    RPS
-                  </MenuItem>
-                  <MenuItem  color="red">
-                    Baccarat
-                  </MenuItem>
-                  <MenuItem  color="red">
-                    Mines
-                  </MenuItem>
-                  <MenuItem  color="red">
-                    Balance
-                  </MenuItem>
-                  <MenuItem  color="red">
-                    HUB
-                  </MenuItem>
-                </MenuList>
-              </Menu>
-            </Box>
           </Flex>
+          <Box display={{ base: "block", md: "none" }} marginRight="15px">
+            <Menu>
+              <MenuButton
+                as={IconButton}
+                aria-label="Options"
+                icon={<HamburgerIcon />}
+                variant="outline"
+                color="#fff"
+                fontSize="24px"
+              />
+              <MenuList>
+                <ConnectWallet />
+                <MenuItem color="#FF0074" fontWeight="bold" onClick={() => push("/")}>
+                  Coinflip
+                </MenuItem>
+                <MenuItem color="#FF0074" fontWeight="bold" onClick={() => push("/dice")}>
+                  Dice
+                </MenuItem>
+                <MenuItem color="#FF0074" fontWeight="bold" onClick={() => push("/roulette")}>
+                  Roulette
+                </MenuItem>
+                <MenuItem color="#FF0074" fontWeight="bold" onClick={() => push("/rps")}>
+                  RPS
+                </MenuItem>
+                <MenuItem color="#FF0074" fontWeight="bold" onClick={() => push("/blackjack")}>
+                  Baccarat
+                </MenuItem>
+                <MenuItem color="#FF0074" fontWeight="bold" onClick={() => push("/mines")}>
+                  Mines
+                </MenuItem>
+                <MenuItem color="#FF0074" fontWeight="bold" onClick={() => push("/balance")}>
+                  Balance
+                </MenuItem>
+                <MenuItem color="#FF0074" fontWeight="bold" onClick={() => push("https://www.iconiclabs.xyz/")}>
+                  HUB
+                </MenuItem>
+                
+              </MenuList>
+            </Menu>
+          </Box>
         </Flex>
       </motion.div>
     </>

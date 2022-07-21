@@ -17,14 +17,14 @@ export const ConnectWallet: React.FC<IButtonProps> = ({ ...props }) => {
 
   if (connected) {
     return (
-      <Button onClick={disconnect} variant="outline" size="bigger" {...props}>
+      <Button onClick={disconnect} variant="outline" size="bigger"  {...props}>
         Disconnect
       </Button>
     );
   }
 
   return (
-    <Button backgroundColor={objectBackground} size="bigger" onClick={handleClick} {...props}>
+    <Button backgroundColor={objectBackground} w="100%" size="bigger" onClick={handleClick} {...props}>
       <span style={{color: buttonText}}>Connect Wallet</span>
     </Button>
   );
