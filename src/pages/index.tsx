@@ -335,6 +335,7 @@ export default function Coin() {
                 width: "350px",
                 height: "350px",
                 maxHeight: "350px",
+                maxWidth: "350px",
               }}
             >
               <CoinComponent
