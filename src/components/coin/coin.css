@@ -88,8 +88,8 @@ body, html {
   display: flex;
 }
 .coinWrap {
-  display: block;
-	position: relative;
+  display: flex;
+	/* position: relative; */
 }
 
 
