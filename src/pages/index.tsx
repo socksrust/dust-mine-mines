@@ -334,6 +334,7 @@ export default function Coin() {
                 borderRadius: "50%",
                 width: "350px",
                 height: "350px",
+                maxHeight: "350px",
               }}
             >
               <CoinComponent
