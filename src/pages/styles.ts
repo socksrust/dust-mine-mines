@@ -16,8 +16,9 @@ export const Area = styled.div`
 export const GameArea = styled.div`
   display: flex;
   width: 100%;
-  background-color: #121e2f;
   min-height: 440px;
+  background: linear-gradient(180deg, #FCDD60 0%, #ED9E41 100%);
+
   border: 1px solid rgba(13, 22, 36, 1);
   border-radius: 36px;
   @media only screen and (max-width: 1023px) {
@@ -31,7 +32,7 @@ export const BetsArea = styled.div`
   /* height: 100%; */
   width: 35%;
   border-radius: 36px 0 0 36px;
-  background-color: transparent;
+  background-color: #615FA9;
   display: flex;
   flex-direction: column;
   /* justify-content: center; */
@@ -50,7 +51,7 @@ export const BetsArea = styled.div`
 export const Game = styled.div`
   /* height: 100%; */
   width: 70%;
-  background-color: #121e2f;
+  background-color: transparent;
   display: flex;
   border-radius: 36px;
   flex-direction: column;
@@ -68,7 +69,10 @@ export const Input = styled.input`
   color: #000;
   padding: 6px;
   outline: none;
-  filter: opacity(.8);
+  background: rgba(0, 0, 0, 0.15);
+  color: #fff;
+  border-radius: 2rem;
+  border: 2px solid #1E1E1E;
 
   :focus {
     filter: opacity(1);
@@ -87,9 +91,11 @@ export const Select = styled.select`
   color: #000;
   padding: 6px;
   outline: none;
-  filter: opacity(.8);
-  background-color: #FFF;
+  background: rgba(0, 0, 0, 0.15);
+  color: #fff;
+  border: 2px solid #1E1E1E;
 
+  border-radius: 2rem;
   :focus {
     filter: opacity(1);
   }
@@ -98,7 +104,9 @@ export const Select = styled.select`
 export const BetButton = styled.button<{ isBottom: boolean }>`
   height: 54px;
   width: 100%;
-  background-color: #01fd21;
+  border: 2px solid #1E1E1E;
+
+  background-color: #77C12D;
   font-size: 18px;
   font-weight: bold;
   border-radius: 6px;
@@ -126,10 +134,9 @@ export const Line = styled.div`
 export const Mine = styled.button`
   height: 64px;
   width: 64px;
-  background-color: #FF0074;
+  background-color: #834961;
   border-radius: 6px;
   transition: .2s;
-  filter: opacity(.8);
   display: flex;
   align-items: center;
   justify-content: center;

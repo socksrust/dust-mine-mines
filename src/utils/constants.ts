@@ -1,26 +1,24 @@
 const constants = {
   infos: {
-    name: 'Iconic Casino',
+    name: 'Cactusino Mines',
     website: 'https://thebig5nft.com/',
     image: 'https://i.imgur.com/BbvHBVp.png',
     publicKey: 'kLd3C1Psm2PBZBQKTcNEg385U1jVsfsKd5Vg13iQxeZ',
-    // serverUrl: 'https://solaland-bet.herokuapp.com',
     serverUrl: 'https://new-back-games.herokuapp.com',
-    project: 'iconic'
-    // project: 'tester'
+    project: 'cactusino'
   },
   colors: {
     primaryBackground: '#FFF',
     secondaryBackground: '#f0f0f0',
     objectBackground: '#121E30',
-    objectText: '#FFF',
+    objectText: '#393824',
     buttonText: '#FFF',
     accentColor: '#121E30',
     disabledColor: 'grey',
   },
   objects: {
-    logo: 'Iconic Casino',
-    logoUrl: 'https://i.imgur.com/BbvHBVp.png',
+    logo: 'Cactusino Mines',
+    logoUrl: 'https://i.imgur.com/rH8QEZz.png',
     coins: [
       {
         label: '$SOL',

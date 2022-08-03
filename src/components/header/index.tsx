@@ -50,10 +50,12 @@ const Header: FC<HeaderProps> = () => {
   return (
     <>
       <motion.div
-        animate={{
-          backdropFilter: `blur(${!startedScrolling ? 0 : 10}px)`,
-          WebkitBackdropFilter: `blur(${!startedScrolling ? 0 : 10}px)`,
-        }}
+        animate={
+          {
+            // backdropFilter: `blur(${!startedScrolling ? 0 : 10}px)`,
+            // WebkitBackdropFilter: `blur(${!startedScrolling ? 0 : 10}px)`,
+          }
+        }
         style={{
           zIndex: 900,
           //position: 'sticky',
@@ -68,14 +70,19 @@ const Header: FC<HeaderProps> = () => {
           alignItems="center"
           justifyContent="center"
           direction="row"
-          bg="#0D1624"
+          // bg="#0D1624"
           height="100px"
           position="relative"
         >
           <div
             onClick={() => push("/")}
             width="120px"
-            style={{ display: "flex", alignItems: "center", cursor: "pointer" }}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              cursor: "pointer",
+              paddingLeft: 10,
+            }}
           >
             <Image src={logoUrl} />
             {/* <MyText color={colors.objectText} ml={5} fontSize="24px" fontWeight="bold">{logo}</MyText> */}
@@ -119,31 +126,20 @@ const Header: FC<HeaderProps> = () => {
               />
               <MenuList>
                 <ConnectWallet />
-                <MenuItem color="#FF0074" fontWeight="bold" onClick={() => push("/")}>
-                  Coinflip
-                </MenuItem>
-                <MenuItem color="#FF0074" fontWeight="bold" onClick={() => push("/dice")}>
-                  Dice
-                </MenuItem>
-                <MenuItem color="#FF0074" fontWeight="bold" onClick={() => push("/roulette")}>
-                  Roulette
-                </MenuItem>
-                <MenuItem color="#FF0074" fontWeight="bold" onClick={() => push("/rps")}>
-                  RPS
-                </MenuItem>
-                <MenuItem color="#FF0074" fontWeight="bold" onClick={() => push("/blackjack")}>
-                  Baccarat
-                </MenuItem>
-                <MenuItem color="#FF0074" fontWeight="bold" onClick={() => push("/mines")}>
+                <MenuItem
+                  color="#FF0074"
+                  fontWeight="bold"
+                  onClick={() => push("/")}
+                >
                   Mines
                 </MenuItem>
-                <MenuItem color="#FF0074" fontWeight="bold" onClick={() => push("/balance")}>
+                <MenuItem
+                  color="#FF0074"
+                  fontWeight="bold"
+                  onClick={() => push("/balance")}
+                >
                   Balance
                 </MenuItem>
-                <MenuItem color="#FF0074" fontWeight="bold" onClick={() => push("https://www.iconiclabs.xyz/")}>
-                  HUB
-                </MenuItem>
-                
               </MenuList>
             </Menu>
           </Box>
