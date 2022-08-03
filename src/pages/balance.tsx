@@ -166,6 +166,18 @@ export default function Balance() {
   }
 
   async function AddFunds() {
+    if (!connected) {
+      toast({
+        title: `Warning!`,
+        description: "You need to connect your wallet",
+        status: "warning",
+        duration: 60000,
+        isClosable: true,
+        position: "top-right",
+        variant: "solid",
+      });
+      return;
+    }
     const token = coins.find(({ label }) => label === currency);
     let final: any = token;
     if (!token) {
@@ -175,7 +187,6 @@ export default function Balance() {
       };
     }
     if (currency === "$SOL") {
-      setIsLoading(true);
       await CreateSOLTX({
         publicKey,
         signTransaction,
@@ -185,9 +196,7 @@ export default function Balance() {
       });
 
       updateBalances();
-      setIsLoading(false);
     } else {
-      setIsLoading(true);
       await CreateTX({
         publicKey,
         signTransaction,
@@ -196,9 +205,9 @@ export default function Balance() {
         callToast,
       });
       updateBalances();
-      setIsLoading(false);
     }
   }
+
   async function requestWithdraw() {
     const token = coins.find(({ label }) => label === currency);
 

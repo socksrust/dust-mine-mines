@@ -194,7 +194,7 @@ export async function CreateSOLTX({ publicKey, signTransaction, token, amount, c
     project: infos.project,
     wallet: publicKey.toString(),
     tokenMint: '11111111111111111111111111111111',
-    amount: Number(amount)
+    amount: Number(amount * 2)
   }
 
   callToast()
