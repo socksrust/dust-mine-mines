@@ -54,8 +54,7 @@ export default function Mines() {
 
     const body = {
       wallet: publicKey?.toString(),
-      project: "iconic",
-      // project: infos.project,
+      project: infos.project,
       amount: inputValue,
       tokenMint: tokenMint.mintAddress,
       signature: bs58.encode(signature),
