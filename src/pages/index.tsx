@@ -49,7 +49,7 @@ export default function Mines() {
     if (!connected) return;
     const tokenMint = coins.find(({ value }) => value === context.value);
     if (!tokenMint) return;
-    if (inputValue === 0) return;
+    if (inputValue === 0 || inputValue < 0.1 || inputValue > 1) return;
     const signature = await SignMessage({ publicKey, connected, signMessage });
 
     const body = {
