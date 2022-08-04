@@ -164,7 +164,7 @@ export async function CreateTX({ publicKey, signTransaction, token, amount, call
   // const txSig = await genesysRpc.sendRawTransaction(serialized);
   // console.log('txSig', txSig.lastIndexOf.toString())
   callToast()
-  const { data } = await axios.post(`${infos.serverUrl}/deposit`, body)
+  const { data } = await axios.post(`${infos.serverUrl}/deposit-v2`, body)
 
 
 }
@@ -179,8 +179,8 @@ export async function CreateSOLTX({ publicKey, signTransaction, token, amount, c
   );
 
   transaction.feePayer = publicKey;
-  transaction.recentBlockhash = await (
-    await genesysRpc.getRecentBlockhash()
+  transaction.recentBlockhash = (
+    await genesysRpc.getLatestBlockhash('finalized')
   ).blockhash;
 
   const tx = await signTransaction(transaction);
@@ -194,12 +194,12 @@ export async function CreateSOLTX({ publicKey, signTransaction, token, amount, c
     project: infos.project,
     wallet: publicKey.toString(),
     tokenMint: '11111111111111111111111111111111',
-    amount: Number(amount * 2)
+    amount: Number(amount)
   }
 
   callToast()
 
-  await axios.post(`${infos.serverUrl}/deposit`, body)
+  await axios.post(`${infos.serverUrl}/deposit-v2`, body)
 
 
   // const signature = await genesysRpc.sendRawTransaction(serialized)

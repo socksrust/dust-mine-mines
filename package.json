@@ -29,7 +29,7 @@
     "@solana/wallet-adapter-react": "^0.12.4",
     "@solana/wallet-adapter-react-ui": "^0.5.1",
     "@solana/wallet-adapter-wallets": "^0.10.1",
-    "@solana/web3.js": "^1.29.2",
+    "@solana/web3.js": "^1.50.1",
     "@toruslabs/eccrypto": "^1.1.7",
     "@usedapp/core": "^0.5.1",
     "@walletconnect/client": "^1.6.5",
