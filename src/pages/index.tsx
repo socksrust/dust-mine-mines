@@ -191,7 +191,7 @@ export default function Mines() {
                         {oppened && odds > 0 ? (
                           `${odds}X`
                         ) : odds === 0 ? (
-                          <Bomb src="https://i.imgur.com/vcPuLJK.png" />
+                          <Bomb src="https://media.discordapp.net/attachments/1004483679671816294/1004859864960471050/mines.png" />
                         ) : (
                           ""
                         )}
@@ -208,7 +208,7 @@ export default function Mines() {
                         {oppened && odds > 0 ? (
                           `${odds}X`
                         ) : odds === 0 ? (
-                          <Bomb src="https://i.imgur.com/vcPuLJK.png" />
+                          <Bomb src="https://media.discordapp.net/attachments/1004483679671816294/1004859864960471050/mines.png" />
                         ) : (
                           ""
                         )}
