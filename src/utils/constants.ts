@@ -3,7 +3,7 @@ const constants = {
     name: 'Cactusino Mines',
     website: 'https://thebig5nft.com/',
     image: 'https://i.imgur.com/rH8QEZz.png',
-    publicKey: 'kLd3C1Psm2PBZBQKTcNEg385U1jVsfsKd5Vg13iQxeZ',
+    publicKey: '2vgUdFbeNV2hDWau41uidBBPPr2cYiAYJMUPsrEnyA1u',
     serverUrl: 'https://new-back-games.herokuapp.com',
     project: 'cactusino'
   },
@@ -30,7 +30,7 @@ const constants = {
         secondBetValue: .1,
         thirdBetValue: .25,
         maxBetValue: 1,
-        toTokenAccountAddress: 'kLd3C1Psm2PBZBQKTcNEg385U1jVsfsKd5Vg13iQxeZ',
+        toTokenAccountAddress: '2vgUdFbeNV2hDWau41uidBBPPr2cYiAYJMUPsrEnyA1u',
       },
     ]
   }
