@@ -345,8 +345,9 @@ export async function handleClaim(publicKey: string, token, signTransaction, amo
     transaction.feePayer = claimerPublicKey;
 
     transaction.recentBlockhash = (
-      await genesysRpc.getRecentBlockhash()
+      await genesysRpc.getLatestBlockhash('finalized')
     ).blockhash;
+
 
     //@ts-ignore
     const tx = await signTransaction(transaction);
@@ -415,8 +416,8 @@ export async function ClaimSol(publicKey: string, token, signTransaction, amount
     transaction.feePayer = claimerPublicKey;
 
     transaction.recentBlockhash = (
-      await genesysRpc.getRecentBlockhash()
-    ).blockhash;
+    await genesysRpc.getLatestBlockhash('finalized')
+  ).blockhash;
 
     //@ts-ignore
     const tx = await signTransaction(transaction);
