@@ -241,7 +241,7 @@ export default function Balance() {
         <Content>
           <span
             style={{
-              paddingBottom: 35,
+              paddingBottom: 10,
             }}
           >
             Add Balance
@@ -272,7 +272,7 @@ export default function Balance() {
         <Content>
           <span
             style={{
-              paddingBottom: 35,
+              paddingBottom: 10,
             }}
           >
             Withdraw
