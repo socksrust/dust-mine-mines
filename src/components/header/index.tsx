@@ -127,14 +127,15 @@ const Header: FC<HeaderProps> = () => {
               <MenuList>
                 <ConnectWallet />
                 <MenuItem
-                  color="#FF0074"
+                  color="#fff"
                   fontWeight="bold"
                   onClick={() => push("/")}
+                  style={{ color: "#ff" }}
                 >
                   Mines
                 </MenuItem>
                 <MenuItem
-                  color="#FF0074"
+                  color="#fff"
                   fontWeight="bold"
                   onClick={() => push("/balance")}
                 >

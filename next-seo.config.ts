@@ -4,7 +4,7 @@ const { name, website, image } = infos;
 
 
 const title = name;
-const description = `Casino games from Cactusino mines`;
+const description = `Casino games from dustmine mines`;
 
 const SEO = {
   title,

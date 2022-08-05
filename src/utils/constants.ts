@@ -1,24 +1,24 @@
 const constants = {
   infos: {
-    name: 'Cactusino Mines',
-    website: 'https://thebig5nft.com/',
-    image: 'https://i.imgur.com/rH8QEZz.png',
-    publicKey: '2vgUdFbeNV2hDWau41uidBBPPr2cYiAYJMUPsrEnyA1u',
+    name: 'dustmine Mines',
+    website: '',
+    image: 'https://i.imgur.com/Tnow86G.png',
+    publicKey: '9DxfS7rgKExG5N28JnWXn4YBfG4KJa3HKnYeuMtbySjG',
     serverUrl: 'https://new-back-games.herokuapp.com',
-    project: 'cactusino'
+    project: 'dustmine'
   },
   colors: {
     primaryBackground: '#FFF',
     secondaryBackground: '#f0f0f0',
-    objectBackground: '#121E30',
+    objectBackground: '#111922',
     objectText: '#393824',
     buttonText: '#FFF',
-    accentColor: '#121E30',
+    accentColor: '#111922',
     disabledColor: 'grey',
   },
   objects: {
-    logo: 'Cactusino Mines',
-    logoUrl: 'https://i.imgur.com/rH8QEZz.png',
+    logo: 'dustmine Mines',
+    logoUrl: 'https://i.imgur.com/Tnow86G.png',
     coins: [
       {
         label: '$SOL',
@@ -30,7 +30,7 @@ const constants = {
         secondBetValue: .1,
         thirdBetValue: .25,
         maxBetValue: 1,
-        toTokenAccountAddress: '2vgUdFbeNV2hDWau41uidBBPPr2cYiAYJMUPsrEnyA1u',
+        toTokenAccountAddress: '9DxfS7rgKExG5N28JnWXn4YBfG4KJa3HKnYeuMtbySjG',
       },
     ]
   }

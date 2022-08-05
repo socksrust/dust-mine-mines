@@ -30,17 +30,17 @@ const Area = styled.div`
 `;
 
 const Content = styled.div`
-  height: 400px;
   width: 90%;
   max-width: 360px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
+  padding: 20px;
 
-  border-radius: 50px;
-  justify-content: center;
+  border-radius: 4px;
+  justify-content: flex-start;
   gap: 12px;
-  background-color: #615fa9;
+  background-color: #1c242c;
 
   span {
     font-size: 42px;
@@ -52,22 +52,20 @@ const Button = styled.button<{ isLoading: boolean }>`
   margin: 0;
   background-color: #121e30;
   color: ${objectText};
-  border: 2px solid #dadada;
-  width: 160px;
   height: 40px;
-  border-radius: 6px;
+  border-radius: 4px;
   transition: 0.2s;
   cursor: ${({ isLoading }) => (isLoading ? "wait" : "pointer")};
-  border: 2px solid #1e1e1e;
-  background-color: #77c12d;
-
+  color: #000;
+  background-color: #60d184;
+  width: 100%;
   :hover {
     transform: scale(1.1);
   }
 `;
 
 const Input = styled.input`
-  width: 160px;
+  width: 100%;
   height: 40px;
   outline: none;
   color: #000;
@@ -75,8 +73,7 @@ const Input = styled.input`
   color: ${objectText};
   background: rgba(0, 0, 0, 0.15);
   color: #fff;
-  border-radius: 2rem;
-  border: 2px solid #1e1e1e;
+  border-radius: 4px;
 
   ::placeholder {
     color: #dadada;
@@ -93,7 +90,7 @@ const BalanceArea = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
-
+  margin-top: 250px;
   span {
     font-size: 20px;
     font-weight: bold;
@@ -102,14 +99,12 @@ const BalanceArea = styled.div`
 
 const Select = styled.select`
   height: 40px;
-  width: 160px;
-  border-radius: 6px;
+  width: 100%;
+  border-radius: 4px;
   background-color: #121e30;
   color: ${objectText};
   background: rgba(0, 0, 0, 0.15);
   color: #fff;
-  border-radius: 2rem;
-  border: 2px solid #1e1e1e;
 `;
 
 export default function Balance() {
@@ -239,12 +234,18 @@ export default function Balance() {
   return (
     <Layout
       style={{
-        background: `url("https://i.imgur.com/FIX9Ots.png")`,
+        background: `#111922`,
       }}
     >
       <Area>
         <Content>
-          <span>Add Balance</span>
+          <span
+            style={{
+              paddingBottom: 35,
+            }}
+          >
+            Add Balance
+          </span>
           {connected && (
             <BalanceArea>
               <span>$SOL: {solBalance.toFixed(2)}</span>
@@ -269,7 +270,13 @@ export default function Balance() {
         </Content>
 
         <Content>
-          <span>Withdraw</span>
+          <span
+            style={{
+              paddingBottom: 35,
+            }}
+          >
+            Withdraw
+          </span>
           {connected && (
             <BalanceArea>
               <span>$SOL: {solBalance.toFixed(2)}</span>

@@ -59,16 +59,20 @@ const MenuItemWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   height: 100px;
-  padding: 5px;
+  padding: 15px;
   font-size: 20px;
   cursor: pointer;
   text-transform: uppercase;
   border-radius: 2rem;
-  ${(p) =>
-    p.isActive &&
-    `
+
+  * {
+    color: "#ffffff !important";
+
+    ${(p) =>
+      p.isActive &&
+      `
     align-items: center;
-    color:#FF0074 !important;
+    color:#DE4151 !important;
     
     &::after{
       content: '';
@@ -76,10 +80,10 @@ const MenuItemWrapper = styled.div`
       top: 0px;
       width: 100%;
       height: 3px;
-      background-color: #393824;
 
     }
   `}
+  }
 `;
 
 const MenuWrapper = styled.div`
@@ -111,7 +115,7 @@ const MenuWrapper = styled.div`
 const MenuItem = ({ text, onClick, isActive }: any) => (
   <MenuItemWrapper onClick={onClick} isActive={isActive}>
     <Text
-      fontSize="14"
+      fontSize="18"
       fontWeight="bold"
       color={objectText}
       style={{ whiteSpace: "nowrap" }}
@@ -210,6 +214,7 @@ const LeftMenu: FC<LeftMenuProps> = () => {
           text="Mines"
           onClick={() => push("/")}
           isActive={window.location.pathname === "/"}
+          style={{ color: "#fff" }}
         />
         <MenuItem
           text="Balance"

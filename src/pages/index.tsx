@@ -125,7 +125,7 @@ export default function Mines() {
   return (
     <Layout
       style={{
-        background: `url("https://i.imgur.com/FIX9Ots.png")`,
+        background: `#111922")`,
       }}
     >
       <Area>
