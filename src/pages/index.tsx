@@ -191,7 +191,7 @@ export default function Mines() {
                         {oppened && odds > 0 ? (
                           `${odds}X`
                         ) : odds === 0 ? (
-                          <Bomb src="https://media.discordapp.net/attachments/1004483679671816294/1004859864960471050/mines.png" />
+                          <Bomb src="https://pbs.twimg.com/profile_images/1552726953748316163/pLA6X0EW_400x400.jpg" />
                         ) : (
                           ""
                         )}
