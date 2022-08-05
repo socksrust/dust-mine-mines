@@ -36,7 +36,6 @@ const Content = styled.div`
   flex-direction: column;
   align-items: flex-start;
   padding: 20px;
-
   border-radius: 4px;
   justify-content: flex-start;
   gap: 12px;
@@ -90,7 +89,6 @@ const BalanceArea = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin-top: 250px;
   span {
     font-size: 20px;
     font-weight: bold;
