@@ -46,8 +46,11 @@ export default function Mines() {
   const { connected, publicKey, signTransaction, signMessage } = useWallet();
 
   async function handleNewGame() {
+    console.log({ connected, tokenMint, inputValue });
     if (!connected) return;
     const tokenMint = coins.find(({ value }) => value === context.value);
+    console.log({ connected, tokenMint, inputValue });
+
     if (!tokenMint) return;
     if (inputValue === 0 || inputValue < 0.1 || inputValue > 1) return;
     const signature = await SignMessage({ publicKey, connected, signMessage });
