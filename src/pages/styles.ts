@@ -91,7 +91,6 @@ export const Select = styled.select`
   padding: 6px;
   outline: none;
   background: #111922;
-  color: #fff;
   border: 2px solid #1E1E1E;
 
   border-radius: 4px;
@@ -144,7 +143,7 @@ export const Mine = styled.button`
   :hover {
     transform: translate(0, -4px);
     filter: opacity(1);
-    background-color: #DE4151;
+    /* background-color: #DE4151; */
   }
 
   @media only screen and (max-width: 1023px) {

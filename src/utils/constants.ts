@@ -32,6 +32,18 @@ const constants = {
         maxBetValue: 1,
         toTokenAccountAddress: '9DxfS7rgKExG5N28JnWXn4YBfG4KJa3HKnYeuMtbySjG',
       },
+      {
+        label: '$DUST',
+        imgSrc: 'https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/DUSTawucrTsGU8hcqRdHDCbuYhCPADMLM2VcCb8VnFnQ/logo.jpg',
+        value: 'DUST',
+        mintAddress: 'DUSTawucrTsGU8hcqRdHDCbuYhCPADMLM2VcCb8VnFnQ',
+        multiplier: Math.pow(10, 9),
+        firstBetValue: .05,
+        secondBetValue: .1,
+        thirdBetValue: .25,
+        maxBetValue: 1,
+        toTokenAccountAddress: '4jDH4GzK2MPe2fAMX87LJRci6uowDx98a3aiGimVz6QH',
+      },
     ]
   }
 }

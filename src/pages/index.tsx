@@ -35,7 +35,7 @@ export default function Mines() {
   const toast = useToast();
   const context = useContext(CurrencyContext);
   const [inputValue, setValue] = useState(0);
-  const [selectCount, setSelectCount] = useState(1);
+  const [selectCount, setSelectCount] = useState(5);
   const [gameId, setGameId] = useState();
   const [game, setGame] = useState([]);
   const [lose, setLose] = useState(false);
@@ -46,10 +46,8 @@ export default function Mines() {
   const { connected, publicKey, signTransaction, signMessage } = useWallet();
 
   async function handleNewGame() {
-    console.log({ connected, tokenMint, inputValue });
     if (!connected) return;
     const tokenMint = coins.find(({ value }) => value === context.value);
-    console.log({ connected, tokenMint, inputValue });
 
     if (!tokenMint) return;
     if (inputValue === 0 || inputValue < 0.1 || inputValue > 1) return;
@@ -80,7 +78,7 @@ export default function Mines() {
         position,
       },
     };
-    const { data } = await axios.post(`${infos.serverUrl}/mines/select`, body);
+    const { data } = await axios.post(`${infos.serverUrl}/mines/select-cactusino`, body);
     setGame(data.mines);
     setMultiplier(data.multiplier);
     setCashoutAvailable(data.cashoutAvailable);
@@ -147,10 +145,6 @@ export default function Mines() {
               <Select
                 onChange={({ target }) => setSelectCount(Number(target.value))}
               >
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
                 <option>5</option>
                 <option>6</option>
                 <option>7</option>
