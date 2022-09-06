@@ -17,6 +17,8 @@ import {
   Line,
   Mine,
   Bomb,
+  Option,
+  OptionsArea
 } from "./styles";
 import constants from "../utils/constants";
 import bs58 from "bs58";
@@ -78,7 +80,10 @@ export default function Mines() {
         position,
       },
     };
-    const { data } = await axios.post(`${infos.serverUrl}/mines/select-cactusino`, body);
+    const { data } = await axios.post(
+      `${infos.serverUrl}/mines/select-cactusino`,
+      body
+    );
     setGame(data.mines);
     setMultiplier(data.multiplier);
     setCashoutAvailable(data.cashoutAvailable);
@@ -141,30 +146,29 @@ export default function Mines() {
             </Label>
 
             <Label>
-              <span>Mines</span>
-              <Select
-                onChange={({ target }) => setSelectCount(Number(target.value))}
-              >
-                <option>5</option>
-                <option>6</option>
-                <option>7</option>
-                <option>8</option>
-                <option>9</option>
-                <option>10</option>
-                <option>12</option>
-                <option>13</option>
-                <option>14</option>
-                <option>15</option>
-                <option>16</option>
-                <option>17</option>
-                <option>18</option>
-                <option>19</option>
-                <option>20</option>
-                <option>21</option>
-                <option>22</option>
-                <option>23</option>
-                <option>24</option>
-              </Select>
+              <span>MINES</span>
+              <OptionsArea>
+                <Option
+                  onClick={() => setSelectCount(5)}
+                  active={selectCount === 5}
+                >
+                  5
+                </Option>
+
+                <Option
+                  onClick={() => setSelectCount(10)}
+                  active={selectCount === 10}
+                >
+                  10
+                </Option>
+
+                <Option
+                  onClick={() => setSelectCount(24)}
+                  active={selectCount === 24}
+                >
+                  24
+                </Option>
+              </OptionsArea>
             </Label>
 
             {gameId && !lose && (
