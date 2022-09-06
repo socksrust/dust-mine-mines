@@ -143,7 +143,6 @@ export const Mine = styled.button`
   :hover {
     transform: translate(0, -4px);
     filter: opacity(1);
-    /* background-color: #DE4151; */
   }
 
   @media only screen and (max-width: 1023px) {
